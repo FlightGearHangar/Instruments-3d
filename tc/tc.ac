@@ -1,16 +1,43 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.15 0.15 0.15  spec 0.5 0.5 0.5 shi 64  trans 0
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5 shi 64  trans 0
 OBJECT world
-kids 1
+kids 3
 OBJECT poly
-name "Plane"
-texture "/home/david/src/blender/Instruments/tc/tc.rgb"
+name "Ball"
+texture "/home/david/src/blender/Instruments/tc/tc02.rgb"
+texrep 1 1
+numvert 6
+-0.003018 -0.007948 -0.005161
+-0.003018 -0.01827 -0.005161
+-0.003018 -0.01827 0.005161
+-0.003018 -0.007948 0.005161
+-0.003018 -0.013109 0.005161
+-0.003018 -0.013109 -0.005161
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0.9921875 0.9921875
+3 0.001953125 0.9921875
+4 0.001953125 0.4970703125
+5 0.9921875 0.4970703125
+SURF 0x00
+mat 0
+refs 4
+4 0.001953125 0.4970703125
+2 0.001953125 0.001953125
+1 0.9921875 0.001953125
+5 0.9921875 0.4970703125
+kids 0
+OBJECT poly
+name "Face"
+texture "/home/david/src/blender/Instruments/tc/tc01.rgb"
 texrep 1 1
 numvert 4
-0 0.04 -0.04
-0 -0.04 -0.04
-0 -0.04 0.04
-0 0.04 0.04
+-0.001518 0.04 -0.04
+-0.001518 -0.04 -0.04
+-0.001518 -0.04 0.04
+-0.001518 0.04 0.04
 numsurf 1
 SURF 0x00
 mat 0
@@ -19,4 +46,31 @@ refs 4
 3 0.001953125 0.9921875
 2 0.001953125 0.001953125
 1 0.9921875 0.001953125
+kids 0
+OBJECT poly
+name "Plane"
+texture "/home/david/src/blender/Instruments/tc/tc03.rgb"
+texrep 1 1
+numvert 6
+0 0.005401 -0.023379
+0 -0.005289 -0.023379
+0 -0.005289 0.023379
+0 0.005401 0.023379
+0 5.6e-05 0.023379
+0 5.6e-05 -0.023379
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0.81640625 0.78125
+3 0.17578125 0.78125
+4 0.17578125 0.4921875
+5 0.81640625 0.4921875
+SURF 0x00
+mat 0
+refs 4
+4 0.17578125 0.4921875
+2 0.17578125 0.203125
+1 0.81640625 0.203125
+5 0.81640625 0.4921875
 kids 0

@@ -4,6 +4,18 @@
 
  <path>tc.ac</path>
 
+ <animation>
+  <type>rotate</type>
+  <object-name>Plane</object-name>
+  <property>/instrumentation/turn-indicator/indicated-turn-rate</property>
+  <factor>20.0</factor>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
 </PropertyList>
 
 

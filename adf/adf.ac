@@ -1,22 +1,91 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.15 0.15 0.15  spec 0.5 0.5 0.5 shi 64  trans 0
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5 shi 64  trans 0
+MATERIAL "Needle" rgb 1 0.8 0 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 72 trans 0
 OBJECT world
-kids 1
+kids 3
 OBJECT poly
-name "Plane"
-texture "/home/david/src/blender/Instruments/adf/adf.rgb"
+name "Front"
+texture "/home/david/src/blender/Instruments/adf/adf02.rgb"
 texrep 1 1
 numvert 4
-0 0.04 -0.04
-0 -0.04 -0.04
-0 -0.04 0.04
-0 0.04 0.04
+0.003018 0.04 -0.04
+0.003019 -0.04 -0.04
+0.003018 -0.04 0.04
+0.003018 0.04 0.04
 numsurf 1
 SURF 0x00
 mat 0
 refs 4
-0 0.900390625 0.900390625
-3 0.09375 0.900390625
-2 0.09375 0.09375
-1 0.900390625 0.09375
+0 0.02734375 0.96484375
+3 0.97265625 0.96484375
+2 0.97265625 0.02734375
+1 0.02734375 0.02734375
+kids 0
+OBJECT poly
+name "Needle"
+numvert 9
+0.001535 0.025533 -0.00056
+0.001535 -0.026912 -0.0006
+0.001535 -0.026912 0.0006
+0.001535 0.025533 0.00056
+0.001535 0.031225 7e-05
+0.001535 0.021733 0.00177
+0.001535 0.021733 -0.00177
+0.001535 0.021213 0.000759
+0.001535 0.021213 -0.000759
+numsurf 4
+SURF 0x00
+mat 1
+refs 4
+1 0.0 1.0
+8 0.0 0.0
+7 1.0 0.0
+2 1.0 1.0
+SURF 0x00
+mat 1
+refs 3
+0 0.0 1.0
+4 1.0 0.0
+3 0.0 0.0
+SURF 0x00
+mat 1
+refs 4
+0 0.0 1.0
+3 0.0 0.0
+5 1.0 0.0
+6 1.0 1.0
+SURF 0x00
+mat 1
+refs 4
+5 0.0 1.0
+7 0.0 0.0
+8 1.0 0.0
+6 1.0 1.0
+kids 0
+OBJECT poly
+name "Face"
+texture "/home/david/src/blender/Instruments/adf/adf.rgb"
+texrep 1 1
+numvert 6
+0 0.04 -0.04
+0 -0.04 -0.04
+0 -0.04 0.04
+0 0.04 0.04
+0 0 0.04
+0 0 -0.04
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0.916015625 0.91015625
+3 0.087890625 0.91015625
+4 0.087890625 0.49609375
+5 0.916015625 0.49609375
+SURF 0x00
+mat 0
+refs 4
+4 0.087890625 0.49609375
+2 0.087890625 0.08203125
+1 0.916015625 0.08203125
+5 0.916015625 0.49609375
 kids 0

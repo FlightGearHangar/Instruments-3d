@@ -1,0 +1,68 @@
+AC3Db
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5 shi 64  trans 0
+OBJECT world
+kids 2
+OBJECT poly
+name "Needle"
+numvert 9
+0.002501 0.017596 -0.001537
+0.002501 -0.008971 -0.001537
+0.002501 -0.008971 0.001537
+0.002501 0.017596 0.001537
+0.002501 0.02208 0.000726
+0.002501 0.02208 -0.000726
+0.002501 0.034154 -0.000726
+0.002501 0.034154 0.000726
+0.002501 0.037949 0
+numsurf 5
+SURF 0x00
+mat 0
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+SURF 0x00
+mat 0
+refs 4
+3 0 0
+0 0 0
+5 0 0
+4 0 0
+SURF 0x00
+mat 0
+refs 3
+5 0 0
+6 0 0
+8 0 0
+SURF 0x00
+mat 0
+refs 3
+8 0 0
+7 0 0
+4 0 0
+SURF 0x00
+mat 0
+refs 3
+8 0 0
+4 0 0
+5 0 0
+kids 0
+OBJECT poly
+name "Face"
+texture "/home/david/src/blender/Instruments/asi/asi.rgb"
+texrep 1 1
+numvert 4
+0 0.04 -0.04
+0 -0.04 -0.04
+0 -0.04 0.04
+0 0.04 0.04
+numsurf 1
+SURF 0x00
+mat 0
+refs 4
+0 0.94140625 0.94140625
+3 0.05078125 0.94140625
+2 0.05078125 0.05078125
+1 0.94140625 0.05078125
+kids 0

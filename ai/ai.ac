@@ -1,0 +1,31 @@
+AC3Db
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5 shi 64  trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "Face"
+texture "/home/david/src/blender/Instruments/ai/ai.rgb"
+texrep 1 1
+numvert 6
+0 0.04 -0.04
+0 -0.04 -0.04
+0 -0.04 0.04
+0 0.04 0.04
+0 0 0.04
+0 0 -0.04
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0.8828125 0.8828125
+3 0.11328125 0.8828125
+4 0.11328125 0.498046875
+5 0.8828125 0.498046875
+SURF 0x00
+mat 0
+refs 4
+4 0.11328125 0.498046875
+2 0.11328125 0.11328125
+1 0.8828125 0.11328125
+5 0.8828125 0.498046875
+kids 0

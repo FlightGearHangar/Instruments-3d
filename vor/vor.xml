@@ -4,6 +4,64 @@
 
  <path>vor.ac</path>
 
+ <animation>
+  <name>LocalizerNeedleTransform</name>
+  <type>rotate</type>
+  <object-name>LocalizerNeedle</object-name>
+  <property>/radios/nav[0]/heading-needle-deflection</property>
+  <factor>-3.2</factor>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>0.03</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <name>GlidescopeNeedleTransform</name>
+  <type>rotate</type>
+  <object-name>GlidescopeNeedle</object-name>
+  <property>/radios/nav[0]/gs-needle-deflection</property>
+  <factor>-3.2</factor>
+  <center>
+   <x-m>0</x-m>
+   <y-m>-0.03</y-m>
+   <z-m>0</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <name>RingTransform</name>
+  <type>rotate</type>
+  <object-name>Ring</object-name>
+  <property>/radios/nav[0]/radials/selected-deg</property>
+  <factor>-1</factor>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <name>Alpha Order Group</name>
+  <object-name>Face</object-name>
+  <object-name>LocalizerNeedleTransform</object-name>
+  <object-name>GlidescopeNeedleTransform</object-name>
+  <object-name>RingTransform</object-name>
+  <object-name>Front</object-name>
+ </animation>
+
 </PropertyList>
 
 

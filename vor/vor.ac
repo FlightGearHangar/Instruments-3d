@@ -1,22 +1,135 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.15 0.15 0.15  spec 0.5 0.5 0.5 shi 64  trans 0
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5 shi 64  trans 0
 OBJECT world
-kids 1
+kids 5
 OBJECT poly
-name "Plane"
-texture "/home/david/src/blender/Instruments/vor/vor.rgb"
+name "GlidescopeNeedle"
+numvert 6
+-0.003005 -0.000532 0.004932
+-0.003005 -0.000532 0.029784
+-0.003005 0.000533 0.004932
+-0.003005 -0.000532 -0.019774
+-0.003005 0.000533 -0.019774
+-0.003005 0.000533 0.029784
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0 0
+3 0 0
+4 0 0
+2 0 0
+SURF 0x00
+mat 0
+refs 4
+0 0 0
+2 0 0
+5 0 0
+1 0 0
+kids 0
+OBJECT poly
+name "LocalizerNeedle"
+numvert 6
+-0.003005 -0.019816 0.000532
+-0.003005 0.029784 0.000532
+-0.003005 -0.019816 -0.000532
+-0.003005 0.029784 -0.000532
+-0.003005 0.004974 0.000532
+-0.003005 0.004974 -0.000532
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0 0
+2 0 0
+5 0 0
+4 0 0
+SURF 0x00
+mat 0
+refs 4
+1 0 0
+4 0 0
+5 0 0
+3 0 0
+kids 0
+OBJECT poly
+name "Face"
+texture "/home/david/src/blender/Instruments/vor/vor02.rgb"
 texrep 1 1
-numvert 4
+numvert 6
+-0.004518 0.04 -0.04
+-0.004518 -0.04 -0.04
+-0.004518 -0.04 0.04
+-0.004518 0.04 0.04
+-0.004518 0 0.04
+-0.004518 0 -0.04
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0.966796875 0.958984375
+3 0.009765625 0.958984375
+4 0.009765625 0.48046875
+5 0.966796875 0.48046875
+SURF 0x00
+mat 0
+refs 4
+1 0.966796875 0.0
+5 0.966796875 0.48046875
+4 0.009765625 0.48046875
+2 0.009765625 0.0
+kids 0
+OBJECT poly
+name "Ring"
+texture "/home/david/src/blender/Instruments/vor/vor01.rgb"
+texrep 1 1
+numvert 6
+-0.001596 0.04 -0.04
+-0.001596 -0.04 -0.04
+-0.001596 -0.04 0.04
+-0.001596 0.04 0.04
+-0.001596 0 0.04
+-0.001596 0 -0.04
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0.998046875 1.0
+3 0.0 1.0
+4 0.0 0.5
+5 0.998046875 0.5
+SURF 0x00
+mat 0
+refs 4
+1 0.998046875 0.0
+5 0.998046875 0.5
+4 0.0 0.5
+2 0.0 0.0
+kids 0
+OBJECT poly
+name "Front"
+texture "/home/david/src/blender/Instruments/vor/vor03.rgb"
+texrep 1 1
+numvert 6
 0 0.04 -0.04
 0 -0.04 -0.04
 0 -0.04 0.04
 0 0.04 0.04
-numsurf 1
+0 0 0.04
+0 0 -0.04
+numsurf 2
 SURF 0x00
 mat 0
 refs 4
-0 0.970703125 0.970703125
-3 0.0234375 0.970703125
-2 0.0234375 0.0234375
-1 0.970703125 0.0234375
+0 0.998046875 1.0
+3 0.0 1.0
+4 0.0 0.5
+5 0.998046875 0.5
+SURF 0x00
+mat 0
+refs 4
+1 0.998046875 0.0
+5 0.998046875 0.5
+4 0.0 0.5
+2 0.0 0.0
 kids 0

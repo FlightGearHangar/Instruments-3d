@@ -6,7 +6,7 @@
 
  <animation>
   <type>rotate</type>
-  <object-name>Plane</object-name>
+  <object-name>Airplane</object-name>
   <property>/instrumentation/turn-indicator/indicated-turn-rate</property>
   <factor>20.0</factor>
   <axis>

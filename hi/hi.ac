@@ -1,11 +1,37 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5 shi 64  trans 0
-MATERIAL "Face" rgb 0.8 0.8 0.8 amb 0.5 0.5 0.5 emis 0.25 0.25 0.25 spec 1 1 1 shi 72 trans 0
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.15 0.15 0.15  spec 0.5 0.5 0.5 shi 64  trans 0
 OBJECT world
-kids 1
+kids 2
 OBJECT poly
 name "Face"
-texture "/home/david/src/blender/Instruments/hi/hi.rgb"
+texture "/home/david/src/blender/Instruments/hi/hi01.rgb"
+texrep 1 1
+numvert 6
+-0.001458 0.04 -0.04
+-0.001458 -0.04 -0.04
+-0.001458 -0.04 0.04
+-0.001458 0.04 0.04
+-0.001458 0 0.04
+-0.001458 0 -0.04
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0.935546875 0.935546875
+3 0.056640625 0.935546875
+4 0.056640625 0.49609375
+5 0.935546875 0.49609375
+SURF 0x00
+mat 0
+refs 4
+4 0.056640625 0.49609375
+2 0.056640625 0.056640625
+1 0.935546875 0.056640625
+5 0.935546875 0.49609375
+kids 0
+OBJECT poly
+name "Front"
+texture "/home/david/src/blender/Instruments/hi/hi02.rgb"
 texrep 1 1
 numvert 6
 0 0.04 -0.04
@@ -16,17 +42,17 @@ numvert 6
 0 0 -0.04
 numsurf 2
 SURF 0x00
-mat 1
+mat 0
 refs 4
-0 0.90234375 0.90234375
-3 0.091796875 0.90234375
-4 0.091796875 0.4970703125
-5 0.90234375 0.4970703125
+0 0.994140625 0.994140625
+3 -0.001953125 0.994140625
+4 -0.001953125 0.49609375
+5 0.994140625 0.49609375
 SURF 0x00
-mat 1
+mat 0
 refs 4
-4 0.091796875 0.4970703125
-2 0.091796875 0.091796875
-1 0.90234375 0.091796875
-5 0.90234375 0.4970703125
+4 -0.001953125 0.49609375
+2 -0.001953125 -0.001953125
+1 0.994140625 -0.001953125
+5 0.994140625 0.49609375
 kids 0

@@ -1,9 +1,87 @@
 AC3Db
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5 shi 64  trans 0
 OBJECT world
-kids 1
+kids 4
 OBJECT poly
-name "Plane"
+name "Needle10000"
+numvert 5
+0.000845 0.007746 -0.001204
+0.000845 -0.003916 -0.001204
+0.000845 -0.003916 0.001205
+0.000845 0.007746 0.001205
+0.000845 0.010678 0
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+SURF 0x00
+mat 0
+refs 3
+3 0 0
+0 0 0
+4 0 0
+kids 0
+OBJECT poly
+name "Needle1000"
+numvert 7
+0.001742 0.010049 -0.001921
+0.001742 -0.010222 -0.003394
+0.001742 -0.010222 0.003394
+0.001742 0.010049 0.001921
+0.001742 0 0.001516
+0.001742 0 -0.001516
+0.001742 0.016949 0
+numsurf 3
+SURF 0x00
+mat 0
+refs 3
+3 0 0
+0 0 0
+6 0 0
+SURF 0x00
+mat 0
+refs 4
+0 0 0
+3 0 0
+4 0 0
+5 0 0
+SURF 0x00
+mat 0
+refs 4
+1 0 0
+5 0 0
+4 0 0
+2 0 0
+kids 0
+OBJECT poly
+name "Needle100"
+numvert 5
+0.002467 0.025121 -0.001421
+0.002467 -0.012012 -0.001421
+0.002467 -0.012012 0.001421
+0.002467 0.025121 0.001421
+0.002467 0.028398 0
+numsurf 2
+SURF 0x00
+mat 0
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+SURF 0x00
+mat 0
+refs 3
+3 0 0
+0 0 0
+4 0 0
+kids 0
+OBJECT poly
+name "Face"
 texture "/home/david/src/blender/Instruments/alt/alt.rgb"
 texrep 1 1
 numvert 4

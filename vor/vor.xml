@@ -8,7 +8,7 @@
   <name>LocalizerNeedleTransform</name>
   <type>rotate</type>
   <object-name>LocalizerNeedle</object-name>
-  <property>/radios/nav[0]/heading-needle-deflection</property>
+  <property>/instrumentation/nav[0]/heading-needle-deflection</property>
   <factor>-3.2</factor>
   <center>
    <x-m>0</x-m>
@@ -26,7 +26,7 @@
   <name>GlidescopeNeedleTransform</name>
   <type>rotate</type>
   <object-name>GlidescopeNeedle</object-name>
-  <property>/radios/nav[0]/gs-needle-deflection</property>
+  <property>/instrumentation/nav[0]/gs-needle-deflection</property>
   <factor>-3.2</factor>
   <center>
    <x-m>0</x-m>
@@ -44,7 +44,7 @@
   <name>RingTransform</name>
   <type>rotate</type>
   <object-name>Ring</object-name>
-  <property>/radios/nav[0]/radials/selected-deg</property>
+  <property>/instrumentation/nav[0]/radials/selected-deg</property>
   <factor>-1</factor>
   <axis>
    <x>-1</x>

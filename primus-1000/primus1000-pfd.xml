@@ -1,0 +1,661 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>primus1000-pfd.ac</path>
+
+
+ <animation>
+   <type>select</type>
+   <object-name>FDbars</object-name>
+   <condition>
+     <not>
+       <equals>
+         <property>/instrumentation/kfc200/fdmode</property>
+         <value>off</value>
+       </equals>
+     </not>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>ADFneedle</object-name>
+   <condition>
+     <property>/instrumentation/adf/in-range</property>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>VORneedle</object-name>
+   <condition>
+     <property>/instrumentation/nav/in-range</property>
+   </condition>
+ </animation>
+
+ 
+ <animation>
+   <type>translate</type>
+   <object-name>FDbars</object-name>
+   <property>/instrumentation/kfc200/vbar-pitch</property>
+<factor>0.0014</factor>
+<axis>
+     <x>0.0</x>
+     <y>0.0</y>
+     <z>1.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0</y-m>
+     <z-m>0.052</z-m>
+   </center>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>FDbars</object-name>
+   <property>/instrumentation/kfc200/vbar-roll</property>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0</y-m>
+     <z-m>0.052</z-m>
+   </center>
+ </animation>
+
+ 
+ <animation>
+   <type>texmultiple</type>
+   <object-name>AI</object-name>
+   <transform>
+     <property>/orientation/pitch-deg</property>
+     <subtype>textranslate</subtype>
+     <factor>0.004694</factor>
+     <axis>
+       <x>0</x>
+       <y>1</y>
+       <z>0</z>
+     </axis>
+   </transform>
+   <transform>
+     <property>/orientation/roll-deg</property>
+     <subtype>texrotate</subtype>
+     <center>
+       <x>0.25</x>
+       <y>0.50</y>
+     </center>
+     <axis>
+       <x>0</x>
+       <y>0</y>
+       <z>-1</z>
+     </axis>
+   </transform>
+ </animation>
+
+
+
+ <animation>
+   <type>texrotate</type>
+   <object-name>HDGface</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <center>
+     <x>0.75</x>
+     <y>0.25</y>
+     <z>0.0</z>
+   </center>
+   <axis>
+     <x>0</x>
+     <y>0</y>
+     <z>-1</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>hdgbug</object-name>
+   <property>/autopilot/internal/fdm-heading-bug-error-deg</property>
+   <axis>
+     <x>-1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0</y-m>
+     <z-m>-0.038</z-m>
+   </center>
+ </animation>
+ 
+
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>CRSneedle</object-name>
+   <object-name>CRSneedle.001</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0</y-m>
+     <z-m>-0.038</z-m>
+   </center>
+ </animation>
+ 
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>CRSneedle</object-name>
+   <object-name>CRSneedle.001</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+   <axis>
+     <x>-1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0</y-m>
+     <z-m>-0.038</z-m>
+   </center>
+ </animation>
+ 
+ 
+ <animation>
+   <type>translate</type>
+   <object-name>CRSneedle.001</object-name>
+   <property>/instrumentation/nav/heading-needle-deflection</property>
+   <factor>0.002</factor>
+   <axis>
+     <x>0.0</x>
+     <y>1.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0</y-m>
+     <z-m>-0.038</z-m>
+   </center>
+ </animation>
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>ADFneedle</object-name>
+   <property>/instrumentation/adf/indicated-bearing-deg</property>
+   <axis>
+     <x>-1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0</y-m>
+     <z-m>-0.038</z-m>
+   </center>
+ </animation>
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>VORneedle</object-name>
+   <property>/instrumentation/nav/heading-deg</property>
+   <axis>
+     <x>-1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0</y-m>
+     <z-m>-0.038</z-m>
+   </center>
+ </animation>
+ 
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>ASIribbon</object-name>
+   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+   <interpolation>
+     <entry>
+       <ind> 0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind> 100.0</ind>
+       <dep>0.172</dep>
+     </entry>
+     <entry>
+       <ind> 200.0</ind>
+       <dep>0.342</dep>
+     </entry>
+     <entry>
+       <ind> 300.0</ind>
+       <dep>0.514</dep>
+     </entry>
+     <entry>
+       <ind> 400.0</ind>
+       <dep>0.683</dep>
+     </entry>
+     <entry>
+       <ind> 470.0</ind>
+       <dep>0.806</dep>
+     </entry>
+   </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>Asitext</object-name>
+   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>Asitext.001</object-name>
+   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>Asitext.002</object-name>
+   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+   <factor>0.1</factor>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>VSIneedle</object-name>
+   <property>/autopilot/internal/vert-speed-fpm</property>
+   <min>-4000.0</min>
+   <max>4000.0</max>
+   <interpolation>
+     <entry>
+       <ind>  -4000.0</ind>
+       <dep>-80.0</dep>
+     </entry>
+     <entry>
+       <ind>  -2000.0</ind>
+       <dep>-38.0</dep>
+     </entry>
+     <entry>
+       <ind>  -1000.0</ind>
+       <dep> -19.0</dep>
+     </entry>
+     <entry>
+       <ind>   -500.0</ind>
+       <dep> -9.5</dep>
+     </entry>
+     <entry>
+       <ind>      0.0</ind>
+       <dep>   0.0</dep>
+     </entry>
+     <entry>
+       <ind>    500.0</ind>
+       <dep>  9.5</dep>
+     </entry>
+     <entry>
+       <ind>   1000.0</ind>
+       <dep>  19.0</dep>
+     </entry>
+     <entry>
+       <ind>   2000.0</ind>
+       <dep> 38.0</dep>
+     </entry>
+     <entry>
+       <ind>   4000.0</ind>
+       <dep> 80.0</dep>
+     </entry>
+   </interpolation>
+   <axis>
+     <x>-1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.004</x-m>
+     <y-m>0.081</y-m>
+     <z-m>-0.042</z-m>
+   </center>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>ALTribbon</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.000669</factor>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>Alt10</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.01</factor>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>Alt100</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <scroll>20</scroll>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>Alt1000</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.0001</factor>
+   <step>1000</step>
+   <scroll>20</scroll>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>Alt10000</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.00001</factor>
+   <step>10000</step>
+   <scroll>20</scroll>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>Warrow</object-name>
+   <property>/orientation/heading-deg</property>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>-0.037</y-m>
+     <z-m>-0.063</z-m>
+   </center>
+ </animation>
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>Warrow</object-name>
+   <property>/environment/wind-from-heading-deg</property>
+   <axis>
+     <x>-1.0</x>
+     <y>0.0</y>
+     <z>-0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>-0.037</y-m>
+     <z-m>-0.063</z-m>
+   </center>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext.001</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext.002</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>gsptext</object-name>
+   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>gsptext.001</object-name>
+   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>gsptext.002</object-name>
+   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>mach.001</object-name>
+   <property>/velocities/mach</property>
+   <factor>1.0</factor>
+   <step>0.1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>mach.002</object-name>
+   <property>/velocities/mach</property>
+   <factor>10.0</factor>
+   <step>0.01</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>mach.003</object-name>
+   <property>/velocities/mach</property>
+   <factor>100.0</factor>
+   <step>0.001</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>wspd</object-name>
+   <property>/environment/wind-speed-kt</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>wspd.001</object-name>
+   <property>/environment/wind-speed-kt</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>wspd.002</object-name>
+   <property>/environment/wind-speed-kt</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>inhgtxt</object-name>
+   <property>/instrumentation/altimeter/setting-inhg</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+  
+ <animation>
+   <type>textranslate</type>
+   <object-name>inhgtxt.001</object-name>
+   <property>/instrumentation/altimeter/setting-inhg</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+  
+ <animation>
+   <type>textranslate</type>
+   <object-name>inhgtxt.002</object-name>
+   <property>/instrumentation/altimeter/setting-inhg</property>
+   <factor>1.0</factor>
+   <step>0.1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+  
+ <animation>
+   <type>textranslate</type>
+   <object-name>inhgtxt.003</object-name>
+   <property>/instrumentation/altimeter/setting-inhg</property>
+   <factor>10.0</factor>
+   <step>0.01</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+  
+</PropertyList>

@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>kas297.ac</path>
+
+ <animation>
+   <type>select</type>
+   <object-name>Alert.msg</object-name>
+   <condition>
+     <less-than>
+       <property>/instrumentation/kfc200/alt-alert</property>
+       <value>1000.0</value>
+     </less-than>
+     <greater-than>
+       <property>/instrumentation/kfc200/alt-alert</property>
+       <value>300.0</value>
+     </greater-than>
+   </condition>
+ </animation>
+
+ <animation>
+   <type>select</type>
+   <object-name>Arm.msg</object-name>
+   <condition>
+   <equals>
+   <property>/autopilot/locks/altitude</property>
+   <value>altitude-hold</value>
+   </equals>
+   </condition>
+ </animation>
+
+ <!--                                Altitude Select-->
+ <animation>
+   <type>textranslate</type>
+   <object-name>altmsg</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.00001</factor>
+   <step>10000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>altmsg.001</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.0001</factor>
+   <step>1000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>altmsg.002</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>altmsg.003</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>altmsg.004</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+
+</PropertyList>

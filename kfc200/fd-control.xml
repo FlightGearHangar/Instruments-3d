@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>fd-control.ac</path>
+
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>APtoggle</object-name>
+   <property>/instrumentation/kfc200/autopilot-on</property>
+<factor>40</factor>
+   <axis>
+     <x>0.0</x>
+     <y>-1.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>0.046</y-m>
+     <z-m>0.002</z-m>
+   </center>
+ </animation>
+
+</PropertyList>

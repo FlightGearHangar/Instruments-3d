@@ -7,7 +7,7 @@
  <animation>
   <type>rotate</type>
   <object-name>Face</object-name>
-  <property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+  <property>/instrumentation/adf/rotation-deg[0]</property>
   <factor>-1</factor>
   <axis>
    <x>-1</x>

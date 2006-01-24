@@ -1,0 +1,32 @@
+<?xml version="1.0" ?> 
+  <PropertyList> 
+    <path>Yoke-pa24.ac</path> 
+ <animation>
+  <type>translate</type>
+  <group-name>Yoke-pa24</group-name>
+  <property>controls/flight/elevator</property>
+  <factor>-0.1</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <group-name>Yoke-pa24</group-name>
+  <property>controls/flight/aileron</property>
+  <factor>-80.0</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>
+  </center>
+ </animation>
+</PropertyList>

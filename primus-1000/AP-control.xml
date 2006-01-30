@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>AP-control.ac</path>
+
+ <animation>
+   <type>select</type>
+   <object-name>AP-on</object-name>
+   <object-name>YD-on</object-name>
+   <condition>
+     <or>
+       <not-equals>
+         <property>/autopilot/locks/heading</property>
+         <value></value>
+       </not-equals>
+       <not-equals>
+         <property>/autopilot/locks/altitude</property>
+         <value></value>
+       </not-equals>
+       <not-equals>
+         <property>/autopilot/locks/speed</property>
+         <value></value>
+       </not-equals>
+     </or>
+   </condition>
+ </animation>
+
+</PropertyList>

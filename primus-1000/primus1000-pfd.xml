@@ -7,6 +7,28 @@
 
  <animation>
    <type>select</type>
+   <object-name>AP.annun</object-name>
+   <condition>
+     <or>
+       <not-equals>
+         <property>/autopilot/locks/heading</property>
+         <value></value>
+       </not-equals>
+       <not-equals>
+         <property>/autopilot/locks/altitude</property>
+         <value></value>
+       </not-equals>
+       <not-equals>
+         <property>/autopilot/locks/speed</property>
+         <value></value>
+       </not-equals>
+     </or>
+   </condition>
+ </animation>
+
+
+ <animation>
+   <type>select</type>
    <object-name>FDbars</object-name>
    <condition>
      <not>
@@ -18,21 +40,60 @@
    </condition>
  </animation>
  
+ 
+
  <animation>
    <type>select</type>
-   <object-name>ADFneedle</object-name>
+   <object-name>GSscale</object-name>
+   <object-name>GSneedle</object-name>
    <condition>
-     <property>/instrumentation/adf/in-range</property>
+     <and>
+       <equals>
+         <property>/instrumentation/nav/has-gs</property>
+         <value>true</value>
+       </equals>
+       <less-than>
+         <property>/instrumentation/nav/gs-distance</property>
+         <value>30000</value>
+       </less-than>
+     </and>
+   </condition>
+ </animation>
+
+
+ <animation>
+   <type>select</type>
+   <object-name>outer.marker</object-name>
+   <condition>
+     <equals>
+       <property>/instrumentation/marker-beacon/outer</property>
+       <value>true</value>
+     </equals>
    </condition>
  </animation>
  
  <animation>
    <type>select</type>
-   <object-name>VORneedle</object-name>
+   <object-name>middle.marker</object-name>
    <condition>
-     <property>/instrumentation/nav/in-range</property>
+     <equals>
+       <property>/instrumentation/marker-beacon/middle</property>
+       <value>true</value>
+     </equals>
    </condition>
  </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>inner.marker</object-name>
+   <condition>
+     <equals>
+       <property>/instrumentation/marker-beacon/inner</property>
+       <value>true</value>
+     </equals>
+   </condition>
+ </animation>
+ 
 
  
  <animation>
@@ -97,6 +158,28 @@
    </transform>
  </animation>
 
+ <animation>
+   <type>translate</type>
+   <object-name>SlipBall</object-name>
+   <property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+   <min>-1.1</min>
+   <max>1.1</max>
+   <interpolation>
+     <entry>
+       <ind>-1.1</ind>
+       <dep>-0.0125</dep>
+     </entry>
+     <entry>
+       <ind>1.1</ind>
+       <dep>0.0125</dep>
+     </entry>
+   </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
 
 
  <animation>
@@ -127,7 +210,7 @@
    <center>
      <x-m>0.002</x-m>
      <y-m>0</y-m>
-     <z-m>-0.038</z-m>
+     <z-m>-0.040</z-m>
    </center>
  </animation>
  
@@ -137,6 +220,8 @@
    <type>rotate</type>
    <object-name>CRSneedle</object-name>
    <object-name>CRSneedle.001</object-name>
+   <object-name>ToFlag</object-name>
+   <object-name>FromFlag</object-name>
    <property>/orientation/heading-magnetic-deg</property>
    <axis>
      <x>1.0</x>
@@ -146,15 +231,16 @@
    <center>
      <x-m>0.002</x-m>
      <y-m>0</y-m>
-     <z-m>-0.038</z-m>
+     <z-m>-0.040</z-m>
    </center>
  </animation>
- 
  
  <animation>
    <type>rotate</type>
    <object-name>CRSneedle</object-name>
    <object-name>CRSneedle.001</object-name>
+   <object-name>ToFlag</object-name>
+   <object-name>FromFlag</object-name>
    <property>/instrumentation/nav/radials/selected-deg</property>
    <axis>
      <x>-1.0</x>
@@ -164,32 +250,87 @@
    <center>
      <x-m>0.002</x-m>
      <y-m>0</y-m>
-     <z-m>-0.038</z-m>
+     <z-m>-0.040</z-m>
    </center>
  </animation>
+ 
+ 
  
  
  <animation>
    <type>translate</type>
    <object-name>CRSneedle.001</object-name>
    <property>/instrumentation/nav/heading-needle-deflection</property>
-   <factor>0.002</factor>
+   <interpolation>
+     <entry>
+       <ind>-10.0</ind>
+       <dep>-0.0148</dep>
+     </entry>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>10.0</ind>
+       <dep>0.0148</dep>
+     </entry>
+   </interpolation>
    <axis>
      <x>0.0</x>
      <y>1.0</y>
      <z>0.0</z>
    </axis>
-   <center>
      <x-m>0.002</x-m>
      <y-m>0</y-m>
-     <z-m>-0.038</z-m>
-   </center>
+     <z-m>-0.040</z-m>
  </animation>
  
  <animation>
+   <type>translate</type>
+   <object-name>GSneedle</object-name>
+   <property>/instrumentation/nav/gs-needle-deflection</property>
+   <interpolation>
+     <entry>
+       <ind>-10.0</ind>
+       <dep>0.0188</dep>
+     </entry>
+     <entry>
+       <ind>-5.0</ind>
+       <dep>0.0162</dep>
+     </entry>
+     <entry>
+       <ind>-2.5</ind>
+       <dep>0.0083</dep>
+     </entry>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>2.50</ind>
+       <dep>0.0078</dep>
+     </entry>
+     <entry>
+       <ind>5.0</ind>
+       <dep>0.0158</dep>
+     </entry>
+     <entry>
+       <ind>10.0</ind>
+       <dep>0.02</dep>
+     </entry>
+   </interpolation>
+   <axis>
+     <x>0.0</x>
+     <y>0.0</y>
+     <z>1.0</z>
+   </axis>
+ </animation>
+
+ 
+ <animation>
    <type>rotate</type>
-   <object-name>ADFneedle</object-name>
-   <property>/instrumentation/adf/indicated-bearing-deg</property>
+   <object-name>NAV1pointer</object-name>
+   <property>/instrumentation/primus1000/nav1pointer-heading-offset</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -198,14 +339,14 @@
    <center>
      <x-m>0.002</x-m>
      <y-m>0</y-m>
-     <z-m>-0.038</z-m>
+     <z-m>-0.040</z-m>
    </center>
  </animation>
- 
+
  <animation>
    <type>rotate</type>
-   <object-name>VORneedle</object-name>
-   <property>/instrumentation/nav/heading-deg</property>
+   <object-name>NAV2pointer</object-name>
+   <property>/instrumentation/primus1000/nav2pointer-heading-offset</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -214,11 +355,10 @@
    <center>
      <x-m>0.002</x-m>
      <y-m>0</y-m>
-     <z-m>-0.038</z-m>
+     <z-m>-0.040</z-m>
    </center>
  </animation>
- 
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>ASIribbon</object-name>
@@ -453,7 +593,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>/autopilot/settings/heading-bug-deg</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -466,7 +606,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext.001</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>/autopilot/settings/heading-bug-deg</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -479,7 +619,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext.002</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>/autopilot/settings/heading-bug-deg</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -657,5 +797,219 @@
      <z>0</z>
    </axis>
  </animation>
-  
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>crstext</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>crstext.001</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>crstext.002</object-name>
+   <property>/instrumentation/nav/radials/selected-deg</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>alttext</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.00001</factor>
+   <step>10000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>alttext.001</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.0001</factor>
+   <step>1000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>alttext.002</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>alttext.003</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>alttext.004</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>nav1msg</object-name>
+   <property>/instrumentation/primus1000/nav1pointer</property>
+   <factor>0.025</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>nav2msg</object-name>
+   <property>/instrumentation/primus1000/nav2pointer</property>
+   <factor>0.025</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>altmsg</object-name>
+   <property>/instrumentation/primus1000/alt-mode</property>
+   <factor>0.029</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>crsmsg</object-name>
+   <property>/instrumentation/primus1000/nav1pointer</property>
+   <factor>0.00976</factor>
+   <step>3</step>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+
+ <animation>
+   <type>select</type>
+   <object-name>FromFlag</object-name>
+   <condition>
+     <and>
+     <equals>
+       <property>/instrumentation/nav/from-flag</property>
+       <value>true</value>
+     </equals>
+     <equals>
+       <property>/instrumentation/nav/nav-loc</property>
+       <value>false</value>
+     </equals>
+   </and>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>ToFlag</object-name>
+   <condition>
+     <and>
+       <equals>
+         <property>/instrumentation/nav/to-flag</property>
+         <value>true</value>
+       </equals>
+       <equals>
+         <property>/instrumentation/nav/nav-loc</property>
+         <value>false</value>
+       </equals>
+   </and>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>NAV1pointer</object-name>
+   <condition>
+     <greater-than>
+       <property>/instrumentation/primus1000/nav1pointer</property>
+       <value>0</value>
+     </greater-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>NAV2pointer</object-name>
+   <condition>
+     <greater-than>
+       <property>/instrumentation/primus1000/nav2pointer</property>
+       <value>0</value>
+     </greater-than>
+   </condition>
+ </animation>
+ 
+
 </PropertyList>

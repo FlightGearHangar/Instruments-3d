@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>kr87.ac</path>
+
+
+
+ <animation>
+   <type>texrotate</type>
+   <object-name>HDGface</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <center>
+     <x>0.75</x>
+     <y>0.25</y>
+     <z>0.0</z>
+   </center>
+   <axis>
+     <x>0</x>
+     <y>0</y>
+     <z>-1</z>
+   </axis>
+ </animation>
+
+
+ 
+</PropertyList>
+
+

@@ -5,176 +5,10 @@
  <path>kfc200.ac</path>
 
  <animation>
-   <type>select</type>
-   <object-name>FD-ON</object-name>
-   <condition>
-	<not>     
-   <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>off</value>
-     </equals>
-</not>
-   </condition>
- </animation>
-
- 
- <animation>
-   <type>select</type>
-   <object-name>NAV-ON</object-name>
-   <condition>
-     <or>
-       <equals>
-         <property>/instrumentation/kfc200/fdmode</property>
-         <value>nav-arm</value>
-       </equals>
-       <equals>
-         <property>/instrumentation/kfc200/fdmode</property>
-         <value>nav-cpld</value>
-       </equals>
-   </or>
-   </condition>
- </animation>
-
-
- <animation>
-   <type>select</type>
-   <object-name>NAVARM-ON</object-name>
-   <condition>
-     <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>nav-arm</value>
-     </equals>
-   </condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>NAVCPLD-ON</object-name>
-   <condition>
-     <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>nav-cpld</value>
-     </equals>
-   </condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>HDG-ON</object-name>
-   <condition>
-     <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>hdg</value>
-     </equals>
-   </condition>
- </animation>
-
-
- <animation>
-   <type>select</type>
-   <object-name>APPR-ON</object-name>
-   <condition>
-     <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>appr</value>
-     </equals>
-   </condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>GS-ON</object-name>
-   <condition>
-     <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>gs</value>
-     </equals>
-   </condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>GA-ON</object-name>
-   <condition>
-     <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>ga</value>
-     </equals>
-   </condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>ALT-ON</object-name>
-   <condition>
-     <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>alt</value>
-     </equals>
-   </condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>AP-ON</object-name>
-   <condition>
-     <or>
-     <not>
-       <equals>
-         <property>/autopilot/locks/heading</property>
-         <value></value>
-       </equals>
-       <equals>
-         <property>/autopilot/locks/speed</property>
-         <value></value>
-       </equals>
-       <equals>
-         <property>/autopilot/locks/speed</property>
-         <value></value>
-       </equals>
-   </not>
-   </or>
-   </condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>BC-ON</object-name>
-   <condition>
-     <equals>
-       <property>/instrumentation/kfc200/fdmode</property>
-       <value>bc</value>
-     </equals>
-   </condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>O-ON</object-name>
-<condition>
-<equals>
- <property>/instrumentation/marker-beacon/outer</property>
-<value>true</value>
-</equals>
-</condition>
- </animation>
-
- <animation>
-   <type>select</type>
-   <object-name>M-ON</object-name>
-<condition>
-<equals>
- <property>/instrumentation/marker-beacon/middle</property>
-<value>true</value>
-</equals>
-</condition>
- </animation>
-
- <animation>
    <type>rotate</type>
    <object-name>AIring</object-name>
    <object-name>AIpitch</object-name>
-   <property>/orientation/roll-deg</property>
+   <property>orientation/roll-deg</property>
    <center>
      <x-m>0.0</x-m>
      <y-m>0.0</y-m>
@@ -190,7 +24,7 @@
  <animation>
    <type>translate</type>
    <object-name>AIpitch</object-name>
-   <property>/orientation/pitch-deg</property>
+   <property>orientation/pitch-deg</property>
    <interpolation>
      <entry>
        <ind>-90.0</ind>
@@ -231,7 +65,7 @@
    <condition>
      <not>
        <equals>
-         <property>/instrumentation/kfc200/fdmode</property>
+         <property>instrumentation/kfc200/fdmode</property>
          <value>off</value>
        </equals>
      </not>
@@ -241,7 +75,7 @@
  <animation>
    <type>translate</type>
    <object-name>FDbars</object-name>
-   <property>/instrumentation/kfc200/vbar-pitch</property>
+   <property>instrumentation/kfc200/vbar-pitch</property>
    <factor>0.00056</factor>
    <axis>
      <x>0.0</x>
@@ -258,7 +92,7 @@
  <animation>
    <type>rotate</type>
    <object-name>FDbars</object-name>
-   <property>/instrumentation/kfc200/vbar-roll</property>
+   <property>instrumentation/kfc200/vbar-roll</property>
    <axis>
      <x>1.0</x>
      <y>0.0</y>
@@ -281,7 +115,7 @@
 <animation>
   <type>rotate</type>
   <object-name>kfc-hdgbug</object-name>
-  <property>/autopilot/internal/fdm-heading-bug-error-deg</property>
+  <property>autopilot/internal/fdm-heading-bug-error-deg</property>
   <axis>
     <x>-1.0</x>
     <y>0.0</y>
@@ -301,7 +135,7 @@
   <object-name>To-flag</object-name>
   <object-name>From-flag</object-name>
   <object-name>CmpsCard</object-name>
-  <property>/orientation/heading-magnetic-deg</property>
+  <property>orientation/heading-magnetic-deg</property>
   <axis>
     <x>1.0</x>
     <y>0.0</y>
@@ -320,7 +154,7 @@
    <object-name>kfc-crs.001</object-name>
    <object-name>To-flag</object-name>
    <object-name>From-flag</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>instrumentation/nav/radials/selected-deg</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -336,7 +170,7 @@
  <animation>
    <type>translate</type>
    <object-name>kfc-crs.001</object-name>
-   <property>/instrumentation/nav/heading-needle-deflection</property>
+   <property>instrumentation/nav/heading-needle-deflection</property>
    <interpolation>
      <entry>
        <ind>-10.0</ind>
@@ -366,15 +200,15 @@
  <animation>
    <type>translate</type>
    <object-name>GSneedle</object-name>
-   <property>/instrumentation/nav/gs-needle-deflection</property>
+   <property>instrumentation/nav/gs-needle-deflection</property>
    <interpolation>
      <entry>
        <ind>-9999.0</ind>
-       <dep>0.0183</dep>
+       <dep>-0.0183</dep>
      </entry>
      <entry>
        <ind>-10.0</ind>
-       <dep>0.0183</dep>
+       <dep>-0.0183</dep>
      </entry>
      <entry>
        <ind>0.0</ind>
@@ -382,11 +216,11 @@
      </entry>
      <entry>
        <ind>10.0</ind>
-       <dep>-0.0183</dep>
+       <dep>0.0183</dep>
      </entry>
      <entry>
        <ind>9999.0</ind>
-       <dep>-0.0183</dep>
+       <dep>0.0183</dep>
      </entry>
    </interpolation>
    <axis>
@@ -408,7 +242,7 @@
    <object-name>To-flag</object-name>
    <condition>
      <equals>
-       <property>/instrumentation/nav/to-flag</property>
+       <property>instrumentation/nav/to-flag</property>
        <value>true</value>
      </equals>
    </condition>
@@ -419,7 +253,7 @@
    <object-name>From-flag</object-name>
    <condition>
      <equals>
-       <property>/instrumentation/nav/from-flag</property>
+       <property>instrumentation/nav/from-flag</property>
        <value>true</value>
      </equals>
    </condition>
@@ -430,7 +264,7 @@
    <object-name>nav-warning</object-name>
    <condition>
      <equals>
-       <property>/instrumentation/nav/in-range</property>
+       <property>instrumentation/nav/in-range</property>
        <value>false</value>
      </equals>
    </condition>
@@ -441,7 +275,7 @@
        <object-name>hdg-warning</object-name>
       <condition>
          <less-than>
-           <property>/systems/electrical/outputs/nav</property>
+           <property>systems/electrical/outputs/nav</property>
            <value>0.2</value>
            </less-than>
        </condition>
@@ -453,11 +287,11 @@
            <condition>
              <and>
              <less-than>
-               <property>/instrumentation/nav/gs-distance</property>
+               <property>instrumentation/nav/gs-distance</property>
                <value>30000.0</value>
              </less-than>
   <equals>
-    <property>/instrumentation/nav/has-gs</property>
+    <property>instrumentation/nav/has-gs</property>
     <value>true</value>
   </equals>
 </and>

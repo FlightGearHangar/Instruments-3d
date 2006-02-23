@@ -63,6 +63,30 @@
 
  <animation>
    <type>select</type>
+   <object-name>gs.annun</object-name>
+   <condition>
+       <equals>
+         <property>/instrumentation/nav/has-gs</property>
+         <value>true</value>
+       </equals>
+   </condition>
+ </animation>
+
+
+ <animation>
+   <type>select</type>
+   <object-name>loc.annun</object-name>
+   <condition>
+       <equals>
+         <property>/instrumentation/nav/nav-loc</property>
+         <value>true</value>
+       </equals>
+   </condition>
+ </animation>
+
+
+ <animation>
+   <type>select</type>
    <object-name>outer.marker</object-name>
    <condition>
      <equals>
@@ -931,9 +955,8 @@
  <animation>
    <type>textranslate</type>
    <object-name>altmsg</object-name>
-   <property>/instrumentation/primus1000/alt-mode</property>
-   <factor>0.029</factor>
-   <step>1</step>
+   <property>/instrumentation/primus1000/ra-mode</property>
+   <factor>0.0305</factor>
    <axis>
      <x>0</x>
      <y>-1</y>
@@ -945,7 +968,7 @@
    <type>textranslate</type>
    <object-name>crsmsg</object-name>
    <property>/instrumentation/primus1000/nav1pointer</property>
-   <factor>0.00976</factor>
+   <factor>0.0099</factor>
    <step>3</step>
    <axis>
      <x>0</x>

@@ -5,6 +5,23 @@
  <path>pa24-fuel-amps.ac</path>
 
  <animation>
+  <type>material</type>
+  <object-name>FuelAmpsFace</object-name>
+  <object-name>AmpsNeedle</object-name>
+  <object-name>FuelPressNeedle</object-name>
+  <object-name>LeftMainFuelNeedle</object-name>
+  <object-name>RightMainFuelNeedle</object-name>
+  <object-name>LeftAuxFuelNeedle</object-name>
+  <object-name>RightAuxFuelNeedle</object-name>
+  <emission>
+   <red>1.0</red>
+   <green>0.2</green>
+   <blue>0.0</blue>
+   <factor-prop>/sim/model//material/instruments/factor</factor-prop>
+  </emission>
+ </animation>
+
+ <animation>
   <name>RightMainGage</name>
   <type>rotate</type>
   <object-name>RightMainFuelNeedle</object-name>

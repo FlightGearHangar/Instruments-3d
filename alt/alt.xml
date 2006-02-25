@@ -5,6 +5,21 @@
  <path>alt.ac</path>
 
  <animation>
+  <type>material</type>
+  <object-name>Face</object-name>
+  <object-name>inhg</object-name>
+  <object-name>Needle10000</object-name>
+  <object-name>Needle1000</object-name>
+  <object-name>Needle100</object-name>
+  <emission>
+   <red>1.0</red>
+   <green>0.2</green>
+   <blue>0.0</blue>
+   <factor-prop>/sim/model//material/instruments/factor</factor-prop>
+  </emission>
+ </animation>
+
+ <animation>
   <type>rotate</type>
   <object-name>Needle100</object-name>
   <property>/instrumentation/altimeter/indicated-altitude-ft</property>

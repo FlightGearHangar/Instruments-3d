@@ -1,5 +1,5 @@
 AC3Db
-MATERIAL "ac3dmat12" rgb 0.267 0.267 0.267  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.302 0.302 0.302  shi 10  trans 0
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 0
 MATERIAL "illum" rgb 0.988889 0.988889 0.988889  amb 0.201149 0.201149 0.201149  emis 0.7 0.7 0.7  spec 0 0 0  shi 32  trans 0
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.149 0.149 0.149  spec 0.502 0.502 0.502  shi 64  trans 0
 OBJECT world
@@ -136,6 +136,7 @@ kids 0
 OBJECT poly
 name "disk"
 loc 0 -0.0305765 0.0300321
+texture "knob.rgb"
 crease 101.000000
 numvert 20
 0.01 0.00396059 0.00479285

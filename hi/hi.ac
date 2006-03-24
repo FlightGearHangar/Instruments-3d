@@ -1,5 +1,5 @@
 AC3Db
-MATERIAL "ac3dmat12" rgb 0.267 0.267 0.267  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.302 0.302 0.302  shi 10  trans 0
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 0
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.15 0.15 0.15  spec 0.5 0.5 0.5  shi 64  trans 0
 OBJECT world
 kids 5
@@ -61,6 +61,7 @@ kids 0
 OBJECT poly
 name "OBS-Knob"
 loc 0 -0.0297401 0.0293165
+texture "knob.rgb"
 crease 101.000000
 numvert 20
 0.01 9.31323e-09 0
@@ -257,8 +258,9 @@ refs 3
 12 1 0.5
 kids 0
 OBJECT poly
-name "HdgKnob"
+name "Hdg-Knob"
 loc 0 -0.0300775 -0.0298089
+texture "knob.rgb"
 crease 101.000000
 numvert 20
 0.01 0.00396059 0.00479285

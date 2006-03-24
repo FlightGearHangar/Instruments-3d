@@ -32,6 +32,17 @@
  </animation>
 
  <animation>
+  <type>material</type>
+  <object-name>disk</object-name>
+  <emission>
+   <red>0.45</red>
+   <green>0.09</green>
+   <blue>0.00001</blue>
+   <factor-prop>/sim/model//material/instruments/factor</factor-prop>
+  </emission>
+ </animation>
+
+ <animation>
   <name>LocalizerNeedleTransform</name>
   <type>rotate</type>
   <object-name>LocalizerNeedle</object-name>

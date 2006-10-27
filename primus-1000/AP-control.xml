@@ -9,20 +9,9 @@
    <object-name>AP-on</object-name>
    <object-name>YD-on</object-name>
    <condition>
-     <or>
-       <not-equals>
-         <property>/autopilot/locks/heading</property>
-         <value></value>
-       </not-equals>
-       <not-equals>
-         <property>/autopilot/locks/altitude</property>
-         <value></value>
-       </not-equals>
-       <not-equals>
-         <property>/autopilot/locks/speed</property>
-         <value></value>
-       </not-equals>
-     </or>
+     <not>
+         <property>/autopilot/locks/passive-mode</property>
+       </not>
    </condition>
  </animation>
 

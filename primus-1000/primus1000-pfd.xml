@@ -60,7 +60,7 @@
    </condition>
  </animation>
 
-
+<!--
  <animation>
    <type>select</type>
    <object-name>gs.annun</object-name>
@@ -83,7 +83,7 @@
        </equals>
    </condition>
  </animation>
-
+-->
 
  <animation>
    <type>select</type>

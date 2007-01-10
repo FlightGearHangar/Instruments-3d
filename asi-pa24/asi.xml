@@ -7,6 +7,7 @@
 
  <animation>
   <type>material</type>
+  <object-name>Ring</object-name>
   <object-name>Face</object-name>
   <object-name>Needle</object-name>
   <emission>
@@ -17,6 +18,29 @@
   </emission>
  </animation>
 
+ <animation>
+  <type>material</type>
+  <object-name>PA-Knob</object-name>
+  <emission>
+   <red>0.45</red>
+   <green>0.09</green>
+   <blue>0.00001</blue>
+   <factor-prop>/sim/model//material/instruments/factor</factor-prop>
+  </emission>
+ </animation>
+
+ <animation>
+  <name>RingTransform</name>
+  <type>rotate</type>
+  <object-name>Ring</object-name>
+   <property>/instrumentation/airspeed-indicator/pressure-alt-offset-deg</property>
+  <factor>1</factor>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
  <animation>
   <type>rotate</type>
   <object-name>Needle</object-name>
@@ -32,6 +56,11 @@
    <entry><ind> 160</ind><dep>  260</dep></entry>
    <entry><ind> 180</ind><dep>  295</dep></entry>
   </interpolation>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.001</y-m>
+   <z-m>0.001</z-m>
+  </center>
   <axis>
    <x>-1</x>
    <y>0</y>
@@ -39,6 +68,15 @@
   </axis>
  </animation>
 
+<!--
+ <animation>
+  <name>Alpha Order Group</name>
+  <object-name>Ring</object-name>
+  <object-name>Face</object-name>
+  <object-name>Needle</object-name>
+  <object-name>PA-Knob</object-name>
+ </animation>
+-->
 </PropertyList>
 
 

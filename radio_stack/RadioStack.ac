@@ -1,0 +1,23 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "RadioStack"
+loc 0.000486599 0.0488634 -0.00024706
+texture "/usr/local/FlightGear-0.9/data/Aircraft/pa24-250/Models/radio_stack/panel-tex02.rgb"
+crease 45.000000
+numvert 4
+0 0.0861044 -0.0861038
+0 0.0861044 0.0865063
+0 -0.183125 0.0865063
+0 -0.183125 -0.0861038
+numsurf 1
+SURF 0x20
+mat 0
+refs 4
+0 0 1
+1 1 1
+2 1 0
+3 0 0
+kids 0

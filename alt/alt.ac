@@ -2,8 +2,53 @@ AC3Db
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 0
 MATERIAL "illum" rgb 0.988889 0.988889 0.988889  amb 0.201149 0.201149 0.201149  emis 0.7 0.7 0.7  spec 0 0 0  shi 32  trans 0
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.149 0.149 0.149  spec 0.502 0.502 0.502  shi 64  trans 0
+MATERIAL "ac3dmat6" rgb 0 1 0  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 1
 OBJECT world
-kids 6
+kids 8
+OBJECT group
+name "clicks"
+loc 0.00569378 -0.00756817 0.00125835
+kids 1
+OBJECT poly
+name "click-L"
+loc -1.86265e-09 -0.023009 0.00619765
+crease 180.000000
+numvert 4
+0 -0.00702053 0.0226521
+0 -0.00702053 0.0302027
+0 0.00702053 0.0226521
+0 0.00702053 0.0302027
+numsurf 1
+SURF 0x30
+mat 3
+refs 4
+3 0 1
+1 0 0
+0 0.125 0
+2 0.125 1
+kids 0
+OBJECT group
+name "clicks"
+loc 0.00569378 -0.00756817 0.00125835
+kids 1
+OBJECT poly
+name "click-R"
+loc -1.86265e-09 -0.023009 -0.00165454
+crease 180.000000
+numvert 4
+0 0.00702053 0.0302027
+0 0.00702053 0.0226521
+0 -0.00702053 0.0302027
+0 -0.00702053 0.0226521
+numsurf 1
+SURF 0x30
+mat 3
+refs 4
+0 0 1
+2 0 0
+3 0.125 0
+1 0.125 1
+kids 0
 OBJECT poly
 name "Needle10000"
 crease 45.000000
@@ -87,7 +132,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Face"
-texture "altimeter.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/alt/altimeter.rgb"
 crease 45.000000
 numvert 4
 0 0.04 -0.04
@@ -108,7 +153,7 @@ name "inhg"
 loc -0.000238663 0.000547649 0.00323039
 data 12
 Cylinder.015
-texture "altimeter.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/alt/altimeter.rgb"
 crease 30.000000
 numvert 6
 0.001139 -0.00614271 -0.0291783
@@ -136,7 +181,7 @@ kids 0
 OBJECT poly
 name "disk"
 loc 0 -0.0305765 0.0300321
-texture "knob.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/alt/knob.rgb"
 crease 101.000000
 numvert 20
 0.01 0.00396059 0.00479285

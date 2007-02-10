@@ -1,8 +1,53 @@
 AC3Db
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 0
+MATERIAL "ac3dmat6" rgb 0 1 0  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 1
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.15 0.15 0.15  spec 0.5 0.5 0.5  shi 64  trans 0
 OBJECT world
-kids 9
+kids 11
+OBJECT group
+name "clicks"
+loc 0.00569378 -0.00756817 0.00125835
+kids 1
+OBJECT poly
+name "click-R"
+loc -1.86265e-09 -0.0216233 -0.00396401
+crease 180.000000
+numvert 4
+0 -0.00702053 0.0226521
+0 -0.00702053 0.0302027
+0 0.00702053 0.0226521
+0 0.00702053 0.0302027
+numsurf 1
+SURF 0x30
+mat 1
+refs 4
+3 0 1
+1 0 0
+0 0.125 0
+2 0.125 1
+kids 0
+OBJECT group
+name "clicks"
+loc 0.00569378 -0.00756817 0.00125835
+kids 1
+OBJECT poly
+name "click-L"
+loc -1.86265e-09 -0.0216233 0.00388818
+crease 180.000000
+numvert 4
+0 0.00702053 0.0302027
+0 0.00702053 0.0226521
+0 -0.00702053 0.0302027
+0 -0.00702053 0.0226521
+numsurf 1
+SURF 0x30
+mat 1
+refs 4
+0 0 1
+2 0 0
+3 0.125 0
+1 0.125 1
+kids 0
 OBJECT poly
 name "GlidescopeNeedle"
 crease 45.000000
@@ -15,14 +60,14 @@ numvert 6
 -0.003005 0.000533 0.029784
 numsurf 2
 SURF 0x0
-mat 1
+mat 2
 refs 4
 0 0 0
 3 0 0
 4 0 0
 2 0 0
 SURF 0x0
-mat 1
+mat 2
 refs 4
 0 0 0
 2 0 0
@@ -41,14 +86,14 @@ numvert 6
 -0.003005 0.004974 -0.000532
 numsurf 2
 SURF 0x0
-mat 1
+mat 2
 refs 4
 0 0 0
 2 0 0
 5 0 0
 4 0 0
 SURF 0x0
-mat 1
+mat 2
 refs 4
 1 0 0
 4 0 0
@@ -57,7 +102,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Face"
-texture "vor02.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/vor/vor02.rgb"
 crease 45.000000
 numvert 6
 -0.004518 0.04 -0.04
@@ -68,14 +113,14 @@ numvert 6
 -0.004518 0 -0.04
 numsurf 2
 SURF 0x0
-mat 1
+mat 2
 refs 4
 0 0.966797 0.958984
 3 0.00976562 0.958984
 4 0.00976562 0.480469
 5 0.966797 0.480469
 SURF 0x0
-mat 1
+mat 2
 refs 4
 1 0.966797 0
 5 0.966797 0.480469
@@ -84,7 +129,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Ring"
-texture "vor01.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/vor/vor01.rgb"
 crease 45.000000
 numvert 6
 -0.001596 0.04 -0.04
@@ -95,14 +140,14 @@ numvert 6
 -0.001596 0 -0.04
 numsurf 2
 SURF 0x0
-mat 1
+mat 2
 refs 4
 0 0.998047 1
 3 0 1
 4 0 0.5
 5 0.998047 0.5
 SURF 0x0
-mat 1
+mat 2
 refs 4
 1 0.998047 0
 5 0.998047 0.5
@@ -111,7 +156,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Front"
-texture "vor03.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/vor/vor03.rgb"
 crease 45.000000
 numvert 6
 0 0.04 -0.04
@@ -122,14 +167,14 @@ numvert 6
 0 0 -0.04
 numsurf 2
 SURF 0x0
-mat 1
+mat 2
 refs 4
 0 0.998047 1
 3 0 1
 4 0 0.5
 5 0.998047 0.5
 SURF 0x0
-mat 1
+mat 2
 refs 4
 1 0.998047 0
 5 0.998047 0.5
@@ -139,7 +184,7 @@ kids 0
 OBJECT poly
 name "TO"
 loc -0.00674026 0.0040441 -0.0124104
-texture "TO-FR.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/vor/TO-FR.rgb"
 crease 45.000000
 numvert 4
 0 -0.00271994 -0.00739644
@@ -158,7 +203,7 @@ kids 0
 OBJECT poly
 name "NAV"
 loc -0.0063754 0.0042357 -0.0122067
-texture "TO-FR.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/vor/TO-FR.rgb"
 crease 45.000000
 numvert 4
 0 0.00239354 -0.00417537
@@ -177,7 +222,7 @@ kids 0
 OBJECT poly
 name "FR"
 loc -0.00589943 0.00404461 -0.0128874
-texture "TO-FR.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/vor/TO-FR.rgb"
 crease 45.000000
 numvert 4
 0 -0.00299626 -0.00718548
@@ -196,7 +241,7 @@ kids 0
 OBJECT poly
 name "disk"
 loc 0 -0.0292413 0.0272215
-texture "knob.rgb"
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/vor/knob.rgb"
 crease 101.000000
 numvert 20
 0.01 0.00396059 0.00479285

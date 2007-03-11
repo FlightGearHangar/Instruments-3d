@@ -2,348 +2,308 @@
 <!--
 Author : Syd Adams
 Primus 2000 EICAS
-
-    -->
+-->
 <PropertyList>
 
- <path>primus2000-eicas.ac</path>
-
+<path>primus2000-eicas.ac</path>
 
 <animation>
-<type>select</type>
-<object-name>gear0.annun</object-name>
-<condition>
-<equals>
-<property>gear/gear[0]/position-norm</property>
-<value>1.0</value>
-</equals>
-</condition>
+    <type>select</type>
+	<object-name>gear0.annun</object-name>
+  	<condition>
+    	<equals>
+    	<property>gear/gear[0]/position-norm</property>
+    	<value>1.0</value>
+    	</equals>
+  	</condition>
 </animation>
 
 <animation>
-<type>select</type>
-<object-name>gear1.annun</object-name>
-<condition>
-<equals>
-<property>gear/gear[1]/position-norm</property>
-<value>1.0</value>
-</equals>
-</condition>
+  	<type>select</type>
+  	<object-name>gear1.annun</object-name>
+  	<condition>
+    	<equals>
+    	<property>gear/gear[1]/position-norm</property>
+    	<value>1.0</value>
+    	</equals>
+  	</condition>
 </animation>
 
 <animation>
-<type>select</type>
-<object-name>gear2.annun</object-name>
-<condition>
-<equals>
-<property>gear/gear[2]/position-norm</property>
-<value>1.0</value>
-</equals>
-</condition>
+  	<type>select</type>
+  	<object-name>gear2.annun</object-name>
+  	<condition>
+    	<equals>
+    	<property>gear/gear[2]/position-norm</property>
+    	<value>1.0</value>
+    	</equals>
+  	</condition>
 </animation>
 
-
-
- <animation>
-   <type>rotate</type>
-   <object-name>Flapneedle</object-name>
-   <property>surface-positions/flap-pos-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>70.0</dep>
-     </entry>
-   </interpolation>
-   <center>
-     <x-m>0.003</x-m>
-     <y-m>-0.070</y-m>
-     <z-m>-0.042</z-m>
-   </center>
-   <axis>
-     <x>-1.0</x>
-     <y>0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
+<animation>
+	<type>rotate</type>
+   	<object-name>Flapneedle</object-name>
+   	<property>surface-positions/flap-pos-norm</property>
+   	<interpolation>
+        <entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>70.0</dep>
+     	</entry>
+   	</interpolation>
+   	<center>
+    	<x-m>0.003</x-m>
+     	<y-m>-0.070</y-m>
+     	<z-m>-0.042</z-m>
+   	</center>
+   	<axis>
+     	<x>-1.0</x>
+     	<y>0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
  
- <animation>
-   <type>translate</type>
-   <object-name>oiltemp.001</object-name>
-   <property>engines/engine[0]/oilt-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>0.020</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>0.0</y>
-     <z>1.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>translate</type>
+   	<object-name>oiltemp.001</object-name>
+   	<property>engines/engine[0]/oilt-norm</property>
+   	<interpolation>
+        <entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>0.020</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>0.0</y>
+     	<z>1.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>textranslate</type>
-   <object-name>oiltemp.001</object-name>
-   <property>engines/engine[0]/oilt-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>0.0812</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>1.0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>textranslate</type>
+   	<object-name>oiltemp.001</object-name>
+   	<property>engines/engine[0]/oilt-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>0.0812</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>1.0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>translate</type>
-   <object-name>oiltemp.002</object-name>
-   <property>engines/engine[1]/oilt-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>0.020</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>0.0</y>
-     <z>1.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>translate</type>
+   	<object-name>oiltemp.002</object-name>
+   	<property>engines/engine[1]/oilt-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>0.020</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>0.0</y>
+     	<z>1.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>textranslate</type>
-   <object-name>oiltemp.002</object-name>
-   <property>engines/engine[1]/oilt-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>0.0812</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>1.0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>textranslate</type>
+   	<object-name>oiltemp.002</object-name>
+   	<property>engines/engine[1]/oilt-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>0.0812</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>1.0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>translate</type>
-   <object-name>oilpsi.001</object-name>
-   <property>engines/engine[0]/oilp-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>0.0190</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>0.0</y>
-     <z>1.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>translate</type>
+   	<object-name>oilpsi.001</object-name>
+   	<property>engines/engine[0]/oilp-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>0.0190</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>0.0</y>
+     	<z>1.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>textranslate</type>
-   <object-name>oilpsi.001</object-name>
-   <property>engines/engine[0]/oilt-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>0.0781</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>1.0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>textranslate</type>
+   	<object-name>oilpsi.001</object-name>
+   	<property>engines/engine[0]/oilt-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>0.0781</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>1.0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>translate</type>
-   <object-name>oilpsi.002</object-name>
-   <property>engines/engine[1]/oilp-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>0.0190</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>0.0</y>
-     <z>1.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>translate</type>
+   	<object-name>oilpsi.002</object-name>
+   	<property>engines/engine[1]/oilp-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>0.0190</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>0.0</y>
+     	<z>1.0</z>
+   	</axis>
+</animation>
 
+<animation>
+   	<type>textranslate</type>
+   	<object-name>oilpsi.002</object-name>
+   	<property>engines/engine[1]/oilt-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.0</ind><dep>0.0781</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>1.0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>textranslate</type>
-   <object-name>oilpsi.002</object-name>
-   <property>engines/engine[1]/oilt-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.0</ind>
-       <dep>0.0781</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>1.0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>textranslate</type>
+   	<object-name>LH-N1</object-name>
+   	<property>engines/engine[0]/n1</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>30.0</ind><dep>-0.0119</dep>
+     	</entry>
+     	<entry>
+       		<ind>90.0</ind><dep>-0.1709</dep>
+     	</entry>
+     	<entry>
+       		<ind>105.0</ind><dep>-0.2480</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>1.0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
 
+<animation>
+   	<type>textranslate</type>
+   	<object-name>RH-N1</object-name>
+   	<property>engines/engine[1]/n1</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>30.0</ind><dep>-0.0119</dep>
+     	</entry>
+     	<entry>
+       		<ind>90.0</ind><dep>-0.1709</dep>
+     	</entry>
+     	<entry>
+       		<ind>105.0</ind><dep>-0.2480</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>1.0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>textranslate</type>
-   <object-name>LH-N1</object-name>
-   <property>engines/engine[0]/n1</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>30.0</ind>
-       <dep>-0.0119</dep>
-     </entry>
-     <entry>
-       <ind>90.0</ind>
-       <dep>-0.1709</dep>
-     </entry>
-     <entry>
-       <ind>105.0</ind>
-       <dep>-0.2480</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>1.0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>textranslate</type>
+   	<object-name>RH-ITT</object-name>
+   	<property>engines/engine[1]/itt-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.2</ind><dep>-0.2027</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>1.0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>textranslate</type>
-   <object-name>RH-N1</object-name>
-   <property>engines/engine[1]/n1</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>30.0</ind>
-       <dep>-0.0119</dep>
-     </entry>
-     <entry>
-       <ind>90.0</ind>
-       <dep>-0.1709</dep>
-     </entry>
-     <entry>
-       <ind>105.0</ind>
-       <dep>-0.2480</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>1.0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
+<animation>
+   	<type>textranslate</type>
+   	<object-name>LH-ITT</object-name>
+   	<property>engines/engine[0]/itt-norm</property>
+   	<interpolation>
+     	<entry>
+       		<ind>0.0</ind><dep>0.0</dep>
+     	</entry>
+     	<entry>
+       		<ind>1.2</ind><dep>-0.2027</dep>
+     	</entry>
+   	</interpolation>
+   	<axis>
+     	<x>0.0</x>
+     	<y>1.0</y>
+     	<z>0.0</z>
+   	</axis>
+</animation>
 
- <animation>
-   <type>textranslate</type>
-   <object-name>RH-ITT</object-name>
-   <property>engines/engine[1]/itt-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.2</ind>
-       <dep>-0.2027</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>1.0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>LH-ITT</object-name>
-   <property>engines/engine[0]/itt-norm</property>
-   <interpolation>
-     <entry>
-       <ind>0.0</ind>
-       <dep>0.0</dep>
-     </entry>
-     <entry>
-       <ind>1.2</ind>
-       <dep>-0.2027</dep>
-     </entry>
-   </interpolation>
-   <axis>
-     <x>0.0</x>
-     <y>1.0</y>
-     <z>0.0</z>
-   </axis>
- </animation>
-
-
-
-
-
-
+<!-- FUEL INDICATORS-->
 
 </PropertyList>

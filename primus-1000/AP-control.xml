@@ -10,7 +10,7 @@
    <object-name>YD-on</object-name>
    <condition>
      <not>
-         <property>/autopilot/locks/passive-mode</property>
+         <property>autopilot/locks/passive-mode</property>
        </not>
    </condition>
  </animation>

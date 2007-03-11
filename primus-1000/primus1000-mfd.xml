@@ -9,7 +9,7 @@
  <animation>
    <type>texrotate</type>
    <object-name>mfd-hdg</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>orientation/heading-magnetic-deg</property>
    <center>
      <x>0.75</x>
      <y>0.75</y>
@@ -25,7 +25,7 @@
  <animation>
    <type>rotate</type>
    <object-name>mfd-bug</object-name>
-   <property>/autopilot/internal/fdm-heading-bug-error-deg</property>
+   <property>autopilot/internal/fdm-heading-bug-error-deg</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -41,7 +41,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext.100</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>orientation/heading-magnetic-deg</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -54,7 +54,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext.101</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>orientation/heading-magnetic-deg</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -67,7 +67,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext.102</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>orientation/heading-magnetic-deg</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -81,7 +81,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>gsptext.100</object-name>
-   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <property>instrumentation/gps/indicated-ground-speed-kt</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -94,7 +94,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>gsptext.101</object-name>
-   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <property>instrumentation/gps/indicated-ground-speed-kt</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -107,7 +107,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>gsptext.102</object-name>
-   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <property>instrumentation/gps/indicated-ground-speed-kt</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>

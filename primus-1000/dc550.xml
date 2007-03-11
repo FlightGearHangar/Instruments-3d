@@ -7,7 +7,7 @@
  <animation>
    <type>rotate</type>
    <object-name>nav-pointer.001</object-name>
-   <property>/instrumentation/primus1000/nav1pointer</property>
+   <property>instrumentation/primus1000/nav1pointer</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -41,7 +41,7 @@
  <animation>
    <type>rotate</type>
    <object-name>nav-pointer.002</object-name>
-   <property>/instrumentation/primus1000/nav2pointer</property>
+   <property>instrumentation/primus1000/nav2pointer</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>

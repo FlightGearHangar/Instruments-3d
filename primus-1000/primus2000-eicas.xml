@@ -47,7 +47,7 @@ Primus 2000 EICAS
  <animation>
    <type>rotate</type>
    <object-name>Flapneedle</object-name>
-   <property>/surface-positions/flap-pos-norm</property>
+   <property>surface-positions/flap-pos-norm</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>

@@ -11,15 +11,15 @@
    <condition>
      <or>
        <not-equals>
-         <property>/autopilot/locks/heading</property>
+         <property>autopilot/locks/heading</property>
          <value></value>
        </not-equals>
        <not-equals>
-         <property>/autopilot/locks/altitude</property>
+         <property>autopilot/locks/altitude</property>
          <value></value>
        </not-equals>
        <not-equals>
-         <property>/autopilot/locks/speed</property>
+         <property>autopilot/locks/speed</property>
          <value></value>
        </not-equals>
      </or>
@@ -33,7 +33,7 @@
    <condition>
      <not>
        <equals>
-         <property>/instrumentation/kfc200/fdmode</property>
+         <property>instrumentation/kfc200/fdmode</property>
          <value>off</value>
        </equals>
      </not>
@@ -49,11 +49,11 @@
    <condition>
      <and>
        <equals>
-         <property>/instrumentation/nav/has-gs</property>
+         <property>instrumentation/nav/has-gs</property>
          <value>true</value>
        </equals>
        <less-than>
-         <property>/instrumentation/nav/gs-distance</property>
+         <property>instrumentation/nav/gs-distance</property>
          <value>30000</value>
        </less-than>
      </and>
@@ -66,7 +66,7 @@
    <object-name>gs.annun</object-name>
    <condition>
        <equals>
-         <property>/instrumentation/nav/has-gs</property>
+         <property>instrumentation/nav/has-gs</property>
          <value>true</value>
        </equals>
    </condition>
@@ -78,7 +78,7 @@
    <object-name>loc.annun</object-name>
    <condition>
        <equals>
-         <property>/instrumentation/nav/nav-loc</property>
+         <property>instrumentation/nav/nav-loc</property>
          <value>true</value>
        </equals>
    </condition>
@@ -90,7 +90,7 @@
    <object-name>outer.marker</object-name>
    <condition>
      <equals>
-       <property>/instrumentation/marker-beacon/outer</property>
+       <property>instrumentation/marker-beacon/outer</property>
        <value>true</value>
      </equals>
    </condition>
@@ -101,7 +101,7 @@
    <object-name>middle.marker</object-name>
    <condition>
      <equals>
-       <property>/instrumentation/marker-beacon/middle</property>
+       <property>instrumentation/marker-beacon/middle</property>
        <value>true</value>
      </equals>
    </condition>
@@ -112,7 +112,7 @@
    <object-name>inner.marker</object-name>
    <condition>
      <equals>
-       <property>/instrumentation/marker-beacon/inner</property>
+       <property>instrumentation/marker-beacon/inner</property>
        <value>true</value>
      </equals>
    </condition>
@@ -123,7 +123,7 @@
  <animation>
    <type>translate</type>
    <object-name>FDbars</object-name>
-   <property>/instrumentation/kfc200/vbar-pitch</property>
+   <property>instrumentation/kfc200/vbar-pitch</property>
 <factor>0.0014</factor>
 <axis>
      <x>0.0</x>
@@ -140,7 +140,7 @@
  <animation>
    <type>rotate</type>
    <object-name>FDbars</object-name>
-   <property>/instrumentation/kfc200/vbar-roll</property>
+   <property>instrumentation/kfc200/vbar-roll</property>
    <axis>
      <x>1.0</x>
      <y>0.0</y>
@@ -158,7 +158,7 @@
    <type>texmultiple</type>
    <object-name>AI</object-name>
    <transform>
-     <property>/orientation/pitch-deg</property>
+     <property>orientation/pitch-deg</property>
      <subtype>textranslate</subtype>
      <factor>0.004694</factor>
      <axis>
@@ -168,7 +168,7 @@
      </axis>
    </transform>
    <transform>
-     <property>/orientation/roll-deg</property>
+     <property>orientation/roll-deg</property>
      <subtype>texrotate</subtype>
      <center>
        <x>0.25</x>
@@ -185,7 +185,7 @@
  <animation>
    <type>translate</type>
    <object-name>SlipBall</object-name>
-   <property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+   <property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
    <min>-1.1</min>
    <max>1.1</max>
    <interpolation>
@@ -209,7 +209,7 @@
  <animation>
    <type>texrotate</type>
    <object-name>HDGface</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>orientation/heading-magnetic-deg</property>
    <center>
      <x>0.75</x>
      <y>0.25</y>
@@ -225,7 +225,7 @@
  <animation>
    <type>rotate</type>
    <object-name>hdgbug</object-name>
-   <property>/autopilot/internal/fdm-heading-bug-error-deg</property>
+   <property>autopilot/internal/fdm-heading-bug-error-deg</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -246,7 +246,7 @@
    <object-name>CRSneedle.001</object-name>
    <object-name>ToFlag</object-name>
    <object-name>FromFlag</object-name>
-   <property>/orientation/heading-magnetic-deg</property>
+   <property>orientation/heading-magnetic-deg</property>
    <axis>
      <x>1.0</x>
      <y>0.0</y>
@@ -265,7 +265,7 @@
    <object-name>CRSneedle.001</object-name>
    <object-name>ToFlag</object-name>
    <object-name>FromFlag</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>instrumentation/nav/radials/selected-deg</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -284,7 +284,7 @@
  <animation>
    <type>translate</type>
    <object-name>CRSneedle.001</object-name>
-   <property>/instrumentation/nav/heading-needle-deflection</property>
+   <property>instrumentation/nav/heading-needle-deflection</property>
    <interpolation>
      <entry>
        <ind>-10.0</ind>
@@ -312,7 +312,7 @@
  <animation>
    <type>translate</type>
    <object-name>GSneedle</object-name>
-   <property>/instrumentation/nav/gs-needle-deflection</property>
+   <property>instrumentation/nav/gs-needle-deflection</property>
    <interpolation>
      <entry>
        <ind>-10.0</ind>
@@ -354,7 +354,7 @@
  <animation>
    <type>rotate</type>
    <object-name>NAV1pointer</object-name>
-   <property>/instrumentation/primus1000/nav1pointer-heading-offset</property>
+   <property>instrumentation/primus1000/nav1pointer-heading-offset</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -370,7 +370,7 @@
  <animation>
    <type>rotate</type>
    <object-name>NAV2pointer</object-name>
-   <property>/instrumentation/primus1000/nav2pointer-heading-offset</property>
+   <property>instrumentation/primus1000/nav2pointer-heading-offset</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -386,7 +386,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>ASIribbon</object-name>
-   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+   <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
    <interpolation>
      <entry>
        <ind> 0.0</ind>
@@ -423,7 +423,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>Asitext</object-name>
-   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+   <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -436,7 +436,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>Asitext.001</object-name>
-   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+   <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -450,7 +450,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>Asitext.002</object-name>
-   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+   <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
    <factor>0.1</factor>
    <axis>
      <x>0</x>
@@ -462,7 +462,7 @@
  <animation>
    <type>rotate</type>
    <object-name>VSIneedle</object-name>
-   <property>/autopilot/internal/vert-speed-fpm</property>
+   <property>autopilot/internal/vert-speed-fpm</property>
    <min>-4000.0</min>
    <max>4000.0</max>
    <interpolation>
@@ -518,7 +518,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>ALTribbon</object-name>
-   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <property>instrumentation/altimeter/indicated-altitude-ft</property>
    <factor>0.000669</factor>
    <axis>
      <x>0</x>
@@ -531,7 +531,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>Alt10</object-name>
-   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <property>instrumentation/altimeter/indicated-altitude-ft</property>
    <factor>0.01</factor>
    <axis>
      <x>0</x>
@@ -543,7 +543,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>Alt100</object-name>
-   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <property>instrumentation/altimeter/indicated-altitude-ft</property>
    <factor>0.001</factor>
    <step>100</step>
    <scroll>20</scroll>
@@ -557,7 +557,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>Alt1000</object-name>
-   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <property>instrumentation/altimeter/indicated-altitude-ft</property>
    <factor>0.0001</factor>
    <step>1000</step>
    <scroll>20</scroll>
@@ -571,7 +571,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>Alt10000</object-name>
-   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <property>instrumentation/altimeter/indicated-altitude-ft</property>
    <factor>0.00001</factor>
    <step>10000</step>
    <scroll>20</scroll>
@@ -585,7 +585,7 @@
  <animation>
    <type>rotate</type>
    <object-name>Warrow</object-name>
-   <property>/orientation/heading-deg</property>
+   <property>orientation/heading-deg</property>
    <axis>
      <x>1.0</x>
      <y>0.0</y>
@@ -601,7 +601,7 @@
  <animation>
    <type>rotate</type>
    <object-name>Warrow</object-name>
-   <property>/environment/wind-from-heading-deg</property>
+   <property>environment/wind-from-heading-deg</property>
    <axis>
      <x>-1.0</x>
      <y>0.0</y>
@@ -617,7 +617,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext</object-name>
-   <property>/autopilot/settings/heading-bug-deg</property>
+   <property>autopilot/settings/heading-bug-deg</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -630,7 +630,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext.001</object-name>
-   <property>/autopilot/settings/heading-bug-deg</property>
+   <property>autopilot/settings/heading-bug-deg</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -643,7 +643,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>hdgtext.002</object-name>
-   <property>/autopilot/settings/heading-bug-deg</property>
+   <property>autopilot/settings/heading-bug-deg</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -656,7 +656,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>gsptext</object-name>
-   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <property>instrumentation/gps/indicated-ground-speed-kt</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -669,7 +669,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>gsptext.001</object-name>
-   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <property>instrumentation/gps/indicated-ground-speed-kt</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -682,7 +682,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>gsptext.002</object-name>
-   <property>/instrumentation/gps/indicated-ground-speed-kt</property>
+   <property>instrumentation/gps/indicated-ground-speed-kt</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -695,7 +695,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>mach.001</object-name>
-   <property>/velocities/mach</property>
+   <property>velocities/mach</property>
    <factor>1.0</factor>
    <step>0.1</step>
    <axis>
@@ -708,7 +708,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>mach.002</object-name>
-   <property>/velocities/mach</property>
+   <property>velocities/mach</property>
    <factor>10.0</factor>
    <step>0.01</step>
    <axis>
@@ -721,7 +721,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>mach.003</object-name>
-   <property>/velocities/mach</property>
+   <property>velocities/mach</property>
    <factor>100.0</factor>
    <step>0.001</step>
    <axis>
@@ -734,7 +734,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>wspd</object-name>
-   <property>/environment/wind-speed-kt</property>
+   <property>environment/wind-speed-kt</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -747,7 +747,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>wspd.001</object-name>
-   <property>/environment/wind-speed-kt</property>
+   <property>environment/wind-speed-kt</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -760,7 +760,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>wspd.002</object-name>
-   <property>/environment/wind-speed-kt</property>
+   <property>environment/wind-speed-kt</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -773,7 +773,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>inhgtxt</object-name>
-   <property>/instrumentation/altimeter/setting-inhg</property>
+   <property>instrumentation/altimeter/setting-inhg</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -786,7 +786,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>inhgtxt.001</object-name>
-   <property>/instrumentation/altimeter/setting-inhg</property>
+   <property>instrumentation/altimeter/setting-inhg</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -799,7 +799,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>inhgtxt.002</object-name>
-   <property>/instrumentation/altimeter/setting-inhg</property>
+   <property>instrumentation/altimeter/setting-inhg</property>
    <factor>1.0</factor>
    <step>0.1</step>
    <axis>
@@ -812,7 +812,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>inhgtxt.003</object-name>
-   <property>/instrumentation/altimeter/setting-inhg</property>
+   <property>instrumentation/altimeter/setting-inhg</property>
    <factor>10.0</factor>
    <step>0.01</step>
    <axis>
@@ -825,7 +825,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>crstext</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>instrumentation/nav/radials/selected-deg</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -838,7 +838,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>crstext.001</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>instrumentation/nav/radials/selected-deg</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -851,7 +851,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>crstext.002</object-name>
-   <property>/instrumentation/nav/radials/selected-deg</property>
+   <property>instrumentation/nav/radials/selected-deg</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -864,7 +864,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>alttext</object-name>
-   <property>/autopilot/settings/target-altitude-ft</property>
+   <property>autopilot/settings/target-altitude-ft</property>
    <factor>0.00001</factor>
    <step>10000</step>
    <axis>
@@ -877,7 +877,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>alttext.001</object-name>
-   <property>/autopilot/settings/target-altitude-ft</property>
+   <property>autopilot/settings/target-altitude-ft</property>
    <factor>0.0001</factor>
    <step>1000</step>
    <axis>
@@ -890,7 +890,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>alttext.002</object-name>
-   <property>/autopilot/settings/target-altitude-ft</property>
+   <property>autopilot/settings/target-altitude-ft</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -903,7 +903,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>alttext.003</object-name>
-   <property>/autopilot/settings/target-altitude-ft</property>
+   <property>autopilot/settings/target-altitude-ft</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -916,7 +916,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>alttext.004</object-name>
-   <property>/autopilot/settings/target-altitude-ft</property>
+   <property>autopilot/settings/target-altitude-ft</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -929,7 +929,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>nav1msg</object-name>
-   <property>/instrumentation/primus1000/nav1pointer</property>
+   <property>instrumentation/primus1000/nav1pointer</property>
    <factor>0.025</factor>
    <step>1</step>
    <axis>
@@ -942,7 +942,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>nav2msg</object-name>
-   <property>/instrumentation/primus1000/nav2pointer</property>
+   <property>instrumentation/primus1000/nav2pointer</property>
    <factor>0.025</factor>
    <step>1</step>
    <axis>
@@ -955,7 +955,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>altmsg</object-name>
-   <property>/instrumentation/primus1000/ra-mode</property>
+   <property>instrumentation/primus1000/ra-mode</property>
    <factor>0.0305</factor>
    <axis>
      <x>0</x>
@@ -967,7 +967,7 @@
  <animation>
    <type>textranslate</type>
    <object-name>crsmsg</object-name>
-   <property>/instrumentation/primus1000/nav1pointer</property>
+   <property>instrumentation/primus1000/nav1pointer</property>
    <factor>0.0099</factor>
    <step>3</step>
    <axis>
@@ -984,11 +984,11 @@
    <condition>
      <and>
      <equals>
-       <property>/instrumentation/nav/from-flag</property>
+       <property>instrumentation/nav/from-flag</property>
        <value>true</value>
      </equals>
      <equals>
-       <property>/instrumentation/nav/nav-loc</property>
+       <property>instrumentation/nav/nav-loc</property>
        <value>false</value>
      </equals>
    </and>
@@ -1001,11 +1001,11 @@
    <condition>
      <and>
        <equals>
-         <property>/instrumentation/nav/to-flag</property>
+         <property>instrumentation/nav/to-flag</property>
          <value>true</value>
        </equals>
        <equals>
-         <property>/instrumentation/nav/nav-loc</property>
+         <property>instrumentation/nav/nav-loc</property>
          <value>false</value>
        </equals>
    </and>
@@ -1017,7 +1017,7 @@
    <object-name>NAV1pointer</object-name>
    <condition>
      <greater-than>
-       <property>/instrumentation/primus1000/nav1pointer</property>
+       <property>instrumentation/primus1000/nav1pointer</property>
        <value>0</value>
      </greater-than>
    </condition>
@@ -1028,7 +1028,7 @@
    <object-name>NAV2pointer</object-name>
    <condition>
      <greater-than>
-       <property>/instrumentation/primus1000/nav2pointer</property>
+       <property>instrumentation/primus1000/nav2pointer</property>
        <value>0</value>
      </greater-than>
    </condition>

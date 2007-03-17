@@ -11,21 +11,10 @@ Primus 1000 Primary Flight Display
    	<type>select</type>
    	<object-name>AP.annun</object-name>
    	<condition>
-    	<or>
-       		<not-equals>
-        		<property>autopilot/locks/heading</property>
-        		<value></value>
-       		</not-equals>
-       		<not-equals>
-        		<property>autopilot/locks/altitude</property>
-        		<value></value>
-       		</not-equals>
-       		<not-equals>
-        		<property>autopilot/locks/speed</property>
-        		<value></value>
-       		</not-equals>
-    	</or>
-   	</condition>
+   		<not>
+   			<property>autopilot/locks/passive-mode</property>
+   		</not>	
+    </condition>
 </animation>
 
 <animation>

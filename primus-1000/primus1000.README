@@ -1,0 +1,23 @@
+To incorporate the Primus 1000 system into your aircraft , you need to add the following to your files:
+
+Add this to your aircraft file:
+
+<model>
+	<path>Aircraft/Instruments-3d/primus-1000/primus1000-pfd.xml</path>
+	<offsets>
+		<x-m>-7.523</x-m>
+        <y-m>0.380</y-m>
+        <z-m>0.020</z-m>
+        <pitch-deg>-10.0</pitch-deg>
+	</offsets>
+</model>
+
+This file sets up certain properties needed by the system
+Add the Primus1000.nas to your set file....
+
+	<nasal>
+		<file>Aircraft/Instruments-3d/primus-1000/Primus1000.nas</file>
+	</nasal>
+
+
+

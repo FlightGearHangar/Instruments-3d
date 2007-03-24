@@ -9,8 +9,8 @@ NavDist=props.globals.getNode("/instrumentation/primus1000/nav-dist-nm",1);
 APoff=props.globals.getNode("/autopilot/locks/passive-mode",1);
 Hyd1=props.globals.getNode("systems/hydraulic/pump-psi[0]",1);
 Hyd2=props.globals.getNode("systems/hydraulic/pump-psi[1]",1);
-FuelPph1=props.globals.getNode("engines/engine[0]/fuel-flow-pph",1);
-FuelPph2=props.globals.getNode("engines/engine[1]/fuel-flow-pph",1);
+FuelPph1=props.globals.getNode("engines/engine[0]/fuel-flow_pph",1);
+FuelPph2=props.globals.getNode("engines/engine[1]/fuel-flow_pph",1);
 FuelDensity = 6.0;
 
 get_pointer_offset = func{
@@ -47,6 +47,28 @@ update_pfd = func{
 update_mfd = func{
 }
 
+update_fuel = func{
+var total_fuel = 0;
+if(getprop("/sim/flight-model")=="yasim"){
+		FuelDensity=props.globals.getNode("consumables/fuel/tank[0]/density-ppg",1).getValue();
+		var pph=getprop("/engines/engine[0]/fuel-flow-gph");
+		if(pph == nil){pph = 0.0};
+		FuelPph1.setValue(pph* FuelDensity);
+		pph=getprop("/engines/engine[1]/fuel-flow-gph");
+		if(pph == nil){pph = 0.0};
+		FuelPph2.setValue(pph* FuelDensity);
+		}else{
+		tanks = props.globals.getNode("consumables/fuel").getChildren("tank");
+		for(i=0; i<size(tanks); i=i+1){
+		tmp = tanks[i].getNode("level-lb");
+		lbs = tmp.getValue();
+		tanks[i].getNode("level-lbs").setValue(lbs);       
+        total_fuel += lbs;
+		}
+		setprop("consumables/fuel/total-fuel-lbs",total_fuel);	
+	}
+}	
+
 update_eicas = func{
 	var hpsi = getprop("/engines/engine[0]/n2");
 	if(hpsi == nil){hpsi=0.0;}
@@ -58,15 +80,8 @@ update_eicas = func{
 	hpsi = hpsi * 100;
 	if(hpsi > 3000){hpsi=3000;}
 	Hyd2.setValue(hpsi);
-
-	var pph=getprop("/engines/engine[0]/fuel-flow-gph");
-	if(pph == nil){pph = 0.0};
-	FuelPph1.setValue(pph* FuelDensity);
-	pph=getprop("/engines/engine[1]/fuel-flow-gph");
-	if(pph == nil){pph = 0.0};
-	FuelPph2.setValue(pph* FuelDensity);
-
-}
+	update_fuel();
+	}
 
 
 update_p1000 = func {
@@ -94,7 +109,6 @@ setlistener("/sim/signals/fdm-initialized", func {
 	FuelPph1.setValue(0.0);
 	FuelPph2.setValue(0.0);
 	APoff.setBoolValue(1);
-	FuelDensity=props.globals.getNode("consumables/fuel/tank[0]/density-ppg",1).getValue();
 	print("Primus 1000 systems OK");
 	});
 

@@ -835,7 +835,7 @@ Primus 2000 EICAS
 <animation>
    	<type>textranslate</type>
    	<object-name>Lpph.004</object-name>
-   	<property>engines/engine/fuel-flow-pph</property>
+   	<property>engines/engine/fuel-flow_pph</property>
    	<factor>0.0001</factor>
 	<step>1000</step>
      <axis>
@@ -848,7 +848,7 @@ Primus 2000 EICAS
 <animation>
    	<type>textranslate</type>
    	<object-name>Lpph.003</object-name>
-   	<property>engines/engine/fuel-flow-pph</property>
+   	<property>engines/engine/fuel-flow_pph</property>
    	<factor>0.001</factor>
 	<step>100</step>
      <axis>
@@ -861,7 +861,7 @@ Primus 2000 EICAS
 <animation>
    	<type>textranslate</type>
    	<object-name>Lpph.002</object-name>
-   	<property>engines/engine/fuel-flow-pph</property>
+   	<property>engines/engine/fuel-flow_pph</property>
    	<factor>0.01</factor>
 	<step>10</step>
      <axis>
@@ -874,7 +874,7 @@ Primus 2000 EICAS
 <animation>
    	<type>textranslate</type>
    	<object-name>Lpph.001</object-name>
-   	<property>engines/engine/fuel-flow-pph</property>
+   	<property>engines/engine/fuel-flow_pph</property>
    	<factor>0.1</factor>
 	<step>1</step>
      <axis>
@@ -889,7 +889,7 @@ Primus 2000 EICAS
 <animation>
    	<type>textranslate</type>
    	<object-name>Rpph.004</object-name>
-   	<property>engines/engine[1]/fuel-flow-pph</property>
+   	<property>engines/engine[1]/fuel-flow_pph</property>
    	<factor>0.0001</factor>
 	<step>1000</step>
      <axis>
@@ -902,7 +902,7 @@ Primus 2000 EICAS
 <animation>
    	<type>textranslate</type>
    	<object-name>Rpph.003</object-name>
-   	<property>engines/engine[1]/fuel-flow-pph</property>
+   	<property>engines/engine[1]/fuel-flow_pph</property>
    	<factor>0.001</factor>
 	<step>100</step>
      <axis>
@@ -915,7 +915,7 @@ Primus 2000 EICAS
 <animation>
    	<type>textranslate</type>
    	<object-name>Rpph.002</object-name>
-   	<property>engines/engine[1]/fuel-flow-pph</property>
+   	<property>engines/engine[1]/fuel-flow_pph</property>
    	<factor>0.01</factor>
 	<step>10</step>
      <axis>
@@ -928,7 +928,7 @@ Primus 2000 EICAS
 <animation>
    	<type>textranslate</type>
    	<object-name>Rpph.001</object-name>
-   	<property>engines/engine[1]/fuel-flow-pph</property>
+   	<property>engines/engine[1]/fuel-flow_pph</property>
    	<factor>0.1</factor>
 	<step>1</step>
      <axis>

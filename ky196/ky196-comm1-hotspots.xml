@@ -36,7 +36,7 @@ KY196 Comm radio hotspots
      <h>16</h>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/comm/frequencies/selected-mhz</property>
+       <property>/instrumentation/comm/frequencies/standby-mhz</property>
        <mask>decimal</mask>
        <step>-0.025</step>
        <min>0.000</min>
@@ -55,7 +55,7 @@ KY196 Comm radio hotspots
      <h>16</h>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/comm/frequencies/selected-mhz</property>
+       <property>/instrumentation/comm/frequencies/standby-mhz</property>
        <mask>integer</mask>
        <step>-1</step>
        <min>118</min>
@@ -74,7 +74,7 @@ KY196 Comm radio hotspots
      <h>16</h>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/comm/frequencies/selected-mhz</property>
+       <property>/instrumentation/comm/frequencies/standby-mhz</property>
        <mask>decimal</mask>
        <step>0.025</step>
        <min>0.000</min>
@@ -93,7 +93,7 @@ KY196 Comm radio hotspots
      <h>16</h>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/comm/frequencies/selected-mhz</property>
+       <property>/instrumentation/comm/frequencies/standby-mhz</property>
        <mask>integer</mask>
        <step>1</step>
        <min>118</min>

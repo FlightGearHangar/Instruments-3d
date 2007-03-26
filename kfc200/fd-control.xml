@@ -8,11 +8,11 @@
  <animation>
    <type>rotate</type>
    <object-name>APtoggle</object-name>
-   <property>/instrumentation/kfc200/autopilot-on</property>
+   <property>/autopilot/locks/passive-mode</property>
 <factor>40</factor>
    <axis>
      <x>0.0</x>
-     <y>-1.0</y>
+     <y>1.0</y>
      <z>0.0</z>
    </axis>
    <center>

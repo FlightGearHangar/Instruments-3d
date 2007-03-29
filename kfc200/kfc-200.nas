@@ -28,6 +28,8 @@ alt_offset = 0.0;
 kfcmode="";
 ap_on = 0.0;
 alt_alert = 0.0;
+DH = 0;
+
 
 setlistener("/sim/signals/fdm-initialized", func {
     fdprop.getChild("fd_on").setBoolValue(0);
@@ -35,7 +37,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/kfc200/alt-offset",alt_offset);
     setprop("/instrumentation/kfc200/fdmodeV","off");
     setprop("/instrumentation/kfc200/alt-alert",alt_alert);
-    current_alt = getprop("/instrumentation/altimer/indicated-altitude-ft");
+    DH = getprop("/autopilot/route-manager/min-lock-altitude-agl-ft");
+	current_alt = getprop("/instrumentation/altimer/indicated-altitude-ft");
 	alt_select = getprop("/autopilot/settings/target-altitude-ft");
     print("KFC-200 ... OK");
     });
@@ -45,15 +48,20 @@ setlistener("/instrumentation/kfc200/fd_on", func {
     if(fdON){clear_ap();}
     });
 
+setlistener("/autopilot/route-manager/min-lock-altitude-agl-ft", func {
+	DH = cmdarg().getValue();
+    });
+
 
 setlistener("/instrumentation/kfc200/fdmode", func {
 	fdmode = cmdarg().getValue();
+	props.globals.getNode("/instrumentation/nav/back-course-btn").setBoolValue(0);
     if(fdmode == "off"){clear_ap();return;}
     if(fdmode == "hdg"){
     	setprop("/autopilot/locks/heading","dg-heading-hold");
     	return;}
     if(fdmode == "appr"){
-    	setprop("/autopilot/locks/altitude","gs1-hold");
+    	setprop("/instrumentation/kfc200/fdmodeV","gs");
     	setprop("/autopilot/locks/heading","nav1-hold");
     	return;}
     if(fdmode == "nav-arm"){
@@ -63,7 +71,8 @@ setlistener("/instrumentation/kfc200/fdmode", func {
     	setprop("/autopilot/locks/heading","nav1-hold");
     	return;}
     if(fdmode == "bc"){
-    	setprop("/autopilot/locks/heading","back-coarse");
+    	setprop("/autopilot/locks/heading","nav1-hold");
+		props.globals.getNode("/instrumentation/nav/back-course-btn").setBoolValue(1);
 		return;}
 
     });
@@ -74,6 +83,9 @@ setlistener("/instrumentation/kfc200/fdmodeV", func {
     setprop("/autopilot/locks/altitude","pitch-hold");;return;}
     if(altmode == "alt"){
     	setprop("/autopilot/locks/altitude","altitude-hold");
+    	return;}
+    if(altmode == "gs"){
+    	setprop("/autopilot/locks/altitude","gs1-hold");
     	return;}
     });
 
@@ -108,6 +120,7 @@ get_altoffset = func(){
 	setprop("/instrumentation/kfc200/alt-alert",alt_offset);
 	if(alt_offset > 500.0){alt_offset = 500.0;}
 	if(alt_offset < -500.0){alt_offset = -500.0;}
+	if(getprop("/position/altitude-agl-ft") < DH){props.globals.getNode("/autopilot/locks/passive-mode").setBoolValue(1);}
 	}
 
 update = func {

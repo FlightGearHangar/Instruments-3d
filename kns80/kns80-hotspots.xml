@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<!--KNS 80 Nav radio hotspots-->
+
+<PropertyList>
+
+	<name>nav1 hotspots</name>
+  	<w-base>160</w-base>
+  	<h-base>70</h-base>
+  	<w>160</w>
+  	<h>70</h>
+
+  	<layers>
+  	</layers>
+ 
+ 	<actions>
+   
+		<action>
+     		<name>nav frequency decrease (decimal part)</name>
+     		<button>0</button>
+     		<x>54</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-frequency</property>
+       			<step>-5</step>
+       			<min>10800</min>
+       			<max>11900</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   
+   		<action>
+     		<name>nav frequency decrease (integer part)</name>
+     		<button>1</button>
+     		<x>54</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-frequency</property>
+       			<step>-100</step>
+       			<min>10800</min>
+       			<max>11900</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   
+   		<action>
+     		<name>nav frequency increase (decimal part)</name>
+     		<button>0</button>
+     		<x>66</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-frequency</property>
+       			<step>5</step>
+       			<min>10800</min>
+       			<max>11900</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   
+   		<action>
+     		<name>nav frequency increase (integer part)</name>
+     		<button>1</button>
+     		<x>66</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-frequency</property>
+       			<step>100</step>
+       			<min>10800</min>
+       			<max>11900</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+	
+		<action>
+     		<name>volume increase</name>
+     		<button>0</button>
+     		<x>43</x>
+     		<y>-34</y>
+     		<w>6</w>
+     		<h>8</h>
+     		<condition>
+       			<property>instrumentation/kns-80/serviceable</property>
+         	</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/volume</property>
+       			<step>0.05</step>
+       			<min>0.0</min>
+       			<max>1.0</max>
+       			<wrap>false</wrap>
+     		</binding>
+   		</action>
+   
+   		<action>
+     		<name>nav power on</name>
+     		<button>0</button>
+     		<x>43</x>
+     		<y>-34</y>
+     		<w>6</w>
+     		<h>8</h>
+     		<condition>
+       			<not>
+       				<property>instrumentation/kns-80/serviceable</property>
+         		</not>
+     		</condition>
+     		<binding>
+       			<command>property-assign</command>
+       			<property>instrumentation/kns-80/serviceable</property>
+       			<value>true</value>
+     		</binding>
+   		</action>
+   
+   
+		<action>
+     		<name>nav volume decrease</name>
+     		<button>0</button>
+     		<x>37</x>
+     		<y>-34</y>
+     		<w>6</w>
+     		<h>8</h>
+     		<condition>
+       			<greater-than>
+         			<property>instrumentation/kns-80/volume</property>
+         			<value>0.0</value>
+       			</greater-than>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/volume</property>
+       			<step>-0.05</step>
+       			<min>0.0</min>
+       			<max>1.0</max>
+       			<wrap>false</wrap>
+     		</binding>
+   		</action>
+   
+   		<action>
+     		<name>nav power off</name>
+     		<button>0</button>
+     		<x>37</x>
+     		<y>-34</y>
+     		<w>6</w>
+     		<h>8</h>
+     		<condition>
+       			<equals>
+         			<property>instrumentation/kns-80/volume</property>
+         			<value>0</value>
+       			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-assign</command>
+       			<property>instrumentation/kns-80/serviceable</property>
+       			<value>false</value>
+     		</binding>
+   		</action>
+   
+   		<action>
+    		<name>select used frequency</name>
+     		<button>0</button>
+     		<x>-20</x>
+     		<y>-24</y>
+     		<w>12</w>
+     		<h>6</h>
+     		<binding>
+				<command>property-adjust</command>
+       			<property>instrumentation/kns-80/use</property>
+       			<step>1</step>
+       			<min>0</min>
+       			<max>4</max>
+       			<wrap>true</wrap>
+			</binding>
+   		</action>
+
+   		<action>
+    		<name>select displayed frequency</name>
+     		<button>0</button>
+     		<x>-5</x>
+     		<y>-24</y>
+     		<w>12</w>
+     		<h>6</h>
+     		<binding>
+				<command>property-adjust</command>
+       			<property>instrumentation/kns-80/display</property>
+       			<step>1</step>
+       			<min>0</min>
+       			<max>4</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+
+ 	</actions>
+ 
+</PropertyList>

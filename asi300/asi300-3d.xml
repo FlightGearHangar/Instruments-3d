@@ -2,25 +2,35 @@
 
 <PropertyList>
 
- <path>asi300.ac</path>
+	<path>asi300.ac</path>
+	
+	<animation>
+  		<type>material</type>
+    	<object-name>ASIneedle</object-name>
+		<object-name>ASIface</object-name>
+  		<emission>
+    		<red>0.8</red>
+    		<green>0.4</green>
+    		<blue>0.2</blue>
+    		<factor-prop>/controls/lighting/instruments-norm</factor-prop>
+  		</emission>
+	</animation>	
 
-
-
- <animation>
-   <type>rotate</type>
-   <object-name>ASIneedle</object-name>
-   <property>/velocities/airspeed-kt</property>
-   <interpolation>
-     <entry><ind>  0</ind><dep>    0</dep></entry>
-     <entry><ind> 100</ind><dep>   97</dep></entry>
-     <entry><ind> 150</ind><dep>  157</dep></entry>
-     <entry><ind> 200</ind><dep>  216</dep></entry>
-     <entry><ind> 250</ind><dep>  277</dep></entry>
-     <entry><ind> 300</ind><dep>  336.5</dep></entry>
-   </interpolation>
-   <axis>
-     <x>-1.0</x>
-   </axis>
- </animation>
+	<animation>
+   		<type>rotate</type>
+   		<object-name>ASIneedle</object-name>
+   		<property>/velocities/airspeed-kt</property>
+   		<interpolation>
+    		<entry><ind>0</ind><dep>0</dep></entry>
+     		<entry><ind>100</ind><dep>97</dep></entry>
+     		<entry><ind>150</ind><dep>157</dep></entry>
+     		<entry><ind>200</ind><dep>216</dep></entry>
+     		<entry><ind>250</ind><dep>277</dep></entry>
+     		<entry><ind>300</ind><dep>336.5</dep></entry>
+   		</interpolation>
+   		<axis>
+     		<x>-1.0</x>
+   		</axis>
+ 	</animation>
 
 </PropertyList>

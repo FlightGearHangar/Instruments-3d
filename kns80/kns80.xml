@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>kns80.ac</path>
+	
+	<animation>
+  		<type>material</type>
+    	<object-name>KNS80.modes</object-name>
+		<emission>
+    		<red>0.6</red>
+    		<green>0.3</green>
+    		<blue>0.2</blue>
+    		<factor-prop>/instrumentation/kns-80/serviceable</factor-prop>
+  		</emission>
+	</animation>	
+
+	<animation>
+   		<name>dme-on</name>
+   		<object-name>nm.101</object-name>
+   		<object-name>nm.102</object-name>
+   		<object-name>nm.103</object-name>
+   		<object-name>kt.101</object-name>
+   		<object-name>kt.102</object-name>
+   		<object-name>kt.103</object-name>
+   		<object-name>min.101</object-name>
+   		<object-name>min.102</object-name>
+ 	</animation>
+
+	<animation>
+   		<name>illumination</name>
+   		<object-name>navfreq.101</object-name>
+   		<object-name>navfreq.102</object-name>
+   		<object-name>navfreq.103</object-name>
+   		<object-name>navfreq.104</object-name>
+   		<object-name>navfreq.105</object-name>
+   		<object-name>annun.nm</object-name>
+   		<object-name>display.digit</object-name>
+		<object-name>use.digit</object-name>
+ 	</animation>
+
+ 
+	<animation>
+   		<type>select</type>
+   		<object-name>illumination</object-name>
+   		<condition>
+			<property>instrumentation/kns-80/serviceable</property>
+    	</condition>
+	</animation>
+
+	<animation>
+   		<type>select</type>
+   		<object-name>dme.invalid</object-name>
+   		<condition>
+			<and>			
+				<property>instrumentation/kns-80/serviceable</property>
+				<not>			
+					<property>instrumentation/dme/in-range</property>
+				</not>
+			</and>
+    	</condition>
+	</animation>
+
+	<animation>
+   		<type>select</type>
+   		<object-name>dme-on</object-name>
+   		<condition>
+   			<and>
+				<property>instrumentation/kns-80/serviceable</property>
+				<property>instrumentation/dme/in-range</property>
+			</and>
+    	</condition>
+	</animation>
+ 
+	<animation>
+   		<type>rotate</type>
+   		<object-name>KNS80.volume</object-name>
+   		<property>instrumentation/kns-80/volume</property>
+   		<interpolation>
+     		<entry><ind>0</ind><dep>0</dep></entry>
+     		<entry><ind>1.0</ind><dep>300</dep></entry>
+   		</interpolation>
+   		<center>
+     		<x-m>0.003</x-m>
+     		<y-m>0.040</y-m>
+     		<z-m>-0.030</z-m>
+   		</center>
+   		<axis>
+     		<x>-1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+ 	</animation>
+
+<!--	Frequency	-->
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>navfreq.101</object-name>
+   		<property>instrumentation/kns-80/displayed-frequency</property>
+   		<factor>0.00001</factor>
+   		<step>10000</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>navfreq.102</object-name>
+   		<property>instrumentation/kns-80/displayed-frequency</property>
+   		<factor>0.0001</factor>
+   		<step>1000</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+ 	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>navfreq.103</object-name>
+   		<property>instrumentation/kns-80/displayed-frequency</property>
+   		<factor>0.001</factor>
+   		<step>100</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>navfreq.104</object-name>
+   		<property>instrumentation/kns-80/displayed-frequency</property>
+   		<factor>0.01</factor>
+   		<step>10</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>navfreq.105</object-name>
+   		<property>instrumentation/kns-80/displayed-frequency</property>
+   		<factor>0.1</factor>
+   		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+<!--	DME		-->
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>nm.101</object-name>
+   		<property>instrumentation/dme/indicated-distance-nm</property>
+   		<factor>0.01</factor>
+   		<step>10</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>nm.102</object-name>
+   		<property>instrumentation/dme/indicated-distance-nm</property>
+   		<factor>0.1</factor>
+   		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>nm.103</object-name>
+   		<property>instrumentation/dme/indicated-distance-nm</property>
+   		<factor>1.0</factor>
+   		<step>0.1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+	
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>kt.101</object-name>
+   		<property>instrumentation/dme/indicated-ground-speed-kt</property>
+   		<factor>0.001</factor>
+   		<step>100</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>kt.102</object-name>
+   		<property>instrumentation/dme/indicated-ground-speed-kt</property>
+   		<factor>0.01</factor>
+   		<step>10</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>kt.103</object-name>
+   		<property>instrumentation/dme/indicated-ground-speed-kt</property>
+   		<factor>0.1</factor>
+   		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>min.101</object-name>
+   		<property>instrumentation/dme/indicated-time-min</property>
+   		<factor>0.01</factor>
+   		<step>10</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>min.102</object-name>
+   		<property>instrumentation/dme/indicated-time-min</property>
+   		<factor>0.1</factor>
+   		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+	
+	<!-- Frequency annunciators-->
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>display.digit</object-name>
+   		<property>instrumentation/kns-80/display</property>
+   		<factor>0.1</factor>
+   		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>use.digit</object-name>
+   		<property>instrumentation/kns-80/use</property>
+   		<factor>0.1</factor>
+   		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+ 
+</PropertyList>

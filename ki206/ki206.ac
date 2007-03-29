@@ -1,6 +1,6 @@
 AC3Db
-MATERIAL "illum" rgb 1 1 1 amb 0.2 0.2 0.2 emis 0.4 0.4 0.4 spec 0.5 0.5 0.5 shi 32 trans 0
-MATERIAL "metal" rgb 1 1 1 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.755939 0.755939 0.755939 shi 32 trans 0
+MATERIAL "illum" rgb 1 1 1 amb 0 0 0 emis 0.4 0.4 0.4 spec 0.5 0.5 0.5 shi 32 trans 0
+MATERIAL "metal" rgb 1 1 1 amb 0 0 0 emis 0 0 0 spec 0.755939 0.755939 0.755939 shi 32 trans 0
 OBJECT world
 kids 10
 OBJECT poly

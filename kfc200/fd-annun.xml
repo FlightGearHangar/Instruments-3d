@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+KA 285 Mode Annunciator Panel
+Syd Adams
+
+-->
 
 <PropertyList>
 
@@ -31,18 +36,28 @@
 
 	<animation>
    		<type>select</type>
-   		<object-name>NAVARM-ON</object-name>
+   		<object-name>ARM-ON</object-name>
    		<condition>
-     		<equals>
-       			<property>/instrumentation/kfc200/fdmode</property>
-       			<value>nav-arm</value>
-     		</equals>
+   			<or>
+     			<equals>
+       				<property>/instrumentation/kfc200/fdmode</property>
+       				<value>nav-arm</value>
+     			</equals>
+     			<equals>
+       				<property>/instrumentation/kfc200/fdmodeV</property>
+       				<value>alt-arm</value>
+     			</equals>
+     			<equals>
+       				<property>/instrumentation/kfc200/fdmodeV</property>
+       				<value>gs-arm</value>
+     			</equals>
+     		</or>
    		</condition>
  	</animation>
 
 	<animation>
    		<type>select</type>
-   		<object-name>NAVCPLD-ON</object-name>
+   		<object-name>CPLD-ON</object-name>
    		<condition>
      		<equals>
        			<property>/instrumentation/kfc200/fdmode</property>
@@ -99,10 +114,16 @@
    		<type>select</type>
    		<object-name>ALT-ON</object-name>
    		<condition>
+   			<or>
+     		<equals>
+       			<property>/instrumentation/kfc200/fdmodeV</property>
+       			<value>alt-arm</value>
+     		</equals>
      		<equals>
        			<property>/instrumentation/kfc200/fdmodeV</property>
        			<value>alt</value>
      		</equals>
+     		</or>
    		</condition>
  	</animation>
 

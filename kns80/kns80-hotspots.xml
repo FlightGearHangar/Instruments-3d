@@ -14,6 +14,8 @@
  
  	<actions>
    
+   <!-- DATA MODE 0 -->
+   
 		<action>
      		<name>nav frequency decrease (decimal part)</name>
      		<button>0</button>
@@ -21,6 +23,12 @@
      		<y>-30</y>
      		<w>12</w>
      		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>0</value>
+     			</equals>
+     		</condition>
      		<binding>
        			<command>property-adjust</command>
        			<property>instrumentation/kns-80/displayed-frequency</property>
@@ -38,6 +46,12 @@
      		<y>-30</y>
      		<w>12</w>
      		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>0</value>
+     			</equals>
+     		</condition>
      		<binding>
        			<command>property-adjust</command>
        			<property>instrumentation/kns-80/displayed-frequency</property>
@@ -55,6 +69,12 @@
      		<y>-30</y>
      		<w>12</w>
      		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>0</value>
+     			</equals>
+     		</condition>
      		<binding>
        			<command>property-adjust</command>
        			<property>instrumentation/kns-80/displayed-frequency</property>
@@ -72,6 +92,12 @@
      		<y>-30</y>
      		<w>12</w>
      		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>0</value>
+     			</equals>
+     		</condition>
      		<binding>
        			<command>property-adjust</command>
        			<property>instrumentation/kns-80/displayed-frequency</property>
@@ -81,6 +107,196 @@
        			<wrap>true</wrap>
      		</binding>
    		</action>
+   		
+   		   <!-- DATA MODE 1 -->
+   
+		<action>
+     		<name>radial decrease small</name>
+     		<button>0</button>
+     		<x>54</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>1</value>
+     			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-radial</property>
+       			<step>-1</step>
+       			<min>0</min>
+       			<max>360</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   
+   		<action>
+     		<name>radial decrease large</name>
+     		<button>1</button>
+     		<x>54</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>1</value>
+     			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-radial</property>
+       			<step>-10</step>
+       			<min>0</min>
+       			<max>360</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   
+   		<action>
+     		<name>radial increase small</name>
+     		<button>0</button>
+     		<x>66</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>1</value>
+     			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-radial</property>
+       			<step>1</step>
+       			<min>0</min>
+       			<max>360</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   
+   		<action>
+     		<name>radial increase large</name>
+     		<button>1</button>
+     		<x>66</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>1</value>
+     			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-radial</property>
+       			<step>10</step>
+       			<min>0</min>
+       			<max>360</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   		
+   		   		   <!-- DATA MODE 2 -->
+   
+		<action>
+     		<name>distance decrease small</name>
+     		<button>0</button>
+     		<x>54</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>2</value>
+     			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-distance</property>
+       			<step>-1</step>
+       			<min>0</min>
+       			<max>100</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+
+		<action>
+     		<name>distance decrease large</name>
+     		<button>0</button>
+     		<x>54</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>2</value>
+     			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-distance</property>
+       			<step>-10</step>
+       			<min>0</min>
+       			<max>100</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   		
+		<action>
+     		<name>distance increase small</name>
+     		<button>0</button>
+     		<x>54</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>2</value>
+     			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-distance</property>
+       			<step>1</step>
+       			<min>0</min>
+       			<max>100</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   		
+   		<action>
+     		<name>distance increase large</name>
+     		<button>0</button>
+     		<x>54</x>
+     		<y>-30</y>
+     		<w>12</w>
+     		<h>16</h>
+     		<condition>
+     			<equals>
+     				<property>instrumentation/kns-80/data-mode</property>
+     				<value>2</value>
+     			</equals>
+     		</condition>
+     		<binding>
+       			<command>property-adjust</command>
+       			<property>instrumentation/kns-80/displayed-distance</property>
+       			<step>10</step>
+       			<min>0</min>
+       			<max>100</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+   		
+<!-- END DATA ENTRY -->
 	
 		<action>
      		<name>volume increase</name>
@@ -195,6 +411,23 @@
        			<step>1</step>
        			<min>0</min>
        			<max>4</max>
+       			<wrap>true</wrap>
+     		</binding>
+   		</action>
+
+   		<action>
+    		<name>select data mode</name>
+     		<button>0</button>
+     		<x>10</x>
+     		<y>-24</y>
+     		<w>12</w>
+     		<h>6</h>
+     		<binding>
+				<command>property-adjust</command>
+       			<property>instrumentation/kns-80/data-mode</property>
+       			<step>1</step>
+       			<min>0</min>
+       			<max>3</max>
        			<wrap>true</wrap>
      		</binding>
    		</action>

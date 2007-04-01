@@ -3,17 +3,6 @@
 <PropertyList>
 
 	<path>kns80.ac</path>
-	
-	<animation>
-  		<type>material</type>
-    	<object-name>KNS80.modes</object-name>
-		<emission>
-    		<red>0.6</red>
-    		<green>0.3</green>
-    		<blue>0.2</blue>
-    		<factor-prop>/instrumentation/kns-80/serviceable</factor-prop>
-  		</emission>
-	</animation>	
 
 	<animation>
    		<name>dme-on</name>
@@ -29,17 +18,39 @@
 
 	<animation>
    		<name>illumination</name>
+   		<object-name>annun.nm</object-name>
+   		<object-name>KNS80.modes</object-name>
+		<object-name>display.digit</object-name>
+		<object-name>use.digit</object-name>
+ 	</animation>
+
+	<animation>
+   		<name>frequencies</name>
    		<object-name>navfreq.101</object-name>
    		<object-name>navfreq.102</object-name>
    		<object-name>navfreq.103</object-name>
    		<object-name>navfreq.104</object-name>
    		<object-name>navfreq.105</object-name>
-   		<object-name>annun.nm</object-name>
-   		<object-name>display.digit</object-name>
-		<object-name>use.digit</object-name>
+   		<object-name>freq.annun</object-name>
+ 	</animation>
+ 
+	<animation>
+   		<name>radials</name>
+   		<object-name>radial.101</object-name>
+   		<object-name>radial.102</object-name>
+   		<object-name>radial.103</object-name>
+   		<object-name>radial.104</object-name>
+   		<object-name>radial.annun</object-name>
+   	</animation>
+
+	<animation>
+   		<name>distance</name>
+   		<object-name>dist.101</object-name>
+   		<object-name>dist.102</object-name>
+   		<object-name>dist.103</object-name>
+   		<object-name>dist.annun</object-name>
  	</animation>
 
- 
 	<animation>
    		<type>select</type>
    		<object-name>illumination</object-name>
@@ -47,6 +58,49 @@
 			<property>instrumentation/kns-80/serviceable</property>
     	</condition>
 	</animation>
+
+	<animation>
+   		<type>select</type>
+   		<object-name>frequencies</object-name>
+   		<condition>
+			<and>			
+				<property>instrumentation/kns-80/serviceable</property>
+				<equals>			
+					<property>instrumentation/kns-80/data-mode</property>
+					<value>0</value>
+				</equals>
+			</and>
+    	</condition>
+	</animation>
+	
+	<animation>
+   		<type>select</type>
+   		<object-name>radials</object-name>
+   		<condition>
+			<and>			
+				<property>instrumentation/kns-80/serviceable</property>
+				<equals>			
+					<property>instrumentation/kns-80/data-mode</property>
+					<value>1</value>
+				</equals>
+			</and>
+    	</condition>
+	</animation>
+
+	<animation>
+   		<type>select</type>
+   		<object-name>distance</object-name>
+   		<condition>
+			<and>			
+				<property>instrumentation/kns-80/serviceable</property>
+				<equals>			
+					<property>instrumentation/kns-80/data-mode</property>
+					<value>2</value>
+				</equals>
+			</and>
+    	</condition>
+	</animation>
+
 
 	<animation>
    		<type>select</type>
@@ -152,6 +206,88 @@
    		<property>instrumentation/kns-80/displayed-frequency</property>
    		<factor>0.1</factor>
    		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+	
+	<!--	Radials	-->
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>radial.101</object-name>
+   		<property>instrumentation/kns-80/displayed-radial</property>
+   		<factor>0.001</factor>
+   		<step>100</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>radial.102</object-name>
+   		<property>instrumentation/kns-80/displayed-radial</property>
+   		<factor>0.01</factor>
+   		<step>10</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>radial.103</object-name>
+   		<property>instrumentation/kns-80/displayed-radial</property>
+   		<factor>0.1</factor>
+   		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<!--	Distance    -->
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>dist.101</object-name>
+   		<property>instrumentation/kns-80/displayed-distance</property>
+   		<factor>0.01</factor>
+   		<step>10</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>dist.102</object-name>
+   		<property>instrumentation/kns-80/displayed-distance</property>
+   		<factor>0.1</factor>
+   		<step>1</step>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+	</animation>
+
+	<animation>
+   		<type>textranslate</type>
+   		<object-name>dist.103</object-name>
+   		<property>instrumentation/kns-80/displayed-distance</property>
+   		<factor>1.0</factor>
+   		<step>0.1</step>
    		<axis>
      		<x>1</x>
      		<y>0</y>
@@ -264,12 +400,13 @@
      		<z>0</z>
    		</axis>
 	</animation>
-	
-	<!-- Frequency annunciators-->
+
+<!-- USED / DISPLAYED WAYPOINTS--> 
+ 
 	<animation>
    		<type>textranslate</type>
-   		<object-name>display.digit</object-name>
-   		<property>instrumentation/kns-80/display</property>
+   		<object-name>use.digit</object-name>
+   		<property>instrumentation/kns-80/use</property>
    		<factor>0.1</factor>
    		<step>1</step>
    		<axis>
@@ -281,8 +418,8 @@
 
 	<animation>
    		<type>textranslate</type>
-   		<object-name>use.digit</object-name>
-   		<property>instrumentation/kns-80/use</property>
+   		<object-name>display.digit</object-name>
+   		<property>instrumentation/kns-80/display</property>
    		<factor>0.1</factor>
    		<step>1</step>
    		<axis>

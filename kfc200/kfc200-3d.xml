@@ -244,7 +244,7 @@
    		<property>instrumentation/nav/gs-needle-deflection</property>
    		<interpolation>
      		<entry>
-       			<ind>-9999.0</ind><dep>-0.0183</dep>
+       			<ind>-100.0</ind><dep>-0.0183</dep>
      		</entry>
      		<entry>
        			<ind>-10.0</ind><dep>-0.0183</dep>
@@ -256,7 +256,7 @@
        			<ind>10.0</ind><dep>0.0183</dep>
      		</entry>
      		<entry>
-       			<ind>9999.0</ind><dep>0.0183</dep>
+       			<ind>100.0</ind><dep>0.0183</dep>
      		</entry>
    		</interpolation>
    		<axis>
@@ -326,11 +326,8 @@
                		<property>instrumentation/nav/gs-distance</property>
                		<value>30000.0</value>
              	</less-than>
-  				<equals>
-    				<property>instrumentation/nav/has-gs</property>
-    				<value>true</value>
-  				</equals>
-			</and>
+  				<property>instrumentation/nav/has-gs</property>
+    		</and>
     	</condition>
 	</animation>
  

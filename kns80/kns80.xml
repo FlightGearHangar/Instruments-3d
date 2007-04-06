@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
+<!-- KNS 80 
+Bendix/King VOR/LOC/GS/DME/RVAV Integrated NAV System
+Syd Adams
+ -->
 
 <PropertyList>
 
@@ -55,7 +59,13 @@
    		<type>select</type>
    		<object-name>illumination</object-name>
    		<condition>
-			<property>instrumentation/kns-80/serviceable</property>
+   			<and>
+				<property>instrumentation/kns-80/serviceable</property>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>		
+			</and>    	
     	</condition>
 	</animation>
 
@@ -69,6 +79,10 @@
 					<property>instrumentation/kns-80/data-mode</property>
 					<value>0</value>
 				</equals>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
 			</and>
     	</condition>
 	</animation>
@@ -83,6 +97,10 @@
 					<property>instrumentation/kns-80/data-mode</property>
 					<value>1</value>
 				</equals>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
 			</and>
     	</condition>
 	</animation>
@@ -97,6 +115,10 @@
 					<property>instrumentation/kns-80/data-mode</property>
 					<value>2</value>
 				</equals>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
 			</and>
     	</condition>
 	</animation>
@@ -111,6 +133,10 @@
 				<not>			
 					<property>instrumentation/dme/in-range</property>
 				</not>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
 			</and>
     	</condition>
 	</animation>
@@ -122,10 +148,118 @@
    			<and>
 				<property>instrumentation/kns-80/serviceable</property>
 				<property>instrumentation/dme/in-range</property>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
+			</and>
+    	</condition>
+	</animation>
+	
+	<animation>
+   		<type>select</type>
+   		<object-name>vor.annun</object-name>
+   		<condition>
+   			<and>
+				<property>instrumentation/kns-80/serviceable</property>
+				<equals>
+					<property>instrumentation/kns-80/nav-mode</property>
+					<value>0</value>
+				</equals>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>	
 			</and>
     	</condition>
 	</animation>
  
+	<animation>
+   		<type>select</type>
+   		<object-name>par.annun</object-name>
+   		<condition>
+   			<and>
+				<property>instrumentation/kns-80/serviceable</property>
+				<equals>
+					<property>instrumentation/kns-80/nav-mode</property>
+					<value>1</value>
+				</equals>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>	
+			</and>
+    	</condition>
+	</animation>
+
+	<animation>
+   		<type>select</type>
+   		<object-name>enr.annun</object-name>
+   		<condition>
+   			<and>
+				<property>instrumentation/kns-80/serviceable</property>
+				<equals>
+					<property>instrumentation/kns-80/nav-mode</property>
+					<value>2</value>
+				</equals>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>	
+			</and>
+    	</condition>
+	</animation>
+	
+	<animation>
+   		<type>select</type>
+   		<object-name>apr.annun</object-name>
+   		<condition>
+   			<and>
+				<property>instrumentation/kns-80/serviceable</property>
+				<equals>
+					<property>instrumentation/kns-80/nav-mode</property>
+					<value>3</value>
+				</equals>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>	
+			</and>
+    	</condition>
+	</animation>
+	
+	<animation>
+   		<type>select</type>
+   		<object-name>hld.annun</object-name>
+   		<condition>
+			<and>   			
+   				<property>instrumentation/kns-80/serviceable</property>
+				<property>instrumentation/kns-80/dme-hold</property>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
+			</and>
+    	</condition>
+	</animation>
+
+	<animation>
+   		<type>select</type>
+   		<object-name>ils.annun</object-name>
+   		<condition>
+			<and>   			
+   				<property>instrumentation/kns-80/serviceable</property>
+				<property>instrumentation/nav/nav-loc</property>
+				<property>instrumentation/nav/in-range</property>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
+			</and>
+    	</condition>
+	</animation>
+
+
 	<animation>
    		<type>rotate</type>
    		<object-name>KNS80.volume</object-name>

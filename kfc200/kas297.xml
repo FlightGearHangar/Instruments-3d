@@ -8,12 +8,34 @@ Syd Adams
 <PropertyList>
 
 	<path>kas297.ac</path>
-
+	
+	<animation>
+   		<type>select</type>
+   		<object-name>altmsg</object-name>
+   		<object-name>altmsg.001</object-name>
+   		<object-name>altmsg.002</object-name>
+   		<object-name>altmsg.003</object-name>
+   		<object-name>altmsg.004</object-name>
+   		<condition>
+   			<greater-than>
+				<property>systems/electrical/volts</property>
+				<value>1</value>
+			</greater-than>
+		</condition>
+	</animation>
+ 	
+ 	
  	<animation>
    		<type>select</type>
    		<object-name>Alert.msg</object-name>
    		<condition>
-     		<property>/instrumentation/kfc200/alt-alert</property>
+   			<and>
+     			<property>/instrumentation/kfc200/alt-alert</property>
+     			<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
+			</and>	
        	</condition>
 	</animation>
 
@@ -21,10 +43,16 @@ Syd Adams
    		<type>select</type>
    		<object-name>Arm.msg</object-name>
    		<condition>
-   			<equals>
-   				<property>/instrumentation/kfc200/fdmodeV</property>
-   				<value>alt-arm</value>
-   			</equals>
+   			<and>
+   				<equals>
+   					<property>/instrumentation/kfc200/fdmodeV</property>
+   					<value>alt-arm</value>
+   				</equals>
+   				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
+   			</and>
    		</condition>
  	</animation>
 

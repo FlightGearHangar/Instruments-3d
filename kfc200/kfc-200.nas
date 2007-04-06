@@ -31,9 +31,10 @@ GS_DEFLECTION = props.globals.getNode("/instrumentation/nav/gs-needle-deflection
 HDG = props.globals.getNode("/autopilot/locks/heading",1);
 ALT = props.globals.getNode("/autopilot/locks/altitude",1);
 SPD = props.globals.getNode("/autopilot/locks/speed",1);
-
+ 
 setlistener("/sim/signals/fdm-initialized", func {
-	fdprop.getNode("fd_on",1).setBoolValue(0);
+	fdprop.getNode("serviceable",1).setBoolValue(1);
+	fdprop.getNode("fd-on",1).setBoolValue(0);
 	fdprop.getNode("fdmode",1).setValue("off");
 	fdprop.getNode("fdmodeV",1).setValue("off");
 	fdprop.getNode("alt-offset",1).setValue(0.0);
@@ -43,21 +44,25 @@ setlistener("/sim/signals/fdm-initialized", func {
     print("KFC-200 ... OK");
     });
 
-setlistener("/instrumentation/kfc200/fd_on", func {
+setlistener("/instrumentation/kfc200/fd-on", func {
 	var fdON = cmdarg().getValue();
+	if(!fdprop.getNode("serviceable").getBoolValue()){return;}
     clear_ap();
     });
 
 setlistener("/autopilot/settings/target-altitude-ft",func {
+	if(!fdprop.getNode("serviceable").getBoolValue()){return;}
 	alt_select = cmdarg().getValue();
     });
 
 setlistener("/autopilot/route-manager/min-lock-altitude-agl-ft", func {
+	if(!fdprop.getNode("serviceable").getBoolValue()){return;}
 	DH = cmdarg().getValue();
     });
 
 
 setlistener("/instrumentation/kfc200/fdmode", func {
+	if(!fdprop.getNode("serviceable").getBoolValue()){return;}
 	fdmode = cmdarg().getValue();
 	NAVBC.setBoolValue(0);
     if(fdmode == "off"){HDG.setValue("wing-leveler");return;}
@@ -84,6 +89,7 @@ setlistener("/instrumentation/kfc200/fdmode", func {
 	    });
 
 setlistener("/instrumentation/kfc200/fdmodeV", func {
+	if(!fdprop.getNode("serviceable").getBoolValue()){return;}
 	altmode = cmdarg().getValue();
 	if(altmode == "off"){
 	setprop("/autopilot/settings/target-pitch-deg",getprop("/orientation/pitch-deg"));    
@@ -110,8 +116,9 @@ clear_ap = func {
 	}
 
 update_nav = func {
-   var APmode = fdprop.getNode("fdmode").getValue();
-   var VNAV = fdprop.getNode("fdmodeV").getValue();
+	if(!fdprop.getNode("serviceable").getBoolValue()){return;}
+	var APmode = fdprop.getNode("fdmode").getValue();
+	var VNAV = fdprop.getNode("fdmodeV").getValue();
     if(APmode == "nav-arm"){
     	if(NAV_IN_RANGE.getBoolValue()){
     		var offset = HDG_DEFLECTION.getValue();

@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
-
+<!-- 
+KY-196 
+Bendix/King VHF Comm Transceiver
+Syd Adams
+-->
 <PropertyList>
 
  <path>ky196.ac</path>

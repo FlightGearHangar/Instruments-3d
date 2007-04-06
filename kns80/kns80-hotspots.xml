@@ -380,6 +380,53 @@
        			<value>false</value>
      		</binding>
    		</action>
+   		
+   		<action>
+    		<name>select vor modes</name>
+     		<button>0</button>
+     		<x>-65</x>
+     		<y>-24</y>
+     		<w>12</w>
+     		<h>6</h>
+     		<binding>
+				<command>nasal</command>
+       			<script>
+       			test = getprop("/instrumentation/kns-80/nav-mode");
+       			if(test != 0){setprop("/instrumentation/kns-80/nav-mode",0);
+       			}else{setprop("/instrumentation/kns-80/nav-mode",1);}
+       			</script>
+			</binding>
+   		</action>
+   		
+   		<action>
+    		<name>select rnav modes</name>
+     		<button>0</button>
+     		<x>-50</x>
+     		<y>-24</y>
+     		<w>12</w>
+     		<h>6</h>
+     		<binding>
+				<command>nasal</command>
+       			<script>
+       			test = getprop("/instrumentation/kns-80/nav-mode");
+       			if(test != 2){setprop("/instrumentation/kns-80/nav-mode",2);
+       			}else{setprop("/instrumentation/kns-80/nav-mode",3);}
+       			</script>
+			</binding>
+   		</action>
+   		
+   		  		<action>
+    		<name>dme hold</name>
+     		<button>0</button>
+     		<x>-35</x>
+     		<y>-24</y>
+     		<w>12</w>
+     		<h>6</h>
+     		<binding>
+				<command>property-toggle</command>
+       			<property>instrumentation/kns-80/dme-hold</property>
+			</binding>
+   		</action>
    
    		<action>
     		<name>select used frequency</name>

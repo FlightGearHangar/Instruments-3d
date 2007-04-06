@@ -22,6 +22,12 @@
 		<object-name>KI525A</object-name>
 		<object-name>CRSknob</object-name>
 		<object-name>HDGknob</object-name>
+		<condition>
+			<greater-than>
+				<property>/systems/electrical/outputs/instrument-lights</property>
+				<value>0.1</value>
+			</greater-than>		
+		</condition>
   		<emission>
     		<red>0.8</red>
     		<green>0.4</green>
@@ -29,6 +35,38 @@
     		<factor-prop>/controls/lighting/instruments-norm</factor-prop>
   		</emission>
 	</animation>
+	
+		<animation>
+  		<type>material</type>
+    	<object-name>AIring</object-name>
+		<object-name>AIpitch</object-name>
+		<object-name>Symbol</object-name>
+		<object-name>kfc-hdgbug</object-name>
+		<object-name>FDbars</object-name>
+		<object-name>kfc-crs</object-name>
+  		<object-name>kfc-crs.001</object-name>
+  		<object-name>To-flag</object-name>
+  		<object-name>From-flag</object-name>
+  		<object-name>CmpsCard</object-name>
+  		<object-name>nav-warning</object-name>
+  		<object-name>hdg-warning</object-name>
+  		<object-name>GSneedle</object-name>
+		<object-name>KI525A</object-name>
+		<object-name>CRSknob</object-name>
+		<object-name>HDGknob</object-name>
+		<condition>
+			<less-than>
+				<property>/systems/electrical/outputs/instrument-lights</property>
+				<value>0.1</value>
+			</less-than>		
+		</condition>
+  		<emission>
+    		<red>0.0</red>
+    		<green>0.0</green>
+    		<blue>0.0</blue>
+    		</emission>
+	</animation>
+
 
  	<animation>
    		<type>rotate</type>

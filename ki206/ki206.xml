@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
+<!-- KI 206 
+Bendix/King VOR / LOC / Glideslope Indicator
+Syd Adams
+-->
 <PropertyList>
 
 	<path>ki206.ac</path>
@@ -14,12 +18,43 @@
   		<object-name>KI206.locneedle</object-name>
   		<object-name>KI206.gsneedle</object-name>
   		<object-name>KI206.knob</object-name>
+  		<condition>
+			<greater-than>
+				<property>/systems/electrical/outputs/instrument-lights</property>
+				<value>0.1</value>
+			</greater-than>		
+		</condition>
   		<emission>
     		<red>0.8</red>
     		<green>0.4</green>
     		<blue>0.2</blue>
     		<factor-prop>/controls/lighting/instruments-norm</factor-prop>
   		</emission>
+	</animation>
+	
+		<animation>
+  		<type>material</type>
+  		<object-name>KI206.gsflag</object-name>
+  		<object-name>KI206.toflag</object-name>
+  		<object-name>KI206.fromflag</object-name>
+  		<object-name>KI206.navflag</object-name>
+  		<object-name>KI206.face</object-name>
+  		<object-name>KI206card</object-name>
+  		<object-name>KI206.locneedle</object-name>
+  		<object-name>KI206.gsneedle</object-name>
+  		<object-name>KI206.knob</object-name>
+  		<condition>
+			<less-than>
+				<property>/systems/electrical/outputs/instrument-lights</property>
+				<value>0.1</value>
+			</less-than>		
+		</condition>
+  		<emission>
+    		<red>0.0</red>
+    		<green>0.0</green>
+    		<blue>0.0</blue>
+    		<factor-prop>/controls/lighting/instruments-norm</factor-prop>
+    	</emission>
 	</animation>
 
 	<animation>

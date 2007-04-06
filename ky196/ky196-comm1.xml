@@ -24,10 +24,16 @@
    <type>select</type>
    <object-name>comm1-leds</object-name>
    <condition>
-     <equals>
-       <property>instrumentation/comm/serviceable</property>
-       <value>true</value>
-     </equals>
+   		<and>
+     		<equals>
+       		<property>instrumentation/comm/serviceable</property>
+       		<value>true</value>
+     		</equals>
+     		<greater-than>
+       		<property>systems/electrical/outputs/comm[0]</property>
+       		<value>1</value>
+     		</greater-than>
+     	</and>
    </condition>
  </animation>
 

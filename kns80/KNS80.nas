@@ -3,6 +3,8 @@
 ####
 ####	Must be included in the Set file to run the KNS80 radio 
 ####
+#### Nav Modes  0 = VOR ; 1 = VOR/PAR ; 2 = RNAV/ENR ; 3 = RNAV/APR ;
+####
 
 KNS80 = props.globals.getNode("/instrumentation/kns-80",1);
 NAV1 = props.globals.getNode("/instrumentation/nav/frequencies/selected-mhz",1);
@@ -15,6 +17,8 @@ setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("display",1).setValue(0);
 	KNS80.getNode("use",1).setValue(0);
 	KNS80.getNode("data-mode",1).setValue(0);
+	KNS80.getNode("nav-mode",1).setValue(0);
+	KNS80.getNode("dme-hold",1).setBoolValue(0);
 	KNS80.getNode("displayed-frequency",1).setValue(NAV1.getValue()* 100);	
 	KNS80.getNode("displayed-distance",1).setValue(0);	
 	KNS80.getNode("displayed-radial",1).setValue(NAV1_RADIAL.getValue());	
@@ -76,5 +80,16 @@ setlistener("/instrumentation/kns-80/display", func {
 	var freq = cmdarg().getValue();
 	KNS80.getNode("displayed-frequency").setValue(KNS80.getNode("wpt[" ~ freq ~ "]/frequency").getValue());
 	KNS80.getNode("displayed-radial").setValue(KNS80.getNode("wpt[" ~ freq ~ "]/radial").getValue());
+	});
+
+setlistener("/instrumentation/kns-80/dme-hold", func {
+	if(FDM_ON == 0){return;}
+	if(cmdarg().getBoolValue()){
+		props.globals.getNode("instrumentation/dme/frequencies/selected-mhz").setValue(NAV1.getValue());
+		props.globals.getNode("instrumentation/dme/frequencies/source").setValue("/instrumentation/dme/frequencies/selected-mhz");
+		}else{
+			props.globals.getNode("instrumentation/dme/frequencies/selected-mhz").setValue("");
+				props.globals.getNode("instrumentation/dme/frequencies/source").setValue("/instrumentation/nav[0]/frequencies/selected-mhz");
+			}
 	});
 

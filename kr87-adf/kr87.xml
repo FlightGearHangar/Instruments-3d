@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
-
+<!--
+KR-87
+Bendix/King ADF Reciever
+Syd Adams
+-->
 <PropertyList>
 
 	<path>kr87.ac</path>
@@ -22,8 +26,14 @@
    		<type>select</type>
    		<object-name>adf-leds</object-name>
    		<condition>
-     		<property>instrumentation/adf/serviceable</property>
-       </condition>
+   			<and>
+     			<property>instrumentation/adf/serviceable</property>
+				<greater-than>
+					<property>systems/electrical/outputs/adf</property>
+					<value>1</value>
+				</greater-than>
+			</and>		
+		</condition>
  	</animation>
 
  	<animation>
@@ -39,6 +49,10 @@
          			<property>instrumentation/adf/frequencies/selected-khz</property>
          			<value>999</value>
        			</greater-than>
+       			<greater-than>
+					<property>systems/electrical/outputs/adf</property>
+					<value>1</value>
+				</greater-than>
      		</and>
    		</condition>
  	</animation>
@@ -56,6 +70,10 @@
          			<property>instrumentation/adf/frequencies/standby-khz</property>
          			<value>999</value>
        			</greater-than>
+       			<greater-than>
+					<property>systems/electrical/outputs/adf</property>
+					<value>1</value>
+				</greater-than>
      		</and>
    		</condition>
  	</animation>

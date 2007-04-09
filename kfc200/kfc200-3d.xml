@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+KG - 258 Atitude Gyro
+KI - 525A HSI
+
+Syd Adams
+-->
 
 <PropertyList>
 
@@ -6,7 +12,7 @@
 	
 	<animation>
   		<type>material</type>
-    	<object-name>AIring</object-name>
+		<object-name>AIring</object-name>
 		<object-name>AIpitch</object-name>
 		<object-name>Symbol</object-name>
 		<object-name>kfc-hdgbug</object-name>
@@ -22,66 +28,30 @@
 		<object-name>KI525A</object-name>
 		<object-name>CRSknob</object-name>
 		<object-name>HDGknob</object-name>
-		<condition>
-			<greater-than>
-				<property>/systems/electrical/outputs/instrument-lights</property>
-				<value>0.1</value>
-			</greater-than>		
-		</condition>
-  		<emission>
-    		<red>0.8</red>
-    		<green>0.4</green>
-    		<blue>0.2</blue>
-    		<factor-prop>/controls/lighting/instruments-norm</factor-prop>
+		<emission>
+			<red>0.8</red>
+			<green>0.4</green>
+			<blue>0.2</blue>
+			<factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop>
   		</emission>
 	</animation>
 	
-		<animation>
-  		<type>material</type>
-    	<object-name>AIring</object-name>
-		<object-name>AIpitch</object-name>
-		<object-name>Symbol</object-name>
-		<object-name>kfc-hdgbug</object-name>
-		<object-name>FDbars</object-name>
-		<object-name>kfc-crs</object-name>
-  		<object-name>kfc-crs.001</object-name>
-  		<object-name>To-flag</object-name>
-  		<object-name>From-flag</object-name>
-  		<object-name>CmpsCard</object-name>
-  		<object-name>nav-warning</object-name>
-  		<object-name>hdg-warning</object-name>
-  		<object-name>GSneedle</object-name>
-		<object-name>KI525A</object-name>
-		<object-name>CRSknob</object-name>
-		<object-name>HDGknob</object-name>
-		<condition>
-			<less-than>
-				<property>/systems/electrical/outputs/instrument-lights</property>
-				<value>0.1</value>
-			</less-than>		
-		</condition>
-  		<emission>
-    		<red>0.0</red>
-    		<green>0.0</green>
-    		<blue>0.0</blue>
-    		</emission>
-	</animation>
-
-
+<!-- 	KI-525A / KG-258 				-->	
+	
  	<animation>
    		<type>rotate</type>
    		<object-name>AIring</object-name>
    		<object-name>AIpitch</object-name>
    		<property>orientation/roll-deg</property>
    		<center>
-     		<x-m>0.0</x-m>
-     		<y-m>0.0</y-m>
-     		<z-m>0.0</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
    		</center>
    		<axis>
-     		<x>1</x>
-     		<y>0</y>
-     		<z>0</z>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
    		</axis>
  	</animation>
 
@@ -90,31 +60,21 @@
    		<object-name>AIpitch</object-name>
    		<property>orientation/pitch-deg</property>
    		<interpolation>
-     		<entry>
-       			<ind>-90.0</ind><dep>0.0161</dep>
-     		</entry>
-     		<entry>
-       			<ind>-30.0</ind><dep>0.0161</dep>
-     		</entry>
-     		<entry>
-       			<ind>0.0</ind><dep>0.0</dep>
-     		</entry>
-     		<entry>
-       			<ind>30.0</ind><dep>-0.0171</dep>
-     		</entry>
-     		<entry>
-       			<ind>90.0</ind><dep>-0.0171</dep>
-     		</entry>
+			<entry><ind>-90.0</ind><dep>0.0161</dep></entry>
+			<entry><ind>-30.0</ind><dep>0.0161</dep></entry>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>30.0</ind><dep>-0.0171</dep></entry>
+			<entry><ind>90.0</ind><dep>-0.0171</dep></entry>
 		</interpolation>
 		<center>
-     		<x-m>0.0</x-m>
-     		<y-m>0.0</y-m>
-     		<z-m>0.0</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
    		</center>
    		<axis>
-     		<x>0</x>
-     		<y>0</y>
-     		<z>1</z>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
    		</axis>
  	</animation>
 
@@ -122,8 +82,8 @@
    		<type>select</type>
    		<object-name>FDbars</object-name>
    		<condition>
-     		<property>instrumentation/kfc200/fd_on</property>
-         </condition>
+			<property>instrumentation/kfc200/fd_on</property>
+		</condition>
 	</animation>
 
 	<animation>
@@ -132,14 +92,14 @@
    		<property>autopilot/settings/target-pitch-deg</property>
    		<factor>0.00056</factor>
    		<axis>
-     		<x>0.0</x>
-     		<y>0.0</y>
-     		<z>1.0</z>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
    		</axis>
    		<center>
-     		<x-m>0.0</x-m>
-     		<y-m>0</y-m>
-     		<z-m>0.0</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0</z-m>
    		</center>
  	</animation>
  
@@ -148,14 +108,14 @@
    		<object-name>FDbars</object-name>
   		<property>/autopilot/internal/target-roll-deg</property>
    		<axis>
-     		<x>-1.0</x>
-     		<y>0.0</y>
-     		<z>0.0</z>
+			<x>-1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
    		</axis>
    		<center>
-     		<x-m>0.004</x-m>
-     		<y-m>0</y-m>
-     		<z-m>0.0</z-m>
+			<x-m>0.004</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0</z-m>
    		</center>
  	</animation>
  
@@ -164,14 +124,14 @@
   		<object-name>FDbars</object-name>
    		<property>orientation/roll-deg</property>
    		<axis>
-     		<x>1.0</x>
-     		<y>0.0</y>
-     		<z>0.0</z>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
    		</axis>
    		<center>
-     		<x-m>0.004</x-m>
-     		<y-m>0</y-m>
-     		<z-m>0.0</z-m>
+			<x-m>0.004</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0</z-m>
    		</center>
  	</animation>
  
@@ -181,14 +141,14 @@
    		<property>/orientation/pitch-deg</property>
    		<factor>0.00056</factor>
    		<axis>
-     		<x>0.0</x>
-     		<y>0.0</y>
-     		<z>-1.0</z>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>-1.0</z>
    		</axis>
    		<center>
-     		<x-m>0.0</x-m>
-     		<y-m>0</y-m>
-     		<z-m>0.0</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0</z-m>
    		</center>
  	</animation>
  
@@ -199,14 +159,14 @@
   		<object-name>kfc-hdgbug</object-name>
   		<property>autopilot/internal/fdm-heading-bug-error-deg</property>
   		<axis>
-    		<x>-1.0</x>
-    		<y>0.0</y>
-    		<z>0.0</z>
+			<x>-1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
   		</axis>
   		<center>
-    		<x-m>0.0</x-m>
-    		<y-m>0.0</y-m>
-    		<z-m>-0.099</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.099</z-m>
   		</center>
 	</animation>
 
@@ -219,14 +179,14 @@
   		<object-name>CmpsCard</object-name>
   		<property>orientation/heading-magnetic-deg</property>
   		<axis>
-    		<x>1.0</x>
-    		<y>0.0</y>
-    		<z>0.0</z>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
   		</axis>
   		<center>
-    		<x-m>0.0</x-m>
-    		<y-m>0.0</y-m>
-    		<z-m>-0.099</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.099</z-m>
  		</center>
 	</animation>
 
@@ -238,14 +198,14 @@
    		<object-name>From-flag</object-name>
    		<property>instrumentation/nav/radials/selected-deg</property>
    		<axis>
-     		<x>-1.0</x>
-     		<y>0.0</y>
-     		<z>0.0</z>
+			<x>-1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
    		</axis>
    		<center>
-     		<x-m>0.0</x-m>
-     		<y-m>0.0</y-m>
-     		<z-m>-0.099</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.099</z-m>
    		</center>
  	</animation>
  
@@ -254,25 +214,19 @@
    		<object-name>kfc-crs.001</object-name>
    		<property>instrumentation/nav/heading-needle-deflection</property>
   		<interpolation>
-     		<entry>
-       			<ind>-10.0</ind><dep>-0.0193</dep>
-     		</entry>
-     		<entry>
-       			<ind>0.0</ind><dep>0.0</dep>
-     		</entry>
-     		<entry>
-       			<ind>10.0</ind><dep>0.0193</dep>
-     		</entry>
+			<entry><ind>-10.0</ind><dep>-0.0193</dep></entry>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>10.0</ind><dep>0.0193</dep></entry>
    		</interpolation>
    		<axis>
-     		<x>0.0</x>
-     		<y>1.0</y>
-     		<z>0.0</z>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
    		</axis>
    		<center>
-     		<x-m>0.0</x-m>
-     		<y-m>0.0</y-m>
-     		<z-m>-0.099</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.099</z-m>
    		</center>
  	</animation>
 
@@ -281,44 +235,32 @@
    		<object-name>GSneedle</object-name>
    		<property>instrumentation/nav/gs-needle-deflection</property>
    		<interpolation>
-     		<entry>
-       			<ind>-100.0</ind><dep>-0.0183</dep>
-     		</entry>
-     		<entry>
-       			<ind>-10.0</ind><dep>-0.0183</dep>
-     		</entry>
-     		<entry>
-       			<ind>0.0</ind><dep>0.0</dep>
-     		</entry>
-     		<entry>
-       			<ind>10.0</ind><dep>0.0183</dep>
-     		</entry>
-     		<entry>
-       			<ind>100.0</ind><dep>0.0183</dep>
-     		</entry>
+			<entry><ind>-100.0</ind><dep>-0.0183</dep></entry>
+			<entry><ind>-10.0</ind><dep>-0.0183</dep></entry>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>10.0</ind><dep>0.0183</dep></entry>
+			<entry><ind>100.0</ind><dep>0.0183</dep></entry>
    		</interpolation>
    		<axis>
-     		<x>0.0</x>
-     		<y>0.0</y>
-     		<z>1.0</z>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
    		</axis>
    		<center>
-     		<x-m>0.0</x-m>
-     		<y-m>0.0</y-m>
-     		<z-m>-0.104</z-m>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.104</z-m>
    		</center>
  	</animation>
-
-
  
 	<animation>
    		<type>select</type>
    		<object-name>To-flag</object-name>
    		<condition>
-     		<equals>
-       			<property>instrumentation/nav/to-flag</property>
-       			<value>true</value>
-     		</equals>
+			<equals>
+				<property>instrumentation/nav/to-flag</property>
+				<value>true</value>
+			</equals>
    		</condition>
  	</animation>
  
@@ -326,10 +268,10 @@
    		<type>select</type>
    		<object-name>From-flag</object-name>
    		<condition>
-     		<equals>
-       			<property>instrumentation/nav/from-flag</property>
-       			<value>true</value>
-     		</equals>
+			<equals>
+				<property>instrumentation/nav/from-flag</property>
+				<value>true</value>
+			</equals>
    		</condition>
  	</animation>
 
@@ -337,36 +279,36 @@
    		<type>select</type>
    		<object-name>nav-warning</object-name>
    		<condition>
-     		<equals>
-       			<property>instrumentation/nav/in-range</property>
-       			<value>false</value>
-     		</equals>
+			<equals>
+				<property>instrumentation/nav/in-range</property>
+				<value>false</value>
+			</equals>
    		</condition>
      	</animation>
      	
 	<animation>
-    	<type>select</type>
-       	<object-name>hdg-warning</object-name>
-      	<condition>
-        	<less-than>
-           		<property>systems/electrical/outputs/nav</property>
-           		<value>0.2</value>
-           	</less-than>
-       	</condition>
+		<type>select</type>
+		<object-name>hdg-warning</object-name>
+		<condition>
+			<less-than>
+				<property>systems/electrical/outputs/nav</property>
+				<value>0.2</value>
+			</less-than>
+		</condition>
    	</animation>
 
 	<animation>
-    	<type>select</type>
-        <object-name>GSneedle</object-name>
-        <condition>
-        	<and>
-            	<less-than>
-               		<property>instrumentation/nav/gs-distance</property>
-               		<value>30000.0</value>
-             	</less-than>
+		<type>select</type>
+		<object-name>GSneedle</object-name>
+		<condition>
+			<and>
+				<less-than>
+					<property>instrumentation/nav/gs-distance</property>
+					<value>30000.0</value>
+				</less-than>
   				<property>instrumentation/nav/has-gs</property>
-    		</and>
-    	</condition>
+			</and>
+		</condition>
 	</animation>
  
 </PropertyList>

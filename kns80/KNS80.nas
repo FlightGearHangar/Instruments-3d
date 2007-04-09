@@ -13,6 +13,8 @@ FDM_ON = 0;
 
 setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("serviceable",1).setBoolValue(1);
+	KNS80.getNode("volume-adjust",1).setValue(0);
+	KNS80.getNode("data-adjust",1).setValue(0);
 	KNS80.getNode("volume",1).setValue(0.5);
 	KNS80.getNode("display",1).setValue(0);
 	KNS80.getNode("use",1).setValue(0);
@@ -36,6 +38,50 @@ setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("wpt[3]/distance",1).setValue(0.0);
 	FDM_ON = 1;
 	print("KNS-80 Nav System ... OK");
+	});
+	
+setlistener("/instrumentation/kns-80/volume-adjust", func {
+	if(FDM_ON == 0){return;}
+	var setting = cmdarg().getValue() * 0.05;
+	cmdarg().setValue(0);
+	var vol = KNS80.getNode("volume").getValue() + setting;
+	if(vol > 1.0){vol = 1.0;}
+	if(vol < 0.0){vol = 0.0;KNS80.getNode("serviceable").setBoolValue(0);}
+	if(vol > 0.0){KNS80.getNode("serviceable").setBoolValue(1);}
+	KNS80.getNode("volume").setValue(vol);
+	KNS80.getNode("volume-adjust").setValue(0);
+	});
+	
+setlistener("/instrumentation/kns-80/data-adjust", func {
+	if(FDM_ON == 0){return;}
+	var dmode = KNS80.getNode("data-mode").getValue();
+	var num = cmdarg().getValue();
+	 cmdarg().setValue(0);
+	if(dmode == 0){
+		if(num == -1 or num ==1 ){num = num *5;}else{num = num *10;}
+		var newfreq = KNS80.getNode("displayed-frequency").getValue();
+		newfreq += num;
+		if(newfreq > 11895){newfreq -= 1100;}
+		if(newfreq < 10800){newfreq += 1100;}
+		KNS80.getNode("displayed-frequency").setValue(newfreq);
+		return;
+		}
+	if(dmode == 1){
+		var newrad = KNS80.getNode("displayed-radial").getValue();
+		newrad += num;
+		if(newrad > 359){newrad -= 360;}
+		if(newrad < 0){newrad += 360;}
+		KNS80.getNode("displayed-radial").setValue(newrad);
+		return;
+		}
+	if(dmode == 2){
+		var newdist = KNS80.getNode("displayed-distance").getValue();
+		newdist += num;
+		if(newdist > 99){newdist -= 100;}
+		if(newdist < 0){newdist += 100;}
+		KNS80.getNode("displayed-distance").setValue(newdist);
+		return;
+		}
 	});
 
 setlistener("/instrumentation/kns-80/displayed-frequency", func {
@@ -92,4 +138,3 @@ setlistener("/instrumentation/kns-80/dme-hold", func {
 				props.globals.getNode("instrumentation/dme/frequencies/source").setValue("/instrumentation/nav[0]/frequencies/selected-mhz");
 			}
 	});
-

@@ -7,7 +7,25 @@ Syd Adams
 <PropertyList>
 
 	<path>kns80.ac</path>
-
+	
+	<animation>
+  		<type>material</type>
+  		<object-name>VOR.btn</object-name>
+   		<object-name>RNAV.btn</object-name>
+		<object-name>HOLD.btn</object-name>
+		<object-name>USE.btn</object-name>
+		<object-name>DSP.btn</object-name>
+		<object-name>DATA.btn</object-name>
+		<object-name>KNS80.volume</object-name>
+		<object-name>KNS80.freq</object-name>
+		<emission>
+    		<red>0.8</red>
+    		<green>0.4</green>
+    		<blue>0.2</blue>
+    		<factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop>
+  		</emission>
+	</animation>
+	
 	<animation>
    		<name>dme-on</name>
    		<object-name>nm.101</object-name>
@@ -23,8 +41,7 @@ Syd Adams
 	<animation>
    		<name>illumination</name>
    		<object-name>annun.nm</object-name>
-   		<object-name>KNS80.modes</object-name>
-		<object-name>display.digit</object-name>
+   		<object-name>display.digit</object-name>
 		<object-name>use.digit</object-name>
  	</animation>
 
@@ -562,5 +579,155 @@ Syd Adams
      		<z>0</z>
    		</axis>
 	</animation>
+	
+	<!-- OSG hotspots -->
+
+	<animation>
+  		<type>pick</type>
+  		<object-name>Vol.decrease</object-name>
+  		<action>
+  			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+    			<command>property-assign</command>
+    			<property>/instrumentation/kns-80/volume-adjust</property>
+    			<value>-1</value>
+    		</binding>
+		</action>
+	</animation>
+	
+	<animation>
+  		<type>pick</type>
+  		<object-name>Vol.increase</object-name>
+  		<action>
+  			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+    			<command>property-assign</command>
+    			<property>/instrumentation/kns-80/volume-adjust</property>
+    			<value>1</value>
+    		</binding>
+		</action>
+	</animation>
+	
+	<animation>
+  		<type>pick</type>
+  		<object-name>Set.decrease</object-name>
+  		<action>
+  			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+    			<command>property-assign</command>
+    			<property>/instrumentation/kns-80/data-adjust</property>
+    			<value>-1</value>
+    		</binding>
+		</action>
+	</animation>
+	
+	<animation>
+  		<type>pick</type>
+  		<object-name>Set.increase</object-name>
+  		<action>
+  			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+    			<command>property-assign</command>
+    			<property>/instrumentation/kns-80/data-adjust</property>
+    			<value>1</value>
+    		</binding>
+		</action>
+	</animation>
  
+	<animation>
+  		<type>pick</type>
+  		<object-name>Set.decrease</object-name>
+  		<action>
+  			<button>1</button>
+			<repeatable>true</repeatable>
+			<binding>
+    			<command>property-assign</command>
+    			<property>/instrumentation/kns-80/data-adjust</property>
+    			<value>-10</value>
+    		</binding>
+		</action>
+	</animation>
+
+	<animation>
+  		<type>pick</type>
+  		<object-name>Set.increase</object-name>
+  		<action>
+  			<button>1</button>
+			<repeatable>true</repeatable>
+			<binding>
+    			<command>property-assign</command>
+    			<property>/instrumentation/kns-80/data-adjust</property>
+    			<value>10</value>
+    		</binding>
+		</action>
+	</animation>
+	
+	<animation>
+  		<type>pick</type>
+  		<object-name>HOLD.btn</object-name>
+  		<action>
+  			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+    			<command>property-toggle</command>
+       			<property>instrumentation/kns-80/dme-hold</property>
+    		</binding>
+		</action>
+	</animation>
+
+	<animation>
+  		<type>pick</type>
+  		<object-name>USE.btn</object-name>
+  		<action>
+  			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+       			<property>instrumentation/kns-80/use</property>
+       			<step>1</step>
+       			<min>0</min>
+       			<max>4</max>
+       			<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+  		<type>pick</type>
+  		<object-name>DSP.btn</object-name>
+  		<action>
+  			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+       			<property>instrumentation/kns-80/display</property>
+       			<step>1</step>
+       			<min>0</min>
+       			<max>4</max>
+       			<wrap>true</wrap>
+     		</binding>
+		</action>
+	</animation>
+	
+	<animation>
+  		<type>pick</type>
+  		<object-name>DATA.btn</object-name>
+  		<action>
+  			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+       			<property>instrumentation/kns-80/data-mode</property>
+       			<step>1</step>
+       			<min>0</min>
+       			<max>3</max>
+       			<wrap>true</wrap>
+     		</binding>
+		</action>
+	</animation>
+
 </PropertyList>

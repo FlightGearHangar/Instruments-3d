@@ -11,7 +11,7 @@ NAV1 = props.globals.getNode("/instrumentation/nav/frequencies/selected-mhz",1);
 NAV1_RADIAL = props.globals.getNode("/instrumentation/nav/radials/selected-deg",1);
 FDM_ON = 0;
 
-setlistener("/sim/signals/fdm-initialized", func {
+_setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("serviceable",1).setBoolValue(1);
 	KNS80.getNode("volume-adjust",1).setValue(0);
 	KNS80.getNode("data-adjust",1).setValue(0);
@@ -38,22 +38,24 @@ setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("wpt[3]/distance",1).setValue(0.0);
 	FDM_ON = 1;
 	print("KNS-80 Nav System ... OK");
-	});
+	},1);
 	
 setlistener("/instrumentation/kns-80/volume-adjust", func {
-	if(FDM_ON == 0){return;}
-	var setting = cmdarg().getValue() * 0.05;
+	if(FDM_ON != 0){
+	var amnt = cmdarg().getValue() * 0.05;
 	cmdarg().setValue(0);
-	var vol = KNS80.getNode("volume").getValue() + setting;
+	var vol = KNS80.getChild("volume").getValue();
+	vol+= amnt;
 	if(vol > 1.0){vol = 1.0;}
 	if(vol < 0.0){vol = 0.0;KNS80.getNode("serviceable").setBoolValue(0);}
 	if(vol > 0.0){KNS80.getNode("serviceable").setBoolValue(1);}
 	KNS80.getNode("volume").setValue(vol);
 	KNS80.getNode("volume-adjust").setValue(0);
+		}
 	});
 	
 setlistener("/instrumentation/kns-80/data-adjust", func {
-	if(FDM_ON == 0){return;}
+	if(FDM_ON != 0){
 	var dmode = KNS80.getNode("data-mode").getValue();
 	var num = cmdarg().getValue();
 	 cmdarg().setValue(0);
@@ -82,30 +84,34 @@ setlistener("/instrumentation/kns-80/data-adjust", func {
 		KNS80.getNode("displayed-distance").setValue(newdist);
 		return;
 		}
+		}
 	});
 
 setlistener("/instrumentation/kns-80/displayed-frequency", func {
-	if(FDM_ON == 0){return;}
+	if(FDM_ON != 0){
 	var freq = cmdarg().getValue();
 	var num = KNS80.getNode("display").getValue();
 	var use = KNS80.getNode("use").getValue();
 	KNS80.getNode("wpt[" ~ num ~ "]/frequency").setValue(freq);
 	NAV1.setValue(KNS80.getNode("wpt[" ~ use ~ "]/frequency").getValue() * 0.01);
+		}
 	});
 
 setlistener("/instrumentation/kns-80/displayed-radial", func {
-	if(FDM_ON == 0){return;}
+	if(FDM_ON != 0){
 	var rad = cmdarg().getValue();
 	var num = KNS80.getNode("display").getValue();
 	var radial = KNS80.getNode("use").getValue();
 	KNS80.getNode("wpt[" ~ num ~ "]/radial").setValue(rad);
 	NAV1_RADIAL.setValue(KNS80.getNode("wpt[" ~ radial ~ "]/radial").getValue());
+		}
 	});
 
 setlistener("/instrumentation/kns-80/serviceable", func {
-	if(FDM_ON == 0){return;}
+	if(FDM_ON != 0){
 	setprop("/instrumentation/nav/serviceable",cmdarg().getValue());
 	setprop("/instrumentation/dme/serviceable",cmdarg().getValue());
+		}
 	});
 
 setlistener("/instrumentation/kns-80/volume", func {
@@ -124,7 +130,8 @@ setlistener("/instrumentation/kns-80/use", func {
 setlistener("/instrumentation/kns-80/display", func {
 	if(FDM_ON == 0){return;}
 	var freq = cmdarg().getValue();
-	KNS80.getNode("displayed-frequency").setValue(KNS80.getNode("wpt[" ~ freq ~ "]/frequency").getValue());
+	var wpt = KNS80.getNode("wpt[" ~ freq ~ "]/frequency").getValue();
+	KNS80.getNode("displayed-frequency").setValue(wpt);
 	KNS80.getNode("displayed-radial").setValue(KNS80.getNode("wpt[" ~ freq ~ "]/radial").getValue());
 	});
 

@@ -279,10 +279,15 @@ Syd Adams
    		<type>select</type>
    		<object-name>nav-warning</object-name>
    		<condition>
-			<equals>
-				<property>instrumentation/nav/in-range</property>
-				<value>false</value>
-			</equals>
+			<or>
+				<not>
+					<property>instrumentation/nav/in-range</property>
+				</not>
+				<less-than>
+				<property>systems/electrical/outputs/nav</property>
+				<value>0.2</value>
+			</less-than>
+			</or>
    		</condition>
      	</animation>
      	
@@ -302,12 +307,12 @@ Syd Adams
 		<object-name>GSneedle</object-name>
 		<condition>
 			<and>
+				<property>instrumentation/nav/has-gs</property>
 				<less-than>
 					<property>instrumentation/nav/gs-distance</property>
 					<value>30000.0</value>
 				</less-than>
-  				<property>instrumentation/nav/has-gs</property>
-			</and>
+  			</and>
 		</condition>
 	</animation>
  

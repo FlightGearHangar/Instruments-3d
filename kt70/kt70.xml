@@ -2,6 +2,24 @@
 <PropertyList>
   <path>kt70.ac</path>
 
+<animation>
+   <type>material</type>
+   <object-name>knob0</object-name>
+   <object-name>knob4</object-name>
+   <object-name>knob3</object-name>
+   <object-name>knob2</object-name>
+   <object-name>knob1</object-name>
+   <object-name>vfr-btn</object-name>
+   <object-name>base</object-name>
+   <object-name>ident-btn</object-name>
+   <emission>
+      <red>0.75</red>
+      <green>0.25</green>
+      <blue>0.10</blue>
+      <factor-prop>/controls/lighting/panel-norm</factor-prop>
+   </emission>
+  </animation>
+
  <animation>
    <type>textranslate</type>
    <object-name>alt-dig-1</object-name>
@@ -664,25 +682,5 @@
       </binding>
     </action>
   </animation>
-
-  <animation>
-   <type>material</type>
-   <object-name>knob0</object-name>
-   <object-name>knob4</object-name>
-   <object-name>knob3</object-name>
-   <object-name>knob2</object-name>
-   <object-name>knob1</object-name>
-   <object-name>vfr-btn</object-name>
-   <object-name>base</object-name>
-   <object-name>ident-btn</object-name>
-   <emission>
-      <red>0.75</red>
-      <green>0.25</green>
-      <blue>0.10</blue>
-      <factor-prop>/controls/lighting/panel-norm</factor-prop>
-   </emission>
-  </animation>
-
-
-
-</PropertyList>
+  
+  </PropertyList>

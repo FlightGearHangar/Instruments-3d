@@ -116,7 +116,7 @@ setlistener("/instrumentation/kns-80/serviceable", func {
 
 setlistener("/instrumentation/kns-80/volume", func {
 	if(FDM_ON == 0){return;}
-	#setprop("/instrumentation/nav/volume",cmdarg().getValue());
+	setprop("/instrumentation/nav/volume",cmdarg().getValue());
 	setprop("/instrumentation/dme/volume",cmdarg().getValue());
 	});
 

@@ -132,7 +132,7 @@ update_nav = func {
 	if(VNAV == "gs-arm"){
 		if(NAVGS_RANGE.getValue()< 30000){
 		test = GS_DEFLECTION.getValue();
-		if(test < 10 or test > -10){fdprop.getNode("fdmodeV").setValue("gs");}
+		if(test < 1 ){fdprop.getNode("fdmodeV").setValue("gs");}
 		}
 	}
 	
@@ -140,7 +140,13 @@ update_nav = func {
 		var offset = fdprop.getNode("alt-offset").getValue();		
 		if(offset > -990 and offset < 990){
 		fdprop.getNode("fdmodeV").setValue("alt");}
-		}				
+		}
+
+	if(VNAV == "alt"){
+		offset = fdprop.getNode("alt-offset").getValue();		
+		if(offset < -990 and offset > 990){
+		fdprop.getNode("fdmodeV").setValue("alt-arm");}
+		}
 }
 
 get_altoffset = func{
@@ -161,4 +167,3 @@ update = func {
 }
 
 settimer(update, 0);
-

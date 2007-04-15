@@ -214,9 +214,9 @@ Syd Adams
    		<object-name>kfc-crs.001</object-name>
    		<property>instrumentation/nav/heading-needle-deflection</property>
   		<interpolation>
-			<entry><ind>-10.0</ind><dep>-0.0193</dep></entry>
+			<entry><ind>-10.0</ind><dep>-0.018</dep></entry>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>10.0</ind><dep>0.0193</dep></entry>
+			<entry><ind>10.0</ind><dep>0.018</dep></entry>
    		</interpolation>
    		<axis>
 			<x>0.0</x>
@@ -235,11 +235,11 @@ Syd Adams
    		<object-name>GSneedle</object-name>
    		<property>instrumentation/nav/gs-needle-deflection</property>
    		<interpolation>
-			<entry><ind>-100.0</ind><dep>-0.0183</dep></entry>
-			<entry><ind>-10.0</ind><dep>-0.0183</dep></entry>
+			<entry><ind>-100.0</ind><dep>-0.010</dep></entry>
+			<entry><ind>-5.0</ind><dep>-0.010</dep></entry>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>10.0</ind><dep>0.0183</dep></entry>
-			<entry><ind>100.0</ind><dep>0.0183</dep></entry>
+			<entry><ind>10.0</ind><dep>0.0172</dep></entry>
+			<entry><ind>100.0</ind><dep>0.0172</dep></entry>
    		</interpolation>
    		<axis>
 			<x>0.0</x>

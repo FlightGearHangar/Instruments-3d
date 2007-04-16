@@ -173,7 +173,7 @@ Syd Adams
 				<property>instrumentation/wxradar/switch-pos</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>4</max>
+				<max>3</max>
 				<wrap>false</wrap>
 			</binding>
 		</action>
@@ -190,7 +190,7 @@ Syd Adams
 				<property>instrumentation/wxradar/switch-pos</property>
 				<step>1</step>
 				<min>0</min>
-				<max>4</max>
+				<max>3</max>
 				<wrap>false</wrap>
 			</binding>
 		</action>

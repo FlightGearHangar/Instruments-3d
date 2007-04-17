@@ -413,7 +413,8 @@ Syd Adams
    		<property>instrumentation/kns-80/displayed-distance</property>
    		<factor>0.01</factor>
    		<step>10</step>
-   		<axis>
+     		<bias>0.005</bias>
+ 		<axis>
      		<x>1</x>
      		<y>0</y>
      		<z>0</z>
@@ -425,7 +426,8 @@ Syd Adams
    		<object-name>dist.102</object-name>
    		<property>instrumentation/kns-80/displayed-distance</property>
    		<factor>0.1</factor>
-   		<step>1</step>
+     		<bias>0.005</bias>
+ 		<step>1</step>
    		<axis>
      		<x>1</x>
      		<y>0</y>
@@ -439,7 +441,8 @@ Syd Adams
    		<property>instrumentation/kns-80/displayed-distance</property>
    		<factor>1.0</factor>
    		<step>0.1</step>
-   		<axis>
+     		<bias>0.005</bias>
+ 		<axis>
      		<x>1</x>
      		<y>0</y>
      		<z>0</z>
@@ -454,6 +457,7 @@ Syd Adams
    		<property>instrumentation/dme/indicated-distance-nm</property>
    		<factor>0.01</factor>
    		<step>10</step>
+		<bias>0.05</bias>
    		<axis>
      		<x>1</x>
      		<y>0</y>
@@ -467,6 +471,7 @@ Syd Adams
    		<property>instrumentation/dme/indicated-distance-nm</property>
    		<factor>0.1</factor>
    		<step>1</step>
+		<bias>0.05</bias>
    		<axis>
      		<x>1</x>
      		<y>0</y>
@@ -480,6 +485,7 @@ Syd Adams
    		<property>instrumentation/dme/indicated-distance-nm</property>
    		<factor>1.0</factor>
    		<step>0.1</step>
+		<bias>0.05</bias>
    		<axis>
      		<x>1</x>
      		<y>0</y>

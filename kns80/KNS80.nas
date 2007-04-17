@@ -1,5 +1,6 @@
 ####    King KNS-80 Integrated Navigation System   ####
 ####    Syd Adams    ####
+####    Ron Jensen   ####
 ####
 ####	Must be included in the Set file to run the KNS80 radio 
 ####
@@ -106,7 +107,15 @@ setlistener("/instrumentation/kns-80/displayed-radial", func {
 	NAV1_RADIAL.setValue(KNS80.getNode("wpt[" ~ radial ~ "]/radial").getValue());
 		}
 	});
-
+	
+setlistener("/instrumentation/kns-80/displayed-distance", func {
+	if(FDM_ON != 0){
+	var dis = cmdarg().getValue();
+	var num = KNS80.getNode("display").getValue();
+	KNS80.getNode("wpt[" ~ num ~ "]/distance").setValue(dis);
+	}
+	});
+	
 setlistener("/instrumentation/kns-80/serviceable", func {
 	if(FDM_ON != 0){
 	setprop("/instrumentation/nav/serviceable",cmdarg().getValue());

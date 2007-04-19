@@ -317,6 +317,19 @@
        			<wrap>false</wrap>
      		</binding>
    		</action>
+
+		<action>
+     		<name>ident toggle1</name>
+     		<button>1</button>
+     		<x>43</x>
+     		<y>-34</y>
+     		<w>6</w>
+     		<h>8</h>
+     		<binding>
+       			<command>property-toggle</command>
+       			<property>instrumentation/nav/ident</property>
+       		</binding>
+   		</action>
    
    		<action>
      		<name>nav power on</name>
@@ -359,6 +372,19 @@
        			<max>1.0</max>
        			<wrap>false</wrap>
      		</binding>
+   		</action>
+
+		<action>
+     		<name>ident toggle2</name>
+     		<button>1</button>
+     		<x>37</x>
+     		<y>-34</y>
+     		<w>6</w>
+     		<h>8</h>
+     		<binding>
+       			<command>property-toggle</command>
+       			<property>instrumentation/nav/ident</property>
+       		</binding>
    		</action>
    
    		<action>

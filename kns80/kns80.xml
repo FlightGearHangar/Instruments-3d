@@ -297,6 +297,23 @@ Syd Adams
    		</axis>
  	</animation>
 
+	<animation>
+   		<type>translate</type>
+   		<object-name>KNS80.volume</object-name>
+   		<property>instrumentation/nav/ident</property>
+   		<factor>0.005</factor>
+   		<center>
+     		<x-m>0.003</x-m>
+     		<y-m>0.040</y-m>
+     		<z-m>-0.030</z-m>
+   		</center>
+   		<axis>
+     		<x>1</x>
+     		<y>0</y>
+     		<z>0</z>
+   		</axis>
+ 	</animation>
+
 <!--	Frequency	-->
 
 	<animation>
@@ -733,6 +750,19 @@ Syd Adams
        			<max>3</max>
        			<wrap>true</wrap>
      		</binding>
+		</action>
+	</animation>
+	
+	<animation>
+  		<type>pick</type>
+  		<object-name>KNS80.volume</object-name>
+  		<action>
+  			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+       			<property>instrumentation/nav/ident</property>
+       		</binding>
 		</action>
 	</animation>
 

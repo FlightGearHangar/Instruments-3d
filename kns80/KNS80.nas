@@ -37,6 +37,7 @@ _setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("wpt[3]/frequency",1).setValue(10800);
 	KNS80.getNode("wpt[3]/radial",1).setValue(0);
 	KNS80.getNode("wpt[3]/distance",1).setValue(0.0);
+	props.globals.getNode("/instrumentation/nav/ident").setBoolValue(0);
 	FDM_ON = 1;
 	print("KNS-80 Nav System ... OK");
 	},1);

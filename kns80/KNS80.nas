@@ -105,7 +105,7 @@ setlistener("/instrumentation/kns-80/displayed-radial", func {
 	var num = KNS80.getNode("display").getValue();
 	var radial = KNS80.getNode("use").getValue();
 	KNS80.getNode("wpt[" ~ num ~ "]/radial").setValue(rad);
-	NAV1_RADIAL.setValue(KNS80.getNode("wpt[" ~ radial ~ "]/radial").getValue());
+#	NAV1_RADIAL.setValue(KNS80.getNode("wpt[" ~ radial ~ "]/radial").getValue());
 		}
 	});
 	

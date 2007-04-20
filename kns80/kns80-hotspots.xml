@@ -418,8 +418,13 @@
 				<command>nasal</command>
        			<script>
        			test = getprop("/instrumentation/kns-80/nav-mode");
-       			if(test != 0){setprop("/instrumentation/kns-80/nav-mode",0);
-       			}else{setprop("/instrumentation/kns-80/nav-mode",1);}
+       			if(test != 0){
+       				setprop("/instrumentation/kns-80/nav-mode",0);
+       				setprop("/instrumentation/nav/slaved-to-gps", 0);
+       			}else{
+       				setprop("/instrumentation/kns-80/nav-mode",1);
+       				setprop("/instrumentation/nav/slaved-to-gps", 1);
+       			}
        			</script>
 			</binding>
    		</action>
@@ -437,6 +442,8 @@
        			test = getprop("/instrumentation/kns-80/nav-mode");
        			if(test != 2){setprop("/instrumentation/kns-80/nav-mode",2);
        			}else{setprop("/instrumentation/kns-80/nav-mode",3);}
+			setprop("/instrumentation/nav/slaved-to-gps", 1);
+
        			</script>
 			</binding>
    		</action>

@@ -709,13 +709,10 @@ Syd Adams
   			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-adjust</command>
-       			<property>instrumentation/kns-80/use</property>
-       			<step>1</step>
-       			<min>0</min>
-       			<max>4</max>
-       			<wrap>true</wrap>
-			</binding>
+				<command>property-assign</command>
+				<property>instrumentation/kns-80/use</property>
+				<property>instrumentation/kns-80/display</property>
+       			</binding>
 		</action>
 	</animation>
 	

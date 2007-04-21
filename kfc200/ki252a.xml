@@ -1,31 +1,25 @@
 <?xml version="1.0"?>
 <!--
-KG - 258 Atitude Gyro
-KI - 525A HSI
-
+KING KI-525A Pictorial Indicator
 Syd Adams
 -->
 
 <PropertyList>
 
-	<path>kfc200.ac</path>
+	<path>ki252a.ac</path>
 	
 	<animation>
   		<type>material</type>
-		<object-name>AIring</object-name>
-		<object-name>AIpitch</object-name>
-		<object-name>Symbol</object-name>
 		<object-name>kfc-hdgbug</object-name>
-		<object-name>FDbars</object-name>
 		<object-name>kfc-crs</object-name>
   		<object-name>kfc-crs.001</object-name>
   		<object-name>To-flag</object-name>
   		<object-name>From-flag</object-name>
-  		<object-name>CmpsCard</object-name>
+  		<object-name>Compass</object-name>
   		<object-name>nav-warning</object-name>
   		<object-name>hdg-warning</object-name>
   		<object-name>GSneedle</object-name>
-		<object-name>KI525A</object-name>
+		<object-name>KI252A.back</object-name>
 		<object-name>CRSknob</object-name>
 		<object-name>HDGknob</object-name>
 		<emission>
@@ -36,124 +30,8 @@ Syd Adams
   		</emission>
 	</animation>
 	
-<!-- 	KI-525A / KG-258 				-->	
+<!-- 	KI-525A 	-->	
 	
- 	<animation>
-   		<type>rotate</type>
-   		<object-name>AIring</object-name>
-   		<object-name>AIpitch</object-name>
-   		<property>orientation/roll-deg</property>
-   		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>0.0</z-m>
-   		</center>
-   		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-   		</axis>
- 	</animation>
-
- 	<animation>
-   		<type>translate</type>
-   		<object-name>AIpitch</object-name>
-   		<property>orientation/pitch-deg</property>
-   		<interpolation>
-			<entry><ind>-90.0</ind><dep>0.0161</dep></entry>
-			<entry><ind>-30.0</ind><dep>0.0161</dep></entry>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>30.0</ind><dep>-0.0171</dep></entry>
-			<entry><ind>90.0</ind><dep>-0.0171</dep></entry>
-		</interpolation>
-		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>0.0</z-m>
-   		</center>
-   		<axis>
-			<x>0</x>
-			<y>0</y>
-			<z>1</z>
-   		</axis>
- 	</animation>
-
- 	<animation>
-   		<type>select</type>
-   		<object-name>FDbars</object-name>
-   		<condition>
-			<property>instrumentation/kfc200/fd_on</property>
-		</condition>
-	</animation>
-
-	<animation>
-   		<type>translate</type>
-   		<object-name>FDbars</object-name>
-   		<property>autopilot/settings/target-pitch-deg</property>
-   		<factor>0.00056</factor>
-   		<axis>
-			<x>0.0</x>
-			<y>0.0</y>
-			<z>1.0</z>
-   		</axis>
-   		<center>
-			<x-m>0.0</x-m>
-			<y-m>0</y-m>
-			<z-m>0.0</z-m>
-   		</center>
- 	</animation>
- 
-	<animation>
-   		<type>rotate</type>
-   		<object-name>FDbars</object-name>
-  		<property>/autopilot/internal/target-roll-deg</property>
-   		<axis>
-			<x>-1.0</x>
-			<y>0.0</y>
-			<z>0.0</z>
-   		</axis>
-   		<center>
-			<x-m>0.004</x-m>
-			<y-m>0</y-m>
-			<z-m>0.0</z-m>
-   		</center>
- 	</animation>
- 
- 	<animation>
-   		<type>rotate</type>
-  		<object-name>FDbars</object-name>
-   		<property>orientation/roll-deg</property>
-   		<axis>
-			<x>1.0</x>
-			<y>0.0</y>
-			<z>0.0</z>
-   		</axis>
-   		<center>
-			<x-m>0.004</x-m>
-			<y-m>0</y-m>
-			<z-m>0.0</z-m>
-   		</center>
- 	</animation>
- 
-	<animation>
-   		<type>translate</type>
-   		<object-name>FDbars</object-name>
-   		<property>/orientation/pitch-deg</property>
-   		<factor>0.00056</factor>
-   		<axis>
-			<x>0.0</x>
-			<y>0.0</y>
-			<z>-1.0</z>
-   		</axis>
-   		<center>
-			<x-m>0.0</x-m>
-			<y-m>0</y-m>
-			<z-m>0.0</z-m>
-   		</center>
- 	</animation>
- 
-<!--    COMPASS    -->
-
 	<animation>
   		<type>rotate</type>
   		<object-name>kfc-hdgbug</object-name>
@@ -163,12 +41,7 @@ Syd Adams
 			<y>0.0</y>
 			<z>0.0</z>
   		</axis>
-  		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.099</z-m>
-  		</center>
-	</animation>
+  	</animation>
 
 	<animation>
   		<type>rotate</type>
@@ -176,19 +49,14 @@ Syd Adams
   		<object-name>kfc-crs.001</object-name>
   		<object-name>To-flag</object-name>
   		<object-name>From-flag</object-name>
-  		<object-name>CmpsCard</object-name>
-  		<property>orientation/heading-magnetic-deg</property>
+  		<object-name>Compass</object-name>
+  		<property>instrumentation/heading-indicator/indicated-heading-deg</property>
   		<axis>
 			<x>1.0</x>
 			<y>0.0</y>
 			<z>0.0</z>
   		</axis>
-  		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.099</z-m>
- 		</center>
-	</animation>
+  	</animation>
 
 	<animation>
    		<type>rotate</type>
@@ -202,12 +70,7 @@ Syd Adams
 			<y>0.0</y>
 			<z>0.0</z>
    		</axis>
-   		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.099</z-m>
-   		</center>
- 	</animation>
+   	</animation>
  
 	<animation>
    		<type>translate</type>
@@ -223,35 +86,25 @@ Syd Adams
 			<y>1.0</y>
 			<z>0.0</z>
    		</axis>
-   		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.099</z-m>
-   		</center>
- 	</animation>
+   	</animation>
 
 	<animation>
    		<type>translate</type>
    		<object-name>GSneedle</object-name>
    		<property>instrumentation/nav/gs-needle-deflection</property>
    		<interpolation>
-			<entry><ind>-100.0</ind><dep>-0.010</dep></entry>
-			<entry><ind>-5.0</ind><dep>-0.010</dep></entry>
+			<entry><ind>-100.0</ind><dep>-0.0085</dep></entry>
+			<entry><ind>-5.0</ind><dep>-0.0085</dep></entry>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>10.0</ind><dep>0.0172</dep></entry>
-			<entry><ind>100.0</ind><dep>0.0172</dep></entry>
+			<entry><ind>10.0</ind><dep>0.0162</dep></entry>
+			<entry><ind>100.0</ind><dep>0.0162</dep></entry>
    		</interpolation>
    		<axis>
 			<x>0.0</x>
 			<y>0.0</y>
 			<z>1.0</z>
    		</axis>
-   		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.104</z-m>
-   		</center>
- 	</animation>
+   	</animation>
  
 	<animation>
    		<type>select</type>

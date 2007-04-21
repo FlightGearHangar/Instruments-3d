@@ -21,6 +21,8 @@ fdmode_last = "off";
 current_alt=0.0;
 alt_select = 0.0;
 alt_offset = 0.0;
+V_pitch=0.0;
+V_roll=0.0;
 DH = 0;
 NAVGS = props.globals.getNode("/instrumentation/nav/has-gs",1); 
 NAVGS_RANGE = props.globals.getNode("/instrumentation/nav/gs-distance",1); 
@@ -34,6 +36,8 @@ SPD = props.globals.getNode("/autopilot/locks/speed",1);
  
 setlistener("/sim/signals/fdm-initialized", func {
 	fdprop.getNode("serviceable",1).setBoolValue(1);
+	fdprop.getNode("vbar-pitch",1).setValue(0.0);
+	fdprop.getNode("vbar-roll",1).setValue(0.0);
 	fdprop.getNode("fd-on",1).setBoolValue(0);
 	fdprop.getNode("fdmode",1).setValue("off");
 	fdprop.getNode("fdmodeV",1).setValue("off");
@@ -116,7 +120,7 @@ clear_ap = func {
 	}
 
 update_nav = func {
-	if(!fdprop.getNode("serviceable").getBoolValue()){return;}
+	if(fdprop.getNode("serviceable").getBoolValue()){
 	var APmode = fdprop.getNode("fdmode").getValue();
 	var VNAV = fdprop.getNode("fdmodeV").getValue();
     if(APmode == "nav-arm"){
@@ -147,6 +151,18 @@ update_nav = func {
 		if(offset < -990 and offset > 990){
 		fdprop.getNode("fdmodeV").setValue("alt-arm");}
 		}
+	}
+	V_pitch=props.globals.getNode("autopilot/settings/target-pitch-deg").getValue();
+	V_pitch-=props.globals.getNode("orientation/pitch-deg").getValue();
+	if(V_pitch > 30){V_pitch = 30;}
+	if(V_pitch < -30){V_pitch = -30;}
+	fdprop.getNode("vbar-pitch",1).setValue(V_pitch);
+	V_roll=props.globals.getNode("autopilot/internal/target-roll-deg").getValue();
+	if(V_roll == nil){V_roll = 0.0;}
+	V_roll -=props.globals.getNode("orientation/roll-deg").getValue();
+	if(V_roll > 30){V_roll = 30;}
+	if(V_roll < -30){V_roll = -30;}
+	fdprop.getNode("vbar-roll",1).setValue(V_roll);
 }
 
 get_altoffset = func{

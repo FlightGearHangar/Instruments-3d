@@ -12,6 +12,278 @@ NAV1 = props.globals.getNode("/instrumentation/nav/frequencies/selected-mhz",1);
 NAV1_RADIAL = props.globals.getNode("/instrumentation/nav/radials/selected-deg",1);
 FDM_ON = 0;
 
+# Properties
+
+NAV1_ACTUAL = props.globals.getNode("/instrumentation/nav/radials/actual-deg",1);
+NAV1_TO_FLAG = props.globals.getNode("/instrumentation/nav[0]/to-flag",1);
+NAV1_FROM_FLAG = props.globals.getNode("/instrumentation/nav[0]/from-flag",1);
+NAV1_HEADING_NEEDLE_DEFLECTION = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection",1);
+
+NAV1_IN_RANGE = props.globals.getNode("/instrumentation/nav[0]/in-range",1);
+DME1_IN_RANGE = props.globals.getNode("/instrumentation/dme[0]/in-range",1);
+
+# outputs
+CDI_NEEDLE = props.globals.getNode("/instrumentation/gps/cdi-deflection",1);
+TO_FLAG    = props.globals.getNode("/instrumentation/gps/to-flag",1);
+FROM_FLAG  = props.globals.getNode("/instrumentation/gps/from-flag",1);
+
+
+RNAV = props.globals.getNode("/instrumentation/rnav",1);
+# distance, radial from VOR Station
+# rho, theta: distance and radial for phantom station
+# range, bearing: distance and radial from phantom station
+
+PI=3.14159265;
+D2R=PI/180;
+R2D=180/PI;
+
+var unnil = func(n) { n == nil ? 0 : n }
+
+
+# 0.1 second cron
+sec01cron = func {
+   updateRNAV();
+
+   # schedule the next call
+   settimer(sec01cron,0.1);
+}
+
+# 1 seconds cron
+sec1cron = func {
+#   hydraulicschedule();
+
+   # schedule the next call
+   settimer(sec1cron,1);
+}
+
+
+# general initialization
+init = func {
+   # schedule the 1st call
+   settimer(sec01cron,1);
+#   settimer(sec1cron,1);
+}
+
+init();
+
+
+var updateRNAV = func{
+
+# check to see if we are in-range
+	if( NAV1_IN_RANGE.getValue()==0) {
+		return;
+	}
+	var dme_valid=DME1_IN_RANGE.getValue();
+	if( dme_valid == 0) {
+		return;
+	}
+	if( dme_valid == nil) {
+		return;
+	}
+
+#### Nav Modes  0 = VOR ; 1 = VOR/PAR ; 2 = RNAV/ENR ; 3 = RNAV/APR ;
+	var mode = KNS80.getNode("nav-mode").getValue();
+	use     =KNS80.getNode("use").getValue();
+	distance=getprop("/instrumentation/dme/indicated-distance-nm");
+	selected_radial = NAV1_RADIAL.getValue();
+	radial  = NAV1_ACTUAL.getValue();
+	rho     = KNS80.getNode("wpt[" ~ use ~ "]/distance").getValue();
+	theta   = KNS80.getNode("wpt[" ~ use ~ "]/radial").getValue();
+
+	radial = unnil(radial);
+	theta  = unnil(theta);
+	rho    = unnil(rho);
+	distance=unnil(distance);
+
+# c^2=a^2+b^2-2abCos(C)
+	var angle=(theta - radial)*D2R;
+	var range=distance > 0 ? math.sqrt(distance*distance + rho * rho - 2*distance*rho*math.cos(angle )) : 0;
+
+# sin(A)/a=sin(B)/b
+# B=asin(b*(sin(A)/a))
+	bearing = math.asin(rho*(math.sin(angle)/range))*R2D+radial;
+	if(bearing < 0) bearing += 360;	
+	rbearing = bearing > 180 ? bearing - 180 : bearing + 180;
+
+	if( mode == 0){
+	#	print("KNS-80 VOR");
+		needle_deflection = (NAV1_HEADING_NEEDLE_DEFLECTION.getValue());
+	#	return;
+	}
+	if ( mode == 1){
+	#	print("KNS-80 VOR/PAR");
+		angle = math.abs(selected_radial - radial);
+		needle_deflection = math.sin((selected_radial - radial) * D2R) * distance * 2;
+	}
+	if ( mode == 2){
+	#	print("KNS-80 RNAV/ENR");
+		angle = math.abs(selected_radial - bearing);
+		needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 2;
+	} 
+	if ( mode == 3){
+	#	print("KNS-80 RNAV/APR");
+		angle = math.abs(selected_radial - bearing);
+		needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 8;
+	}
+
+	if ( needle_deflection >  10) needle_deflection = 10;
+	if ( needle_deflection < -10) needle_deflection =-10;
+	if (angle < 90){
+		from_flag=1;
+		to_flag  =0;
+	} else {
+		from_flag=0;
+		to_flag  =1;
+	}
+
+#	valid=1;
+	RNAV.getNode("heading-needle-deflection", 1).setValue(needle_deflection);
+	CDI_NEEDLE.setValue(needle_deflection);
+	TO_FLAG.setValue(to_flag);
+	FROM_FLAG.setValue(from_flag);
+	setprop("/instrumentation/rnav/indicated-distance-nm", range);
+	setprop("/instrumentation/rnav/reciprocal-radial-deg", rbearing);
+	setprop("/instrumentation/rnav/actual-deg", bearing);
+
+}
+
+
+# Properties
+
+NAV1_ACTUAL = props.globals.getNode("/instrumentation/nav/radials/actual-deg",1);
+NAV1_TO_FLAG = props.globals.getNode("/instrumentation/nav[0]/to-flag",1);
+NAV1_FROM_FLAG = props.globals.getNode("/instrumentation/nav[0]/from-flag",1);
+NAV1_HEADING_NEEDLE_DEFLECTION = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection",1);
+
+NAV1_IN_RANGE = props.globals.getNode("/instrumentation/nav[0]/in-range",1);
+DME1_IN_RANGE = props.globals.getNode("/instrumentation/dme[0]/in-range",1);
+
+# outputs
+CDI_NEEDLE = props.globals.getNode("/instrumentation/gps/cdi-deflection",1);
+TO_FLAG    = props.globals.getNode("/instrumentation/gps/to-flag",1);
+FROM_FLAG  = props.globals.getNode("/instrumentation/gps/from-flag",1);
+
+
+RNAV = props.globals.getNode("/instrumentation/rnav",1);
+# distance, radial from VOR Station
+# rho, theta: distance and radial for phantom station
+# range, bearing: distance and radial from phantom station
+
+PI=3.14159265;
+D2R=PI/180;
+R2D=180/PI;
+
+var unnil = func(n) { n == nil ? 0 : n }
+
+
+# 0.1 second cron
+sec01cron = func {
+   updateRNAV();
+
+   # schedule the next call
+   settimer(sec01cron,0.1);
+}
+
+# 1 seconds cron
+sec1cron = func {
+#   hydraulicschedule();
+
+   # schedule the next call
+   settimer(sec1cron,1);
+}
+
+
+# general initialization
+init = func {
+   # schedule the 1st call
+   settimer(sec01cron,1);
+#   settimer(sec1cron,1);
+}
+
+init();
+
+
+var updateRNAV = func{
+
+# check to see if we are in-range
+	if( NAV1_IN_RANGE.getValue()==0) {
+		return;
+	}
+	var dme_valid=DME1_IN_RANGE.getValue();
+	if( dme_valid == 0) {
+		return;
+	}
+	if( dme_valid == nil) {
+		return;
+	}
+
+#### Nav Modes  0 = VOR ; 1 = VOR/PAR ; 2 = RNAV/ENR ; 3 = RNAV/APR ;
+	var mode = KNS80.getNode("nav-mode").getValue();
+	use     =KNS80.getNode("use").getValue();
+	distance=getprop("/instrumentation/dme/indicated-distance-nm");
+	selected_radial = NAV1_RADIAL.getValue();
+	radial  = NAV1_ACTUAL.getValue();
+	rho     = KNS80.getNode("wpt[" ~ use ~ "]/distance").getValue();
+	theta   = KNS80.getNode("wpt[" ~ use ~ "]/radial").getValue();
+
+	radial = unnil(radial);
+	theta  = unnil(theta);
+	rho    = unnil(rho);
+	distance=unnil(distance);
+
+# c^2=a^2+b^2-2abCos(C)
+	var angle=(theta - radial)*D2R;
+	var range=distance > 0 ? math.sqrt(distance*distance + rho * rho - 2*distance*rho*math.cos(angle )) : 0;
+
+# sin(A)/a=sin(B)/b
+# B=asin(b*(sin(A)/a))
+	bearing = math.asin(rho*(math.sin(angle)/range))*R2D+radial;
+	if(bearing < 0) bearing += 360;	
+	rbearing = bearing > 180 ? bearing - 180 : bearing + 180;
+
+	if( mode == 0){
+	#	print("KNS-80 VOR");
+		needle_deflection = (NAV1_HEADING_NEEDLE_DEFLECTION.getValue());
+	#	return;
+	}
+	if ( mode == 1){
+	#	print("KNS-80 VOR/PAR");
+		angle = math.abs(selected_radial - radial);
+		needle_deflection = math.sin((selected_radial - radial) * D2R) * distance * 2;
+	}
+	if ( mode == 2){
+	#	print("KNS-80 RNAV/ENR");
+		angle = math.abs(selected_radial - bearing);
+		needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 2;
+	} 
+	if ( mode == 3){
+	#	print("KNS-80 RNAV/APR");
+		angle = math.abs(selected_radial - bearing);
+		needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 8;
+	}
+
+	if ( needle_deflection >  10) needle_deflection = 10;
+	if ( needle_deflection < -10) needle_deflection =-10;
+	if (angle < 90){
+		from_flag=1;
+		to_flag  =0;
+	} else {
+		from_flag=0;
+		to_flag  =1;
+	}
+
+#	valid=1;
+	RNAV.getNode("heading-needle-deflection", 1).setValue(needle_deflection);
+	CDI_NEEDLE.setValue(needle_deflection);
+	TO_FLAG.setValue(to_flag);
+	FROM_FLAG.setValue(from_flag);
+	setprop("/instrumentation/rnav/indicated-distance-nm", range);
+	setprop("/instrumentation/rnav/reciprocal-radial-deg", rbearing);
+	setprop("/instrumentation/rnav/actual-deg", bearing);
+
+}
+
+
 _setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("serviceable",1).setBoolValue(1);
 	KNS80.getNode("volume-adjust",1).setValue(0);
@@ -39,6 +311,7 @@ _setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("wpt[3]/distance",1).setValue(0.0);
 	props.globals.getNode("/instrumentation/nav/ident").setBoolValue(0);
 	FDM_ON = 1;
+	init();
 	print("KNS-80 Nav System ... OK");
 	},1);
 	

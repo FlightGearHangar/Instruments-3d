@@ -41,8 +41,7 @@ Syd Adams
 	<animation>
    		<name>illumination</name>
    		<object-name>annun.nm</object-name>
-   		<object-name>display.digit</object-name>
-		<object-name>use.digit</object-name>
+   		<object-name>use.digit</object-name>
  	</animation>
 
 	<animation>
@@ -85,6 +84,24 @@ Syd Adams
 			</and>    	
     	</condition>
 	</animation>
+
+	<animation>
+   		<type>select</type>
+   		<object-name>display.digit</object-name>
+   		<condition>
+   			<and>
+				<greater-than>
+					<property>systems/electrical/volts</property>
+					<value>1</value>
+				</greater-than>
+				<equals>
+				<property>instrumentation/kns-80/dsp-state/state</property>		
+				<value>0</value>
+				</equals>
+			</and>    	
+    	</condition>
+	</animation>
+
 
 	<animation>
    		<type>select</type>

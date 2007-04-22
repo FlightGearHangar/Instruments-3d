@@ -71,7 +71,7 @@ Syd Adams
 		<object-name>Lpivot</object-name>
 		<object-name>Rpivot</object-name>
    		<condition>
-			<property>instrumentation/kfc200/fd_on</property>
+			<property>instrumentation/kfc200/fd-on</property>
 		</condition>
 	</animation>
 

@@ -92,7 +92,7 @@
     		<repeatable>false</repeatable>
     		<binding>
      			<command>property-toggle</command>
-       			<property>/instrumentation/kfc200/fd_on</property>
+       			<property>/instrumentation/kfc200/fd-on</property>
      		</binding>
   		</action>
 	</animation>

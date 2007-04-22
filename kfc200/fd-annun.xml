@@ -24,7 +24,7 @@ Syd Adams
    		<type>select</type>
    		<object-name>FD-ON</object-name>
    		<condition>
-			<property>/instrumentation/kfc200/fd_on</property>
+			<property>/instrumentation/kfc200/fd-on</property>
 		</condition>
  	</animation>
  

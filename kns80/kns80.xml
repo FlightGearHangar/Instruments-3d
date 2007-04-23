@@ -488,7 +488,7 @@ Syd Adams
 	<animation>
    		<type>textranslate</type>
    		<object-name>nm.101</object-name>
-   		<property>instrumentation/dme/indicated-distance-nm</property>
+   		<property>instrumentation/rnav/indicated-distance-nm</property>
    		<factor>0.01</factor>
    		<step>10</step>
 		<bias>0.05</bias>
@@ -502,7 +502,7 @@ Syd Adams
 	<animation>
    		<type>textranslate</type>
    		<object-name>nm.102</object-name>
-   		<property>instrumentation/dme/indicated-distance-nm</property>
+   		<property>instrumentation/rnav/indicated-distance-nm</property>
    		<factor>0.1</factor>
    		<step>1</step>
 		<bias>0.05</bias>
@@ -516,7 +516,7 @@ Syd Adams
 	<animation>
    		<type>textranslate</type>
    		<object-name>nm.103</object-name>
-   		<property>instrumentation/dme/indicated-distance-nm</property>
+   		<property>instrumentation/rnav/indicated-distance-nm</property>
    		<factor>1.0</factor>
    		<step>0.1</step>
 		<bias>0.05</bias>

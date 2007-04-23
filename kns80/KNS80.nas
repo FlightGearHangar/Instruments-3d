@@ -1,3 +1,4 @@
+#<PropertyList><module>Aerostar-700</module><script><![CDATA[
 ####    King KNS-80 Integrated Navigation System   ####
 ####    Syd Adams    ####
 ####    Ron Jensen   ####
@@ -51,12 +52,12 @@ sec01cron = func {
 }
 
 # 1 seconds cron
-sec1cron = func {
+#sec1cron = func {
 #   hydraulicschedule();
 
    # schedule the next call
-   settimer(sec1cron,1);
-}
+#   settimer(sec1cron,1);
+#}
 
 
 # general initialization
@@ -66,7 +67,7 @@ init = func {
 #   settimer(sec1cron,1);
 }
 
-init();
+#init();
 
 
 var updateRNAV = func{
@@ -91,6 +92,7 @@ var updateRNAV = func{
 	radial  = NAV1_ACTUAL.getValue();
 	rho     = KNS80.getNode("wpt[" ~ use ~ "]/distance").getValue();
 	theta   = KNS80.getNode("wpt[" ~ use ~ "]/radial").getValue();
+	fangle = 0;
 
 	radial = unnil(radial);
 	theta  = unnil(theta);
@@ -102,40 +104,47 @@ var updateRNAV = func{
 	var range=distance > 0 ? math.sqrt(distance*distance + rho * rho - 2*distance*rho*math.cos(angle )) : 0;
 
 # sin(A)/a=sin(B)/b
+# b*sin(A)/a=sin(B)
 # B=asin(b*(sin(A)/a))
-	bearing = math.asin(rho*(math.sin(angle)/range))*R2D+radial;
-	if(bearing < 0) bearing += 360;	
-	rbearing = bearing > 180 ? bearing - 180 : bearing + 180;
+# Theta-DEGREES(ASIN(Distance*(SIN(Angle)/Range)))
+	if(angle < 0 ){
+		bearing = theta-math.asin(distance*(math.sin(angle)/range))*R2D-180;
+	} else {
+		bearing = theta+math.asin(distance*(math.sin(angle)/range))*R2D;
+	}
+	if(bearing < 0) bearing += 360;
+	abearing = bearing > 180 ? bearing - 180 : bearing + 180;
 
 	if( mode == 0){
 	#	print("KNS-80 VOR");
 		needle_deflection = (NAV1_HEADING_NEEDLE_DEFLECTION.getValue());
+		range = distance;
 	#	return;
 	}
 	if ( mode == 1){
 	#	print("KNS-80 VOR/PAR");
-		angle = math.abs(selected_radial - radial);
+		fangle = math.abs(selected_radial - radial);
 		needle_deflection = math.sin((selected_radial - radial) * D2R) * distance * 2;
 	}
 	if ( mode == 2){
 	#	print("KNS-80 RNAV/ENR");
-		angle = math.abs(selected_radial - bearing);
+		fangle = math.abs(selected_radial - bearing);
 		needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 2;
 	} 
 	if ( mode == 3){
 	#	print("KNS-80 RNAV/APR");
-		angle = math.abs(selected_radial - bearing);
+		fangle = math.abs(selected_radial - bearing);
 		needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 8;
 	}
-
+	needle_deflection= -needle_deflection;
 	if ( needle_deflection >  10) needle_deflection = 10;
 	if ( needle_deflection < -10) needle_deflection =-10;
-	if (angle < 90){
-		from_flag=1;
-		to_flag  =0;
-	} else {
+	if (fangle < 90 or fangle >270){
 		from_flag=0;
 		to_flag  =1;
+	} else {
+		from_flag=1;
+		to_flag  =0;
 	}
 
 #	valid=1;
@@ -144,8 +153,14 @@ var updateRNAV = func{
 	TO_FLAG.setValue(to_flag);
 	FROM_FLAG.setValue(from_flag);
 	setprop("/instrumentation/rnav/indicated-distance-nm", range);
-	setprop("/instrumentation/rnav/reciprocal-radial-deg", rbearing);
-	setprop("/instrumentation/rnav/actual-deg", bearing);
+	setprop("/instrumentation/rnav/reciprocal-radial-deg", bearing);
+	setprop("/instrumentation/rnav/actual-deg", abearing);
+#debugging	
+	setprop("/instrumentation/rnav/debug-angle-deg", angle*R2D);
+	setprop("/instrumentation/rnav/debug-anglef-deg", fangle);
+	setprop("/instrumentation/rnav/debug-theta-deg",theta);
+	setprop("/instrumentation/rnav/debug-rho", rho);
+
 
 }
 
@@ -165,12 +180,12 @@ _setlistener("/sim/signals/fdm-initialized", func {
 	KNS80.getNode("wpt[0]/frequency",1).setValue(NAV1.getValue()* 100);
 	KNS80.getNode("wpt[0]/radial",1).setValue(NAV1_RADIAL.getValue());
 	KNS80.getNode("wpt[0]/distance",1).setValue(0.0);
-	KNS80.getNode("wpt[1]/frequency",1).setValue(10800);
-	KNS80.getNode("wpt[1]/radial",1).setValue(0);
-	KNS80.getNode("wpt[1]/distance",1).setValue(0.0);
-	KNS80.getNode("wpt[2]/frequency",1).setValue(10800);
-	KNS80.getNode("wpt[2]/radial",1).setValue(0);
-	KNS80.getNode("wpt[2]/distance",1).setValue(0.0);
+	KNS80.getNode("wpt[1]/frequency",1).setValue(11570);
+	KNS80.getNode("wpt[1]/radial",1).setValue(120);
+	KNS80.getNode("wpt[1]/distance",1).setValue(7.2);
+	KNS80.getNode("wpt[2]/frequency",1).setValue(11570);
+	KNS80.getNode("wpt[2]/radial",1).setValue(270);
+	KNS80.getNode("wpt[2]/distance",1).setValue(5.8);
 	KNS80.getNode("wpt[3]/frequency",1).setValue(10800);
 	KNS80.getNode("wpt[3]/radial",1).setValue(0);
 	KNS80.getNode("wpt[3]/distance",1).setValue(0.0);
@@ -254,7 +269,7 @@ setlistener("/instrumentation/kns-80/displayed-distance", func {
 	KNS80.getNode("wpt[" ~ num ~ "]/distance").setValue(dis);
 	}
 	});
-	
+
 setlistener("/instrumentation/kns-80/serviceable", func {
 	if(FDM_ON != 0){
 	setprop("/instrumentation/nav/serviceable",cmdarg().getValue());
@@ -273,7 +288,7 @@ setlistener("/instrumentation/kns-80/use", func {
 	var freq = cmdarg().getValue();
 	KNS80.getNode("flash").setValue(0);
 	NAV1.setValue(KNS80.getNode("wpt[" ~ freq ~ "]/frequency").getValue()* 0.01);
-	NAV1_RADIAL.setValue(KNS80.getNode("wpt[" ~ freq ~ "]/radial").getValue());
+#	NAV1_RADIAL.setValue(KNS80.getNode("wpt[" ~ freq ~ "]/radial").getValue());
 	});
 
 setlistener("/instrumentation/kns-80/display", func {
@@ -282,6 +297,7 @@ setlistener("/instrumentation/kns-80/display", func {
 	var test = KNS80.getNode("use").getValue();
 	var wpt = KNS80.getNode("wpt[" ~ freq ~ "]/frequency").getValue();
 	KNS80.getNode("displayed-frequency").setValue(wpt);
+	KNS80.getNode("displayed-distance").setValue(KNS80.getNode("wpt[" ~ freq ~ "]/distance").getValue());
 	KNS80.getNode("displayed-radial").setValue(KNS80.getNode("wpt[" ~ freq ~ "]/radial").getValue());
 	if(test != freq){
 		KNS80.getNode("flash").setValue(1);
@@ -300,3 +316,5 @@ setlistener("/instrumentation/kns-80/dme-hold", func {
 				props.globals.getNode("instrumentation/dme/frequencies/source").setValue("/instrumentation/nav[0]/frequencies/selected-mhz");
 			}
 	});
+
+#  ]]></script></PropertyList>

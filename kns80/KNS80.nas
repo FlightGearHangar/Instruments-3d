@@ -51,24 +51,12 @@ sec01cron = func {
    settimer(sec01cron,0.1);
 }
 
-# 1 seconds cron
-#sec1cron = func {
-#   hydraulicschedule();
-
-   # schedule the next call
-#   settimer(sec1cron,1);
-#}
-
 
 # general initialization
 init = func {
    # schedule the 1st call
    settimer(sec01cron,1);
-#   settimer(sec1cron,1);
 }
-
-#init();
-
 
 var updateRNAV = func{
 
@@ -99,19 +87,14 @@ var updateRNAV = func{
 	rho    = unnil(rho);
 	distance=unnil(distance);
 
-# c^2=a^2+b^2-2abCos(C)
-	var angle=(theta - radial)*D2R;
-	var range=distance > 0 ? math.sqrt(distance*distance + rho * rho - 2*distance*rho*math.cos(angle )) : 0;
+	x1 = distance * math.cos( radial*D2R );
+	y1 = distance * math.sin( radial*D2R );
+	x2 = rho * math.cos( theta*D2R );
+	y2 = rho * math.sin( theta*D2R );
 
-# sin(A)/a=sin(B)/b
-# b*sin(A)/a=sin(B)
-# B=asin(b*(sin(A)/a))
-# Theta-DEGREES(ASIN(Distance*(SIN(Angle)/Range)))
-	if(angle < 0 ){
-		bearing = theta-math.asin(distance*(math.sin(angle)/range))*R2D-180;
-	} else {
-		bearing = theta+math.asin(distance*(math.sin(angle)/range))*R2D;
-	}
+	range = math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );
+	bearing = math.atan2 (( y1-y2), (x1-x2))*R2D;
+
 	if(bearing < 0) bearing += 360;
 	abearing = bearing > 180 ? bearing - 180 : bearing + 180;
 
@@ -136,15 +119,15 @@ var updateRNAV = func{
 		fangle = math.abs(selected_radial - bearing);
 		needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 8;
 	}
-	needle_deflection= -needle_deflection;
+
 	if ( needle_deflection >  10) needle_deflection = 10;
 	if ( needle_deflection < -10) needle_deflection =-10;
 	if (fangle < 90 or fangle >270){
-		from_flag=0;
-		to_flag  =1;
-	} else {
 		from_flag=1;
 		to_flag  =0;
+	} else {
+		from_flag=0;
+		to_flag  =1;
 	}
 
 #	valid=1;
@@ -153,13 +136,13 @@ var updateRNAV = func{
 	TO_FLAG.setValue(to_flag);
 	FROM_FLAG.setValue(from_flag);
 	setprop("/instrumentation/rnav/indicated-distance-nm", range);
-	setprop("/instrumentation/rnav/reciprocal-radial-deg", bearing);
-	setprop("/instrumentation/rnav/actual-deg", abearing);
-#debugging	
-	setprop("/instrumentation/rnav/debug-angle-deg", angle*R2D);
-	setprop("/instrumentation/rnav/debug-anglef-deg", fangle);
-	setprop("/instrumentation/rnav/debug-theta-deg",theta);
-	setprop("/instrumentation/rnav/debug-rho", rho);
+	setprop("/instrumentation/rnav/reciprocal-radial-deg", abearing);
+	setprop("/instrumentation/rnav/actual-deg", bearing);
+##debugging	
+##	setprop("/instrumentation/rnav/debug-angle-deg", angle*R2D);
+##	setprop("/instrumentation/rnav/debug-anglef-deg", fangle);
+##	setprop("/instrumentation/rnav/debug-theta-deg",theta);
+##	setprop("/instrumentation/rnav/debug-rho", rho);
 
 
 }
@@ -258,7 +241,6 @@ setlistener("/instrumentation/kns-80/displayed-radial", func {
 	var num = KNS80.getNode("display").getValue();
 	var radial = KNS80.getNode("use").getValue();
 	KNS80.getNode("wpt[" ~ num ~ "]/radial").setValue(rad);
-#	NAV1_RADIAL.setValue(KNS80.getNode("wpt[" ~ radial ~ "]/radial").getValue());
 		}
 	});
 	
@@ -288,7 +270,6 @@ setlistener("/instrumentation/kns-80/use", func {
 	var freq = cmdarg().getValue();
 	KNS80.getNode("flash").setValue(0);
 	NAV1.setValue(KNS80.getNode("wpt[" ~ freq ~ "]/frequency").getValue()* 0.01);
-#	NAV1_RADIAL.setValue(KNS80.getNode("wpt[" ~ freq ~ "]/radial").getValue());
 	});
 
 setlistener("/instrumentation/kns-80/display", func {

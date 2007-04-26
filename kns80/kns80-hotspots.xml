@@ -220,7 +220,7 @@
      		<binding>
        			<command>property-adjust</command>
        			<property>instrumentation/kns-80/displayed-distance</property>
-       			<step>-1</step>
+       			<step>-0.1</step>
        			<min>0</min>
        			<max>100</max>
        			<wrap>true</wrap>
@@ -266,7 +266,7 @@
      		<binding>
        			<command>property-adjust</command>
        			<property>instrumentation/kns-80/displayed-distance</property>
-       			<step>1</step>
+       			<step>0.1</step>
        			<min>0</min>
        			<max>100</max>
        			<wrap>true</wrap>

@@ -32,7 +32,7 @@ KNS80.getNode("wpt[1]/distance",1).setDoubleValue(7.2);
 KNS80.getNode("wpt[2]/frequency",1).setDoubleValue(11570);
 KNS80.getNode("wpt[2]/radial",1).setDoubleValue(270);
 KNS80.getNode("wpt[2]/distance",1).setDoubleValue(5.8);
-KNS80.getNode("wpt[3]/frequency",1).setDoubleValue(10800);
+KNS80.getNode("wpt[3]/frequency",1).setDoubleValue(11000);
 KNS80.getNode("wpt[3]/radial",1).setDoubleValue(0);
 KNS80.getNode("wpt[3]/distance",1).setDoubleValue(0.0);
 FDM_ON = 0;

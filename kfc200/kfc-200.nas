@@ -33,18 +33,19 @@ GS_DEFLECTION = props.globals.getNode("/instrumentation/nav/gs-needle-deflection
 HDG = props.globals.getNode("/autopilot/locks/heading",1);
 ALT = props.globals.getNode("/autopilot/locks/altitude",1);
 SPD = props.globals.getNode("/autopilot/locks/speed",1);
- 
+
 setlistener("/sim/signals/fdm-initialized", func {
     fdprop.getNode("serviceable",1).setBoolValue(1);
-    fdprop.getNode("vbar-pitch",1).setValue(0.0);
-    fdprop.getNode("vbar-roll",1).setValue(0.0);
+    fdprop.getNode("vbar-pitch",1).setDoubleValue(0.0);
+    fdprop.getNode("vbar-roll",1).setDoubleValue(0.0);
     fdprop.getNode("fd-on",1).setBoolValue(0);
     fdprop.getNode("fdmode",1).setValue("off");
     fdprop.getNode("fdmodeV",1).setValue("off");
-    fdprop.getNode("alt-offset",1).setValue(0.0);
+    fdprop.getNode("alt-offset",1).setDoubleValue(0.0);
     fdprop.getNode("alt-alert",1).setBoolValue(0);
     DH = props.globals.getNode("/autopilot/route-manager/min-lock-altitude-agl-ft").getValue();
     alt_select = 0;
+    update();
     print("KFC-200 ... OK");
     });
 
@@ -163,7 +164,7 @@ update_nav = func {
     if(V_roll > 30){V_roll = 30;}
     if(V_roll < -30){V_roll = -30;}
     fdprop.getNode("vbar-roll",1).setValue(V_roll);
-}
+    }
 
 get_altoffset = func{
     current_alt = props.globals.getNode("/instrumentation/altimeter/indicated-altitude-ft").getValue();
@@ -180,6 +181,5 @@ update = func {
     get_altoffset();
     update_nav();
     settimer(update, 0);
-}
+    }
 
-settimer(update, 0);

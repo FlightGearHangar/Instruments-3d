@@ -43,7 +43,7 @@ properties' values.
     <name>AP Anunciator</name>
     <condition>
       <equals>
-        <property>/autopilot/KAP140/annunciators/ap</property>
+        <property>/autopilot/KAP140/annunciators/ap/state</property>
         <value type="bool">true</value>
       </equals>
     </condition>
@@ -65,7 +65,7 @@ properties' values.
     <name>HDG Anunciator</name>
     <condition>
       <equals>
-        <property>/autopilot/KAP140/annunciators/hdg</property>
+        <property>/autopilot/KAP140/annunciators/hdg/state</property>
         <value type="bool">true</value>
       </equals>
     </condition>
@@ -175,7 +175,7 @@ properties' values.
     <name>ALERT Anunciator</name>
     <condition>
       <equals>
-        <property>/autopilot/KAP140/annunciators/alt-alert</property>
+        <property>/autopilot/KAP140/annunciators/alt-alert/state</property>
         <value type="bool">true</value>
       </equals>
     </condition>

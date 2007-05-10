@@ -301,10 +301,10 @@ setlistener("/instrumentation/kns-80/dme-hold", func {
     if(FDM_ON == 0){return;}
     if(cmdarg().getBoolValue()){
         props.globals.getNode("instrumentation/dme/frequencies/selected-mhz").setDoubleValue(NAV1.getValue());
-        props.globals.getNode("instrumentation/dme/frequencies/source").setDoubleValue("/instrumentation/dme/frequencies/selected-mhz");
+        props.globals.getNode("instrumentation/dme/frequencies/source").setValue("/instrumentation/dme/frequencies/selected-mhz");
         }else{
             props.globals.getNode("instrumentation/dme/frequencies/selected-mhz").setDoubleValue("");
-                props.globals.getNode("instrumentation/dme/frequencies/source").setDoubleValue("/instrumentation/nav[0]/frequencies/selected-mhz");
+                props.globals.getNode("instrumentation/dme/frequencies/source").setValue("/instrumentation/nav[0]/frequencies/selected-mhz");
             }
     });
 

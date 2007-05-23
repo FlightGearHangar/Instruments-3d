@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!-- CTL 92 Control for TDR-94 transponder
+2.375"W x 2.625"H
+Syd Adams
+ -->
+
+<PropertyList>
+
+    <path>ctl92.ac</path>
+
+    <animation>
+        <type>select</type>
+        <object-name>freq.001</object-name>
+        <object-name>freq.002</object-name>
+        <object-name>freq.003</object-name>
+        <object-name>freq.004</object-name>
+        <condition>
+            <greater-than>
+                <property>/systems/electrical/outputs/transponder</property>
+                <value>1</value>
+            </greater-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>mem.annun</object-name>
+        <condition>
+            <greater-than>
+                <property>/systems/electrical/outputs/transponder</property>
+                <value>1</value>
+            </greater-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>CTL-92.pwr</object-name>
+        <property>instrumentation/transponder/serviceable</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>1.0</ind><dep>30</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>-0.014</y-m>
+            <z-m>-0.018</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+<!--    OSG hotspots    -->
+
+    <animation>
+        <type>pick</type>
+        <object-name>pwr.off</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>property-assign</command>
+            <property>/instrumentation/transponder/serviceable</property>
+            <value>false</value>
+        </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>pwr.on</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/transponder/serviceable</property>
+                <value>true</value>
+            </binding>
+        </action>
+    </animation>
+
+</PropertyList>

@@ -303,7 +303,7 @@ setlistener("/instrumentation/kns-80/dme-hold", func {
         props.globals.getNode("instrumentation/dme/frequencies/selected-mhz").setDoubleValue(NAV1.getValue());
         props.globals.getNode("instrumentation/dme/frequencies/source").setValue("/instrumentation/dme/frequencies/selected-mhz");
         }else{
-            props.globals.getNode("instrumentation/dme/frequencies/selected-mhz").setDoubleValue("");
+            props.globals.getNode("instrumentation/dme/frequencies/selected-mhz").setDoubleValue(0);
                 props.globals.getNode("instrumentation/dme/frequencies/source").setValue("/instrumentation/nav[0]/frequencies/selected-mhz");
             }
     });

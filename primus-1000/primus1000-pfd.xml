@@ -354,7 +354,7 @@ Primus 1000 Primary Flight Display
 <animation>
    	<type>rotate</type>
    	<object-name>NAV1pointer</object-name>
-   	<property>instrumentation/primus1000/nav1pointer-heading-offset</property>
+   	<property>instrumentation/primus1000/dc550/nav1ptr-hdg-offset</property>
    	<axis>
     	<x>-1.0</x>
      	<y>0.0</y>
@@ -370,7 +370,7 @@ Primus 1000 Primary Flight Display
 <animation>
    	<type>rotate</type>
    	<object-name>NAV2pointer</object-name>
-   	<property>instrumentation/primus1000/nav2pointer-heading-offset</property>
+   	<property>instrumentation/primus1000/dc550/nav2ptr-hdg-offset</property>
    	<axis>
     	<x>-1.0</x>
      	<y>0.0</y>
@@ -639,7 +639,7 @@ Primus 1000 Primary Flight Display
 <animation>
    	<type>textranslate</type>
    	<object-name>gsptext</object-name>
-   	<property>instrumentation/gps/indicated-ground-speed-kt</property>
+   	<property>velocities/groundspeed-kt</property>
    	<factor>0.001</factor>
    	<step>100</step>
    	<axis>
@@ -652,7 +652,7 @@ Primus 1000 Primary Flight Display
 <animation>
    	<type>textranslate</type>
    	<object-name>gsptext.001</object-name>
-   	<property>instrumentation/gps/indicated-ground-speed-kt</property>
+   	<property>velocities/groundspeed-kt</property>
    	<factor>0.01</factor>
    	<step>10</step>
    	<axis>
@@ -665,7 +665,7 @@ Primus 1000 Primary Flight Display
 <animation>
    	<type>textranslate</type>
    	<object-name>gsptext.002</object-name>
-   	<property>instrumentation/gps/indicated-ground-speed-kt</property>
+   	<property>velocities/groundspeed-kt</property>
    	<factor>0.1</factor>
    	<step>1</step>
    	<axis>
@@ -912,7 +912,7 @@ Primus 1000 Primary Flight Display
 <animation>
    	<type>textranslate</type>
    	<object-name>nav1msg</object-name>
-   	<property>instrumentation/primus1000/nav1pointer</property>
+   	<property>instrumentation/primus1000/dc550/nav1ptr</property>
    	<factor>0.025</factor>
    	<step>1</step>
    	<axis>
@@ -925,7 +925,7 @@ Primus 1000 Primary Flight Display
 <animation>
    	<type>textranslate</type>
    	<object-name>nav2msg</object-name>
-   	<property>instrumentation/primus1000/nav2pointer</property>
+   	<property>instrumentation/primus1000/dc550/nav2ptr</property>
    	<factor>0.025</factor>
    	<step>1</step>
    	<axis>
@@ -950,7 +950,7 @@ Primus 1000 Primary Flight Display
 <animation>
    	<type>textranslate</type>
    	<object-name>crsmsg</object-name>
-   	<property>instrumentation/primus1000/nav1pointer</property>
+   	<property>instrumentation/primus1000/dc550/nav1ptr</property>
    	<factor>0.0099</factor>
    	<step>3</step>
    	<axis>
@@ -999,7 +999,7 @@ Primus 1000 Primary Flight Display
    	<object-name>NAV1pointer</object-name>
    	<condition>
     	<greater-than>
-       		<property>instrumentation/primus1000/nav1pointer</property>
+       		<property>instrumentation/primus1000/dc550/nav1ptr</property>
        		<value>0</value>
      	</greater-than>
    	</condition>
@@ -1010,7 +1010,7 @@ Primus 1000 Primary Flight Display
    	<object-name>NAV2pointer</object-name>
    	<condition>
     	<greater-than>
-       		<property>instrumentation/primus1000/nav2pointer</property>
+       		<property>instrumentation/primus1000/dc550/nav2ptr</property>
        		<value>0</value>
      	</greater-than>
    	</condition>

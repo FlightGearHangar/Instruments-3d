@@ -60,13 +60,7 @@ if(getprop("/sim/flight-model")=="yasim"){
         if(pph == nil){pph = 0.0};
         FuelPph2.setValue(pph* FuelDensity);
         }else{
-        tanks = props.globals.getNode("consumables/fuel").getChildren("tank");
-        for(i=0; i<size(tanks); i=i+1){
-        tmp = tanks[i].getNode("level-lb");
-        lbs = tmp.getValue();
-        tanks[i].getNode("level-lbs").setValue(lbs);
-        total_fuel += lbs;
-        }
+        total_fuel=props.globals.getNode("/fdm/jsbsim/propulsion/total-fuel-lbs").getValue();
         setprop("consumables/fuel/total-fuel-lbs",total_fuel);
     }
 }

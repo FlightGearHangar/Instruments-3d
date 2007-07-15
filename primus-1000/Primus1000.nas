@@ -1,19 +1,26 @@
 ###### Primus 1000 system ########
-FDMODE = props.globals.getNode("/instrumentation/primus1000/fdmode",1);
-NavPtr1=props.globals.getNode("/instrumentation/primus1000/dc550/nav1ptr",1);
-NavPtr2=props.globals.getNode("/instrumentation/primus1000/dc550/nav2ptr",1);
-NavPtr1_offset=props.globals.getNode("/instrumentation/primus1000/dc550/nav1ptr-hdg-offset",1);
-NavPtr2_offset=props.globals.getNode("/instrumentation/primus1000/dc550/nav2ptr-hdg-offset",1);
-RAmode=props.globals.getNode("/instrumentation/primus1000/ra-mode",1);
-DC550 = props.globals.getNode("/instrumentation/primus1000/dc550",1);
+var FDMODE = props.globals.getNode("/instrumentation/primus1000/fdmode",1);
+var NavPtr1=props.globals.getNode("/instrumentation/primus1000/dc550/nav1ptr",1);
+var NavPtr2=props.globals.getNode("/instrumentation/primus1000/dc550/nav2ptr",1);
+var NavPtr1_offset=props.globals.getNode("/instrumentation/primus1000/dc550/nav1ptr-hdg-offset",1);
+var NavPtr2_offset=props.globals.getNode("/instrumentation/primus1000/dc550/nav2ptr-hdg-offset",1);
+var RAmode=props.globals.getNode("/instrumentation/primus1000/ra-mode",1);
+var DC550 = props.globals.getNode("/instrumentation/primus1000/dc550",1);
+var fms_enabled =0;
 
 NavDist=props.globals.getNode("/instrumentation/primus1000/nav-dist-nm",1);
+NavType=props.globals.getNode("/instrumentation/primus1000/nav-type",1);
+NavString=props.globals.getNode("/instrumentation/primus1000/nav-string",1);
+NavID=props.globals.getNode("/instrumentation/primus1000/nav-id",1);
+FMSMode=props.globals.getNode("/instrumentation/primus1000/fms-mode",1);
 APoff=props.globals.getNode("/autopilot/locks/passive-mode",1);
 Hyd1=props.globals.getNode("systems/hydraulic/pump-psi[0]",1);
 Hyd2=props.globals.getNode("systems/hydraulic/pump-psi[1]",1);
 FuelPph1=props.globals.getNode("engines/engine[0]/fuel-flow_pph",1);
 FuelPph2=props.globals.getNode("engines/engine[1]/fuel-flow_pph",1);
 FuelDensity = 6.0;
+FMS_VNAV =["VNV","FMS"];
+NAV_SRC = ["VOR1","VOR2","ILS1","ILS2","FMS"];
 
 get_pointer_offset = func{
     var test=arg[0];
@@ -37,14 +44,30 @@ get_pointer_offset = func{
 update_pfd = func{
     NavPtr1_offset.setValue(get_pointer_offset(NavPtr1.getValue()));
     NavPtr2_offset.setValue(get_pointer_offset(NavPtr2.getValue()));
-
-    if(props.globals.getNode("/instrumentation/nav/data-is-valid").getBoolValue()){
-        nm_calc = getprop("/instrumentation/nav/nav-distance");
+    var id = "   ";
+    var nm_calc=0.0;
+    if(fms_enabled ==0){
+        if(props.globals.getNode("/instrumentation/nav/data-is-valid").getBoolValue()){
+            nm_calc = getprop("/instrumentation/nav/nav-distance");
+            if(nm_calc == nil){nm_calc = 0.0;}
+            nm_calc = 0.000539 * nm_calc;
+            if(getprop("/instrumentation/nav/has-gs")){NavType.setValue(2);}
+            id = getprop("instrumentation/nav/nav-id");
+            if(id ==nil){id= "   ";}
+        }
+    }else{
+        nm_calc = getprop("/autopilot/route-manager/wp/dist");
         if(nm_calc == nil){nm_calc = 0.0;}
-        nm_calc = 0.000539 * nm_calc;
-        NavDist.setValue(nm_calc);
-    }
+        id = getprop("autopilot/route-manager/wp/id");
+        if(id ==nil){id= "   ";}
+     }
+    NavDist.setValue(nm_calc);
+    var ns= NavType.getValue();
+    setprop("/instrumentation/primus1000/nav-string",NAV_SRC[ns]);
+    setprop("/instrumentation/primus1000/nav-id",id);
 }
+
+
 
 update_mfd = func{
 }
@@ -79,6 +102,18 @@ update_eicas = func{
     update_fuel();
     }
 
+setlistener("/instrumentation/primus1000/dc550/fms", func {
+var mode = cmdarg().getValue();
+    FMSMode.setValue(FMS_VNAV[mode]);
+    if(mode){NavType.setValue(4);
+        fms_enabled=1;
+        }else{
+        NavType.setValue(0);
+        fms_enabled=0;
+    }
+});
+
+
 
 update_p1000 = func {
     update_pfd();
@@ -99,6 +134,9 @@ setlistener("/sim/signals/fdm-initialized", func {
     DC550.getNode("ttg",1).setBoolValue(0);
     DC550.getNode("et",1).setBoolValue(0);
     DC550.getNode("fms",1).setBoolValue(0);
+    FMSMode.setValue(" VNV");
+    NavType.setIntValue(0);
+    NavString.setValue("VOR1");
     RAmode.setValue(0.0);
     NavDist.setValue(0.0);
     Hyd1.setValue(0.0);

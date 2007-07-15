@@ -755,58 +755,6 @@ Primus 1000 Primary Flight Display
 
 <animation>
     <type>textranslate</type>
-    <object-name>inhgtxt</object-name>
-    <property>instrumentation/altimeter/setting-inhg</property>
-    <factor>0.01</factor>
-    <step>10</step>
-    <axis>
-        <x>0</x>
-        <y>1</y>
-        <z>0</z>
-    </axis>
-</animation>
-  
-<animation>
-    <type>textranslate</type>
-    <object-name>inhgtxt.001</object-name>
-    <property>instrumentation/altimeter/setting-inhg</property>
-    <factor>0.1</factor>
-    <step>1</step>
-    <axis>
-        <x>0</x>
-        <y>1</y>
-        <z>0</z>
-    </axis>
-</animation>
-  
-<animation>
-    <type>textranslate</type>
-    <object-name>inhgtxt.002</object-name>
-    <property>instrumentation/altimeter/setting-inhg</property>
-    <factor>1.0</factor>
-    <step>0.1</step>
-    <axis>
-        <x>0</x>
-        <y>1</y>
-        <z>0</z>
-    </axis>
-</animation>
-  
-<animation>
-    <type>textranslate</type>
-    <object-name>inhgtxt.003</object-name>
-    <property>instrumentation/altimeter/setting-inhg</property>
-    <factor>10.0</factor>
-    <step>0.01</step>
-    <axis>
-        <x>0</x>
-        <y>1</y>
-        <z>0</z>
-    </axis>
-</animation>
-
-<animation>
-    <type>textranslate</type>
     <object-name>crstext</object-name>
     <property>instrumentation/nav/radials/selected-deg</property>
     <factor>0.001</factor>
@@ -928,18 +876,6 @@ Primus 1000 Primary Flight Display
     <property>instrumentation/primus1000/dc550/nav2ptr</property>
     <factor>0.025</factor>
     <step>1</step>
-    <axis>
-        <x>0</x>
-        <y>-1</y>
-        <z>0</z>
-    </axis>
-</animation>
-
-<animation>
-    <type>textranslate</type>
-    <object-name>altmsg</object-name>
-    <property>instrumentation/primus1000/ra-mode</property>
-    <factor>0.0305</factor>
     <axis>
         <x>0</x>
         <y>-1</y>

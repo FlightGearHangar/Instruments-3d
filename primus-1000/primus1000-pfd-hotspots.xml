@@ -31,7 +31,7 @@ Primus 1000 PFD  hotspots
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>28</offset>
+                    <offset>30</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
@@ -92,10 +92,128 @@ Primus 1000 PFD  hotspots
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>-5</offset>
+                    <offset>-6</offset>
                 </transformation>
             </transformations>
         </layer>
+
+        <layer>
+            <name>Wind Speed</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>6</point-size>
+            <color>
+                <red>0.7</red>
+                <green>0.7</green>
+                <blue>0.3</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>environment/wind-speed-kt</property>
+                    <format>%03.0f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-55</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-61</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>Ground Speed</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>6</point-size>
+            <color>
+                <red>0.1</red>
+                <green>0.9</green>
+                <blue>0.4</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>velocities/groundspeed-kt</property>
+                    <format>%03.0f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>22</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-71</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+
+<!--    FD MODE ANNUNCIATORS-->
+
+        <layer>
+            <name>LATERAL</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>6</point-size>
+            <color>
+                <red>0.1</red>
+                <green>0.9</green>
+                <blue>0.3</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>text-value</type>
+                    <property>instrumentation/flightdirector/lateral-mode</property>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-35</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>100</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>VERTICAL</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>6</point-size>
+            <color>
+                <red>0.1</red>
+                <green>0.9</green>
+                <blue>0.3</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>text-value</type>
+                    <property>instrumentation/flightdirector/vertical-mode</property>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>10</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>100</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
 
 </layers>
 

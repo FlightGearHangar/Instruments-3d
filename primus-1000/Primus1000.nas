@@ -30,6 +30,7 @@ get_pointer_offset = func{
 
     if(test == 1){
         offset=getprop("/instrumentation/nav/heading-deg");
+        if(offset == nil){offset=0.0;}
         offset -= hdg;
         if(offset < -180){offset += 360;}
         elsif(offset > 180){offset -= 360;}
@@ -134,7 +135,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     DC550.getNode("ttg",1).setBoolValue(0);
     DC550.getNode("et",1).setBoolValue(0);
     DC550.getNode("fms",1).setBoolValue(0);
-    FMSMode.setValue(" VNV");
+    FMSMode.setValue("VNV");
     NavType.setIntValue(0);
     NavString.setValue("VOR1");
     RAmode.setValue(0.0);

@@ -52,7 +52,7 @@ Display Control 550
 </animation>
 
 
-<!--    OSG hotspots    -->
+<!--    OSG hotspots    
 <animation>
     <type>pick</type>
     <object-name>N1ptr.dwn</object-name>
@@ -213,5 +213,5 @@ Display Control 550
         </binding>
     </action>
 </animation>
-
+-->
 </PropertyList>

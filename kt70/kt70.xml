@@ -56,7 +56,20 @@
      <z>0</z>
    </axis>
  </animation>
-
+<!--  Don't display the transponder code unless there is power  -->
+ <animation>
+   <type>select</type>
+   <object-name>digit1</object-name>
+   <object-name>digit2</object-name>
+   <object-name>digit3</object-name>
+   <object-name>digit4</object-name>
+   <condition>
+    <greater-than>
+     <property>systems/electrical/outputs/transponder</property>
+     <value>8.0</value>
+    </greater-than>
+   </condition>
+ </animation>
 
  <animation>
    <type>textranslate</type>

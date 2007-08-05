@@ -4,14 +4,14 @@ OBJECT world
 kids 1
 OBJECT poly
 name "RadioStack"
-loc 0.000486599 0.0488634 -0.00024706
-texture "/usr/local/FlightGear-0.9/data/Aircraft/pa24-250/Models/radio_stack/panel-tex02.rgb"
+loc 0.000486599 0.0692169 -8.90131e-05
+texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/radio_stack/panel-tex02.rgb"
 crease 45.000000
 numvert 4
-0 0.0861044 -0.0861038
-0 0.0861044 0.0865063
-0 -0.183125 0.0865063
-0 -0.183125 -0.0861038
+0 0.0657509 -0.0804673
+0 0.0657509 0.0808435
+0 -0.139838 0.0808435
+0 -0.139838 -0.0804673
 numsurf 1
 SURF 0x20
 mat 0

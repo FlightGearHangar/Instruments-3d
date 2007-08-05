@@ -5,6 +5,22 @@
  <path>pa28-fuel-oil.ac</path>
 
  <animation>
+  <type>material</type>
+  <object-name>Face</object-name>
+  <object-name>OilTempNeedle</object-name>
+  <object-name>OilPressNeedle</object-name>
+  <object-name>FuelPressNeedle</object-name>
+  <object-name>LeftFuelNeedle</object-name>
+  <object-name>RightFuelNeedle</object-name>
+  <emission>
+   <red>1.0</red>
+   <green>0.2</green>
+   <blue>0.0</blue>
+   <factor-prop>/sim/model//material/instruments/factor</factor-prop>
+  </emission>
+ </animation>
+
+ <animation>
   <type>rotate</type>
   <object-name>LeftFuelNeedle</object-name>
   <property>/consumables/fuel/tank[0]/level-gal_us</property>

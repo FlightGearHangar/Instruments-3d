@@ -10,16 +10,23 @@
 RADAR = props.globals.getNode("/instrumentation/wxradar",1);
 FDM_ON = 0;
 P_Str =["off","stby", "tst","on"];
+RADAR.getNode("radar-texture-path",1).setValue("Aircraft/Instruments-3d/RDR-160/od_wxradar.rgb");
+RADAR.getNode("echo-texture-path",1).setValue("Aircraft/Instruments/Textures/wxecho.rgb");
 RADAR.getNode("serviceable",1).setBoolValue(1);
-RADAR.getNode("range",1).setIntValue(10);
+RADAR.getNode("range",1).setIntValue(20);
+RADAR.getNode("heading-marker",1).setBoolValue(0);
+RADAR.getNode("lightning",1).setBoolValue(0);
 RADAR.getNode("set-range",1).setIntValue(0);
 RADAR.getNode("minimized",1).setBoolValue(0);
 RADAR.getNode("switch",1).setValue("off");
 RADAR.getNode("switch-pos",1).setIntValue(0);
 RADAR.getNode("mode",1).setValue("WX");
-RADAR.getNode("lightning",1).setBoolValue(0);
+RADAR.getNode("mode-control",1).setIntValue(3);
 RADAR.getNode("display-mode",1).setValue("arc");
 RADAR.getNode("dim",1).setDoubleValue(0.5);
+RADAR.getNode("display-controls/WX",1).setBoolValue(1);
+RADAR.getNode("display-controls/data",1).setBoolValue(0);
+RADAR.getNode("display-controls/pos",1).setBoolValue(0);
 
 setlistener("/sim/signals/fdm-initialized", func {
     FDM_ON = 1;

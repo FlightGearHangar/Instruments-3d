@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!--RDR 160 WxRadar hotspots-->
+
+<PropertyList>
+
+    <name>wxradar hotspots</name>
+    <w-base>170</w-base>
+    <h-base>130</h-base>
+    <w>170</w>
+    <h>130</h>
+
+    <layers>
+    </layers>
+
+    <actions>
+
+<!--
+        <action>
+            <name>outline</name>
+            <button>0</button>
+            <x>-85</x>
+            <y>-65</y>
+            <w>170</w>
+            <h>130</h>
+        </action>
+-->
+
+        <action>
+            <name>data toggle</name>
+            <button>0</button>
+            <x>-73</x>
+            <y>-2</y>
+            <w>12</w>
+            <h>8</h>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/wxradar/display-controls/data</property>
+            </binding>
+        </action>
+
+        <action>
+            <name>pos toggle</name>
+            <button>0</button>
+            <x>-73</x>
+            <y>-20</y>
+            <w>12</w>
+            <h>8</h>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/wxradar/display-controls/pos</property>
+            </binding>
+        </action>
+
+        <action>
+            <name>range increase</name>
+            <button>0</button>
+            <x>64</x>
+            <y>-2</y>
+            <w>12</w>
+            <h>8</h>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/wxradar/set-range</property>
+                <value>1</value>
+            </binding>
+        </action>
+
+        <action>
+            <name>range decrease</name>
+            <button>0</button>
+            <x>64</x>
+            <y>-20</y>
+            <w>12</w>
+            <h>8</h>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/wxradar/set-range</property>
+                <value>-1</value>
+            </binding>
+        </action>
+
+        <action>
+        <name>pwroff</name>
+            <button>0</button>
+            <x>-80</x>
+            <y>-51</y>
+            <w>12</w>
+            <h>20</h>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/wxradar/switch-pos</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>3</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+
+        <action>
+        <name>pwron</name>
+            <button>0</button>
+            <x>-68</x>
+            <y>-51</y>
+            <w>12</w>
+            <h>20</h>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/wxradar/switch-pos</property>
+                <step>1</step>
+                <min>0</min>
+                <max>3</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+
+        <action>
+            <name>tiltup</name>
+            <button>0</button>
+            <x>67</x>
+            <y>-55</y>
+            <w>12</w>
+            <h>20</h>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/wxradar/tilt</property>
+                <step>5.0</step>
+                <min>-15.0</min>
+                <max>15.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+
+        <action>
+            <name>tiltdown</name>
+            <button>0</button>
+            <x>55</x>
+            <y>-55</y>
+            <w>12</w>
+            <h>20</h>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/wxradar/tilt</property>
+                <step>-5.0</step>
+                <min>-15.0</min>
+                <max>15.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+
+        <action>
+            <name>brtup</name>
+            <button>0</button>
+            <x>-68</x>
+            <y>39</y>
+            <w>12</w>
+            <h>20</h>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/wxradar/dim</property>
+                <step>0.05</step>
+                <min>0.0</min>
+                <max>1.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+
+        <action>
+            <name>brtdwn</name>
+            <button>0</button>
+            <x>-80</x>
+            <y>39</y>
+            <w>12</w>
+            <h>20</h>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/wxradar/dim</property>
+                <step>-0.05</step>
+                <min>0.0</min>
+                <max>1.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+
+    </actions>
+
+</PropertyList>

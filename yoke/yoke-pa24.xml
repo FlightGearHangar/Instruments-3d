@@ -1,6 +1,17 @@
 <?xml version="1.0" ?> 
   <PropertyList> 
     <path>Yoke-pa24.ac</path> 
+
+ <animation>
+  <type>select</type>
+  <group-name>Yoke-pa24</group-name>
+  <condition>
+   <not>
+    <property>sim/model/hide-yoke</property>
+   </not>
+  </condition>
+ </animation>
+
  <animation>
   <type>translate</type>
   <group-name>Yoke-pa24</group-name>

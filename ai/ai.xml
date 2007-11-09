@@ -24,7 +24,22 @@
   <type>translate</type>
   <object-name>Pitch</object-name>
   <property>/instrumentation/attitude-indicator/indicated-pitch-deg</property>
-  <factor>-0.00035</factor>
+  <factor>-0.000530</factor>
+  <min-m>-0.01575</min-m>
+  <max-m>0.01575</max-m>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <name>BezelTranslation</name>
+  <type>translate</type>
+  <object-name>Bezel</object-name>
+  <property>/instrumentation/attitude-indicator/horizon-offset-deg</property>
+  <factor>-0.000530</factor>
   <min-m>-0.01575</min-m>
   <max-m>0.01575</max-m>
   <axis>

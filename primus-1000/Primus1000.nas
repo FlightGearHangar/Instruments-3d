@@ -21,6 +21,9 @@ FuelPph2=props.globals.getNode("engines/engine[1]/fuel-flow_pph",1);
 FuelDensity = 6.0;
 FMS_VNAV =["VNV","FMS"];
 NAV_SRC = ["VOR1","VOR2","ILS1","ILS2","FMS"];
+var ET = aircraft.timer.new("/instrumentation/primus1000/pfd/ET-sec", 5,0);
+var ETmin = props.globals.getNode("/instrumentation/primus1000/pfd/ET-min",1);
+var EThour = props.globals.getNode("/instrumentation/primus1000/pfd/ET-hour",1);
 
 get_pointer_offset = func{
     var test=arg[0];
@@ -43,9 +46,11 @@ get_pointer_offset = func{
     }
 
 update_pfd = func{
+
     NavPtr1_offset.setValue(get_pointer_offset(NavPtr1.getValue()));
     NavPtr2_offset.setValue(get_pointer_offset(NavPtr2.getValue()));
     var id = "   ";
+    var GSPDstring = "";
     var nm_calc=0.0;
     if(fms_enabled ==0){
         if(props.globals.getNode("/instrumentation/nav/data-is-valid").getBoolValue()){
@@ -66,6 +71,19 @@ update_pfd = func{
     var ns= NavType.getValue();
     setprop("/instrumentation/primus1000/nav-string",NAV_SRC[ns]);
     setprop("/instrumentation/primus1000/nav-id",id);
+    if(getprop("systems/electrical/ac-volts") < 5){
+        setprop("instrumentation/primus1000/pfd/serviceable",0);
+        setprop("instrumentation/primus1000/mfd/serviceable",0);
+    }else{
+        setprop("instrumentation/primus1000/pfd/serviceable",1);
+        setprop("instrumentation/primus1000/mfd/serviceable",1);
+    }
+
+    var et = getprop("/instrumentation/primus1000/pfd/ET-sec");
+    var ethour = et * 0.000277;
+    EThour.setIntValue(ethour);
+    var etmin = (ethour-EThour.getValue()) * 60;
+    ETmin.setIntValue(etmin);
 }
 
 
@@ -145,6 +163,12 @@ setlistener("/sim/signals/fdm-initialized", func {
     FuelPph1.setValue(0.0);
     FuelPph2.setValue(0.0);
     APoff.setBoolValue(1);
+    props.globals.getNode("instrumentation/primus1000/pfd/serviceable",1).setBoolValue(1);
+    props.globals.getNode("instrumentation/primus1000/mfd/serviceable",1).setBoolValue(1);
+    props.globals.getNode("instrumentation/primus1000/mfd/mode",1).setValue("normal");
+    ET.reset();
+    ETmin.setIntValue(0);
+    EThour.setIntValue(0);
     print("Primus 1000 systems ... check");
     settimer(update_p1000,1);
     });

@@ -5,7 +5,10 @@
     Maintainer: Torsten Dreyer, Dave Perry
     
     $Log$
-    Revision 1.1  2007/10/10 20:48:37  mfranz
+    Revision 1.2  2007/11/26 15:10:26  mfranz
+    Dave PERRY: remove two <global> in material animations
+
+    Revision 1.1  2007-10-10 20:48:37  mfranz
     Dave PERRY:
 
     "For more than a month, I have been working with Torsten Dryer to model
@@ -64,7 +67,6 @@
         <object-name>Altimatic.PitchButton</object-name>
         <object-name>Altimatic.RollButton</object-name>
         <object-name>Altimatic.PitchWheel</object-name>
-        <global>1</global>
         <emission>
           <red>0.2</red>
           <green>0.04</green>

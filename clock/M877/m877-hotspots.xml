@@ -13,7 +13,6 @@
     </layers>
 
     <actions>
-
 <!--
         <action>
             <name>outline</name>
@@ -24,7 +23,6 @@
             <h>60</h>
         </action>
 -->
-
         <action>
             <name>mode increment</name>
             <button>0</button>

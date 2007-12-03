@@ -62,15 +62,6 @@ Primus 1000 MFD  hotspots
                     <property>/instrumentation/primus1000/nav-dist-nm</property>
                     <format>%3.1f</format>
                 </chunk>
-            <color>
-                <red>0.8</red>
-                <green>0.8</green>
-                <blue>0.8</blue>
-            </color>
-                <chunk>
-                    <type>literal</type>
-                    <text>nm</text>
-                </chunk>
             </chunks>
             <transformations>
                 <transformation>
@@ -83,28 +74,6 @@ Primus 1000 MFD  hotspots
                 </transformation>
             </transformations>
         </layer>
-
-        <layer>
-            <name>NAV/DSTtxt</name>
-            <condition>
-                <property>instrumentation/primus1000/mfd/serviceable</property>
-            </condition>
-            <type>text</type>
-            <font>arial_black</font>
-            <point-size>6</point-size>
-            <color>
-                <red>0.8</red>
-                <green>0.8</green>
-                <blue>0.8</blue>
-            </color>
-            <chunks>
-                <chunk>
-                    <type>literal</type>
-                    <text>nm</text>
-                </chunk>
-            </chunks>
-        </layer>
-
 
         <layer>
             <name>NAV/ID</name>

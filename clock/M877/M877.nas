@@ -19,12 +19,12 @@ setlistener("/sim/signals/fdm-initialized", func {
     settimer(update_clock,2);
 });
 
-setlistener("/instrumentation/clock/m877/mode", func {
-    MODE = cmdarg().getValue();
+setlistener("/instrumentation/clock/m877/mode", func(md) {
+    MODE = md.getValue();
     modestring.setValue(modetext[MODE]);
-});
+},0,0);
 
-update_clock = func{
+var update_clock = func{
     var FThr =getprop("/instrumentation/clock/flight-meter-hour");
     
     var FM =0;
@@ -47,8 +47,11 @@ update_clock = func{
     }
 
     if (MODE == 3) {
-    setprop("/instrumentation/clock/m877/indicated-hour",getprop("/instrumentation/clock/ET-hr"));
-    setprop("/instrumentation/clock/m877/indicated-min",getprop("/instrumentation/clock/ET-min"));
+    var ETH = getprop("/instrumentation/clock/ET-hr");
+    if(ETH != nil){
+        setprop("/instrumentation/clock/m877/indicated-hour",getprop("/instrumentation/clock/ET-hr"));
+        setprop("/instrumentation/clock/m877/indicated-min",getprop("/instrumentation/clock/ET-min"));
+        }
     }
 
 settimer(update_clock,0);

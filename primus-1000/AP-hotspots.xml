@@ -28,6 +28,16 @@ P1000 AP controller  hotspots
         <y>-24</y>
         <w>16</w>
         <h>10</h>
+        <condition>
+            <and>
+                <not>
+                    <property>gear/gear[1]/wow</property>
+                </not>
+                <not>
+                    <property>gear/gear[2]/wow</property>
+                </not>
+            </and>
+        </condition>
         <binding>
             <command>property-toggle</command>
             <property>autopilot/locks/passive-mode</property>
@@ -43,7 +53,7 @@ P1000 AP controller  hotspots
         <h>10</h>
         <binding>
             <command>property-toggle</command>
-            <property>autopilot/locks/passive-mode</property>
+            <property>controls/flight/yaw-damper</property>
         </binding>
     </action>
 

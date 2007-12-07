@@ -14,6 +14,9 @@ Primus 1000 PFD  hotspots
     <layers>
         <layer>
             <name>NAV/FMS</name>
+            <condition>
+                <property>instrumentation/primus1000/pfd/serviceable</property>
+            </condition>
             <type>text</type>
             <font>arial_black</font>
             <point-size>4.5</point-size>
@@ -42,6 +45,9 @@ Primus 1000 PFD  hotspots
 
         <layer>
             <name>NAV/SRC</name>
+            <condition>
+                <property>instrumentation/primus1000/pfd/serviceable</property>
+            </condition>
             <type>text</type>
             <font>arial_black</font>
             <point-size>5</point-size>
@@ -70,6 +76,9 @@ Primus 1000 PFD  hotspots
 
         <layer>
             <name>NAV/DST</name>
+            <condition>
+                <property>instrumentation/primus1000/pfd/serviceable</property>
+            </condition>
             <type>text</type>
             <font>arial_black</font>
             <point-size>5</point-size>
@@ -99,6 +108,9 @@ Primus 1000 PFD  hotspots
 
         <layer>
             <name>Wind Speed</name>
+            <condition>
+                <property>instrumentation/primus1000/pfd/serviceable</property>
+            </condition>
             <type>text</type>
             <font>arial_black</font>
             <point-size>6</point-size>
@@ -129,6 +141,7 @@ Primus 1000 PFD  hotspots
         <layer>
             <condition>
                 <and>
+                <property>instrumentation/primus1000/pfd/serviceable</property>
                     <not>
                         <property>instrumentation/primus1000/dc550/et</property>
                     </not>
@@ -167,7 +180,10 @@ Primus 1000 PFD  hotspots
 
         <layer>
             <condition>
-                <property>instrumentation/primus1000/dc550/et</property>
+                <and>
+                    <property>instrumentation/primus1000/dc550/et</property>
+                    <property>instrumentation/primus1000/pfd/serviceable</property>
+                </and>
             </condition>
             <name>ET</name>
             <type>text</type>
@@ -211,6 +227,9 @@ Primus 1000 PFD  hotspots
 
         <layer>
             <name>LATERAL</name>
+            <condition>
+                <property>instrumentation/primus1000/pfd/serviceable</property>
+            </condition>
             <type>text</type>
             <font>arial_black</font>
             <point-size>6</point-size>
@@ -239,6 +258,9 @@ Primus 1000 PFD  hotspots
 
         <layer>
             <name>VERTICAL</name>
+            <condition>
+                <property>instrumentation/primus1000/pfd/serviceable</property>
+            </condition>
             <type>text</type>
             <font>arial_black</font>
             <point-size>6</point-size>

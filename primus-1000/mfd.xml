@@ -13,6 +13,7 @@ Primus 1000 MFD
         <object-name>MFD.range</object-name>
         <object-name>MFD.bug</object-name>
         <object-name>MFD.hdg</object-name>
+        <object-name>MFD.lines</object-name>
         <condition>
             <property>instrumentation/primus1000/mfd/serviceable</property>
         </condition>

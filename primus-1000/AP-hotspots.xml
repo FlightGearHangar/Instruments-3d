@@ -42,6 +42,10 @@ P1000 AP controller  hotspots
             <command>property-toggle</command>
             <property>autopilot/locks/passive-mode</property>
         </binding>
+        <binding>
+            <property>autopilot/locks/passive-mode</property>
+            <property>controls/flight/yaw-damper</property>
+        </binding>
     </action>
 
     <action>
@@ -67,9 +71,9 @@ P1000 AP controller  hotspots
         <binding>
             <command>property-adjust</command>
             <property>autopilot/settings/target-pitch-deg</property>
-            <step>-0.010000</step>
-            <min>-30</min>
-            <max>30</max>
+            <step>-0.10000</step>
+            <min>-15</min>
+            <max>15</max>
             <wrap>0</wrap>
         </binding>
     </action>
@@ -84,9 +88,9 @@ P1000 AP controller  hotspots
         <binding>
             <command>property-adjust</command>
             <property>autopilot/settings/target-pitch-deg</property>
-            <step>0.010000</step>
-            <min>-30</min>
-            <max>30</max>
+            <step>0.10000</step>
+            <min>-15</min>
+            <max>15</max>
             <wrap>0</wrap>
         </binding>
     </action>

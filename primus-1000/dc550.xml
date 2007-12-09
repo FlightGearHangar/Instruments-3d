@@ -8,6 +8,25 @@ Display Control 550
 <path>dc550.ac</path>
 
 <animation>
+    <type>material</type>
+    <object-name>DC550.hsi</object-name>
+    <object-name>DC550.sc-cp</object-name>
+    <object-name>DC550.in-hpa</object-name>
+    <object-name>DC550.gspd-ttg</object-name>
+    <object-name>DC550.et</object-name>
+    <object-name>DC550.nav</object-name>
+    <object-name>DC550.fms</object-name>
+    <object-name>nav-pointer.001</object-name>
+    <object-name>nav-pointer.002</object-name>
+    <emission>
+        <red>0.025-</red>
+        <green>0.015</green>
+        <blue>0.010</blue>
+        <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+    </emission>
+</animation>
+
+<animation>
    	<type>rotate</type>
    	<object-name>nav-pointer.001</object-name>
    	<property>instrumentation/primus1000/dc550/nav1ptr</property>

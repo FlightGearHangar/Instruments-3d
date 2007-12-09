@@ -8,6 +8,17 @@ Flight Mode Control
 <path>fmc.ac</path>
 
     <animation>
+        <type>material</type>
+        <object-name>FD.btns</object-name>
+        <emission>
+            <red>0.025</red>
+            <green>0.015</green>
+            <blue>0.010</blue>
+            <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+        </emission>
+    </animation>
+
+    <animation>
         <type>select</type>
         <object-name>FD.hdg</object-name>
         <condition>

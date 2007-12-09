@@ -1,21 +1,19 @@
 <?xml version="1.0"?>
 <!--
 Author : Syd Adams
-Remote Instrument Control
+GNX-XLS Flight Computer
 -->
 <PropertyList>
 
-<path>RIC.ac</path>
+<path>gnx.ac</path>
 
     <animation>
         <type>material</type>
-        <object-name>RIC.crs1</object-name>
-        <object-name>RIC.crs2</object-name>
-        <object-name>RIC.hdg</object-name>
+        <object-name>GNX.btns</object-name>
         <emission>
             <red>0.025</red>
-            <green>0.025</green>
-            <blue>0.025</blue>
+            <green>0.015</green>
+            <blue>0.010</blue>
             <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
         </emission>
     </animation>

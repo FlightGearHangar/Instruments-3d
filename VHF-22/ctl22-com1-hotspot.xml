@@ -1,0 +1,149 @@
+<!--
+Syd Adams
+Comm1  hotspots
+-->
+
+<PropertyList>
+
+    <name>Comm1 hotspots</name>
+    <w-base>60</w-base>
+    <h-base>68</h-base>
+    <w>60</w>
+    <h>68</h>
+
+<actions>
+<!--
+    <action>
+        <name>bezel outline</name>
+        <x>-30</x>
+        <y>-34</y>
+        <w>60</w>
+        <h>68</h>
+    </action>
+-->
+
+        <action>
+            <name>swap freq</name>
+            <button>0</button>
+            <x>17</x>
+            <y>13</y>
+            <w>10</w>
+            <h>10</h>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>property-swap</command>
+            <property>/instrumentation/VHF-22/comm1</property>
+            <property>/instrumentation/VHF-22/standby1</property>
+        </binding>
+        </action>
+
+        <action>
+            <name>power off</name>
+            <button>0</button>
+            <x>-22</x>
+            <y>-26</y>
+            <w>8</w>
+            <h>15</h>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>property-assign</command>
+            <property>/instrumentation/comm/serviceable</property>
+            <value>false</value>
+        </binding>
+        </action>
+
+    <action>
+            <name>power on</name>
+            <button>0</button>
+            <x>-14</x>
+            <y>-26</y>
+            <w>8</w>
+            <h>15</h>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/comm/serviceable</property>
+                <value>true</value>
+            </binding>
+        </action>
+
+        <action>
+            <name>stby down</name>
+            <button>0</button>
+            <x>8</x>
+            <y>-24</y>
+            <w>9</w>
+            <h>18</h>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/VHF-22/standby1</property>
+                <step>-25</step>
+                <min>118000</min>
+                <max>136000</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+
+        <action>
+            <name>stby up</name>
+            <button>0</button>
+            <x>17</x>
+            <y>-24</y>
+            <w>9</w>
+            <h>18</h>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/VHF-22/standby1</property>
+                <step>25</step>
+                <min>118000</min>
+                <max>136000</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+
+        <action>
+            <name>stby down large</name>
+            <button>1</button>
+            <x>8</x>
+            <y>-24</y>
+            <w>9</w>
+            <h>18</h>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/VHF-22/standby1</property>
+                <step>-1000</step>
+                <min>118000</min>
+                <max>136000</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+
+        <action>
+            <name>stby up large</name>
+            <button>1</button>
+            <x>17</x>
+            <x>8</x>
+            <y>-24</y>
+            <w>9</w>
+            <h>18</h>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/VHF-22/standby1</property>
+                <step>1000</step>
+                <min>118000</min>
+                <max>136000</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+
+</actions>
+
+</PropertyList>

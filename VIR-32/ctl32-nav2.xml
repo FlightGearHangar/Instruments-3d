@@ -49,7 +49,10 @@ Syd Adams
         <type>select</type>
         <object-name>mem.annun</object-name>
         <condition>
-            <property>instrumentation/nav[1]/serviceable</property>
+            <greater-than>
+                <property>/systems/electrical/outputs/nav[1]</property>
+                <value>1</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -78,10 +81,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.001</object-name>
-        <property>instrumentation/nav[1]/frequencies/selected-mhz</property>
-        <factor>0.001</factor>
-        <step>100</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/nav2</property>
+        <factor>0.00001</factor>
+        <step>10000</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -92,10 +94,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.002</object-name>
-        <property>instrumentation/nav[1]/frequencies/selected-mhz</property>
-        <factor>0.01</factor>
-        <step>10</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/nav2</property>
+        <factor>0.0001</factor>
+        <step>1000</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -106,10 +107,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.003</object-name>
-        <property>instrumentation/nav[1]/frequencies/selected-mhz</property>
-        <factor>0.1</factor>
-        <step>1</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/nav2</property>
+        <factor>0.001</factor>
+        <step>100</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -120,10 +120,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.004</object-name>
-        <property>instrumentation/nav[1]/frequencies/selected-mhz</property>
-        <factor>1.0</factor>
-        <step>0.1</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/nav2</property>
+        <factor>0.01</factor>
+        <step>10</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -134,10 +133,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.005</object-name>
-        <property>instrumentation/nav[1]/frequencies/selected-mhz</property>
-        <factor>10.0</factor>
-        <step>0.01</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/nav2</property>
+        <factor>0.1</factor>
+        <step>1</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -150,10 +148,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.001</object-name>
-        <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
-        <factor>0.001</factor>
-        <step>100</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/standby2</property>
+        <factor>0.00001</factor>
+        <step>10000</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -164,10 +161,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.002</object-name>
-        <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
-        <factor>0.01</factor>
-        <step>10</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/standby2</property>
+        <factor>0.0001</factor>
+        <step>1000</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -178,10 +174,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.003</object-name>
-        <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
-        <factor>0.1</factor>
-        <step>1</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/standby2</property>
+        <factor>0.001</factor>
+        <step>100</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -192,10 +187,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.004</object-name>
-        <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
-        <factor>1.0</factor>
-        <step>0.1</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/standby2</property>
+        <factor>0.01</factor>
+        <step>10</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -206,10 +200,9 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.005</object-name>
-        <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
-        <factor>10.0</factor>
-        <step>0.01</step>
-        <bias>0.0005</bias>
+        <property>instrumentation/VIR-32/standby2</property>
+        <factor>0.1</factor>
+        <step>1</step>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -217,7 +210,7 @@ Syd Adams
         </axis>
     </animation>
 
-<!--    OSG hotspots    -->
+<!--    OSG hotspots 
 
     <animation>
         <type>pick</type>
@@ -227,8 +220,8 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
             <command>property-swap</command>
-            <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
-            <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+            <property>/instrumentation/nav/frequencies/selected-mhz</property>
+            <property>/instrumentation/nav/frequencies/standby-mhz</property>
         </binding>
         </action>
     </animation>
@@ -241,7 +234,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
             <command>property-assign</command>
-            <property>/instrumentation/nav[1]/serviceable</property>
+            <property>/instrumentation/nav/serviceable</property>
             <value>false</value>
         </binding>
         </action>
@@ -255,7 +248,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/nav[1]/serviceable</property>
+                <property>/instrumentation/nav/serviceable</property>
                 <value>true</value>
             </binding>
         </action>
@@ -270,7 +263,7 @@ Syd Adams
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+                <property>/instrumentation/nav/frequencies/standby-mhz</property>
                 <step>-0.050</step>
                 <min>108.00</min>
                 <max>118.00</max>
@@ -288,7 +281,7 @@ Syd Adams
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+                <property>/instrumentation/nav/frequencies/standby-mhz</property>
                 <step>0.050</step>
                 <min>108.00</min>
                 <max>118.00</max>
@@ -306,7 +299,7 @@ Syd Adams
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+                <property>/instrumentation/nav/frequencies/standby-mhz</property>
                 <step>-1.0</step>
                 <min>108.00</min>
                 <max>118.00</max>
@@ -324,13 +317,13 @@ Syd Adams
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+                <property>/instrumentation/nav/frequencies/standby-mhz</property>
                 <step>1.0</step>
                 <min>108.00</min>
-                <max>118.00</max>
+                <max>118.000</max>
                 <wrap>true</wrap>
             </binding>
         </action>
     </animation>
-
+-->
 </PropertyList>

@@ -31,7 +31,16 @@ Primus 1000 Primary Flight Display
     <type>select</type>
     <object-name>FDbars</object-name>
     <condition>
-        <property>instrumentation/primus1000/fdmode</property>
+        <or>
+            <greater-than>
+                <property>instrumentation/flightdirector/lnav</property>
+                <value>0</value>
+            </greater-than>
+            <greater-than>
+                <property>instrumentation/flightdirector/vnav</property>
+                <value>0</value>
+            </greater-than>
+        </or>
     </condition>
 </animation>
 

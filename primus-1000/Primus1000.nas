@@ -8,31 +8,36 @@ var RAmode=props.globals.getNode("/instrumentation/primus1000/ra-mode",1);
 var DC550 = props.globals.getNode("/instrumentation/primus1000/dc550",1);
 var fms_enabled =0;
 
-NavDist=props.globals.getNode("/instrumentation/primus1000/nav-dist-nm",1);
-NavType=props.globals.getNode("/instrumentation/primus1000/nav-type",1);
-NavString=props.globals.getNode("/instrumentation/primus1000/nav-string",1);
-NavID=props.globals.getNode("/instrumentation/primus1000/nav-id",1);
-FMSMode=props.globals.getNode("/instrumentation/primus1000/fms-mode",1);
-APoff=props.globals.getNode("/autopilot/locks/passive-mode",1);
-Hyd1=props.globals.getNode("systems/hydraulic/pump-psi[0]",1);
-Hyd2=props.globals.getNode("systems/hydraulic/pump-psi[1]",1);
-FuelPph1=props.globals.getNode("engines/engine[0]/fuel-flow_pph",1);
-FuelPph2=props.globals.getNode("engines/engine[1]/fuel-flow_pph",1);
-FuelDensity = 6.0;
-FMS_VNAV =["VNV","FMS"];
-NAV_SRC = ["VOR1","VOR2","ILS1","ILS2","FMS"];
+var NavDist=props.globals.getNode("/instrumentation/primus1000/nav-dist-nm",1);
+var NavType=props.globals.getNode("/instrumentation/primus1000/nav-type",1);
+var NavString=props.globals.getNode("/instrumentation/primus1000/nav-string",1);
+var NavID=props.globals.getNode("/instrumentation/primus1000/nav-id",1);
+var FMSMode=props.globals.getNode("/instrumentation/primus1000/fms-mode",1);
+var APoff=props.globals.getNode("/autopilot/locks/passive-mode",1);
+var Hyd1=props.globals.getNode("systems/hydraulic/pump-psi[0]",1);
+var Hyd2=props.globals.getNode("systems/hydraulic/pump-psi[1]",1);
+var FuelPph1=props.globals.getNode("engines/engine[0]/fuel-flow_pph",1);
+var FuelPph2=props.globals.getNode("engines/engine[1]/fuel-flow_pph",1);
+var FuelDensity = 6.0;
+var FMS_VNAV =["VNV","FMS"];
+var NAV_SRC = ["VOR1","VOR2","ILS1","ILS2","FMS"];
 var ET = aircraft.timer.new("/instrumentation/primus1000/pfd/ET-sec", 5,0);
 var ETmin = props.globals.getNode("/instrumentation/primus1000/pfd/ET-min",1);
 var EThour = props.globals.getNode("/instrumentation/primus1000/pfd/ET-hour",1);
 
-get_pointer_offset = func{
+var get_pointer_offset = func{
     var test=arg[0];
+    var src =arg[1];
     var offset = 0;
     var hdg = getprop("/orientation/heading-magnetic-deg");
     if(test==0 or test == nil){return 0.0;}
 
     if(test == 1){
+        if(src == 1){
+        offset=getprop("/instrumentation/nav[1]/heading-deg");
+        }else{
         offset=getprop("/instrumentation/nav/heading-deg");
+        }
         if(offset == nil){offset=0.0;}
         offset -= hdg;
         if(offset < -180){offset += 360;}
@@ -45,10 +50,10 @@ get_pointer_offset = func{
         return offset;
     }
 
-update_pfd = func{
+var update_pfd = func{
 
-    NavPtr1_offset.setValue(get_pointer_offset(NavPtr1.getValue()));
-    NavPtr2_offset.setValue(get_pointer_offset(NavPtr2.getValue()));
+    NavPtr1_offset.setValue(get_pointer_offset(NavPtr1.getValue(),0));
+    NavPtr2_offset.setValue(get_pointer_offset(NavPtr2.getValue(),1));
     var id = "   ";
     var GSPDstring = "";
     var nm_calc=0.0;
@@ -88,12 +93,12 @@ update_pfd = func{
 
 
 
-update_mfd = func{
+var update_mfd = func{
 }
 
-update_fuel = func{
-var total_fuel = 0;
-if(getprop("/sim/flight-model")=="yasim"){
+var update_fuel = func{
+    var total_fuel = 0;
+    if(getprop("/sim/flight-model")=="yasim"){
         FuelDensity=props.globals.getNode("consumables/fuel/tank[0]/density-ppg",1).getValue();
         var pph=getprop("/engines/engine[0]/fuel-flow-gph");
         if(pph == nil){pph = 0.0};
@@ -107,7 +112,7 @@ if(getprop("/sim/flight-model")=="yasim"){
     }
 }
 
-update_eicas = func{
+var update_eicas = func{
     var hpsi = getprop("/engines/engine[0]/n2");
     if(hpsi == nil){hpsi=0.0;}
     hpsi = hpsi * 100;
@@ -121,8 +126,8 @@ update_eicas = func{
     update_fuel();
     }
 
-setlistener("/instrumentation/primus1000/dc550/fms", func {
-var mode = cmdarg().getValue();
+setlistener("/instrumentation/primus1000/dc550/fms", func(md){
+    var mode = md.getValue();
     FMSMode.setValue(FMS_VNAV[mode]);
     if(mode){NavType.setValue(4);
         fms_enabled=1;
@@ -130,11 +135,11 @@ var mode = cmdarg().getValue();
         NavType.setValue(0);
         fms_enabled=0;
     }
-});
+},0,0);
 
 
 
-update_p1000 = func {
+var update_p1000 = func {
     update_pfd();
     update_mfd();
     update_eicas();

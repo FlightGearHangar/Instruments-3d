@@ -24,4 +24,15 @@ Primus 1000 Autopilot Controller
         </condition>
     </animation>
 
+    <animation>
+        <type>select</type>
+        <object-name>Low-on</object-name>
+        <condition>
+            <equals>
+                <property>autopilot/settings/low-bank-deg</property>
+                <value>14</value>
+            </equals>
+        </condition>
+    </animation>
+
 </PropertyList>

@@ -123,6 +123,12 @@ Cancels other lateral modes
         <y>0</y>
         <w>18</w>
         <h>18</h>
+        <condition>
+            <equals>
+                <property>autopilot/locks/altitude</property>
+                <value>pitch-hold</value>
+            </equals>
+        </condition>
         <binding>
             <command>property-adjust</command>
             <property>autopilot/settings/target-pitch-deg</property>
@@ -140,6 +146,58 @@ Cancels other lateral modes
         <y>-18</y>
         <w>18</w>
         <h>18</h>
+        <condition>
+            <equals>
+                <property>autopilot/locks/altitude</property>
+                <value>pitch-hold</value>
+            </equals>
+        </condition>
+        <binding>
+            <command>property-adjust</command>
+            <property>autopilot/settings/target-pitch-deg</property>
+            <step>0.10000</step>
+            <min>-15</min>
+            <max>15</max>
+            <wrap>0</wrap>
+        </binding>
+    </action>
+
+    <action>
+        <name>VS Decrease</name>
+        <button>0</button>
+        <x>-49</x>
+        <y>0</y>
+        <w>18</w>
+        <h>18</h>
+        <condition>
+            <equals>
+                <property>autopilot/locks/altitude</property>
+                <value>vertical-speed-hold</value>
+            </equals>
+        </condition>
+        <binding>
+            <command>property-adjust</command>
+            <property>autopilot/settings/target-pitch-deg</property>
+            <step>-0.10000</step>
+            <min>-15</min>
+            <max>15</max>
+            <wrap>0</wrap>
+        </binding>
+    </action>
+
+    <action>
+        <name>VS Increase</name>
+        <button>0</button>
+        <x>-49</x>
+        <y>-18</y>
+        <w>18</w>
+        <h>18</h>
+        <condition>
+            <equals>
+                <property>autopilot/locks/altitude</property>
+                <value>vertical-speed-hold</value>
+            </equals>
+        </condition>
         <binding>
             <command>property-adjust</command>
             <property>autopilot/settings/target-pitch-deg</property>

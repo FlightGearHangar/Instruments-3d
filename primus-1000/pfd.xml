@@ -8,13 +8,106 @@ Primus 1000 Primary Flight Display
 <path>pfd.ac</path>
 
 <animation>
-    <type>select</type>
+    <type>textranslate</type>
     <object-name>AP.annun</object-name>
-    <condition>
-        <not>
-            <property>autopilot/locks/passive-mode</property>
-        </not>	
-    </condition>
+    <property>autopilot/locks/passive-mode</property>
+    <interpolation>
+        <entry><ind>0</ind><dep>-0.0273</dep></entry>
+        <entry><ind>1</ind><dep>0.0</dep></entry>
+    </interpolation>
+    <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+    </axis>
+</animation>
+
+<animation>
+    <type>textranslate</type>
+    <object-name>Lmode.arm</object-name>
+    <property>instrumentation/flightdirector/lnav</property>
+    <interpolation>
+        <entry><ind>0</ind><dep>0.0</dep></entry><!--WL-->
+        <entry><ind>1</ind><dep>0.0</dep></entry><!--HDG-->
+        <entry><ind>2</ind><dep>-0.2163</dep></entry><!--VOR ARM-->
+        <entry><ind>3</ind><dep>0.0</dep></entry><!--VOR CAP-->
+        <entry><ind>4</ind><dep>-0.1442</dep></entry><!--LOC ARM-->
+        <entry><ind>5</ind><dep>0.0</dep></entry><!--LOC CAP-->
+        <entry><ind>6</ind><dep>0</dep></entry><!--FMS CAP-->
+        <entry><ind>7</ind><dep>-0.1800</dep></entry><!--APR ARM-->
+        <entry><ind>8</ind><dep>-0.2524</dep></entry><!--BC ARM-->
+        <entry><ind>9</ind><dep>0</dep></entry><!--BC CAP-->
+    </interpolation>
+    <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+    </axis>
+</animation>
+
+<animation>
+    <type>textranslate</type>
+    <object-name>Lmode.annun</object-name>
+    <property>instrumentation/flightdirector/lnav</property>
+    <interpolation>
+        <entry><ind>0</ind><dep>0.0</dep></entry><!--WL-->
+        <entry><ind>1</ind><dep>-0.0706</dep></entry><!--HDG-->
+        <entry><ind>2</ind><dep>-0.0706</dep></entry><!--VOR ARM-->
+        <entry><ind>3</ind><dep>-0.2148</dep></entry><!--VOR CAP-->
+        <entry><ind>4</ind><dep>-0.0706</dep></entry><!--LOC ARM-->
+        <entry><ind>5</ind><dep>-0.1422</dep></entry><!--LOC CAP-->
+        <entry><ind>6</ind><dep>-0.1064</dep></entry><!--FMS CAP-->
+        <entry><ind>7</ind><dep>-0.0706</dep></entry><!--APR ARM-->
+        <entry><ind>8</ind><dep>-0.0706</dep></entry><!--BC ARM-->
+        <entry><ind>9</ind><dep>-0.2506</dep></entry><!--BC CAP-->
+    </interpolation>
+    <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+    </axis>
+</animation>
+
+<animation>
+    <type>textranslate</type>
+    <object-name>Vmode.annun</object-name>
+    <property>instrumentation/flightdirector/vnav</property>
+    <interpolation>
+        <entry><ind>0</ind><dep>0.0</dep></entry><!--PCH-->
+        <entry><ind>1</ind><dep>-0.2392</dep></entry><!--VNAV ARM-->
+        <entry><ind>2</ind><dep>-0.2042</dep></entry><!--VNAV CAP-->
+        <entry><ind>3</ind><dep>-0.0644</dep></entry><!--ALT-->
+        <entry><ind>4</ind><dep>-0.2392</dep></entry><!--ASEL-->
+        <entry><ind>5</ind><dep>-0.2392</dep></entry><!--VS-->
+        <entry><ind>6</ind><dep>-0.2392</dep></entry><!--GS ARM-->
+        <entry><ind>7</ind><dep>-0.1693</dep></entry><!--GS CAP-->
+    </interpolation>
+    <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+    </axis>
+</animation>
+
+<animation>
+    <type>textranslate</type>
+    <object-name>Vmode.arm</object-name>
+    <property>instrumentation/flightdirector/vnav</property>
+    <interpolation>
+        <entry><ind>0</ind><dep>0.0</dep></entry><!--PCH-->
+        <entry><ind>1</ind><dep>0.0</dep></entry><!--VNAV ARM-->
+        <entry><ind>2</ind><dep>-0.2048</dep></entry><!--VNAV CAP-->
+        <entry><ind>3</ind><dep>0.0</dep></entry><!--ALT-->
+        <entry><ind>4</ind><dep>-0.0983</dep></entry><!--ASEL-->
+        <entry><ind>5</ind><dep>0</dep></entry><!--VS-->
+        <entry><ind>6</ind><dep>-0.1693</dep></entry><!--GS ARM-->
+        <entry><ind>7</ind><dep>0</dep></entry><!--GS CAP-->
+    </interpolation>
+    <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+    </axis>
 </animation>
 
 <animation>

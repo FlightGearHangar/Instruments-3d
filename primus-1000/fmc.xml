@@ -74,16 +74,10 @@ adjustable with pitch wheel
         <type>select</type>
         <object-name>FD.apr</object-name>
         <condition>
-            <and>
-                <greater-than>
-                    <property>instrumentation/flightdirector/lnav</property>
-                    <value>3</value>
-                </greater-than>
-                <less-than>
-                    <property>instrumentation/flightdirector/lnav</property>
-                    <value>6</value>
-                </less-than>
-                </and>
+            <equals>
+                <property>instrumentation/flightdirector/lnav</property>
+                <value>7</value>
+            </equals>
         </condition>
     </animation>
 
@@ -91,10 +85,7 @@ adjustable with pitch wheel
         <type>select</type>
         <object-name>FD.bc</object-name>
         <condition>
-            <greater-than>
-                <property>instrumentation/flightdirector/lnav</property>
-                <value>5</value>
-            </greater-than>
+            <property>instrumentation/nav/back-course-btn</property>
         </condition>
     </animation>
 
@@ -102,20 +93,16 @@ adjustable with pitch wheel
         <type>select</type>
         <object-name>FD.vnav</object-name>
         <condition>
-            <or>
-                <equals>
+            <and>
+                <greater-than>
                     <property>instrumentation/flightdirector/vnav</property>
-                    <value>1</value>
-                </equals>
-                <equals>
+                    <value>0</value>
+                </greater-than>
+                <less-than>
                     <property>instrumentation/flightdirector/vnav</property>
-                    <value>2</value>
-                </equals>
-                <equals>
-                    <property>instrumentation/flightdirector/vnav</property>
-                    <value>6</value>
-                </equals>
-            </or>
+                    <value>3</value>
+                </less-than>
+            </and>
         </condition>
     </animation>
 

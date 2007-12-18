@@ -7,7 +7,7 @@
 #### Radar Modes WX ; WXA ; MAP
 #### Ranges : 10 , 20, 40, 80 , 160 
 
-RADAR = props.globals.getNode("/instrumentation/wxradar",1);
+RADAR = props.globals.getNode("/instrumentation/radar",1);
 FDM_ON = 0;
 P_Str =["off","stby", "tst","on"];
 RADAR.getNode("radar-texture-path",1).setValue("Aircraft/Instruments-3d/RDR-160/od_wxradar.rgb");
@@ -33,14 +33,14 @@ setlistener("/sim/signals/fdm-initialized", func {
     print("KING RDR-160 ... OK");
     });
 
-setlistener("/instrumentation/wxradar/switch-pos", func {
+setlistener("/instrumentation/radar/switch-pos", func {
     if(FDM_ON != 0){
         var swtch = cmdarg().getValue();
         RADAR.getNode("switch",1).setValue(P_Str[swtch]);
         }
     });
 
-setlistener("/instrumentation/wxradar/set-range", func {
+setlistener("/instrumentation/radar/set-range", func {
     if(FDM_ON != 0){
         var rng = RADAR.getNode("range").getValue();
         var num = cmdarg().getValue();

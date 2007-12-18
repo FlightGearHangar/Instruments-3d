@@ -34,7 +34,7 @@
             <h>8</h>
             <binding>
                 <command>property-toggle</command>
-                <property>instrumentation/wxradar/display-controls/data</property>
+                <property>instrumentation/radar/display-controls/data</property>
             </binding>
         </action>
 
@@ -47,7 +47,7 @@
             <h>8</h>
             <binding>
                 <command>property-toggle</command>
-                <property>instrumentation/wxradar/display-controls/pos</property>
+                <property>instrumentation/radar/display-controls/pos</property>
             </binding>
         </action>
 
@@ -60,7 +60,7 @@
             <h>8</h>
             <binding>
                 <command>property-assign</command>
-                <property>instrumentation/wxradar/set-range</property>
+                <property>instrumentation/radar/set-range</property>
                 <value>1</value>
             </binding>
         </action>
@@ -74,7 +74,7 @@
             <h>8</h>
             <binding>
                 <command>property-assign</command>
-                <property>instrumentation/wxradar/set-range</property>
+                <property>instrumentation/radar/set-range</property>
                 <value>-1</value>
             </binding>
         </action>
@@ -88,7 +88,7 @@
             <h>20</h>
             <binding>
                 <command>property-adjust</command>
-                <property>instrumentation/wxradar/switch-pos</property>
+                <property>instrumentation/radar/switch-pos</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>3</max>
@@ -105,7 +105,7 @@
             <h>20</h>
             <binding>
                 <command>property-adjust</command>
-                <property>instrumentation/wxradar/switch-pos</property>
+                <property>instrumentation/radar/switch-pos</property>
                 <step>1</step>
                 <min>0</min>
                 <max>3</max>
@@ -122,7 +122,7 @@
             <h>20</h>
             <binding>
                 <command>property-adjust</command>
-                <property>instrumentation/wxradar/tilt</property>
+                <property>instrumentation/radar/tilt</property>
                 <step>5.0</step>
                 <min>-15.0</min>
                 <max>15.0</max>
@@ -139,7 +139,7 @@
             <h>20</h>
             <binding>
                 <command>property-adjust</command>
-                <property>instrumentation/wxradar/tilt</property>
+                <property>instrumentation/radar/tilt</property>
                 <step>-5.0</step>
                 <min>-15.0</min>
                 <max>15.0</max>
@@ -156,7 +156,7 @@
             <h>20</h>
             <binding>
                 <command>property-adjust</command>
-                <property>instrumentation/wxradar/dim</property>
+                <property>instrumentation/radar/dim</property>
                 <step>0.05</step>
                 <min>0.0</min>
                 <max>1.0</max>
@@ -173,7 +173,7 @@
             <h>20</h>
             <binding>
                 <command>property-adjust</command>
-                <property>instrumentation/wxradar/dim</property>
+                <property>instrumentation/radar/dim</property>
                 <step>-0.05</step>
                 <min>0.0</min>
                 <max>1.0</max>

@@ -10,7 +10,7 @@ KR 87 ADF  radio hotspots
   <w-base>160</w-base>
   <h-base>36</h-base>
   <w>160</w>
-  <h>36</h>
+  <h>34</h>
 
  <actions>
    
@@ -20,22 +20,22 @@ KR 87 ADF  radio hotspots
      <name>bezel outline</name>
      <button>0</button>
      <x>-80</x>
-     <y>-18</y>
+     <y>-17</y>
      <w>160</w>
-     <h>36</h>
+     <h>34</h>
    </action>
    -->
    
    <action>
      <name>adf  frequency decrease small</name>
      <button>0</button>
-     <x>54</x>
+     <x>50</x>
      <y>-10</y>
-     <w>12</w>
+     <w>13</w>
      <h>20</h>
      <binding>
        <command>property-adjust</command>
-       <property>instrumentation/adf/frequencies/selected-khz</property>
+       <property>instrumentation/kr-87/outputs/standby-khz</property>
        <step>-1</step>
        <min>100</min>
        <max>1300</max>
@@ -47,13 +47,13 @@ KR 87 ADF  radio hotspots
    <action>
      <name>adf frequency decrease large</name>
      <button>1</button>
-     <x>54</x>
+     <x>50</x>
      <y>-10</y>
-     <w>12</w>
+     <w>13</w>
      <h>20</h>
      <binding>
        <command>property-adjust</command>
-       <property>instrumentation/adf/frequencies/selected-khz</property>
+       <property>instrumentation/kr-87/outputs/standby-khz</property>
        <step>-100</step>
        <min>100</min>
        <max>1300</max>
@@ -65,13 +65,13 @@ KR 87 ADF  radio hotspots
    <action>
      <name>adf frequency increase small</name>
      <button>0</button>
-     <x>66</x>
+     <x>63</x>
      <y>-10</y>
-     <w>12</w>
+     <w>13</w>
      <h>20</h>
      <binding>
        <command>property-adjust</command>
-       <property>instrumentation/adf/frequencies/selected-khz</property>
+       <property>instrumentation/kr-87/outputs/standby-khz</property>
        <step>1</step>
        <min>100</min>
        <max>1300</max>
@@ -83,13 +83,13 @@ KR 87 ADF  radio hotspots
    <action>
      <name>adf frequency increase large</name>
      <button>1</button>
-     <x>66</x>
+     <x>63</x>
      <y>-10</y>
-     <w>12</w>
+     <w>13</w>
      <h>20</h>
      <binding>
        <command>property-adjust</command>
-       <property>instrumentation/adf/frequencies/selected-khz</property>
+       <property>instrumentation/kr-87/outputs/standby-khz</property>
        <step>100</step>
        <min>100</min>
        <max>1300</max>
@@ -97,68 +97,62 @@ KR 87 ADF  radio hotspots
        <wrap>true</wrap>
      </binding>
    </action>
-   
-   
-   <action>
-     <name>adf volume increase</name>
-     <button>0</button>
-     <x>40</x>
-     <y>-12</y>
-     <w>8</w>
-     <h>12</h>
-     <condition>
-       <equals>
-         <property>instrumentation/adf/serviceable</property>
-         <value>true</value>
-       </equals>
-     </condition>
-     <binding>
-       <command>property-adjust</command>
-       <property>instrumentation/adf/volume-norm</property>
-       <step>0.05</step>
-       <min>0.0</min>
-       <max>1.0</max>
-       <wrap>false</wrap>
-     </binding>
-   </action>
-   
-   <action>
-     <name>adf power on</name>
-     <button>0</button>
-     <x>40</x>
-     <y>-12</y>
-     <w>8</w>
-     <h>12</h>
-     <condition>
-       <equals>
-         <property>instrumentation/adf/serviceable</property>
-         <value>false</value>
-       </equals>
-     </condition>
-     <binding>
-       <command>property-assign</command>
-       <property>instrumentation/adf/serviceable</property>
-       <value>true</value>
-     </binding>
-   </action>
-   
-   
+
+    <action>
+        <name>adf volume increase</name>
+        <button>0</button>
+        <x>38</x>
+        <y>-11</y>
+        <w>7</w>
+        <h>10</h>
+        <condition>
+            <property>instrumentation/kr-87/inputs/power-btn</property>
+        </condition>
+        <binding>
+            <command>property-adjust</command>
+            <property>instrumentation/kr-87/inputs/volume</property>
+            <step>0.05</step>
+            <min>0.0</min>
+            <max>1.0</max>
+            <wrap>false</wrap>
+        </binding>
+    </action>
+
+    <action>
+        <name>adf power on</name>
+        <button>0</button>
+        <x>38</x>
+        <y>-11</y>
+        <w>7</w>
+        <h>10</h>
+        <condition>
+            <not>
+                <property>instrumentation/kr-87/inputs/power-btn</property>
+            </not>
+        </condition>
+        <binding>
+            <command>property-assign</command>
+            <property>instrumentation/kr-87/inputs/power-btn</property>
+            <value>true</value>
+        </binding>
+    </action>
+
    <action>
      <name>adf volume decrease</name>
      <button>0</button>
-     <x>32</x>
-     <y>-12</y>
-     <w>8</w>
-     <h>12</h>
+     <x>31</x>
+     <y>-11</y>
+     <w>7</w>
+     <h>10</h>
      <condition>
        <greater-than>
-         <property>instrumentation/adf/volume-norm</property>
+         <property>instrumentation/kr-87/inputs/volume</property>
          <value>0.0</value>
        </greater-than>
      </condition>
      <binding>
        <command>property-adjust</command>
-       <property>instrumentation/adf/volume-norm</property>
+       <property>instrumentation/kr-87/inputs/volume</property>
        <step>-0.05</step>
        <min>0.0</min>
        <max>1.0</max>
@@ -166,39 +160,115 @@ KR 87 ADF  radio hotspots
      </binding>
    </action>
    
-   <action>
-     <name>adf power off</name>
-     <button>0</button>
-     <x>32</x>
-     <y>-12</y>
-     <w>8</w>
-     <h>12</h>
-     <condition>
-       <equals>
-         <property>instrumentation/adf/volume-norm</property>
-         <value>0</value>
-       </equals>
-     </condition>
-     <binding>
-       <command>property-assign</command>
-       <property>instrumentation/adf/serviceable</property>
-       <value>false</value>
-     </binding>
-   </action>
-   
-   <action>
-     <name>swap adf frequencies</name>
-     <button>0</button>
-     <x>-20</x>
-     <y>-12</y>
-     <w>12</w>
-     <h>6</h>
-     <binding>
-       <command>property-swap</command>
-       <property>instrumentation/adf/frequencies/selected-khz</property>
-       <property>instrumentation/adf/frequencies/standby-khz</property>
-     </binding>
-   </action>
+    <action>
+        <name>adf power off</name>
+        <button>0</button>
+        <x>31</x>
+        <y>-11</y>
+        <w>7</w>
+        <h>10</h>
+        <condition>
+            <equals>
+                <property>instrumentation/kr-87/inputs/volume</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <binding>
+            <command>property-assign</command>
+            <property>instrumentation/kr-87/inputs/power-btn</property>
+            <value>false</value>
+        </binding>
+    </action>
+
+    <action>
+        <name>adf button</name>
+        <button>0</button>
+        <x>-52</x>
+        <y>-13</y>
+        <w>10</w>
+        <h>5</h>
+        <binding>
+            <command>property-toggle</command>
+            <property>instrumentation/kr-87/inputs/adf-btn</property>
+        </binding>
+    </action>
+<!--    Button actions   -->
+    <action>
+        <name>bfo button</name>
+        <button>0</button>
+        <x>-37</x>
+        <y>-13</y>
+        <w>10</w>
+        <h>5</h>
+        <binding>
+            <command>property-toggle</command>
+            <property>instrumentation/kr-87/inputs/bfo-btn</property>
+        </binding>
+    </action>
+
+    <action>
+        <name>frq button</name>
+        <button>0</button>
+        <x>-22</x>
+        <y>-13</y>
+        <w>10</w>
+        <h>5</h>
+        <binding>
+            <command>property-assign</command>
+            <property>instrumentation/kr-87/inputs/frq-btn</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/kr-87/inputs/frq-btn</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+    </action>
+
+    <action>
+        <name>flt button</name>
+        <button>0</button>
+        <x>-6</x>
+        <y>-13</y>
+        <w>10</w>
+        <h>5</h>
+        <binding>
+            <command>property-assign</command>
+                <property>instrumentation/kr-87/inputs/flt-et-btn</property>
+                <value>1</value>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/kr-87/inputs/flt-et-btn</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+    </action>
+
+    <action>
+        <name>set button</name>
+        <button>0</button>
+        <x>9</x>
+        <y>-13</y>
+        <w>10</w>
+        <h>5</h>
+        <binding>
+            <command>property-assign</command>
+            <property>instrumentation/kr-87/inputs/set-rst-btn</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/kr-87/inputs/set-rst-btn</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+    </action>
+
  </actions>
- 
+
 </PropertyList>

@@ -2,66 +2,43 @@
 
 <PropertyList>
 
-	<path>vsi-6.ac</path>
-	
-	<animation>
-  		<type>material</type>
-    	<object-name>VSIneedle</object-name>
-		<object-name>VSIface</object-name>
-		<condition>
-			<greater-than>
-				<property>/systems/electrical/outputs/instrument-lights</property>
-				<value>0.1</value>
-			</greater-than>		
-		</condition>
-  		<emission>
-    		<red>0.8</red>
-    		<green>0.4</green>
-    		<blue>0.2</blue>
-    		<factor-prop>/controls/lighting/instruments-norm</factor-prop>
-  		</emission>
-	</animation>
-	
-		<animation>
-  		<type>material</type>
-    	<object-name>VSIneedle</object-name>
-		<object-name>VSIface</object-name>
-		<condition>
-			<less-than>
-				<property>/systems/electrical/outputs/instrument-lights</property>
-				<value>0.1</value>
-			</less-than>		
-		</condition>
-  		<emission>
-    		<red>0.0</red>
-    		<green>0.0</green>
-    		<blue>0.0</blue>
-    		<factor-prop>/controls/lighting/instruments-norm</factor-prop>
-		</emission>
-	</animation>		
-	
-	<animation>
-   		<type>rotate</type>
-   		<object-name>VSIneedle</object-name>
-   		<property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
-   		<interpolation>
-     		<entry><ind>-6000.0</ind><dep>-170.0</dep></entry>
-     		<entry><ind>-4000.0</ind><dep>-135.0</dep></entry>
-     		<entry><ind>-2000.0</ind><dep>-90.0</dep></entry>
-     		<entry><ind>-1000.0</ind><dep>-45.0</dep></entry>
-     		<entry><ind>-500.0</ind><dep>-22.5</dep></entry>
-     		<entry><ind>0.0</ind><dep>0.0</dep></entry>
-     		<entry><ind>500.0</ind><dep>22.5</dep></entry>
-     		<entry><ind>1000.0</ind><dep>45.0</dep></entry>
-     		<entry><ind>2000.0</ind><dep>90.0</dep></entry>
-     		<entry><ind>4000.0</ind><dep>135.0</dep></entry>
-     		<entry><ind>6000.0</ind><dep>170.0</dep></entry>
-   		</interpolation>
-   		<axis>
-     		<x>-1</x>
-     		<y>0</y>
-     		<z>0</z>
-   		</axis>
-	</animation>
+    <path>vsi-6.ac</path>
+
+    <animation>
+        <type>material</type>
+        <object-name>VSIface</object-name>
+        <object-name>VSIneedle</object-name>
+        <emission>
+            <red>0.028</red>
+            <green>0.014</green>
+            <blue>0.007</blue>
+            <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+        </emission>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>VSIneedle</object-name>
+        <property>/instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm</property>
+        <interpolation>
+            <entry><ind>-6000.0</ind><dep>-170.0</dep></entry>
+            <entry><ind>-4000.0</ind><dep>-135.0</dep></entry>
+            <entry><ind>-2000.0</ind><dep>-90.0</dep></entry>
+            <entry><ind>-1000.0</ind><dep>-45.0</dep></entry>
+            <entry><ind>-500.0</ind><dep>-22.5</dep></entry>
+            <entry><ind>0.0</ind><dep>0.0</dep></entry>
+            <entry><ind>500.0</ind><dep>22.5</dep></entry>
+            <entry><ind>1000.0</ind><dep>45.0</dep></entry>
+            <entry><ind>2000.0</ind><dep>90.0</dep></entry>
+            <entry><ind>4000.0</ind><dep>135.0</dep></entry>
+            <entry><ind>6000.0</ind><dep>170.0</dep></entry>
+        </interpolation>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
 
 </PropertyList>

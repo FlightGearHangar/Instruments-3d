@@ -9,23 +9,22 @@ Syd Adams
 
     <animation>
         <type>material</type>
-        <object-name>RDR160.screen</object-name>
-        <emission>
-            <red>0.8</red>
-            <green>0.9</green>
-            <blue>0.8</blue>
-            <factor-prop>/instrumentation/radar/dim</factor-prop>
-        </emission>
-    </animation>
-
-    <animation>
-        <type>material</type>
         <object-name>RDR160.labels</object-name>
+        <object-name>RDR160.rngup</object-name>
+        <object-name>RDR160.rngdwn</object-name>
+        <object-name>RDR160.modeup</object-name>
+        <object-name>RDR160.modedwn</object-name>
+        <object-name>RDR160.hold</object-name>
+        <object-name>RDR160.trkdwn</object-name>
+        <object-name>RDR160.trkup</object-name>
+        <object-name>RDR160.nav</object-name>
+        <object-name>RDR160.power</object-name>
+        <object-name>RDR160.tilt</object-name>
         <emission>
-            <red>1.0</red>
-   <green>0.2</green>
-   <blue>0.0</blue>
-   <factor-prop>/sim/model//material/instruments/factor</factor-prop>
+            <red>0.025</red>
+            <green>0.025</green>
+            <blue>0.025</blue>
+            <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
         </emission>
     </animation>
 
@@ -93,7 +92,7 @@ Syd Adams
     </animation>
 
 <!--    OSG Pick Animations  -->
-
+<!--
     <animation>
         <type>pick</type>
         <object-name>brt.up</object-name>
@@ -249,5 +248,5 @@ Syd Adams
             </binding>
         </action>
     </animation>
-
+-->
 </PropertyList>

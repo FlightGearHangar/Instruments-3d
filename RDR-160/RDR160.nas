@@ -10,8 +10,6 @@
 RADAR = props.globals.getNode("/instrumentation/radar",1);
 FDM_ON = 0;
 P_Str =["off","stby", "tst","on"];
-RADAR.getNode("radar-texture-path",1).setValue("Aircraft/Instruments-3d/RDR-160/od_wxradar.rgb");
-RADAR.getNode("echo-texture-path",1).setValue("Aircraft/Instruments/Textures/wxecho.rgb");
 RADAR.getNode("serviceable",1).setBoolValue(1);
 RADAR.getNode("range",1).setIntValue(20);
 RADAR.getNode("heading-marker",1).setBoolValue(0);

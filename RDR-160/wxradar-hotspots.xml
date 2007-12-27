@@ -49,7 +49,7 @@
                 </equals>
             </condition>
             <texture>
-                <path>Aircraft/Instruments_3d/RDR-160/od_wxradar.rgb</path>
+                <path>Aircraft/Instruments-3d/RDR-160/od_wxradar.rgb</path>
                 <x1>0.0</x1>
                 <y1>0.0</y1>
                 <x2>1.0</x2>

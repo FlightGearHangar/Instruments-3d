@@ -19,7 +19,7 @@
     <animation>
         <type>rotate</type>
         <object-name>VSIneedle</object-name>
-        <property>/instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm</property>
+        <property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
         <interpolation>
             <entry><ind>-6000.0</ind><dep>-170.0</dep></entry>
             <entry><ind>-4000.0</ind><dep>-135.0</dep></entry>

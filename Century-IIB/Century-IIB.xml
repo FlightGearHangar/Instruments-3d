@@ -12,17 +12,17 @@
     <panel>
         <path>Aircraft/Instruments-3d/Century-IIB/Century-IIBPanel.xml</path>
         <bottom-left>
-            <x-m>0.0</x-m>
+            <x-m>0.009</x-m>
             <y-m>-0.047625</y-m>
             <z-m>-0.0254</z-m>
         </bottom-left>
         <bottom-right>
-            <x-m>0.0</x-m>
+            <x-m>0.009</x-m>
             <y-m>0.047625</y-m>
             <z-m>-0.0254</z-m>
         </bottom-right>
         <top-left>
-            <x-m>0.0</x-m>
+            <x-m>0.009</x-m>
             <y-m>-0.047625</y-m>
             <z-m>0.0254</z-m>
         </top-left>

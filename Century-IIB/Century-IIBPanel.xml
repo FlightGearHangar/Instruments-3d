@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PropertyList>
-    <name>CenturyIIB</name>
+    <name>Century-IIBPanel</name>
     <background>Aircraft/Instruments-3d/Century-IIB/transparent.rgb</background>
     <w>158</w>
     <h>74</h>
@@ -20,9 +20,9 @@
                     <name>ApButton</name>
                     <button>0</button>
                     <x>-75</x>
-                    <y>-20</y>
-                    <w>30</w>
-                    <h>40</h>
+                    <y>-16</y>
+                    <w>38</w>
+                    <h>48</h>
                     <binding>
                         <command>property-toggle</command>
                         <property>/autopilot/CENTURYIIB/controls/roll</property>
@@ -37,10 +37,10 @@
                 <action>
                     <name>HdgButton</name>
                     <button>0</button>
-                    <x>34</x>
-                    <y>-20</y>
-                    <w>30</w>
-                    <h>40</h>
+                    <x>37</x>
+                    <y>-16</y>
+                    <w>38</w>
+                    <h>48</h>
                     <binding>
                         <command>property-toggle</command>
                         <property>/autopilot/CENTURYIIB/controls/hdg</property>
@@ -55,10 +55,10 @@
                 <action>
                     <name>ROLL decrease</name>
                     <button>0</button>
-                    <x>-35</x>
-                    <y>-30</y>
+                    <x>-30</x>
+                    <y>-25</y>
                     <w>30</w>
-                    <h>40</h>
+                    <h>45</h>
                     <binding>
                         <command>property-adjust</command>
                         <property>/autopilot/CENTURYIIB/settings/roll-knob-deg</property>
@@ -76,10 +76,10 @@
                 <action>
                     <name>ROLL increase</name>
                     <button>0</button>
-                    <x>-5</x>
-                    <y>-30</y>
+                    <x>0</x>
+                    <y>-25</y>
                     <w>30</w>
-                    <h>40</h>
+                    <h>45</h>
                     <binding>
                         <command>property-adjust</command>
                         <property>/autopilot/CENTURYIIB/settings/roll-knob-deg</property>

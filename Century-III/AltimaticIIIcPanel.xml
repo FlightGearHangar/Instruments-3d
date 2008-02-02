@@ -20,10 +20,10 @@
                 <action>
                     <name>RollButton</name>
                     <button>0</button>
-                    <x>-59</x>
-                    <y>-4</y>
+                    <x>-57</x>
+                    <y>0</y>
                     <w>20</w>
-                    <h>30</h>
+                    <h>33</h>
                     <binding>
                         <command>property-toggle</command>
                         <property>/autopilot/CENTURYIII/controls/roll</property>
@@ -38,10 +38,10 @@
                 <action>
                     <name>HdgButton</name>
                     <button>0</button>
-                    <x>-39</x>
-                    <y>-4</y>
+                    <x>-37</x>
+                    <y>0</y>
                     <w>20</w>
-                    <h>30</h>
+                    <h>33</h>
                     <binding>
                         <command>property-toggle</command>
                         <property>/autopilot/CENTURYIII/controls/hdg</property>
@@ -56,10 +56,10 @@
                 <action>
                     <name>AltButton</name>
                     <button>0</button>
-                    <x>-19</x>
-                    <y>-4</y>
+                    <x>-17</x>
+                    <y>0</y>
                     <w>20</w>
-                    <h>30</h>
+                    <h>33</h>
                     <binding>
                         <command>property-toggle</command>
                         <property>/autopilot/CENTURYIII/controls/alt</property>
@@ -74,10 +74,10 @@
                 <action>
                     <name>PitchButton</name>
                     <button>0</button>
-                    <x>1</x>
-                    <y>-4</y>
+                    <x>3</x>
+                    <y>0</y>
                     <w>20</w>
-                    <h>30</h>
+                    <h>33</h>
                     <binding>
                         <command>property-toggle</command>
                         <property>/autopilot/CENTURYIII/controls/pitch</property>
@@ -95,7 +95,7 @@
                     <x>-53</x>
                     <y>-38</y>
                     <w>15</w>
-                    <h>30</h>
+                    <h>35</h>
                     <binding>
                         <command>property-adjust</command>
                         <property>/autopilot/CENTURYIII/settings/roll-knob-deg</property>
@@ -116,7 +116,7 @@
                     <x>-38</x>
                     <y>-38</y>
                     <w>15</w>
-                    <h>30</h>
+                    <h>35</h>
                     <binding>
                         <command>property-adjust</command>
                         <property>/autopilot/CENTURYIII/settings/roll-knob-deg</property>
@@ -134,9 +134,9 @@
                 <action>
                     <name>PITCH increase</name>
                     <button>0</button>
-                    <x>42</x>
+                    <x>44</x>
                     <y>-23</y>
-                    <w>10</w>
+                    <w>12</w>
                     <h>25</h>
                     <binding>
                         <command>property-adjust</command>
@@ -155,9 +155,9 @@
                 <action>
                     <name>PITCH decrease</name>
                     <button>0</button>
-                    <x>42</x>
+                    <x>44</x>
                     <y>2</y>
-                    <w>10</w>
+                    <w>12</w>
                     <h>25</h>
                     <binding>
                         <command>property-adjust</command>
@@ -172,25 +172,6 @@
                     </binding>
                 </action>
 
-                <!-- PITCH neutral -->
-                <action>
-                    <name>PITCH decrease</name>
-                    <button>1</button>
-                    <x>42</x>
-                    <y>-23</y>
-                    <w>10</w>
-                    <h>50</h>
-                    <binding>
-                        <command>property-assign</command>
-                        <property>/autopilot/CENTURYIII/settings/pitch-wheel-deg</property>
-                        <value>0</value>
-                    </binding>
-                    <binding>
-                        <command>nasal</command>
-                        <script>century3.pitchWheelUpdate()</script>
-                    </binding>
-                </action>
-                
             </actions>
         </instrument>
     </instruments>

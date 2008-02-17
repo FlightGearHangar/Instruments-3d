@@ -78,7 +78,7 @@ Syd Adams
             <and>
                 <property>instrumentation/kns-80/serviceable</property>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -91,7 +91,7 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
                 <equals>
@@ -114,7 +114,7 @@ Syd Adams
                     <value>0</value>
                 </equals>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -132,7 +132,7 @@ Syd Adams
                     <value>1</value>
                 </equals>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -150,7 +150,7 @@ Syd Adams
                     <value>2</value>
                 </equals>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -168,7 +168,7 @@ Syd Adams
                     <property>instrumentation/dme/in-range</property>
                 </not>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -183,7 +183,7 @@ Syd Adams
                 <property>instrumentation/kns-80/serviceable</property>
                 <property>instrumentation/dme/in-range</property>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -201,7 +201,7 @@ Syd Adams
                     <value>0</value>
                 </equals>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -219,7 +219,7 @@ Syd Adams
                     <value>1</value>
                 </equals>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -237,7 +237,7 @@ Syd Adams
                     <value>2</value>
                 </equals>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -255,7 +255,7 @@ Syd Adams
                     <value>3</value>
                 </equals>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -270,7 +270,7 @@ Syd Adams
                 <property>instrumentation/kns-80/serviceable</property>
                 <property>instrumentation/kns-80/dme-hold</property>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>
@@ -286,7 +286,7 @@ Syd Adams
                 <property>instrumentation/nav/nav-loc</property>
                 <property>instrumentation/nav/in-range</property>
                 <greater-than>
-                    <property>systems/electrical/volts</property>
+                    <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
             </and>

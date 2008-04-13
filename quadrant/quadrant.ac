@@ -664,7 +664,7 @@ refs 4
 0 0 1
 kids 0
 OBJECT poly
-name "LeftPropeller"
+name "LeftPropellerControl"
 loc -0.00979305 0.096514 0.0124764
 numvert 16
 -0.00526344 0.0858233 0.00220214
@@ -770,7 +770,7 @@ refs 4
 9 0 1
 kids 0
 OBJECT poly
-name "RightPropeller"
+name "RightPropellerControl"
 loc -0.00979305 0.096514 -0.0127482
 numvert 16
 -0.00526344 0.0858233 -0.00360074

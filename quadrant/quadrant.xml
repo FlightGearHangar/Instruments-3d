@@ -1,6 +1,6 @@
-<?xml version="1.0" ?> 
-  <PropertyList> 
-    <path>quadrant.ac</path> 
+<?xml version="1.0" ?>
+  <PropertyList>
+    <path>quadrant.ac</path>
 
  <animation>
   <type>rotate</type>
@@ -30,7 +30,7 @@
 
  <animation>
   <type>rotate</type>
-  <object-name>LeftPropeller</object-name>
+  <object-name>LeftPropellerControl</object-name>
   <property>controls/engines/engine[0]/propeller-pitch</property>
   <offset-deg>60</offset-deg>
   <factor>-60</factor>
@@ -43,7 +43,7 @@
 
  <animation>
   <type>rotate</type>
-  <object-name>RightPropeller</object-name>
+  <object-name>RightPropellerControl</object-name>
   <property>controls/engines/engine[1]/propeller-pitch</property>
   <offset-deg>60</offset-deg>
   <factor>-60</factor>

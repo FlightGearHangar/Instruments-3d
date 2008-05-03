@@ -8,17 +8,50 @@ var RAmode=props.globals.getNode("/instrumentation/primus1000/ra-mode",1);
 var DC550 = props.globals.getNode("/instrumentation/primus1000/dc550",1);
 var fms_enabled =0;
 
+#Primus 1000 class 
+# ie: var primus = P1000.new();
+var P1000 = {
+    new : func(){
+        m = { parents : [P1000]};
+        m.primus = props.globals.getNode("instrumentation/primus1000",1);
+        m.fd_mode=m.primus.getNode("fdmode",1);
+        m.fd_mode.setIntValue(0);
+        m.ra_mode=m.primus.getNode("ra-mode",1);
+        m.ra_mode.setIntValue(0);
+        m.fms_mode=m.primus.getNode("fms-mode",1);
+        m.fms_mode.setBoolValue(0);
+
+        m.dc550 = m.primus.getNode("dc550",1);
+        m.baro_mode.setBoolValue(1);
+        m.baro_kpa = m.efis.getNode("baro-kpa",1);
+        m.baro_kpa.setDoubleValue(0);
+        m.temp = m.efis.getNode("fixed-temp",1);
+        m.temp.setDoubleValue(0);
+    return m;
+    },
+#### convert inhg to kpa ####
+    calc_kpa : func{
+        var kp = getprop("instrumentation/altimeter/setting-inhg");
+        me.baro_kpa.setValue(kp * 33.8637526);
+        },
+#### update temperature display ####
+    update_temp : func{
+        var tmp = getprop("/environment/temperature-degc");
+        if(tmp < 0.00){
+            tmp = -1 * tmp;
+        }
+        me.temp.setValue(tmp);
+    },
+
+};
+
+
 var NavDist=props.globals.getNode("/instrumentation/primus1000/nav-dist-nm",1);
 var NavType=props.globals.getNode("/instrumentation/primus1000/nav-type",1);
 var NavString=props.globals.getNode("/instrumentation/primus1000/nav-string",1);
 var NavID=props.globals.getNode("/instrumentation/primus1000/nav-id",1);
 var FMSMode=props.globals.getNode("/instrumentation/primus1000/fms-mode",1);
 var APoff=props.globals.getNode("/autopilot/locks/passive-mode",1);
-var Hyd1=props.globals.getNode("systems/hydraulic/pump-psi[0]",1);
-var Hyd2=props.globals.getNode("systems/hydraulic/pump-psi[1]",1);
-var FuelPph1=props.globals.getNode("engines/engine[0]/fuel-flow_pph",1);
-var FuelPph2=props.globals.getNode("engines/engine[1]/fuel-flow_pph",1);
-var FuelDensity = 6.0;
 var FMS_VNAV =["VNV","FMS"];
 var NAV_SRC = ["VOR1","VOR2","ILS1","ILS2","FMS"];
 var ET = aircraft.timer.new("/instrumentation/primus1000/pfd/ET-sec", 5,0);
@@ -113,16 +146,6 @@ var update_fuel = func{
 }
 
 var update_eicas = func{
-    var hpsi = getprop("/engines/engine[0]/n2");
-    if(hpsi == nil){hpsi=0.0;}
-    hpsi = hpsi * 100;
-    if(hpsi > 3000){hpsi=3000;}
-    Hyd1.setValue(hpsi);
-    hpsi = getprop("/engines/engine[1]/n2");
-    if(hpsi == nil){hpsi=0.0;}
-    hpsi = hpsi * 100;
-    if(hpsi > 3000){hpsi=3000;}
-    Hyd2.setValue(hpsi);
     update_fuel();
     }
 

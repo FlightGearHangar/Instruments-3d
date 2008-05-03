@@ -177,10 +177,10 @@ Cancels other lateral modes
         </condition>
         <binding>
             <command>property-adjust</command>
-            <property>autopilot/settings/target-pitch-deg</property>
-            <step>-0.10000</step>
-            <min>-15</min>
-            <max>15</max>
+            <property>autopilot/settings/vertical-speed-fpm</property>
+            <step>-50</step>
+            <min>-5000</min>
+            <max>5000</max>
             <wrap>0</wrap>
         </binding>
     </action>
@@ -200,10 +200,10 @@ Cancels other lateral modes
         </condition>
         <binding>
             <command>property-adjust</command>
-            <property>autopilot/settings/target-pitch-deg</property>
-            <step>0.10000</step>
-            <min>-15</min>
-            <max>15</max>
+            <property>autopilot/settings/vertical-speed-fpm</property>
+            <step>50</step>
+            <min>-5000</min>
+            <max>5000</max>
             <wrap>0</wrap>
         </binding>
     </action>

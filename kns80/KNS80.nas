@@ -8,9 +8,9 @@
 #### Nav Modes  0 = VOR ; 1 = VOR/PAR ; 2 = RNAV/ENR ; 3 = RNAV/APR ;
 ####
 
-KNS80 = props.globals.getNode("/instrumentation/kns-80",1);
-NAV1 = props.globals.getNode("/instrumentation/nav/frequencies/selected-mhz",1);
-NAV1_RADIAL = props.globals.getNode("/instrumentation/nav/radials/selected-deg",1);
+var KNS80 = props.globals.getNode("/instrumentation/kns-80",1);
+var NAV1 = props.globals.getNode("/instrumentation/nav/frequencies/selected-mhz",1);
+var NAV1_RADIAL = props.globals.getNode("/instrumentation/nav/radials/selected-deg",1);
 KNS80.getNode("serviceable",1).setBoolValue(1);
 KNS80.getNode("volume-adjust",1).setDoubleValue(0);
 KNS80.getNode("data-adjust",1).setDoubleValue(0);
@@ -35,40 +35,40 @@ KNS80.getNode("wpt[2]/distance",1).setDoubleValue(5.8);
 KNS80.getNode("wpt[3]/frequency",1).setDoubleValue(11000);
 KNS80.getNode("wpt[3]/radial",1).setDoubleValue(0);
 KNS80.getNode("wpt[3]/distance",1).setDoubleValue(0.0);
-FDM_ON = 0;
-dsp_flash = props.globals.getNode("instrumentation/kns-80/flash", 1);
+var FDM_ON = 0;
+var dsp_flash = props.globals.getNode("instrumentation/kns-80/flash", 1);
 aircraft.light.new("instrumentation/kns-80/dsp-state", [0.5, 0.5],dsp_flash);
 
 # Properties
 
-NAV1_ACTUAL = props.globals.getNode("/instrumentation/nav/radials/actual-deg",1);
-NAV1_TO_FLAG = props.globals.getNode("/instrumentation/nav[0]/to-flag",1);
-NAV1_FROM_FLAG = props.globals.getNode("/instrumentation/nav[0]/from-flag",1);
-NAV1_HEADING_NEEDLE_DEFLECTION = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection",1);
+var NAV1_ACTUAL = props.globals.getNode("/instrumentation/nav/radials/actual-deg",1);
+var NAV1_TO_FLAG = props.globals.getNode("/instrumentation/nav[0]/to-flag",1);
+var NAV1_FROM_FLAG = props.globals.getNode("/instrumentation/nav[0]/from-flag",1);
+var NAV1_HEADING_NEEDLE_DEFLECTION = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection",1);
 
-NAV1_IN_RANGE = props.globals.getNode("/instrumentation/nav[0]/in-range",1);
-DME1_IN_RANGE = props.globals.getNode("/instrumentation/dme[0]/in-range",1);
+var NAV1_IN_RANGE = props.globals.getNode("/instrumentation/nav[0]/in-range",1);
+var DME1_IN_RANGE = props.globals.getNode("/instrumentation/dme[0]/in-range",1);
 
 # outputs
-CDI_NEEDLE = props.globals.getNode("/instrumentation/gps/cdi-deflection",1);
-TO_FLAG    = props.globals.getNode("/instrumentation/gps/to-flag",1);
-FROM_FLAG  = props.globals.getNode("/instrumentation/gps/from-flag",1);
+var CDI_NEEDLE = props.globals.getNode("/instrumentation/gps/cdi-deflection",1);
+var TO_FLAG    = props.globals.getNode("/instrumentation/gps/to-flag",1);
+var FROM_FLAG  = props.globals.getNode("/instrumentation/gps/from-flag",1);
 
 
-RNAV = props.globals.getNode("/instrumentation/rnav",1);
+var RNAV = props.globals.getNode("/instrumentation/rnav",1);
 # distance, radial from VOR Station
 # rho, theta: distance and radial for phantom station
 # range, bearing: distance and radial from phantom station
 
-PI=3.14159265;
-D2R=PI/180;
-R2D=180/PI;
+var PI=3.14159265;
+var D2R=PI/180;
+var R2D=180/PI;
 
 var unnil = func(n) { n == nil ? 0 : n }
 
 
 # 0.1 second cron
-sec01cron = func {
+var sec01cron = func {
    updateRNAV();
 
    # schedule the next call
@@ -77,7 +77,7 @@ sec01cron = func {
 
 
 # general initialization
-init = func {
+var init = func {
    # schedule the 1st call
    settimer(sec01cron,1);
 }
@@ -98,29 +98,33 @@ var updateRNAV = func{
 
 #### Nav Modes  0 = VOR ; 1 = VOR/PAR ; 2 = RNAV/ENR ; 3 = RNAV/APR ;
     var mode = KNS80.getNode("nav-mode").getValue();
-    use =KNS80.getNode("use").getValue();
-    distance=getprop("/instrumentation/dme/indicated-distance-nm");
-    selected_radial = NAV1_RADIAL.getValue();
-    radial = NAV1_ACTUAL.getValue();
-    rho = KNS80.getNode("wpt[" ~ use ~ "]/distance").getValue();
-    theta = KNS80.getNode("wpt[" ~ use ~ "]/radial").getValue();
-    fangle = 0;
+    var use =KNS80.getNode("use").getValue();
+    var distance=getprop("/instrumentation/dme/indicated-distance-nm");
+    var selected_radial = NAV1_RADIAL.getValue();
+    var radial = NAV1_ACTUAL.getValue();
+    var rho = KNS80.getNode("wpt[" ~ use ~ "]/distance").getValue();
+    var theta = KNS80.getNode("wpt[" ~ use ~ "]/radial").getValue();
+    var fangle = 0;
+    var needle_deflection = 0;
+    var from_flag=1;
+		var to_flag  =0;
 
+    
     radial = unnil(radial);
     theta = unnil(theta);
     rho = unnil(rho);
     distance=unnil(distance);
 
-    x1 = distance * math.cos( radial*D2R );
-    y1 = distance * math.sin( radial*D2R );
-    x2 = rho * math.cos( theta*D2R );
-    y2 = rho * math.sin( theta*D2R );
+    var x1 = distance * math.cos( radial*D2R );
+    var y1 = distance * math.sin( radial*D2R );
+    var x2 = rho * math.cos( theta*D2R );
+    var y2 = rho * math.sin( theta*D2R );
 
-    range = math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );
-    bearing = math.atan2 (( y1-y2), (x1-x2))*R2D;
+    var range = math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );
+    var bearing = math.atan2 (( y1-y2), (x1-x2))*R2D;
 
     if(bearing < 0) bearing += 360;
-    abearing = bearing > 180 ? bearing - 180 : bearing + 180;
+    var abearing = bearing > 180 ? bearing - 180 : bearing + 180;
 
     if( mode == 0){
     #	print("KNS-80 VOR");

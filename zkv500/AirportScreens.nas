@@ -1,6 +1,8 @@
 var screenAirportMain = {
     pos: nil,
     apt_coord: nil,
+    apt: nil,
+    searched: 0,
     right : func {
     },
     apt_to_waypoint : func {
@@ -13,38 +15,56 @@ var screenAirportMain = {
 	gps_wp.getNode("wp[1]/longitude-deg",1).setValue(me.apt_coord.lat());
 	gps_wp.getNode("wp[1]/latitude-deg",1).setValue(me.apt_coord.lon());
 	gps_wp.getNode("wp[1]/altitude-ft",1).setValue(me.apt_coord.alt()*alt_conv[1][0]);
-	gps_wp.getNode("wp[1]/ID",1).setValue(apt.id);
-	gps_wp.getNode("wp[1]/name",1).setValue(apt.name);
+	gps_wp.getNode("wp[1]/ID",1).setValue(me.apt.id);
+	gps_wp.getNode("wp[1]/name",1).setValue(me.apt.name);
 	mode = 2;
 	page = 1;
 	displayed_screen = 1; #screenNavigationMain
     },
-    enter : func {
-	me.apt_to_waypoint();
+    enter : func { #add to route
+	add_waypoint(me.apt.id, me.apt.name, "APT", 
+		    [me.apt_coord.lat(), me.apt_coord.lon(), 
+		    me.apt_coord.alt()*alt_conv[1][0]]);
     },
     escape : func {
     },
-    start : func {
-	me.apt_to_waypoint();
+    start : func { #add bookmark, enter turnpoint mode
+	add_bookmark(me.apt.id, me.apt.name, "APT", 
+		    [me.apt_coord.lat(), me.apt_coord.lon(), 
+		    me.apt_coord.alt()*alt_conv[1][0]]);
+	screenTurnpointSelect.selected = screenTurnpointSelect.n - 1;
+	screenTurnpointSelect.start();
     },
-    lines : func (searched = nil) {
-	if (searched != nil)
-	    apt = searched;
+    lines : func {
+	if (me.apt == nil) {
+	    me.apt = airportinfo();
+	    print("youpi ", me.count);
+	    me.searched = 0;
+	}
+	if (me.apt != nil) {
+	    glide_slope_tunnel.complement_runways(me.apt);
+	    var rwy = glide_slope_tunnel.best_runway(me.apt);
+	    me.pos = geo.Coord.new(geo.aircraft_position());
+	    me.apt_coord = geo.Coord.new().set_latlon(rwy.lat, rwy.lon);
+	    var ac_to_apt = [me.pos.distance_to(me.apt_coord), me.pos.course_to(me.apt_coord)];
+	    var ete = ac_to_apt[0] / getprop("instrumentation/gps/indicated-ground-speed-kt") * 3600 * 1852;
+	    print ("me.searched: ",me.searched);
+	    display([
+	    sprintf("%s APT: %s", me.searched != nil ? "SEARCHED" : "NEAREST", me.apt.id),
+	    sprintf("ELEV: %d %s", me.apt.elevation * alt_conv[1][alt_unit],alt_unit_short_name[alt_unit]),
+	    sprintf("DIST: %d %s",ac_to_apt[0] * dist_conv[2][dist_unit],dist_unit_short_name[dist_unit]),
+	    sprintf("BRG: %d°    RWY: %02d",ac_to_apt[1], int(rwy.heading) / 10),
+	    sprintf("ETE: %s",seconds_to_string(ete))
+	    ]);
+	}
 	else
-	    apt = airportinfo();
-	glide_slope_tunnel.complement_runways(apt);
-	var rwy = glide_slope_tunnel.best_runway(apt);
-	me.pos = geo.Coord.new(geo.aircraft_position());
-	me.apt_coord = geo.Coord.new().set_latlon(rwy.lat, rwy.lon);
-	var ac_to_apt = [me.pos.distance_to(me.apt_coord), me.pos.course_to(me.apt_coord)];
-	var ete = ac_to_apt[0] / getprop("instrumentation/gps/indicated-ground-speed-kt") * 3600 * 1852;
-	display([
-	sprintf("%s APT: %s", searched != nil ? "SEARCHED" : "NEAREST", apt.id),
-	sprintf("ELEV: %d %s", apt.elevation * alt_conv[1][alt_unit],alt_unit_short_name[alt_unit]),
-	sprintf("DIST: %d %s",ac_to_apt[0] * dist_conv[2][dist_unit],dist_unit_short_name[dist_unit]),
-	sprintf("BRG: %d°    RWY: %02d",ac_to_apt[1], int(rwy.heading) / 10),
-	sprintf("ETE: %s",seconds_to_string(ete))
-	]);
+	    display([
+	    "",
+	    "",
+	    "NO AIRPORT FOUND",
+	    "",
+	    ""
+	    ]);
     }
 };
 
@@ -85,42 +105,24 @@ var screenAirportInfos = {
 };
 
 var screenSearchAirport = {
-    oaci : ["-","-","-","-"],
-    pointer: 0,
-    value: 0,
-    searched: nil,
     right : func {
-	me.value = cycle(size(screenEdit.alphanum), me.value, arg[0]);
-	me.oaci[me.pointer] = screenEdit.alphanum[me.value];
     },
     enter : func {
-	if (me.pointer < 3) { 
-	    me.pointer += 1;
-	    me.value = 0;
-	}
-	else 
-	    me.searched = airportinfo(me.oaci[0]~me.oaci[1]~me.oaci[2]~me.oaci[3]);
     },
     escape : func {
-	me.oaci = ["-","-","-","-"];
-	me.pointer = 0;
-	me.searched = nil;
     },
     start : func {
+	var searched = airportinfo(arg[0]);
+	if (searched != nil) {
+	    screenAirportMain.apt = searched;
+	    screenAirportMain.searched = 1;
+	    return 1;
+	}
+	else
+	    return 0;
     },
     lines : func {
-	if (me.searched == nil)
-	    display([
-	    "SEARCH AIRPORT:",
-	    sprintf("%s%s%s%s",me.oaci[0],me.oaci[1],me.oaci[2],me.oaci[3]),
-	    "",
-	    "",
-	    ""
-	    ]);
-	else {
-	    screenAirportMain.lines(me.searched);
-	    me.right();
-	}
+	EditMode(4, "AIRPORT CODE", "SEARCH");
     }
 };
 

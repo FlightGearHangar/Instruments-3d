@@ -3,12 +3,14 @@ var screenTurnpointSelect = {
     page: 0,
     pointer: 0,
     loaded: 0,
+    selected: 0,
     right : func {
 	me.loaded = 0;
 	blocked = 1;
 	var t = browse(me.n, me.pointer, me.page, arg[0]);
 	me.pointer = t[0];
 	me.page = t[1];
+	me.selected = me.page*5 + me.pointer;
     },
     enter : func {
     },
@@ -21,7 +23,7 @@ var screenTurnpointSelect = {
 	gps_wp.getNode("wp/altitude-ft",1).setValue(gps_data.getNode("indicated-altitude-ft",1).getValue());
 	gps_wp.getNode("wp/ID").setValue("startpos");
 
-	var bookmark = gps_data.getNode("bookmarks/bookmark["~((me.page*5)+me.pointer)~"]/");
+	var bookmark = gps_data.getNode("bookmarks/bookmark["~me.selected~"]/");
 	gps_wp.getNode("wp[1]/latitude-deg",1).setValue(bookmark.getNode("latitude-deg",1).getValue());
 	gps_wp.getNode("wp[1]/longitude-deg",1).setValue(bookmark.getNode("longitude-deg",1).getValue());
 	gps_wp.getNode("wp[1]/altitude-ft",1).setValue(bookmark.getNode("altitude-ft",1).getValue());

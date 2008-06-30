@@ -81,14 +81,21 @@ var screenModeAndSettings = { # screen for changing the GPS mode and settings
 };
 
 var screenPositionMain = { # screens for POSITION mode
+    coord : [0,0,0],
     right : func {
     },
     enter : func {
-	GPSPositionEdit();
+	var ac = geo.aircraft_position();
+	me.coord = [ac.lat(), ac.lon(), ac.alt()];
+	EditMode(6, "EDIT WAYPOINT ID", "SAVE");
     },
     escape : func {
     },
     start : func {
+	if (mode == 5) {
+	    add_bookmark(arg[0], arg[0], "GPS", me.coord);
+	    return 1; #make gps quitting edition mode, back to previous mode and page
+	}
     },
     lines : func {
 	display ([
@@ -186,13 +193,11 @@ var screenNavigationMain = {
 	    gps_wp.getNode("wp/latitude-deg",1).setValue(gps_wp.getNode("wp[1]/latitude-deg",1).getValue());
 	    gps_wp.getNode("wp/altitude-ft",1).setValue(gps_wp.getNode("wp[1]/altitude-ft",1).getValue());
 	    gps_wp.getNode("wp/ID",1).setValue(gps_wp.getNode("wp[1]/ID",1).getValue());
-	    #gps_wp.getNode("wp/name",1).setValue(gps_wp.getNode("wp[1]/name",1).getValue());
  
 	    gps_wp.getNode("wp[1]/longitude-deg",1).setValue(next.getNode("longitude-deg",1).getValue());
 	    gps_wp.getNode("wp[1]/latitude-deg",1).setValue(next.getNode("latitude-deg",1).getValue());
 	    gps_wp.getNode("wp[1]/altitude-ft",1).setValue(next.getNode("altitude-ft",1).getValue());
 	    gps_wp.getNode("wp[1]/ID",1).setValue(next.getNode("ID",1).getValue());
-	    #gps_wp.getNode("wp[1]/name",1).setValue(next.getNode("name",1).getValue());
 	}
 	else {
 	    page = 0; #screenTaskSelect
@@ -202,11 +207,18 @@ var screenNavigationMain = {
     right : func {
     },
     enter : func {
-	if (mode == 3) me.nextWaypoint();
+	if (mode == 4) me.nextWaypoint();
+	else add_waypoint(gps_wp.getNode("wp[1]/ID",1).getValue(),
+			  gps_wp.getNode("wp[1]/name",1).getValue(),
+			  gps_wp.getNode("wp[1]/waypoint-type",1).getValue(),
+			  [gps_wp.getNode("wp[1]/latitude-deg",1).getValue(),
+			   gps_wp.getNode("wp[1]/longitude-deg",1).getValue(),
+			   gps_wp.getNode("wp[1]/altitude-ft",1).getValue()]);
     },
     escape : func {
     },
     start : func {
+	if (mode != 4) save_route();
     },
     lines : func {
 	me.waypoint = gps_wp.getNode("wp[1]",1);
@@ -221,8 +233,9 @@ var screenNavigationMain = {
 	    me.graph = substr(me.graph,0, cursor) ~ "|" ~ substr(me.graph, cursor+1, size(me.graph));
 	}
 	display ([
-	sprintf("ID: %s",
-	    me.waypoint.getNode("ID",1).getValue() != nil ? me.waypoint.getNode("ID",1).getValue() : "WP NOT NAMED!"),
+	sprintf("ID: %s [%s]",
+	    me.waypoint.getNode("ID",1).getValue() != nil ? me.waypoint.getNode("ID",1).getValue() : "WP NOT NAMED!",
+	    me.waypoint.getNode("type",1).getValue() != nil ? me.waypoint.getNode("type").getValue() : "---"),
 	sprintf("BRG: %d°  DST: %d %s",
 	    me.waypoint.getNode("bearing-mag-deg",1).getValue(),
 	    me.waypoint.getNode("distance-nm",1).getValue() * dist_conv[0][dist_unit],
@@ -245,48 +258,58 @@ var screenEdit = {
     alphanum: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
 	       "Q","R","S","T","U","V","W","X","Y","Z",
 	       "0","1","2","3","4","5","6","7","8","9"],
-    numeric: ["0","1","2","3","4","5","6","7","8","9"],
-    IDmap: ["-","-","-","-","-","-"],
+    numeric: ["0","1","2","3","4","5","6","7","8","9","."],
+    start_command: "",
+    edit_zone: "",
+    edit_title : "",
+    carset: [],
+    map: [],
     pointer: 0,
     value: 0,
-    coord: [0,0,0],
+    init: func (length, title, start_command, set = 0) {
+	for (var i = 0; i < length; i += 1) append(me.map, "-");
+	me.edit_title = title;
+	me.start_command = start_command;
+	me.carset = set != 0 ? me.numeric : me.alphanum;
+	left_knob(0); # force display
+    },
     right : func {
-	me.value = cycle(size(me.alphanum), me.value, arg[0]);
-	me.IDmap[me.pointer] = me.alphanum[me.value];
+	me.value = cycle(size(me.carset), me.value, arg[0]);
+	me.map[me.pointer] = me.carset[me.value];
     },
     enter : func {
-	me.pointer = cycle(size(me.IDmap), me.pointer, 1);
+	me.pointer = cycle(size(me.map), me.pointer, 1);
 	me.value = 0;
     },
     escape : func {
-	#save_bookmarks();
-	me.IDmap = ["-","-","-","-","-","-"];
+	me.map = [];
 	me.pointer = 0;
 	me.value = 0;
+	me.start_command = "";
+	me.edit_zone = "";
+	me.edit_title = "";
+	me.carset = [];
+	me.map = [];
 	mode = me.previous_mode;
 	page = me.previous_page;
-	left_knob(0);
+	left_knob(0); # force new display
     },
     start : func {
-	var ID = "";
-	for (var i = 0; i < size(me.IDmap); i += 1)
-	    ID ~= me.IDmap[i] != "-" ? me.IDmap[i] : "";
-	var bookmark = gps_data.getNode("bookmarks/bookmark["~screenTurnpointSelect.n~"]/",1);
-	screenTurnpointSelect.n += 1;
-	bookmark.getNode("ID",1).setValue(ID);
-	bookmark.getNode("latitude-deg",1).setDoubleValue(me.coord[0]);
-	bookmark.getNode("longitude-deg",1).setDoubleValue(me.coord[1]);
-	bookmark.getNode("altitude-ft",1).setDoubleValue(me.coord[2]*alt_conv[1][0]);
-	bookmark.getNode("infos",1).setValue("no infos");
-	me.escape();
+	var str = "";
+	for (var i = 0; i < size(me.map); i += 1)
+	    str ~= me.map[i] != "-" ? me.map[i] : "";
+	if (screen[page_list[me.previous_mode][me.previous_page]].start(str)) me.escape();
     },
     lines : func {
+	me.right(0); #init car
+	me.edit_zone = "";
+	for (var i=0; i < size(me.map); i+=1) me.edit_zone ~= me.map[i];
 	display([
-	"ENTER POINT ID",
-	sprintf("%s%s%s%s%s%s",me.IDmap[0],me.IDmap[1],me.IDmap[2],me.IDmap[3],me.IDmap[4],me.IDmap[5]),
+	me.edit_title,
+	me.edit_zone,
 	"",
 	"ESC -> AVOID",
-	"START -> SAVE"
+	sprintf("START -> %s", me.start_command)
 	]);
     }
 };

@@ -163,6 +163,28 @@ var list_routes = func {
     return size(routes);
 }
 
+var add_waypoint = func (ID, name, type, coord) {
+    var waypoint = gps_data.getNode("route/Waypoint["~screenWaypointsList.n~"]/",1);
+    screenWaypointsList.n += 1;
+    waypoint.getNode("ID",1).setValue(ID);
+    waypoint.getNode("latitude-deg",1).setDoubleValue(coord[0]);
+    waypoint.getNode("longitude-deg",1).setDoubleValue(coord[1]);
+    waypoint.getNode("altitude-ft",1).setDoubleValue(coord[2]*alt_conv[1][0]);
+    waypoint.getNode("name",1).setValue(name);
+    waypoint.getNode("desc",1).setValue("no infos");
+    waypoint.getNode("waypoint-type",1).setValue(type);
+}
+
+var save_route = func {
+    var first_id = gps_data.getNode("route/Waypoint/ID").getValue();
+    var last_id = gps_data.getNode("route/Waypoint["~(screenWaypointsList.n - 1)~"]/ID").getValue();
+    var path = getprop("/sim/fg-home") ~ "/Export/"~first_id~"-"~last_id~".xml";
+    var args = props.Node.new({ filename : path });
+    var export = args.getNode("data", 1);
+    props.copy(gps_data.getNode("route"), export);
+    fgcommand("savexml", args);
+}
+
 var waypointAlert = func {
     mode > 0 or return; 
     var ttw = gps_wp.getNode("wp[1]/TTW",1).getValue();
@@ -183,7 +205,7 @@ var waypointAlert = func {
 var load_bookmarks = func {
     var n = 0;
     gps_data.getNode("bookmarks",1).removeChildren("bookmark");
-    var file = getprop("/sim/fg-home") ~ "/bookmarks.xml";
+    var file = getprop("/sim/fg-home") ~ "/Export/bookmarks.xml";
     var s = io.stat(file);
     if (s != nil) {
 	fgcommand("loadxml", props.Node.new({
@@ -198,26 +220,30 @@ var load_bookmarks = func {
 var save_bookmarks = func {
     var path = getprop("/sim/fg-home") ~ "/Export/bookmarks.xml";
     var args = props.Node.new({ filename : path });
-    var export = args.getNode("/instrumentation/gps/bookmarks", 1);
-    foreach (var c; gps_data.getNode("bookmarks").getChildren("bookmark")) {
-	var b = export.getChild("bookmark",1);
-	b.getNode("ID", 1).setValue(c.getNode("ID").getValue());
-	b.getNode("latitude-deg", 1).setValue(c.getNode("latitude-deg").getValue());
-	b.getNode("longitude-deg", 1).setValue(c.getNode("longitude-deg").getValue());
-	b.getNode("altitude-ft", 1).setValue(c.getNode("altitude-ft").getValue());
-	b.getNode("infos", 1).setValue(c.getNode("infos").getValue());
-    }
+    var export = args.getNode("data", 1);
+    props.copy(gps_data.getNode("bookmarks"), export);
     fgcommand("savexml", args);
 }
 
-var GPSPositionEdit = func {
+var add_bookmark = func (ID, name, type, coord) {
+    var bookmark = gps_data.getNode("bookmarks/bookmark["~screenTurnpointSelect.n~"]/",1);
+    screenTurnpointSelect.n += 1;
+    bookmark.getNode("ID",1).setValue(ID);
+    bookmark.getNode("latitude-deg",1).setDoubleValue(coord[0]);
+    bookmark.getNode("longitude-deg",1).setDoubleValue(coord[1]);
+    bookmark.getNode("altitude-ft",1).setDoubleValue(coord[2]*alt_conv[1][0]);
+    bookmark.getNode("name",1).setValue(name);
+    bookmark.getNode("desc",1).setValue("no infos");
+    bookmark.getNode("waypoint-type",1).setValue(type);
+    save_bookmarks();
+}
+
+var EditMode = func (length, start_command, start_func, numcar = 0) {
     screenEdit.previous_mode = mode;
     screenEdit.previous_page = page;
     mode = 5; #ID edition
     page = 0;
-    var ac = geo.aircraft_position();
-    screenEdit.coord = [ac.lat(), ac.lon(), ac.alt()];
-    left_knob(0);
+    screenEdit.init(length, start_command, start_func, numcar = 0);
 }
 
 ### initialisation stuff ###################################################

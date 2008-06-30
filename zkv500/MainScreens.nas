@@ -87,7 +87,7 @@ var screenPositionMain = { # screens for POSITION mode
     enter : func {
 	var ac = geo.aircraft_position();
 	me.coord = [ac.lat(), ac.lon(), ac.alt()];
-	EditMode(6, "EDIT WAYPOINT ID", "SAVE");
+	EditMode(6, "EDIT WAYPOINT ID", "SAVE", mode, page);
     },
     escape : func {
     },
@@ -197,7 +197,9 @@ var screenNavigationMain = {
 	    gps_wp.getNode("wp[1]/longitude-deg",1).setValue(next.getNode("longitude-deg",1).getValue());
 	    gps_wp.getNode("wp[1]/latitude-deg",1).setValue(next.getNode("latitude-deg",1).getValue());
 	    gps_wp.getNode("wp[1]/altitude-ft",1).setValue(next.getNode("altitude-ft",1).getValue());
+	    gps_wp.getNode("wp[1]/waypoint-type",1).setValue(next.getNode("waypoint-type",1).getValue());
 	    gps_wp.getNode("wp[1]/ID",1).setValue(next.getNode("ID",1).getValue());
+	    
 	}
 	else {
 	    page = 0; #screenTaskSelect
@@ -221,7 +223,7 @@ var screenNavigationMain = {
 	if (mode != 4) save_route();
     },
     lines : func {
-	me.waypoint = gps_wp.getNode("wp[1]",1);
+	me.waypoint = gps_wp.getNode("wp[1]");
 	crs_deviation = gps_wp.getNode("leg-course-deviation-deg").getValue();
 	if (crs_deviation > 5)
 	    me.graph = "[- - - - - ^ > > > > >]";
@@ -234,8 +236,8 @@ var screenNavigationMain = {
 	}
 	display ([
 	sprintf("ID: %s [%s]",
-	    me.waypoint.getNode("ID",1).getValue() != nil ? me.waypoint.getNode("ID",1).getValue() : "WP NOT NAMED!",
-	    me.waypoint.getNode("type",1).getValue() != nil ? me.waypoint.getNode("type").getValue() : "---"),
+	    me.waypoint.getNode("ID",1).getValue() != nil ? me.waypoint.getNode("ID",1).getValue() : "-----",
+	    me.waypoint.getNode("waypoint-type",1).getValue() != nil ? me.waypoint.getNode("waypoint-type").getValue() : "---"),
 	sprintf("BRG: %d°  DST: %d %s",
 	    me.waypoint.getNode("bearing-mag-deg",1).getValue(),
 	    me.waypoint.getNode("distance-nm",1).getValue() * dist_conv[0][dist_unit],
@@ -266,11 +268,13 @@ var screenEdit = {
     map: [],
     pointer: 0,
     value: 0,
-    init: func (length, title, start_command, set = 0) {
+    init: func (length, title, start_command, backmode, backpage, set = 0) {
 	for (var i = 0; i < length; i += 1) append(me.map, "-");
 	me.edit_title = title;
 	me.start_command = start_command;
 	me.carset = set != 0 ? me.numeric : me.alphanum;
+	me.previous_mode = backmode;
+	me.previous_page = backpage;
 	left_knob(0); # force display
     },
     right : func {

@@ -16,7 +16,7 @@ var spd_unit_short_name = ["kt", "km/h"];
 var spd_unit = 0;
 var dist_unit = 0;
 var alt_unit = 0;
-var apt = nil;
+#var apt = nil;
 var startpos = nil;
 var waypointindex = 0;
 var thresold_alert = [120, 60, 30, 15];
@@ -79,7 +79,7 @@ var start_button = func() {
 var left_knob = func(dir) {
     isOn == 1 or return;
     page = cycle(size(page_list[mode]), page, dir);
-    if (displayed_screen != 0 and blocked == 0) displayed_screen = page_list[mode][page];
+    if (blocked == 0) displayed_screen = page_list[mode][page];
     refresh_display();
 }
 
@@ -134,7 +134,7 @@ var cycle = func (entries_nbr, actual_entrie, dir) {
 
 var refresh_display = func() {
     screen[displayed_screen].lines();
-    if (isOn and 0 < displayed_screen < 5 ) settimer(func { refresh_display() }, freq, 1);
+    if (isOn and 0 < displayed_screen < 5 ) settimer(func { refresh_display(); }, freq, 1);
 }
 
 var seconds_to_string = func (time) {
@@ -238,12 +238,12 @@ var add_bookmark = func (ID, name, type, coord) {
     save_bookmarks();
 }
 
-var EditMode = func (length, start_command, start_func, numcar = 0) {
-    screenEdit.previous_mode = mode;
-    screenEdit.previous_page = page;
+var EditMode = func (length, start_command, start_func, backmode, backpage, numcar = 0) {
+    #screenEdit.previous_mode = backmode;
+    #screenEdit.previous_page = backpage;
     mode = 5; #ID edition
     page = 0;
-    screenEdit.init(length, start_command, start_func, numcar = 0);
+    screenEdit.init(length, start_command, start_func, backmode, backpage, numcar = 0);
 }
 
 ### initialisation stuff ###################################################

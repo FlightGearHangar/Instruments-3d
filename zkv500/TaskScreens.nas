@@ -27,7 +27,8 @@ var screenTaskSelect = {
 	gps_wp.getNode("wp[1]/latitude-deg",1).setValue(gps_data.getNode("route/Waypoint/latitude-deg",1).getValue());
 	gps_wp.getNode("wp[1]/longitude-deg",1).setValue(gps_data.getNode("route/Waypoint/longitude-deg",1).getValue());
 	gps_wp.getNode("wp[1]/altitude-ft",1).setValue(gps_data.getNode("route/Waypoint/altitude-ft",1).getValue());
-	gps_wp.getNode("wp[1]/ID").setValue(gps_data.getNode("route/Waypoint/ID",1).getValue());
+	gps_wp.getNode("wp[1]/waypoint-type",1).setValue(gps_data.getNode("route/Waypoint/waypoint-type",1).getValue());
+	gps_wp.getNode("wp[1]/ID",1).setValue(gps_data.getNode("route/Waypoint/ID",1).getValue());
 
 	waypointindex = 0;
 	me.loaded = 1;

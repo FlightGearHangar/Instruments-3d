@@ -1,12 +1,12 @@
-var mode = 0;
+var mode = 0; #current mode
 var displayed_screen = 0; #screenModeAndSettings
-var page = 0;
-var blocked = 0;
-var isOn = 0;
-var freq = 1;
-var screen = [];
-var line = [];
-var routes = [];
+var page = 0; #current page
+var blocked = 0; #boolean: 0 -> possible to cycle pages
+var isOn = 0; #ON/OFF: 0 -> OFF
+var freq = 1; #settimer frequency (in sec)
+var screen = []; #array containing all screens
+var line = []; #array containing the displayed lines
+var routes = []; #array containing the preprogrammed tasks
 var alt_unit_full_name = ["Feet", "Meters"];
 var dist_unit_full_name = ["Nautic Miles", "Kilometers"];
 var spd_unit_full_name = ["Knots", "KM/H"];
@@ -16,9 +16,8 @@ var spd_unit_short_name = ["kt", "km/h"];
 var spd_unit = 0;
 var dist_unit = 0;
 var alt_unit = 0;
-#var apt = nil;
-var startpos = nil;
-var waypointindex = 0;
+var startpos = nil; #geo.nas aircraft position
+var waypointindex = 0; #step in actual task
 var thresold_alert = [120, 60, 30, 15];
 var thresold_alert_index = 1;
 var thresold_next_waypoint = 5;
@@ -29,7 +28,7 @@ NOT_YET_IMPLEMENTED = [
     "IMPLEMENTED",
     ""
 ];
-var page = 0;
+var LINES = 5; #lines in display
 var page_list = [
     [0,0,0,0,0,0],      #0 ModeAndSettings: 1 page for mode, 5 pages for settings
     [1,2,3],            #1 PositionMain, Odometers, WindInfos
@@ -52,54 +51,56 @@ var gps_data = props.globals.getNode("/instrumentation/gps",1);
 var gps_wp = gps_data.getNode("wp",1);
 
 #### warps for buttons and knobs ########################################"
-var right_knob = func(dir) {
+var right_knob = func(dir) { #manage right knob, depends of displayed screen
     isOn == 1 or return;
     screen[displayed_screen].right(dir);
     refresh_display();
 }
 
-var enter_button = func() {
+var enter_button = func() { #manage enter button, depends of displayed screen
     isOn == 1 or return;
     screen[displayed_screen].enter();
     refresh_display();
 }
 
-var escape_button = func() {
+var escape_button = func() { #manage escape button, depends of displayed screen
     isOn == 1 or return;
     screen[displayed_screen].escape();
     refresh_display();
 }
 
-var start_button = func() {
+var start_button = func() { #manage start button, depends of displayed screen
     isOn == 1 or return;
     screen[displayed_screen].start();
     refresh_display();
 }
 
-var left_knob = func(dir) {
+var left_knob = func(dir) { #manage left button, cycle in mode's pages if not blocked
     isOn == 1 or return;
-    page = cycle(size(page_list[mode]), page, dir);
-    if (blocked == 0) displayed_screen = page_list[mode][page];
+    if (blocked == 0) { 
+	page = cycle(size(page_list[mode]), page, dir);
+	displayed_screen = page_list[mode][page];
+    }
     refresh_display();
 }
 
-var select_mode = func(dir) {
+var select_mode = func(dir) { #manage mode knob, cycle into available modes
     isOn == 1 or return;
     blocked = 0;
     if (displayed_screen != 0) {
 	displayed_screen = 0; #screenModeAndSettings
 	page = 0;
-	screen[displayed_screen].changemode(0);
+	mode = 0;
     }
-    else
-	screen[displayed_screen].changemode(dir);
+    elsif (page == 0) 
+	screen[0].mode_ = cycle(size(screen[0].available_modes), screen[0].mode_, dir);
     refresh_display();
 }
 
-var switch_ON_OFF = func() {
+var switch_ON_OFF = func() { #manage ON/OFF knob
     if (isOn) {
 	isOn = 0;
-	for (var i = 0; i < 5; i += 1) line[i].setValue("");
+	for (var i = 0; i < LINES; i += 1) line[i].setValue("");
     }
     else {
 	isOn = 1;
@@ -111,33 +112,35 @@ var switch_ON_OFF = func() {
 }
 
 ### useful funcs #########################################################
-var display = func () {
-    for (var i = 0; i < 5; i += 1) line[i].setValue(arg[0][i]);
+var display = func () { #display the array line[]
+    for (var i = 0; i < LINES; i += 1) line[i].setValue(arg[0][i]);
 }
 
 var browse = func (entries_nbr, index_pointer, index_page,dir) {
-    nl = entries_nbr - (index_page * 5) > 5 ? 5 : math.mod(entries_nbr - (index_page * 5), 5);
+    #browse multipaged entries, returns [pointer in page, page]
+    nl = entries_nbr - (index_page * LINES) > LINES ? LINES : math.mod(entries_nbr - (index_page * LINES), LINES);
     if (index_pointer + 1 == nl) {
-       np = int(entries_nbr / 5) + (math.mod(entries_nbr,5) ? 1 : 0);
+       np = int(entries_nbr / LINES) + (math.mod(entries_nbr,LINES) ? 1 : 0);
        index_page = cycle(np, index_page, dir);
     }
     index_pointer = cycle(nl, index_pointer, dir);
     return [index_pointer, index_page];
 }
 
-var cycle = func (entries_nbr, actual_entrie, dir) {   
+var cycle = func (entries_nbr, actual_entrie, dir) {
+    #cycle through entries, return entry index
     entries_nbr -= 1;
     if (dir == 1 and actual_entrie == entries_nbr) return 0;
     elsif (dir == -1 and actual_entrie == 0) return entries_nbr;
     else return actual_entrie + dir;
 }
 
-var refresh_display = func() {
+var refresh_display = func() { #refresh displayed lines, settimer if necessary
     screen[displayed_screen].lines();
     if (isOn and 0 < displayed_screen < 5 ) settimer(func { refresh_display(); }, freq, 1);
 }
 
-var seconds_to_string = func (time) {
+var seconds_to_string = func (time) { #converts secs (double) in string "hh:mm:ss"
     var hh = int(time / 3600);
     if (hh > 100) return "--:--:--";
     var mm = int((time - (hh * 3600)) / 60);
@@ -146,7 +149,7 @@ var seconds_to_string = func (time) {
 }
 
 ### route management ######################################################
-var list_routes = func {
+var list_routes = func { #load preprogrammed tasks
     routes = [];
     var path = getprop("/sim/fg-home") ~ "/Routes";
     var s = io.stat(path);
@@ -163,7 +166,7 @@ var list_routes = func {
     return size(routes);
 }
 
-var add_waypoint = func (ID, name, type, coord) {
+var add_waypoint = func (ID, name, type, coord) { #add a waypoint to a route
     var waypoint = gps_data.getNode("route/Waypoint["~screenWaypointsList.n~"]/",1);
     screenWaypointsList.n += 1;
     waypoint.getNode("ID",1).setValue(ID);
@@ -175,7 +178,8 @@ var add_waypoint = func (ID, name, type, coord) {
     waypoint.getNode("waypoint-type",1).setValue(type);
 }
 
-var save_route = func {
+var save_route = func { #save the route
+    screenWaypointsList.n != 0 or return;
     var first_id = gps_data.getNode("route/Waypoint/ID").getValue();
     var last_id = gps_data.getNode("route/Waypoint["~(screenWaypointsList.n - 1)~"]/ID").getValue();
     var path = getprop("/sim/fg-home") ~ "/Export/"~first_id~"-"~last_id~".xml";
@@ -185,7 +189,7 @@ var save_route = func {
     fgcommand("savexml", args);
 }
 
-var waypointAlert = func {
+var waypointAlert = func { #alert pilot about waypoint approach
     mode > 0 or return; 
     var ttw = gps_wp.getNode("wp[1]/TTW",1).getValue();
     var ttw_secs = 9999;
@@ -197,12 +201,12 @@ var waypointAlert = func {
     else
         gps_data.getNode("waypoint-alert",1).setBoolValue(0);
     
-    if (mode == 3 and ttw_secs < thresold_next_waypoint)
+    if (mode == 4 and ttw_secs < thresold_next_waypoint)
         screenNavigationMain.nextWaypoint();	
 }
 
 ### turnpoints management ######################################################
-var load_bookmarks = func {
+var load_bookmarks = func { #load turnpoints
     var n = 0;
     gps_data.getNode("bookmarks",1).removeChildren("bookmark");
     var file = getprop("/sim/fg-home") ~ "/Export/bookmarks.xml";
@@ -217,7 +221,7 @@ var load_bookmarks = func {
     return n;
 }
 
-var save_bookmarks = func {
+var save_bookmarks = func { #save turnpoints
     var path = getprop("/sim/fg-home") ~ "/Export/bookmarks.xml";
     var args = props.Node.new({ filename : path });
     var export = args.getNode("data", 1);
@@ -225,30 +229,39 @@ var save_bookmarks = func {
     fgcommand("savexml", args);
 }
 
-var add_bookmark = func (ID, name, type, coord) {
+var add_bookmark = func (ID, name, type, coord) { #add turnpoint
     var bookmark = gps_data.getNode("bookmarks/bookmark["~screenTurnpointSelect.n~"]/",1);
     screenTurnpointSelect.n += 1;
     bookmark.getNode("ID",1).setValue(ID);
     bookmark.getNode("latitude-deg",1).setDoubleValue(coord[0]);
     bookmark.getNode("longitude-deg",1).setDoubleValue(coord[1]);
     bookmark.getNode("altitude-ft",1).setDoubleValue(coord[2]*alt_conv[1][0]);
-    bookmark.getNode("name",1).setValue(name);
     bookmark.getNode("desc",1).setValue("no infos");
+    bookmark.getNode("name",1).setValue(name);
     bookmark.getNode("waypoint-type",1).setValue(type);
     save_bookmarks();
 }
 
-var EditMode = func (length, start_command, start_func, backmode, backpage, numcar = 0) {
-    #screenEdit.previous_mode = backmode;
-    #screenEdit.previous_page = backpage;
+var EditMode = func (length, title, start_command, numcar = 0) {
+    #special mode for editing simple text
+    screenEdit.previous_mode = mode;
+    screenEdit.previous_page = page;
     mode = 5; #ID edition
     page = 0;
-    screenEdit.init(length, start_command, start_func, backmode, backpage, numcar = 0);
+    screenEdit.init(length, title, start_command, numcar);
 }
 
 ### initialisation stuff ###################################################
 var init = func() {
-    for (var i = 0; i < 5; i += 1) {
+    mode = 0;
+    page = 0;
+    displayed_screen = 0; #screenModeAndSettings
+    blocked = 0; #unlock left_knob
+    isOn = 0; #start OFF
+    startpos = nil; #unset start position
+    waypointindex = 0; #route waypoint index on beginning
+    screen = []; #empty screens
+    for (var i = 0; i < LINES; i += 1) {
 	append(line, props.globals.getNode("/instrumentation/zkv500/line[" ~ i ~ "]", 1));
 	line[i].setValue("");
     }

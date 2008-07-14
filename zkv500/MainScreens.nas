@@ -1,45 +1,37 @@
 var screenModeAndSettings = { # screen for changing the GPS mode and settings
     help : 0,
     mode_: 0,
+    page_: 0,
+    available_modes : ["POSITION","AIRPORT","TURNPOINT","TASK"],
     quit_help : func {
 	me.help = 0;
 	me.lines();
     },
     right : func {
 	if (page == 1)
-	    alt_unit = cycle(2, alt_unit, arg[0]);
+	    alt_unit = cycle(size(alt_unit_full_name), alt_unit, arg[0]);
 	elsif (page == 2)
-	    dist_unit = cycle(2, dist_unit, arg[0]);
+	    dist_unit = cycle(size(dist_unit_full_name), dist_unit, arg[0]);
 	elsif (page == 3)
-	    spd_unit = cycle(2, spd_unit, arg[0]);
+	    spd_unit = cycle(size(spd_unit_full_name), spd_unit, arg[0]);
 	elsif (page == 4)
 	    thresold_alert_index = cycle(size(thresold_alert), thresold_alert_index, arg[0]);
 	elsif (page == 5)
 	    thresold_next_waypoint = cycle(10, thresold_next_waypoint, arg[0]);
     },
-    changemode : func {
-	if (page == 0) me.mode_ = cycle(4, me.mode_, arg[0]);
-    },
     enter : func {
 	if (!me.help) {
-	    display ([
-	    "HERE THERE WILL SEAT",
-	    "A SIMPLE EXPLANATION",
-	    "TEXT ABOUT USE OF GPS",
-	    "PRESS ANY OF THE",
-	    "THREE BUTTONS"
-	    ]);
+	    display (NOT_YET_IMPLEMENTED);
 	    me.help = 1;
 	}
 	else me.quit_help();
     },
     escape : func {
 	if (me.help) me.quit_help();
-	else me.dispatch();
     },
     start : func {
 	if (me.help) me.quit_help();
-	else {
+	else { 
 	    mode = me.mode_ + 1;
 	    page = 0;
 	    displayed_screen = page_list[mode][page];
@@ -47,10 +39,7 @@ var screenModeAndSettings = { # screen for changing the GPS mode and settings
     },
     lines : func {
 	if (page == 0) {
-	    if    (me.mode_ == 0) mode_str = "POSITION";
-	    elsif (me.mode_ == 1) mode_str = "AIRPORT";
-	    elsif (me.mode_ == 2) mode_str = "TURNPOINT";
-	    else		  mode_str = "TASK";
+	    var mode_str = me.available_modes[me.mode_];
 	    l0 = "  -- GPS STATUS : --";
 	    l1 = sprintf("MODE: %s", mode_str);
 	}
@@ -87,7 +76,7 @@ var screenPositionMain = { # screens for POSITION mode
     enter : func {
 	var ac = geo.aircraft_position();
 	me.coord = [ac.lat(), ac.lon(), ac.alt()];
-	EditMode(6, "EDIT WAYPOINT ID", "SAVE", mode, page);
+	EditMode(6, "EDIT WAYPOINT ID", "SAVE");
     },
     escape : func {
     },
@@ -257,29 +246,29 @@ var screenNavigationMain = {
 var screenEdit = {
     previous_mode: 0,
     previous_page: 0,
-    alphanum: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
-	       "Q","R","S","T","U","V","W","X","Y","Z",
-	       "0","1","2","3","4","5","6","7","8","9"],
-    numeric: ["0","1","2","3","4","5","6","7","8","9","."],
+    carset: [["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
+	       "Q","R","S","T","U","V","W","X","Y","Z", "0","1","2","3","4","5","6","7","8","9"],
+             ["0","1","2","3","4","5","6","7","8","9","."]],
     start_command: "",
     edit_zone: "",
     edit_title : "",
-    carset: [],
+    set: 0,
     map: [],
     pointer: 0,
     value: 0,
-    init: func (length, title, start_command, backmode, backpage, set = 0) {
+    init: func (length, title, start_command, set) {
+	me.map = [];
 	for (var i = 0; i < length; i += 1) append(me.map, "-");
 	me.edit_title = title;
 	me.start_command = start_command;
-	me.carset = set != 0 ? me.numeric : me.alphanum;
-	me.previous_mode = backmode;
-	me.previous_page = backpage;
+	me.set = set;
+	me.pointer = 0;
+	me.value = 0;
 	left_knob(0); # force display
     },
     right : func {
-	me.value = cycle(size(me.carset), me.value, arg[0]);
-	me.map[me.pointer] = me.carset[me.value];
+	me.value = cycle(size(me.carset[me.set]), me.value, arg[0]);
+	me.map[me.pointer] = me.carset[me.set][me.value];
     },
     enter : func {
 	me.pointer = cycle(size(me.map), me.pointer, 1);
@@ -292,7 +281,7 @@ var screenEdit = {
 	me.start_command = "";
 	me.edit_zone = "";
 	me.edit_title = "";
-	me.carset = [];
+	me.set = 0;
 	me.map = [];
 	mode = me.previous_mode;
 	page = me.previous_page;
@@ -302,7 +291,10 @@ var screenEdit = {
 	var str = "";
 	for (var i = 0; i < size(me.map); i += 1)
 	    str ~= me.map[i] != "-" ? me.map[i] : "";
-	if (screen[page_list[me.previous_mode][me.previous_page]].start(str)) me.escape();
+	if (screen[page_list[me.previous_mode][me.previous_page]].start(str)) 
+	    me.escape();
+	else
+	    me.init(size(me.map), me.edit_title, me.start_command, me.set);
     },
     lines : func {
 	me.right(0); #init car

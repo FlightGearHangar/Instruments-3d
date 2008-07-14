@@ -24,7 +24,7 @@ var screenAirportMain = {
 	me.searched = 0;
 	me.oaci = nil;
     },
-    start : func { #add bookmark, enter turnpoint mode
+    start : func {  #add bookmark, enter turnpoint mode
 	add_bookmark(me.apt.id, me.apt.name, "APT", 
 		    [me.apt_coord.lat(), me.apt_coord.lon(), 
 		    me.apt_coord.alt()*alt_conv[1][0]]);
@@ -63,10 +63,6 @@ var screenAirportInfos = {
     page : 0,
     rwylist: [],
     right : func {
-	me.page = 0;
-	displayed_screen = 4;# screenAirportMain
-    },
-    left : func {
 	np = int(size(me.rwylist) / 4) + (math.mod(size(me.rwylist),4) ? 1 : 0);
 	me.page = cycle(np, me.page, arg[0]);
     },
@@ -83,7 +79,7 @@ var screenAirportInfos = {
 				   screenAirportMain.apt.runways[r].width]);
 	line[0].setValue(sprintf("%s", screenAirportMain.apt.name)); #TODO check length to truncate if too long
 	rwyindex = me.page * 4;
-	for (var l = 1; l < 5; l += 1) {
+	for (var l = 1; l < LINES; l += 1) {
 	    rwyindex += 1;
 	    if (rwyindex < size(me.rwylist))
 		line[l].setValue(sprintf("%s [%dm / %dm]", 
@@ -108,13 +104,14 @@ var screenSearchAirport = {
 	var found = screenAirportMain.search();
 	if (found != 0) {
 	    screenAirportMain.searched = 1;
+	    screenEdit.previous_page = 0;
 	    return 1;
 	}
 	else
 	    return 0;
     },
     lines : func {
-	EditMode(4, "AIRPORT CODE", "SEARCH", 2, 0);
+	EditMode(4, "AIRPORT CODE", "SEARCH");
     }
 };
 

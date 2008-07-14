@@ -54,9 +54,9 @@ var screenTaskSelect = {
 	    ""
 	    ]);
 	}
-	else for (var l = 0; l < 5; l += 1) {
-	    if ((me.page * 5 + l) < me.n) {
-		name = routes[me.page * 5 + l];
+	else for (var l = 0; l < LINES; l += 1) {
+	    if ((me.page * LINES + l) < me.n) {
+		name = routes[me.page * LINES + l];
 		if (substr(name, -4) == ".xml") name = substr(name, 0, size(name) - 4);
 		name = string.uc(name);
 		line[l].setValue(sprintf("%s %s",me.pointer == l ? ">" : " ", name));
@@ -83,9 +83,9 @@ var screenWaypointsList = {
     start : func {
     },
     lines : func {
-	for (var l = 0; l < 5; l += 1) {
-	   if ((me.page * 5 + l) < me.n) {
-		name = gps_data.getNode("route/Waypoint["~((me.page*5) + l)~"]/ID").getValue();
+	for (var l = 0; l < LINES; l += 1) {
+	   if ((me.page * LINES + l) < me.n) {
+		name = gps_data.getNode("route/Waypoint["~((me.page * LINES) + l)~"]/ID").getValue();
 		line[l].setValue(sprintf("%s %s",me.pointer == l ? ">" : " ", name));
 	    }
 	    else

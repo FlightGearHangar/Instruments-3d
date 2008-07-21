@@ -77,12 +77,7 @@ var _bottom_buttons = func {
 var reload_zkv_code = func {
     var zkv500_dir = getprop("/sim/fg-root") ~ "/Aircraft/Instruments-3d/zkv500/";
     io.load_nasal(zkv500_dir ~ "ZKV500.nas","zkv500");
-    io.load_nasal(zkv500_dir ~ "AirportScreens.nas","zkv500");
-    io.load_nasal(zkv500_dir ~ "TurnpointScreens.nas","zkv500");
-    io.load_nasal(zkv500_dir ~ "MainScreens.nas","zkv500");
-    io.load_nasal(zkv500_dir ~ "TaskScreens.nas","zkv500");
     print("debugger: zkv500 loaded");
-    zkv500.isOn = 0;
     zkv500.init();
 }
 

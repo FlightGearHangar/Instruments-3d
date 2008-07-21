@@ -52,31 +52,31 @@ var gps_wp = gps_data.getNode("wp",1);
 
 #### warps for buttons and knobs ########################################"
 var right_knob = func(dir) { #manage right knob, depends of displayed screen
-    isOn == 1 or return;
+    isOn > 0 or return;
     screen[displayed_screen].right(dir);
     refresh_display();
 }
 
 var enter_button = func() { #manage enter button, depends of displayed screen
-    isOn == 1 or return;
+    isOn > 0 or return;
     screen[displayed_screen].enter();
     refresh_display();
 }
 
 var escape_button = func() { #manage escape button, depends of displayed screen
-    isOn == 1 or return;
+    isOn > 0 or return;
     screen[displayed_screen].escape();
     refresh_display();
 }
 
 var start_button = func() { #manage start button, depends of displayed screen
-    isOn == 1 or return;
+    isOn > 0 or return;
     screen[displayed_screen].start();
     refresh_display();
 }
 
 var left_knob = func(dir) { #manage left button, cycle in mode's pages if not blocked
-    isOn == 1 or return;
+    isOn > 0 or return;
     if (blocked == 0) { 
 	page = cycle(size(page_list[mode]), page, dir);
 	displayed_screen = page_list[mode][page];
@@ -85,7 +85,7 @@ var left_knob = func(dir) { #manage left button, cycle in mode's pages if not bl
 }
 
 var select_mode = func(dir) { #manage mode knob, cycle into available modes
-    isOn == 1 or return;
+    isOn > 0 or return;
     blocked = 0;
     if (displayed_screen != 0) {
 	displayed_screen = 0; #screenModeAndSettings
@@ -98,17 +98,19 @@ var select_mode = func(dir) { #manage mode knob, cycle into available modes
 }
 
 var switch_ON_OFF = func() { #manage ON/OFF knob
-    if (isOn) {
-	isOn = 0;
+    if (arg[0] > 0 and isOn < 11) isOn += 1;
+    elsif (arg[0] < 0 and isOn > 0) isOn -= 1;
+    else return;
+
+    if (isOn == 0) { #empty lcd display
 	for (var i = 0; i < LINES; i += 1) line[i].setValue("");
     }
-    else {
-	isOn = 1;
-	screenTaskSelect.n = list_routes();
-	screenTurnpointSelect.n = load_bookmarks();
-	refresh_display();
-    }
-    props.globals.getNode("/instrumentation/gps/serviceable",1).setBoolValue(isOn);
+    else
+	props.globals.getNode("/instrumentation/zkv500/retro-light").setDoubleValue((isOn - 1)/20);
+    
+    props.globals.getNode("/instrumentation/zkv500/on_off_position",1).setIntValue(isOn);	
+    props.globals.getNode("/instrumentation/gps/serviceable",1).setBoolValue((isOn > 0)? 1 : 0);
+    refresh_display();
 }
 
 ### useful funcs #########################################################
@@ -252,20 +254,16 @@ var EditMode = func (length, title, start_command, numcar = 0) {
 }
 
 ### initialisation stuff ###################################################
-var init = func() {
-    mode = 0;
-    page = 0;
-    displayed_screen = 0; #screenModeAndSettings
-    blocked = 0; #unlock left_knob
-    isOn = 0; #start OFF
-    startpos = nil; #unset start position
-    waypointindex = 0; #route waypoint index on beginning
+var load_screens = func {
+    var zkv500_dir = getprop("/sim/fg-root") ~ "/Aircraft/Instruments-3d/zkv500/";
+    io.load_nasal(zkv500_dir ~ "AirportScreens.nas","zkv500");
+    io.load_nasal(zkv500_dir ~ "TurnpointScreens.nas","zkv500");
+    io.load_nasal(zkv500_dir ~ "MainScreens.nas","zkv500");
+    io.load_nasal(zkv500_dir ~ "TaskScreens.nas","zkv500");
+}
+
+var organize_screens = func {
     screen = []; #empty screens
-    for (var i = 0; i < LINES; i += 1) {
-	append(line, props.globals.getNode("/instrumentation/zkv500/line[" ~ i ~ "]", 1));
-	line[i].setValue("");
-    }
-    props.globals.getNode("/instrumentation/gps/serviceable",1).setBoolValue(0);
     append(screen, zkv500.screenModeAndSettings); #0
     append(screen, zkv500.screenPositionMain);    #1
     append(screen, zkv500.screenOdometers);	  #2
@@ -280,12 +278,34 @@ var init = func() {
     append(screen, zkv500.screenWaypointInfos);   #11
     append(screen, zkv500.screenWaypointsList);   #12
     append(screen, zkv500.screenEdit);		  #13
+}
+
+var init_gps_variables = func {
+    mode = 0;
+    page = 0;
+    displayed_screen = 0; #screenModeAndSettings
+    blocked = 0; #unlock left_knob
+    isOn = 0; #start OFF
+    startpos = nil; #unset start position
+    waypointindex = 0; #route waypoint index on beginning
+    for (var i = 0; i < LINES; i += 1) {
+	append(line, props.globals.getNode("/instrumentation/zkv500/line[" ~ i ~ "]", 1));
+	line[i].setValue("");
+    }
+    props.globals.getNode("/instrumentation/gps/serviceable",1).setBoolValue(0);
+    props.globals.getNode("/instrumentation/zkv500/retro-light",1).setDoubleValue(0);
+    props.globals.getNode("/instrumentation/zkv500/on_off_position",1).setIntValue(0);
     aircraft.light.new("/sim/model/gps/redled", [0.1, 0.1, 0.1, 0.7], "/instrumentation/gps/waypoint-alert");
     aircraft.light.new("/sim/model/gps/greenled", [0.6, 0.3], "/instrumentation/gps/message-alert");
     startpos = geo.Coord.new(geo.aircraft_position());
     screenPositionMain.begin_time = props.globals.getNode("/sim/time/elapsed-sec",1).getValue();
     setlistener("/instrumentation/gps/wp/wp[1]/TTW", waypointAlert, 0, 0);
-    #setlistener("/instrumentation/gps/wp/wp[1]/desired-course", obsMode, 0, 0);
+}
+
+var init = func() {
+    load_screens();
+    organize_screens();
+    init_gps_variables();
     print("GPS... initialized");
 }
 

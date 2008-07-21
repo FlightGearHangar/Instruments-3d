@@ -16,7 +16,7 @@ CONTENTS
   3. Without 3D interface
 3. Global presentation
 4. User's Manual
-  1. Powering ON
+  1. Powering ON / Enlight / Switch OFF
   2. List of screens
   3. The modes
   4. Editing some text
@@ -51,10 +51,6 @@ available for all aircrafts. To install it, just add these lines in your config
 files, inside the <nasal> section:
   <zkv500>
       <file>Aircraft/Instruments-3d/zkv500/ZKV500.nas</file>
-      <file>Aircraft/Instruments-3d/zkv500/MainScreens.nas</file>
-      <file>Aircraft/Instruments-3d/zkv500/TurnpointScreens.nas</file>
-      <file>Aircraft/Instruments-3d/zkv500/TaskScreens.nas</file>
-      <file>Aircraft/Instruments-3d/zkv500/AirportScreens.nas</file>
   </zkv500>
 [example from Lionceau: Aircraft/Lionceau/lionceau-base.xml]
 Please note that <zkv500> is mandatory for namespaces reasons.
@@ -123,7 +119,6 @@ The ZKV500 is quite useful to create bookmarks on the fly.
    2. Debugging installation
 
 if you want to debug the nasal, you can use the "debugging tool" I've created:
- - comment in your aircraft files all gps-related installation
  - edit the Aircraft/Instruments-3d/zkv500/*.nas files with your favourite 
    text editor
  - in the Nasal console from FGside type:
@@ -142,13 +137,11 @@ var zkv_dir = getprop("/sim/fg-root") ~ "/Aircraft/Instruments-3d/zkv500/";
 io.load_nasal(zkv_dir ~ "zkv_dbg.nas", "zkv_dbg");
 zkv_dbg.test();
 
-
-
 3. GLOBAL PRESENTATION
 ======================
 The interface is simple:
 (http://seb.marque.free.fr/fichiers/flightgear/zkv500/presentation.png)
-* 4 knobs turning left (left mouse clic) or right (right mous clic)
+* 4 knobs turning left (left mouse click) or right (right mous click)
 * 3 white buttons
 * 1 LCD display
 * 2 LEDs (red and green)
@@ -170,24 +163,27 @@ KNOB|------------------------|KNOB
    edit some simple text (depending of screen).
 -> MODE knob allows you to select a mode, and acces to the ZKV500 settings
    you can access this knob at any time, any screen.
--> ON/OFF knob allows you to turn ON and OFF the ZKV500, note it is a knob 
-   because I plan to associate some sounds with the ZKV500, this knob then 
-   could be used to change the volume.
-
+-> ON/OFF knob allows you to turn ON and OFF the ZKV500, and set the 
+   LCD enlightment.
 The goal of each button depends of the displayed screen.
 
 4. USER'S MANUAL
 ================
-  1. Powering ON
-To power ON, just left click on the ON/OFF knob. Clicking again wil make it
-turning OFF. When powered you are on the ModeAndSettings screen.
+  1. Powering ON / Enlight / Switch OFF
+To power ON, just left click on the ON/OFF knob. Clicking again will make it
+more and more enlighted.
+When powered ON, you are on the ModeAndSettings screen.
+Right-click on ON/OFF knob will first decrease enlightment intensity until
+switch the ZKV500 off.
 
   2. Screens list
+[] -> button
+() -> knob
 *** ModeAndSettings ***
 From this screen you can change from a mode to another mode (see 4.3 Modes, below)
- START...enter in a mode
- PAGE....enter in settings pages (cycle)
- SELECT..modify settings
+ [START]  enter in a mode
+ (PAGE)   enter in settings pages (cycle)
+ (SELECT) modify settings
 
 the available settings are:
  * units
@@ -201,7 +197,7 @@ the available settings are:
 *** PositionMain ***
 This page gives you infos about the aircraft position.
 You find it in every modes.
- ENTER...save the position as a bookmark (entering in Edit screen)
+ [ENTER] save the position as a bookmark (entering in Edit screen)
 
  LAT: latitude in deg:min:sec
  LON: longitude in deg:min:sec
@@ -211,7 +207,7 @@ You find it in every modes.
 
 *** Odometers ***
 This screen gives you odo-values. You can find it in every modes.
- ESCAPE...reset odometers, except TRIP
+ [ESCAPE] reset odometers, except TRIP
 
  ODO:     travelled distance
  TRIP:    total travelled distance
@@ -233,9 +229,9 @@ screen is available on every modes
 This screen gives the related position of the aircraft about the calcualted
 route. It is only available in TURNPOINT and TASK modes.
 
- ENTER...TURNPOINT mode: add the actual position to the route, 
+ [ENTER] TURNPOINT mode: add the actual position to the route, 
          TASK mode: jump to next waypoint
- START...save the route (mode TURNPOINT only)
+ [START] save the route (mode TURNPOINT only)
 
  ID:   Id of the waypoint to go [waypoint type]
  BRG:  bearing from the aircraft to the waypoint (geographic)
@@ -249,9 +245,9 @@ the | symbol represents the route, the little aircraft represents... the aircraf
 This screen gives infos about the nearest, or a specific searched airport (see 
 SearcAirport screen, below). It is only reachable from AIRPORT mode.
 
- ENTER...add the airport to route
- ESCAPE..get the nearest airport
- START...add airport to bookmarks, and enter TURNPOINT mode, to go directly
+ [ENTER]  add the airport to route
+ [ESCAPE] get the nearest airport
+ [START]  add airport to bookmarks, and enter TURNPOINT mode, to go directly
 
  NEAREST or SEARCHED APT: OACI code of airport
  ELEV: airport altitude
@@ -265,7 +261,7 @@ SearcAirport screen, below). It is only reachable from AIRPORT mode.
 This screen gives infos about the airport (nearest or searched). It is only 
 reachable from AIRPORT mode.
 
- SELECT...navigate in the runway list (not yet implemented)
+ (SELECT) navigate in the runway list (not yet implemented)
 
 First line gives the full name of airport
 Lines below show the runways with the format
@@ -277,17 +273,17 @@ AIRPORT mode.
 If the search is successful, the AirportMain screen is shown, in other case the text
 is erased, and you are invited to retry.
 
- SELECT...modify letter (from A to Z then 0 to 9, cycled)
- ENTER....next step
- ESCAPE...back to AirportMain screen, without search
- START....search the given OACI code
+ (SELECT) modify letter (from A to Z then 0 to 9, cycled)
+ [ENTER]  next step
+ [ESCAPE] back to AirportMain screen, without search
+ [START]  search the given OACI code
 
 *** TurnpointSelect ***
 This screen shows a list of already bookmarked gps points. It is only available
 in TURNPOINT mode.
 
- SELECT...navigate through the list (eventually through multiple pages)
- START....begin the navigation from actual position to the bookmark
+ (SELECT) navigate through the list (eventually through multiple pages)
+ [START]  begin the navigation from actual position to the bookmark
 
 *** TurnpointInfos ***
 This screen is not yet implemented. It will gives infos about the bookmark
@@ -296,29 +292,29 @@ This screen is not yet implemented. It will gives infos about the bookmark
 This screen allows you to choose a route (if one available). It is only available
 in TASK mode.
 
- SELECT...navigate through the routes list (eventually through multiple pages)
- START....load the route, and begins navigation
+ (SELECT) navigate through the routes list (eventually through multiple pages)
+ [START]  load the route, and begins navigation
 
 *** WaypointInfos ***
 Not yet implemented, will give infos about waypoint. Only available in TASK mode.
 
 *** WaypointsList ***
 This screen shows the list of waypoint loaded from a route.
- SELECT...navigate through the list
+ (SELECT) navigate through the list
 
 *** WaypointEdit ***
 This screen allows you to name a gps point in order to bookmark it.
 
- SELECT...cycle letters (from A to Z then 1 to 9)
- ENTER....next step
- ESCAPE...abort saving bookmark
- START....save bookmark
+ (SELECT) cycle letters (from A to Z then 1 to 9)
+ [ENTER]  next step
+ [ESCAPE] abort saving bookmark
+ [START]  save bookmark
 
   3. the 4 modes
 *** POSITION ***
 The simpliest one, just give information about the aircraft position. You can
 save bookmarks from this mode (pressing ENTER in PositionMain screen).
- PAGE...cycle through these screens (both ways):
+ (PAGE) cycle through these screens (both ways):
 PositionMain, Odometers, WindInfos
 
 *** AIRPORT ***
@@ -326,12 +322,12 @@ Useful to know wher you can put you aircraft safely on the ground, gives other i
 as the best runway, it is possible to search an airport (turn the PAGE knob until
 Search airport page), add the airport to a route or as a bookmark (automatically
 called by airports ID and name).
- PAGE...cycle through these screens (both ways)
+ (PAGE) cycle through these screens (both ways)
 AirportMain, NavigationMain, PositionMain, Odometers, WindInfos, AirportInfos, SearchAirport
 
 *** TURNPOINT ***
 Useful mode to join a specific point of interest, or to navigate around.
- PAGE...cycle through these screens (both ways)
+ (PAGE) cycle through these screens (both ways)
 TurnpointSelect, NavigationMain, PositionMain, Odometers, WindInfos, TurnpointInfos
 
 *** TASK ***
@@ -342,7 +338,7 @@ When approaching a waypoint, a red led blink (this can be set in ModeAndSettings
 When on the point (idem), it loads autmatically the next point and calculate the leg infos
 When the last point is reached, it come back to TaskSelect screen to allow chosing an other
 route.
- PAGE...cycle through these screens (both ways)
+ (PAGE) cycle through these screens (both ways)
 TaskSelect, NavigationMain, PositionMain, Odometers, WindInfos, WaypointInfos, WaypointsList
 
 5. FG INTEGRATION
@@ -377,10 +373,14 @@ for now, as I want it to be the more bug-free possible before creating other bug
 8. ANNEXES
 ==========
  1. creating flightplans with ./flightplan
-You can get ./flightplan from this link: http://seb.marque.free.fr/fichiers/scripts/perl/flightplan
-Make it executable, best to set $FGROOT and $FGHOME to respectives folders
-For creating a flightplan from LFPT to LFBD:
+You can get ./flightplan from this link: 
+http://seb.marque.free.fr/fichiers/scripts/perl/flightplan
+
+-> Make it executable, 
+-> best to set $FGROOT and $FGHOME to respectives folders
+-> For creating a flightplan from LFPT to LFBD:
 $ ./flightplan -d lfpt -a lfbd --wpt
+
 This will write in $FGHOME/Routes a file named lfpt-lfbd.xml, suitable for the
 ZKV500
 

@@ -22,6 +22,24 @@
   </panel>
 
   <animation>
+    <type>material</type>
+    <object-name>LCD.display</object-name>
+    <object-name>button.ENTER</object-name>
+    <object-name>button.START</object-name>
+    <object-name>button.ESCAPE</object-name>
+    <object-name>knob.ONOFF.circle</object-name>
+    <object-name>knob.MODE.circle</object-name>
+    <object-name>knob.RIGHT.circle</object-name>
+    <object-name>knob.LEFT.circle</object-name>
+    <emission>
+      <red>0.1</red>
+      <blue>0.1</blue>
+      <green>0.8</green>
+      <factor-prop>/instrumentation/zkv500/retro-light</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
     <type>select</type>
     <condition>
       <property>/sim/model/gps/redled/state</property>
@@ -38,18 +56,44 @@
   </animation>
 
   <animation>
+    <type>rotate</type>
+    <object-name>knob.ONOFF</object-name>
+    <object-name>knob.ONOFF.circle</object-name>
+    <property>/instrumentation/zkv500/on_off_position</property>
+    <factor>30</factor>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0.03</y-m>
+      <z-m>-0.03</z-m>
+    </center>
+  </animation>
+
+  <animation>
     <type>pick</type>
     <object-name>knob.ONOFF</object-name>
+    <object-name>knob.ONOFF.circle</object-name>
     <visible>true</visible>
     <action>
-      <name>switch on and off</name> 
-      <!-- this one will manage volume control soon too, 
-           but for now keep it simple -->
+      <name>increase gps state off - on - enlighted</name> 
       <button>0</button>
       <repeatable>false</repeatable>
       <binding>
         <command>nasal</command>
-	<script>zkv500.switch_ON_OFF()</script>
+	<script>zkv500.switch_ON_OFF(1)</script>
+      </binding>
+    </action>
+    <action>
+      <name>decrease gps state off - on - enlighted</name> 
+      <button>2</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+	<script>zkv500.switch_ON_OFF(-1)</script>
       </binding>
     </action>
   </animation>
@@ -57,6 +101,7 @@
   <animation>
     <type>pick</type>
     <object-name>knob.LEFT</object-name>
+    <object-name>knob.LEFT.circle</object-name>
     <visible>true</visible>
     <action>
       <name>next menu</name> 
@@ -81,6 +126,7 @@
   <animation>
     <type>pick</type>
     <object-name>knob.RIGHT</object-name>
+    <object-name>knob.RIGHT.circle</object-name>
     <visible>true</visible>
     <action>
       <name>next item</name> 
@@ -105,6 +151,7 @@
   <animation>
     <type>pick</type>
     <object-name>knob.MODE</object-name>
+    <object-name>knob.MODE.circle</object-name>
     <visible>true</visible>
     <action>
       <name>select next mode</name> 

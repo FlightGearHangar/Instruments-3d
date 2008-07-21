@@ -35,6 +35,10 @@ var screenModeAndSettings = { # screen for changing the GPS mode and settings
 	    mode = me.mode_ + 1;
 	    page = 0;
 	    displayed_screen = page_list[mode][page];
+	    if (mode == 3) 
+		screenTaskSelect.n = list_routes();
+	    elsif (mode == 2) 
+		screenTurnpointSelect.n = load_bookmarks();
 	}
     },
     lines : func {

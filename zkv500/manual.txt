@@ -141,7 +141,7 @@ zkv_dbg.test();
 ======================
 The interface is simple:
 (http://seb.marque.free.fr/fichiers/flightgear/zkv500/presentation.png)
-* 4 knobs turning left (left mouse click) or right (right mous click)
+* 4 knobs turning left (left mouse click) or right (right mouse click)
 * 3 white buttons
 * 1 LCD display
 * 2 LEDs (red and green)
@@ -152,7 +152,7 @@ PAGE|------------------------|SELECT
 KNOB|                        |KNOB
     |        LCD DISPLAY     |
     |        5 LINES         |
-MODE|                        |ON/OFF
+MODE|                        |POWER
 KNOB|------------------------|KNOB
           red       green
 	  led        led
@@ -163,7 +163,7 @@ KNOB|------------------------|KNOB
    edit some simple text (depending of screen).
 -> MODE knob allows you to select a mode, and acces to the ZKV500 settings
    you can access this knob at any time, any screen.
--> ON/OFF knob allows you to turn ON and OFF the ZKV500, and set the 
+-> POWER knob allows you to turn ON and OFF the ZKV500, and set the 
    LCD enlightment.
 The goal of each button depends of the displayed screen.
 
@@ -173,7 +173,7 @@ The goal of each button depends of the displayed screen.
 To power ON, just left click on the ON/OFF knob. Clicking again will make it
 more and more enlighted.
 When powered ON, you are on the ModeAndSettings screen.
-Right-click on ON/OFF knob will first decrease enlightment intensity until
+Right-click on POWER knob will first decrease enlightment intensity until
 switch the ZKV500 off.
 
   2. Screens list

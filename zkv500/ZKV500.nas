@@ -97,19 +97,15 @@ var select_mode = func(dir) { #manage mode knob, cycle into available modes
     refresh_display();
 }
 
-var switch_ON_OFF = func() { #manage ON/OFF knob
+var power_knob = func() { #manage POWER knob
     if (arg[0] > 0 and isOn < 11) isOn += 1;
     elsif (arg[0] < 0 and isOn > 0) isOn -= 1;
     else return;
-
-    if (isOn == 0) { #empty lcd display
-	for (var i = 0; i < LINES; i += 1) line[i].setValue("");
-    }
-    else
-	props.globals.getNode("/instrumentation/zkv500/retro-light").setDoubleValue((isOn - 1)/20);
-    
-    props.globals.getNode("/instrumentation/zkv500/on_off_position",1).setIntValue(isOn);	
-    props.globals.getNode("/instrumentation/gps/serviceable",1).setBoolValue((isOn > 0)? 1 : 0);
+    props.globals.getNode("/instrumentation/zkv500/power",1).setIntValue(isOn);	
+    var light = 0;
+    if (isOn > 0 and getprop("instrumentation/gps/serviceable") != 0)
+	light = (isOn - 1)/20;
+    props.globals.getNode("/instrumentation/zkv500/retro-light").setDoubleValue(light);
     refresh_display();
 }
 
@@ -285,27 +281,36 @@ var init_gps_variables = func {
     page = 0;
     displayed_screen = 0; #screenModeAndSettings
     blocked = 0; #unlock left_knob
-    isOn = 0; #start OFF
+    #isOn = 0; #start OFF
     startpos = nil; #unset start position
     waypointindex = 0; #route waypoint index on beginning
+}
+
+var init_gps_props = func {
     for (var i = 0; i < LINES; i += 1) {
 	append(line, props.globals.getNode("/instrumentation/zkv500/line[" ~ i ~ "]", 1));
 	line[i].setValue("");
     }
-    props.globals.getNode("/instrumentation/gps/serviceable",1).setBoolValue(0);
     props.globals.getNode("/instrumentation/zkv500/retro-light",1).setDoubleValue(0);
-    props.globals.getNode("/instrumentation/zkv500/on_off_position",1).setIntValue(0);
+    props.globals.getNode("/instrumentation/zkv500/power",1).setIntValue(0);
     aircraft.light.new("/sim/model/gps/redled", [0.1, 0.1, 0.1, 0.7], "/instrumentation/gps/waypoint-alert");
     aircraft.light.new("/sim/model/gps/greenled", [0.6, 0.3], "/instrumentation/gps/message-alert");
     startpos = geo.Coord.new(geo.aircraft_position());
     screenPositionMain.begin_time = props.globals.getNode("/sim/time/elapsed-sec",1).getValue();
     setlistener("/instrumentation/gps/wp/wp[1]/TTW", waypointAlert, 0, 0);
+    setlistener("/instrumentation/gps/serviceable", func {
+	if (getprop("/instrumentation/gps/serviceable") == 0)
+	    setprop("/instrumentation/zkv500/retro-light", 0);
+	elsif (isOn > 0)
+	    setprop("/instrumentation/zkv500/retro-light", (isOn - 1)/20);
+    }, 0, 0);
 }
 
 var init = func() {
     load_screens();
     organize_screens();
     init_gps_variables();
+    init_gps_props();
     print("GPS... initialized");
 }
 

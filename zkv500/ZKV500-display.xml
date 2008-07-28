@@ -10,10 +10,11 @@
     <layer>
       <name>line 0</name>
       <condition>
-        <equals>
-          <property>/instrumentation/gps/serviceable</property>
-          <value>1</value>
-        </equals>
+	<greater-than>
+          <property>/instrumentation/zkv500/power</property>
+	  <value>0</value>
+	</greater-than>
+	<property>/instrumentation/gps/serviceable</property>
       </condition>
       <type>text</type>
       <font>lcd</font>
@@ -36,10 +37,11 @@
     <layer>
       <name>line 1</name>
       <condition>
-        <equals>
-          <property>/instrumentation/gps/serviceable</property>
-          <value>1</value>
-        </equals>
+	<greater-than>
+          <property>/instrumentation/zkv500/power</property>
+	  <value>0</value>
+	</greater-than>
+	<property>/instrumentation/gps/serviceable</property>
       </condition>
       <type>text</type>
       <font>lcd</font>
@@ -68,10 +70,11 @@
     <layer>
       <name>line 2</name>
       <condition>
-        <equals>
-          <property>/instrumentation/gps/serviceable</property>
-          <value>1</value>
-        </equals>
+	<greater-than>
+          <property>/instrumentation/zkv500/power</property>
+	  <value>0</value>
+	</greater-than>
+	<property>/instrumentation/gps/serviceable</property>
       </condition>
       <type>text</type>
       <font>lcd</font>
@@ -100,10 +103,11 @@
     <layer>
       <name>line 3</name>
       <condition>
-        <equals>
-          <property>/instrumentation/gps/serviceable</property>
-          <value>1</value>
-        </equals>
+	<greater-than>
+          <property>/instrumentation/zkv500/power</property>
+	  <value>0</value>
+	</greater-than>
+	<property>/instrumentation/gps/serviceable</property>
       </condition>
       <type>text</type>
       <font>lcd</font>
@@ -132,10 +136,11 @@
     <layer>
       <name>line 4</name>
       <condition>
-        <equals>
-          <property>/instrumentation/gps/serviceable</property>
-          <value>1</value>
-        </equals>
+	<greater-than>
+          <property>/instrumentation/zkv500/power</property>
+	  <value>0</value>
+	</greater-than>
+	<property>/instrumentation/gps/serviceable</property>
       </condition>
       <type>text</type>
       <font>lcd</font>
@@ -164,10 +169,11 @@
     <layer>
       <name>line 5</name>
       <condition>
-        <equals>
-          <property>/instrumentation/gps/serviceable</property>
-          <value>1</value>
-        </equals>
+	<greater-than>
+          <property>/instrumentation/zkv500/power</property>
+	  <value>0</value>
+	</greater-than>
+	<property>/instrumentation/gps/serviceable</property>
       </condition>
       <type>text</type>
       <font>lcd</font>
@@ -200,10 +206,11 @@
     <layer>
       <name>line 6</name>
       <condition>
-        <equals>
-          <property>/instrumentation/gps/serviceable</property>
-          <value>1</value>
-        </equals>
+	<greater-than>
+          <property>/instrumentation/zkv500/power</property>
+	  <value>0</value>
+	</greater-than>
+	<property>/instrumentation/gps/serviceable</property>
       </condition>
       <type>text</type>
       <font>lcd</font>

@@ -4062,7 +4062,7 @@ refs 4
 22 0.0 0.0
 kids 0
 OBJECT poly
-name "knob.ONOFF"
+name "knob.POWER"
 data 10
 knob.ONOFF
 crease 30.000000
@@ -4801,7 +4801,7 @@ refs 3
 96 0.0 0.0
 kids 0
 OBJECT poly
-name "knob.ONOFF.circle"
+name "knob.POWER.circle"
 data 14
 knob.ONOFF.001
 crease 30.000000

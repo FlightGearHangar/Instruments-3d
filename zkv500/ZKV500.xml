@@ -27,7 +27,7 @@
     <object-name>button.ENTER</object-name>
     <object-name>button.START</object-name>
     <object-name>button.ESCAPE</object-name>
-    <object-name>knob.ONOFF.circle</object-name>
+    <object-name>knob.POWER.circle</object-name>
     <object-name>knob.MODE.circle</object-name>
     <object-name>knob.RIGHT.circle</object-name>
     <object-name>knob.LEFT.circle</object-name>
@@ -43,6 +43,7 @@
     <type>select</type>
     <condition>
       <property>/sim/model/gps/redled/state</property>
+      <property>/instrumentation/gps/serviceable</property>
     </condition>
     <object-name>LED.0_ON</object-name>
   </animation>
@@ -51,15 +52,16 @@
     <type>select</type>
     <condition>
       <property>/sim/model/gps/greenled/state</property>
+      <property>/instrumentation/gps/serviceable</property>
     </condition>
     <object-name>LED.1_ON</object-name>
   </animation>
 
   <animation>
     <type>rotate</type>
-    <object-name>knob.ONOFF</object-name>
-    <object-name>knob.ONOFF.circle</object-name>
-    <property>/instrumentation/zkv500/on_off_position</property>
+    <object-name>knob.POWER</object-name>
+    <object-name>knob.POWER.circle</object-name>
+    <property>/instrumentation/zkv500/power</property>
     <factor>30</factor>
     <axis>
       <x>-1</x>
@@ -75,8 +77,8 @@
 
   <animation>
     <type>pick</type>
-    <object-name>knob.ONOFF</object-name>
-    <object-name>knob.ONOFF.circle</object-name>
+    <object-name>knob.POWER</object-name>
+    <object-name>knob.POWER.circle</object-name>
     <visible>true</visible>
     <action>
       <name>increase gps state off - on - enlighted</name> 
@@ -84,7 +86,7 @@
       <repeatable>false</repeatable>
       <binding>
         <command>nasal</command>
-	<script>zkv500.switch_ON_OFF(1)</script>
+	<script>zkv500.power_knob(1)</script>
       </binding>
     </action>
     <action>
@@ -93,7 +95,7 @@
       <repeatable>false</repeatable>
       <binding>
         <command>nasal</command>
-	<script>zkv500.switch_ON_OFF(-1)</script>
+	<script>zkv500.power_knob(-1)</script>
       </binding>
     </action>
   </animation>
@@ -103,6 +105,9 @@
     <object-name>knob.LEFT</object-name>
     <object-name>knob.LEFT.circle</object-name>
     <visible>true</visible>
+    <condition>
+      <property>/instrumentation/gps/serviceable</property>
+    </condition>
     <action>
       <name>next menu</name> 
       <button>0</button>
@@ -128,6 +133,9 @@
     <object-name>knob.RIGHT</object-name>
     <object-name>knob.RIGHT.circle</object-name>
     <visible>true</visible>
+    <condition>
+      <property>/instrumentation/gps/serviceable</property>
+    </condition>
     <action>
       <name>next item</name> 
       <button>0</button>
@@ -153,6 +161,9 @@
     <object-name>knob.MODE</object-name>
     <object-name>knob.MODE.circle</object-name>
     <visible>true</visible>
+    <condition>
+      <property>/instrumentation/gps/serviceable</property>
+    </condition>
     <action>
       <name>select next mode</name> 
       <button>0</button>
@@ -177,6 +188,9 @@
     <type>pick</type>
     <object-name>button.ENTER</object-name>
     <visible>true</visible>
+    <condition>
+      <property>/instrumentation/gps/serviceable</property>
+    </condition>
     <action>
       <name>manage ENTER button (top left)</name> 
       <button>0</button>
@@ -192,6 +206,9 @@
     <type>pick</type>
     <object-name>button.ESCAPE</object-name>
     <visible>true</visible>
+    <condition>
+      <property>/instrumentation/gps/serviceable</property>
+    </condition>
     <action>
       <name>manage ESCAPE button (top middle)</name> 
       <button>0</button>
@@ -207,6 +224,9 @@
     <type>pick</type>
     <object-name>button.START</object-name>
     <visible>true</visible>
+    <condition>
+      <property>/instrumentation/gps/serviceable</property>
+    </condition>
     <action>
       <name>manage START button (top right)</name> 
       <button>0</button>

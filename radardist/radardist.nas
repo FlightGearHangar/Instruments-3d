@@ -14,7 +14,7 @@
 # radar stuff too.
 
 
-var data_path = getprop("/sim/fg-root") ~ "/Aircraft/Generic/radardist.xml";
+var data_path = getprop("/sim/fg-root") ~ "/Aircraft/Instruments-3d/radardist/radardist.xml";
 var aircraftData = {};
 var radarData = [];
 

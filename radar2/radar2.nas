@@ -178,7 +178,6 @@ var target_process = func ( target ) {
 		var horizon = radardist.radar_horizon( our_alt, t_alt );
 		# RADAR stuff.
 		# Check if mp within our radar field (hard coded 74°) and if detectable.
-		print( radar_able ~ "  " ~ t_range ~ "  " ~ range_radar2 ~ "  " ~ our_radar_standby );
 		if ( radar_able and t_range <= range_radar2 and !our_radar_standby ) {
 			var true_heading = getprop("orientation/heading-deg");
 			var deviation_deg = deviation_normdeg(true_heading, t_bearing);

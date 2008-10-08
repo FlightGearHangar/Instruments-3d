@@ -9,32 +9,34 @@
 # watch_aimp_models() has to be periodicaly called from one of our aircraft
 # nasal files. Do not forget to init both scripts. 
 
-# Properties:
-
+# Input properties:
+# -----------------
 # instrumentation/radar/enabled (bool) (radar display)
 # instrumentation/ecm/enabled (bool) (RWR display)
-# At least one of these.
-
+	# At least one of these true.
 # /instrumentation/radar/range : fixed limit to any computation (both radar and ECM/RWR)
 # /instrumentation/radar/radar2-range : our own and current display range.
 # TODO: /instrumentation/radar/symbols-enabled (bool) as we could also display raw spots on the screen.
 # /instrumentation/radar/radar-standby (int), shall be transmited via sim/multiplay/generic/int[2]
-# (until we get a good definition of radar and related properties that could be added to the
-# standard set of MP transmited parameters). With this property set to 1, your radar is not
-# updated anymore but continue to show targets as they where before entering standby and it
-# enter silent mode and do not trigger any alert on other players using a RWR.
- 
-# /instrumentation/ecm/on-off (bool)
-# alert type 1: at least one weak scan detected. /instrumentation/ecm/alert-type1 (bool)
-# alert type 2: at least one strong scan detected. /instrumentation/ecm/alert-type1 (bool)
+	# (until we get a good definition of radar and related properties that could be added to the
+	# standard set of MP transmited parameters). With this property set to 1, your radar [1] is not
+	# updated anymore but continue to show targets as they where before entering standby [2] it
+	# enter silent mode and do not trigger any alert on other players using a RWR.
+# /instrumentation/ecm/on-off (bool) (disable RWR computations)
 
-# About radar2.nas and wxradar.
-# radar2.nas was intended first to permit building a radar display using a standard .xml animation.
-# Then it was enhanced to provide new multiplayer feature. wxradar was already a good candidate for that
-# and would have a great avantage because those standard .xml animations are really a pity to do,
-# (as many as 3000 xml lines for the f-14 display). Anyway, I'm not enough skilled to write C++ and
-# I also hope that radar2.nas feature will be integrated in wxradar so both can operate together in
-# the same sky.
+# Output properties:
+# ------------------
+# /instrumentation/ecm/alert-type1 (bool) alert type 1: at least one weak scan detected. 
+# /instrumentation/ecm/alert-type1 (bool) alert type 2: at least one strong scan detected. 
+# /ai/models/multiplayer[n]/radar/carrier (bool)
+# /ai/models/multiplayer[n]/radar/display (bool)
+# /ai/models/multiplayer[n]/radar/ecm-signal (double)
+# /ai/models/multiplayer[n]/radar/ecm-signal-norm (int)
+	# 0 = none, 1 = strong, 2 = weak, used as a translate prop in the xml animation. 
+# /ai/models/multiplayer[n]/radar/ecm_type_num (int)
+	# used for RWR which recognize and display the radar type
+
+
 
 
 var watch_i      = 0;
@@ -103,7 +105,7 @@ var get_list = func {
 	var raw_list = Mp.getChildren();
 	foreach( var c; raw_list ) {
 		var type = c.getName();
-		# Carriers are not well handled yet by AIBase.cxx, so we only reconize mp-carriers.
+		# TODO: watch for AI carriers instead of only reconize mp-carriers.
 		if (type == "multiplayer" or type == "tanker") {
 			append(watch_list, [type, c.getIndex()]);
 		}
@@ -123,14 +125,19 @@ var target_process = func ( target ) {
 	# like "ai/models/multiplayer[0]/radar/radar-standby"
 	var THeading      = TNode.getNode("orientation/true-heading-deg");
 	var TInRange      = TRadar.getNode("in-range");
+	if ( TInRange == nil ) { return }
 	var TCarrier      = TRadar.getNode("carrier", 1);
 	var TDisplay      = TRadar.getNode("display", 1);
 	var TEcmSignal    = TRadar.getNode("ecm-signal", 1);
+	var TEcmSignalNorm    = TRadar.getNode("ecm-signal-norm", 1);
+	var TEcmTypeNum   = TRadar.getNode("ecm_type_num", 1);
 	# Set variables.
 	var t_carrier     = 0;
 	var t_display     = 0;
 	var t_ecm_signal  = 0;
+	var t_ecm_signal_norm  = 0;
 	var t_radar_standby = 0;
+	var t_ecm_type_num = 0;
 
 	if ( TRadarStandby != nil ) {
 		t_radar_standby = TRadarStandby.getValue();
@@ -154,7 +161,8 @@ var target_process = func ( target ) {
 		var TRoundedAlt   = TRadar.getNode("rounded-alt-ft", 1);
 		var t_heading     = THeading.getValue();
 		var range_radar   = RangeRadar.getValue();
-		var range_radar2   = RangeRadar2.getValue();
+		var range_radar2   = 0;
+		if ( RangeRadar2 != nil ) { range_radar2 = RangeRadar2.getValue(); }
 		var TPath         = TNode.getNode("sim/model/path");
 		var TACType       = TNode.getNode("sim/model/ac-type");
 		if (( t_bearing == nil ) or ( t_alt == nil ) or ( TPath == nil )) {
@@ -165,10 +173,12 @@ var target_process = func ( target ) {
 		if ( t_ac_type == "MP-Nimitz" or t_ac_type == "MP-Eisenhower") {
 			t_carrier = 1;
 		}
+		# TODO: add AWAKS and ATC.
 		var our_alt = OurAlt.getValue();
 		var horizon = radardist.radar_horizon( our_alt, t_alt );
 		# RADAR stuff.
 		# Check if mp within our radar field (hard coded 74°) and if detectable.
+		print( radar_able ~ "  " ~ t_range ~ "  " ~ range_radar2 ~ "  " ~ our_radar_standby );
 		if ( radar_able and t_range <= range_radar2 and !our_radar_standby ) {
 			var true_heading = getprop("orientation/heading-deg");
 			var deviation_deg = deviation_normdeg(true_heading, t_bearing);
@@ -179,7 +189,7 @@ var target_process = func ( target ) {
 				var draw_radar = factor_range_radar * t_range;
 				TDrawRangeNm.setValue(draw_radar);
 				# Compute first digit of mp altitude rounded to nearest thousand. (labels).
-				var rounded_alt = rounding1000(t_alt) / 1000;			
+				var rounded_alt = rounding1000(t_alt) / 1000;
 				TRoundedAlt.setValue(rounded_alt);
 				t_display = 1;
 			}
@@ -193,22 +203,26 @@ var target_process = func ( target ) {
 			var t_name = radardist.get_aircraft_name(target);
 			var t_maxrange = radardist.my_maxrange(t_name); # in kilometer, 0 is unknown or no radar.
 			if ( t_maxrange > 0  and t_range < horizon ) {
-				# Test if we are in its (arbitrary 120°) angular coverage or if we have a carrier.
+				# Test if we are in its radar field (hard coded 74°) or if we have a carrier.
 				# Compute the signal strength.
 				var t_reciprocal_bearing = geo.normdeg(t_bearing + 180);
 				var our_deviation_deg = deviation_normdeg(t_heading, t_reciprocal_bearing);
 				if ( our_deviation_deg < 0 ) { our_deviation_deg *= -1 }
-				if ( our_deviation_deg < 60 or t_carrier == 1 ) {
-					t_ecm_signal = ( (((-our_deviation_deg/30)+2.5)*(!t_carrier )) + (-t_range/20) + 2.6 + (t_carrier*1.8));
+				if ( our_deviation_deg < 37 or t_carrier == 1 ) {
+					t_ecm_signal = ( (((-our_deviation_deg/20)+2.5)*(!t_carrier )) + (-t_range/20) + 2.6 + (t_carrier*1.8));
+					t_ecm_type_num = radardist.get_ecm_type_num(t_name);
 				}
 			}
-			# Compute global threat situation. (undiscriminant warning lights)
+			# Compute global threat situation for undiscriminant warning lights
+			# and discrete (normalized) definition of threat strength.
 			if ( t_ecm_signal > 1 and t_ecm_signal < 3 ) {
 				EcmAlert1.setBoolValue(1);
 				ecm_alert1 = 1;
+				t_ecm_signal_norm = 2;
 			} elsif ( t_ecm_signal >= 3 ) {
 				EcmAlert2.setBoolValue(1);
 				ecm_alert2 = 1;
+				t_ecm_signal_norm = 1;
 			}
 		}
 	}
@@ -228,7 +242,8 @@ var target_process = func ( target ) {
 		ecm_alert2 = 0;
 	}	
 	TEcmSignal.setValue(t_ecm_signal);
-
+	TEcmSignalNorm.setIntValue(t_ecm_signal_norm);
+	TEcmTypeNum.setIntValue(t_ecm_type_num);
 }
 
 

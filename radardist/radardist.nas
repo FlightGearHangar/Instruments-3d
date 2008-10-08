@@ -69,6 +69,15 @@ var my_maxrange = func(a) {
 	return( max_range );
 }
 
+var get_ecm_type_num = func(a) {
+	acname = aircraftData[a] or 0;
+	var num = 0;
+	if ( acname ) {
+		num = radarData[acname][8];
+	}
+	return( num );
+} 
+
 var get_aircraft_name = func( t ) {
 	# Get the multiplayer aircraft name.
 	mpnode_string = t;
@@ -187,7 +196,8 @@ var load_data = func {
 			t.getNode("radar-type").getValue(),
 			t.getNode("max-radar-rng-km").getValue(),
 			t.getNode("max-target-sq-meter").getValue(),
-			t.getNode("max-target-4th-root").getValue()
+			t.getNode("max-target-4th-root").getValue(),
+			t.getNode("ecm-type-num").getValue()
 		];
 		append(radarData, t_list);
 	}

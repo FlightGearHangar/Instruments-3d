@@ -42,6 +42,8 @@
     <nav-frq-standby>instrumentation/nav[0]/frequencies/standby-mhz</nav-frq-standby>
     <nav-volume>instrumentation/nav[0]/volume</nav-volume>
     <nav-audio>instrumentation/nav[0]/audio-btn</nav-audio>
+
+    <dimming>instrumentation/comm[0]/dimming-norm</dimming>
   </params>
 
   <path>kx165.ac</path>
@@ -68,6 +70,21 @@
       <green>0.2</green>
       <blue>0.0</blue>
       <factor-prop>controls/lighting/instruments-norm</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>CommUse</object-name>
+    <object-name>CommStby</object-name>
+    <object-name>NavUse</object-name>
+    <object-name>NavStby</object-name>
+    <emission>
+      <red>-1.0</red>
+      <green>-1.0</green>
+      <blue>-1.0</blue>
+      <factor-prop alias="../../../params/dimming"/>
+      <offset>1</offset>
     </emission>
   </animation>
 

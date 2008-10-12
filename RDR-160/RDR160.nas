@@ -31,18 +31,18 @@ setlistener("/sim/signals/fdm-initialized", func {
     print("KING RDR-160 ... OK");
     });
 
-setlistener("/instrumentation/radar/switch-pos", func {
+setlistener("/instrumentation/radar/switch-pos", func(n) {
     if(FDM_ON != 0){
-        var swtch = cmdarg().getValue();
+        var swtch = n.getValue();
         RADAR.getNode("switch",1).setValue(P_Str[swtch]);
         }
     });
 
-setlistener("/instrumentation/radar/set-range", func {
+setlistener("/instrumentation/radar/set-range", func(n) {
     if(FDM_ON != 0){
         var rng = RADAR.getNode("range").getValue();
-        var num = cmdarg().getValue();
-        cmdarg().setValue(0);
+        var num = n.getValue();
+        n.setValue(0);
         if(num > 0){
         rng *= 2;
         if(rng > 160){rng = 160.0;}

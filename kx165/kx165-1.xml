@@ -11,7 +11,7 @@
   init function to keep the settings of the radio persistent between
   flightgear sessions
 
-  var props2save = [
+  aircraft.data.add(
     "instrumentation/comm[0]/volume",
     "instrumentation/comm[0]/frequencies/selected-mhz",
     "instrumentation/comm[0]/frequencies/standby-mhz",
@@ -20,10 +20,7 @@
     "instrumentation/nav[0]/power-btn",
     "instrumentation/nav[0]/frequencies/selected-mhz",
     "instrumentation/nav[0]/frequencies/standby-mhz",
-  ];
-  foreach( var p; props2save ) {
-    aircraft.data.add( p );
-  }
+  );
   -->
 
   <params>

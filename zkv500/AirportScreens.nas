@@ -7,7 +7,7 @@ var screenAirportMain = {
     search: func {
 	me.apt = me.oaci != nil ? airportinfo(me.oaci) : airportinfo();
 	if (me.apt != nil) {
-	    glide_slope_tunnel.complement_runways(me.apt);
+	    #glide_slope_tunnel.complement_runways(me.apt);
 	    return 1;
 	}
 	else
@@ -74,18 +74,25 @@ var screenAirportInfos = {
     },
     lines : func {
 	me.rwylist = [];
-	foreach (var r; keys(screenAirportMain.apt.runways))
-	    append(me.rwylist, [r, screenAirportMain.apt.runways[r].length, 
-				   screenAirportMain.apt.runways[r].width]);
+	foreach (var r; keys(screenAirportMain.apt.runways)) {
+	    string.isdigit(r[0]) or continue;
+	    var number = math.mod(num(substr(r, 0, 2)) + 18, 36);
+	    var side = substr(r, 2, 1);
+	    var comp = sprintf("%02d%s", number, side == "R" ? "L" : side == "L" ? "R" : side);
+	    append(me.rwylist, [r, comp, 
+				screenAirportMain.apt.runways[r].length, 
+				screenAirportMain.apt.runways[r].width]);
+	}
 	line[0].setValue(sprintf("%s", screenAirportMain.apt.name)); #TODO check length to truncate if too long
 	rwyindex = me.page * 4;
 	for (var l = 1; l < LINES; l += 1) {
 	    rwyindex += 1;
 	    if (rwyindex < size(me.rwylist))
-		line[l].setValue(sprintf("%s [%dm / %dm]", 
+		line[l].setValue(sprintf("%s - %s [%dm / %dm]", 
 					me.rwylist[rwyindex][0],
 					me.rwylist[rwyindex][1], 
-					me.rwylist[rwyindex][2]));
+					me.rwylist[rwyindex][2],
+					me.rwylist[rwyindex][3]));
 	    else
 		line[l].setValue("");
 	}

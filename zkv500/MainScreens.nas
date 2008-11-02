@@ -35,9 +35,9 @@ var screenModeAndSettings = { # screen for changing the GPS mode and settings
 	    mode = me.mode_ + 1;
 	    page = 0;
 	    displayed_screen = page_list[mode][page];
-	    if (mode == 3) 
+	    if (mode == 4) 
 		screenTaskSelect.n = list_routes();
-	    elsif (mode == 2) 
+	    elsif (mode == 3)
 		screenTurnpointSelect.n = load_bookmarks();
 	}
     },
@@ -308,7 +308,7 @@ var screenEdit = {
 	me.edit_title,
 	me.edit_zone,
 	"",
-	"ESC -> AVOID",
+	"ESC -> RESET",
 	sprintf("START -> %s", me.start_command)
 	]);
     }

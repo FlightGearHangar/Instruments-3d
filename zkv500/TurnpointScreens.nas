@@ -33,6 +33,7 @@ var screenTurnpointSelect = {
 	if (bookmark.getNode("waypoint-type") != nil)
 	    gps_wp.getNode("wp[1]/waypoint-type").setValue(bookmark.getNode("waypoint-type").getValue());
 	blocked = 0;
+	me.loaded = 1;
 	page = 1;
 	mode = 3;
 	left_knob(0);

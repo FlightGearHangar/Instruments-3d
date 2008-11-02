@@ -77,7 +77,11 @@ var start_button = func() { #manage start button, depends of displayed screen
 
 var left_knob = func(dir) { #manage left button, cycle in mode's pages if not blocked
     isOn > 0 or return;
-    if (blocked == 0) { 
+    if (blocked == 0) {
+	if (displayed_screen == 13 and dir) {
+	    mode = screenEdit.previous_mode;
+	    page = screenEdit.previous_page;
+	}
 	page = cycle(size(page_list[mode]), page, dir);
 	displayed_screen = page_list[mode][page];
     }
@@ -216,6 +220,8 @@ var load_bookmarks = func { #load turnpoints
 	}));
 	foreach (var c ;props.globals.getNode("/instrumentation/gps/bookmarks").getChildren("bookmark")) n += 1;
     }
+    else 
+	print(file ~ " not found...");
     return n;
 }
 

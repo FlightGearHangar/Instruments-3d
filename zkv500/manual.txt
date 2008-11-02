@@ -68,6 +68,15 @@ Then in your panel configuration file, just put the 3D model, as usual:
 [example from Lionceau: Aircraft/Lionceau/Models/Panel/front-panel.xml]
 Your ZKV500 is ready to be powered on!
 
+It comes with "vi-like" multikey system, accessible with ":g" sequence.
+To intall it, just add in the <input> section of your configuration file the
+following line:
+  <keyboard n="0" include="../Instruments-3d/zkv500/multikey.xml"/>
+NOTE: to avoid creation of multiple instances of keyboard node, it is 
+recommanded to explicit n="0" for each call of keyboard tag.
+Now turning knobs is as simple as using up or down arrow!
+The next sequence's keys are described below.
+
 The ZKV500 has IO capacities: routes are red from $FGHOME/Routes and
 written in $FGHOME/Export, the bookmarks are red and written in
 $FGHOME/Export/bookmarks.xml
@@ -159,12 +168,16 @@ KNOB|------------------------|KNOB
 
 -> PAGE knob allows you to cycle in the different pages available for
    each mode.
+   key sequence ":gl"
 -> SELECT knob allows yo to navigate in a page, or select element, or
    edit some simple text (depending of screen).
+   key sequence ":gr"
 -> MODE knob allows you to select a mode, and acces to the ZKV500 settings
    you can access this knob at any time, any screen.
+   key sequence ":gm"
 -> POWER knob allows you to turn ON and OFF the ZKV500, and set the 
    LCD enlightment.
+   key sequence ":gp"
 The goal of each button depends of the displayed screen.
 
 4. USER'S MANUAL
@@ -175,6 +188,7 @@ more and more enlighted.
 When powered ON, you are on the ModeAndSettings screen.
 Right-click on POWER knob will first decrease enlightment intensity until
 switch the ZKV500 off.
+key sequence ":gp [up/down x times]"
 
   2. Screens list
 [] -> button

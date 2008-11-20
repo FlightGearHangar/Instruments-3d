@@ -106,9 +106,6 @@ var RNAV = props.globals.getNode("/instrumentation/rnav",1);
 # rho, theta: distance and radial for phantom station
 # range, bearing: distance and radial from phantom station
 
-var PI=3.14159265;
-var D2R=PI/180;
-var R2D=180/PI;
 
 var unnil = func(n) { n == nil ? 0 : n }
 

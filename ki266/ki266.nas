@@ -4,6 +4,9 @@
 # Maintainer: Torsten Dreyer (Torsten at t3r dot de)
 #
 # $Log$
+# Revision 1.2  2008/11/21 09:21:03  torsten
+# make use of new Node.initNode() method
+#
 # Revision 1.1  2008/11/03 16:18:06  torsten
 # added ki266 3d-instrument, see ki266.xml for help
 #
@@ -24,38 +27,14 @@ ki266.new = func(idx) {
 
   obj.rootNode = props.globals.getNode( "/instrumentation/dme[" ~ idx ~ "]", 1 );
 
-  obj.powerNode = obj.rootNode.getNode( "power-btn" );
-  if( obj.powerNode.getValue() == nil )
-    obj.powerNode.setBoolValue( 1 );
-
-  obj.distNode = obj.rootNode.getNode( "indicated-distance-nm", 1 );
-  if( obj.distNode.getValue() == nil )
-    obj.distNode.setDoubleValue( 0.0 );
-
-  obj.timeNode = obj.rootNode.getNode( "indicated-time-min", 1 );
-  if( obj.timeNode.getValue() == nil )
-    obj.timeNode.setDoubleValue( 0.0 );
-
-  obj.ktsNode = obj.rootNode.getNode( "indicated-ground-speed-kt", 1 );
-  if( obj.ktsNode.getValue() == nil )
-    obj.ktsNode.setDoubleValue( 0.0 );
-
-  obj.minKtsNode = obj.rootNode.getNode( "switch-min-kts", 1 );
-  if( obj.minKtsNode.getValue() == nil )
-    obj.minKtsNode.setBoolValue( 1 );
-
-  obj.minKtsDisplayNode = obj.rootNode.getNode( "min-kts-display", 1 );
-  if( obj.minKtsDisplayNode.getValue() == nil )
-    obj.minKtsDisplayNode.setDoubleValue(0);
-
-  obj.milesDisplayNode = obj.rootNode.getNode( "miles-display", 1 );
-  if( obj.milesDisplayNode.getValue() == nil )
-    obj.milesDisplayNode.setDoubleValue(0);
-
-  obj.leftDotNode = obj.rootNode.getNode( "left-dot", 1 );
-  if( obj.leftDotNode.getValue() == nil )
-    obj.leftDotNode.setBoolValue(0);
-
+  obj.powerNode = obj.rootNode.initNode( "power-btn", 1, "BOOL" );
+  obj.distNode = obj.rootNode.initNode( "indicated-distance-nm", 0.0 );
+  obj.timeNode = obj.rootNode.initNode( "indicated-time-min", 0.0 );
+  obj.ktsNode = obj.rootNode.initNode( "indicated-ground-speed-kt", 0.0 );
+  obj.minKtsNode = obj.rootNode.initNode( "switch-min-kts", 1, "BOOL" );
+  obj.minKtsDisplayNode = obj.rootNode.initNode( "min-kts-display", 0.0 );
+  obj.milesDisplayNode = obj.rootNode.initNode( "miles-display", 0.0 );
+  obj.leftDotNode = obj.rootNode.initNode( "left-dot", 0, "BOOL" );
   aircraft.data.add( obj.powerNode, obj.minKtsNode );
 
   obj.update();

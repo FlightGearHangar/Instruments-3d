@@ -10,24 +10,24 @@
 
     <layer>
         <name>alt1</name>
-        <w>74</w>
-        <h>5748</h>
+        <w>73</w>
+        <h>1445</h>
         <texture>
             <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
-            <x1>0.512</x1>
-            <y1>0.00</y1>
-            <x2>0.994</x2>
-            <y2>1.00</y2>
+            <x1>0.896</x1>
+            <y1>0.009</y1>
+            <x2>0.960</x2>
+            <y2>0.985</y2>
         </texture>
         <transformations>
             <transformation>
                <type>y-shift</type>
-                <offset>2550</offset>
+                <offset>435</offset>
             </transformation>
             <transformation>
                 <type>y-shift</type>
                 <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                <scale>-0.21696</scale>
+                <scale>-0.231266</scale>
             </transformation>
         </transformations>
         <emissive>true</emissive>
@@ -35,24 +35,224 @@
 
     <layer>
         <name>alt2</name>
-        <w>74</w>
-        <h>5748</h>
+        <w>73</w>
+        <h>1390</h>
         <texture>
             <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
-            <x1>0.00</x1>
-            <y1>0.018</y1>
-            <x2>0.487</x2>
-            <y2>1.018</y2>
+            <x1>0.797</x1>
+            <y1>0.046</y1>
+            <x2>0.861</x2>
+            <y2>0.985</y2>
         </texture>
         <transformations>
             <transformation>
                <type>y-shift</type>
-                <offset>7969.04</offset>
+                <offset>1849</offset>
             </transformation>
             <transformation>
                 <type>y-shift</type>
                 <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                <scale>-0.21696</scale>
+                <scale>-0.231266</scale>
+            </transformation>
+        </transformations>
+        <emissive>true</emissive>
+    </layer>
+
+    <layer>
+        <name>alt3</name>
+        <w>73</w>
+        <h>1390</h>
+        <texture>
+            <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
+            <x1>0.697</x1>
+            <y1>0.046</y1>
+            <x2>0.761</x2>
+            <y2>0.985</y2>
+        </texture>
+        <transformations>
+            <transformation>
+               <type>y-shift</type>
+                <offset>3237</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <scale>-0.231266</scale>
+            </transformation>
+        </transformations>
+        <emissive>true</emissive>
+    </layer>
+
+    <layer>
+        <name>alt4</name>
+        <w>73</w>
+        <h>1390</h>
+        <texture>
+            <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
+            <x1>0.597</x1>
+            <y1>0.046</y1>
+            <x2>0.662</x2>
+            <y2>0.985</y2>
+        </texture>
+        <transformations>
+            <transformation>
+               <type>y-shift</type>
+                <offset>4625</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <scale>-0.231266</scale>
+            </transformation>
+        </transformations>
+        <emissive>true</emissive>
+    </layer>
+
+    <layer>
+        <name>alt5</name>
+        <w>73</w>
+        <h>1390</h>
+        <texture>
+            <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
+            <x1>0.498</x1>
+            <y1>0.046</y1>
+            <x2>0.562</x2>
+            <y2>0.985</y2>
+        </texture>
+        <transformations>
+            <transformation>
+               <type>y-shift</type>
+                <offset>6012</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <scale>-0.231266</scale>
+            </transformation>
+        </transformations>
+        <emissive>true</emissive>
+    </layer>
+
+    <layer>
+        <name>alt6</name>
+        <w>73</w>
+        <h>1390</h>
+        <texture>
+            <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
+            <x1>0.398</x1>
+            <y1>0.046</y1>
+            <x2>0.462</x2>
+            <y2>0.985</y2>
+        </texture>
+        <transformations>
+            <transformation>
+               <type>y-shift</type>
+                <offset>7401</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <scale>-0.231266</scale>
+            </transformation>
+        </transformations>
+        <emissive>true</emissive>
+    </layer>
+
+    <layer>
+        <name>alt7</name>
+        <w>73</w>
+        <h>1390</h>
+        <texture>
+            <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
+            <x1>0.298</x1>
+            <y1>0.046</y1>
+            <x2>0.362</x2>
+            <y2>0.985</y2>
+        </texture>
+        <transformations>
+            <transformation>
+               <type>y-shift</type>
+                <offset>8788</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <scale>-0.231266</scale>
+            </transformation>
+        </transformations>
+        <emissive>true</emissive>
+    </layer>
+
+    <layer>
+        <name>alt8</name>
+        <w>73</w>
+        <h>1390</h>
+        <texture>
+            <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
+            <x1>0.197</x1>
+            <y1>0.046</y1>
+            <x2>0.261</x2>
+            <y2>0.985</y2>
+        </texture>
+        <transformations>
+            <transformation>
+               <type>y-shift</type>
+                <offset>10175</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <scale>-0.231266</scale>
+            </transformation>
+        </transformations>
+        <emissive>true</emissive>
+    </layer>
+
+    <layer>
+        <name>alt9</name>
+        <w>73</w>
+        <h>1390</h>
+        <texture>
+            <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
+            <x1>0.097</x1>
+            <y1>0.046</y1>
+            <x2>0.161</x2>
+            <y2>0.985</y2>
+        </texture>
+        <transformations>
+            <transformation>
+               <type>y-shift</type>
+                <offset>11562</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <scale>-0.231266</scale>
+            </transformation>
+        </transformations>
+        <emissive>true</emissive>
+    </layer>
+
+    <layer>
+        <name>alt10</name>
+        <w>73</w>
+        <h>1390</h>
+        <texture>
+            <path>Aircraft/Instruments-3d/primus-1000/PFD/alttape.png</path>
+            <x1>-0.001</x1>
+            <y1>0.046</y1>
+            <x2>0.063</x2>
+            <y2>0.985</y2>
+        </texture>
+        <transformations>
+            <transformation>
+               <type>y-shift</type>
+                <offset>12949</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <scale>-0.231266</scale>
             </transformation>
         </transformations>
         <emissive>true</emissive>
@@ -77,7 +277,7 @@
             <transformation>
                 <type>y-shift</type>
                 <property>position/gear-agl-ft</property>
-                <scale>-0.0464</scale>
+                <scale>-0.2090</scale>
             </transformation>
         </transformations>
         <emissive>true</emissive>

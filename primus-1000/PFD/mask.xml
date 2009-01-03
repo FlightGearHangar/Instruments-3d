@@ -251,7 +251,11 @@
             <transformation>
                <type>y-shift</type>
                 <property>instrumentation/primus1000/GS-deflection</property>
-                <scale>4</scale>
+                <interpolation>
+                    <entry><ind>-0.7</ind><dep>-41.0</dep></entry>
+                    <entry><ind>0</ind><dep>0.0</dep></entry>
+                    <entry><ind>0.7</ind><dep>41.0</dep></entry>
+                </interpolation>
             </transformation>
         </transformations>
     </layer>

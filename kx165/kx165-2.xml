@@ -3,7 +3,7 @@
 
   <!--
   Bendix/King KX155/165 COMM/NAV radio
-  Use this instrument as COMM1/NAV1 radio
+  Use this instrument as COMM2/NAV2 radio
 
   Created by Torsten Dreyer, October 2008
 
@@ -617,9 +617,11 @@
         <command>property-adjust</command>
         <property alias="../../../../params/comm-frq-standby"/>
         <step>-0.025</step>
-        <min>118.0</min>
-        <max>140.0</max>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.025</resolution>
         <wrap>true</wrap>
+        <mask>decimal</mask>
       </binding>
     </action>
     <action>
@@ -630,8 +632,9 @@
         <property alias="../../../../params/comm-frq-standby"/>
         <step>-1</step>
         <min>118.0</min>
-        <max>140.0</max>
+        <max>137.0</max>
         <wrap>true</wrap>
+        <mask>integer</mask>
       </binding>
     </action>
   </animation>
@@ -647,9 +650,11 @@
         <command>property-adjust</command>
         <property alias="../../../../params/comm-frq-standby"/>
         <step>0.025</step>
-        <min>118.0</min>
-        <max>140.0</max>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.025</resolution>
         <wrap>true</wrap>
+        <mask>decimal</mask>
       </binding>
     </action>
     <action>
@@ -660,8 +665,9 @@
         <property alias="../../../../params/comm-frq-standby"/>
         <step>1</step>
         <min>118.0</min>
-        <max>140.0</max>
+        <max>137.0</max>
         <wrap>true</wrap>
+        <mask>integer</mask>
       </binding>
     </action>
   </animation>
@@ -674,24 +680,62 @@
       <button>3</button>
       <repeatable>false</repeatable>
       <binding>
+        <condition>
+          <not>
+            <property>devices/status/keyboard/shift</property>
+          </not>
+        </condition>
         <command>property-adjust</command>
         <property alias="../../../../params/comm-frq-standby"/>
         <step>-0.025</step>
-        <min>118.0</min>
-        <max>140.0</max>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.025</resolution>
         <wrap>true</wrap>
+        <mask>decimal</mask>
+      </binding>
+      <binding>
+        <condition>
+          <property>devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comm-frq-standby"/>
+        <step>-1</step>
+        <min>118.0</min>
+        <max>137.0</max>
+        <wrap>true</wrap>
+        <mask>integer</mask>
       </binding>
     </action>
     <action>
       <button>4</button>
       <repeatable>false</repeatable>
       <binding>
+        <condition>
+          <not>
+            <property>devices/status/keyboard/shift</property>
+          </not>
+        </condition>
         <command>property-adjust</command>
         <property alias="../../../../params/comm-frq-standby"/>
         <step>0.025</step>
-        <min>118.0</min>
-        <max>140.0</max>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.025</resolution>
         <wrap>true</wrap>
+        <mask>decimal</mask>
+      </binding>
+      <binding>
+        <condition>
+          <property>devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comm-frq-standby"/>
+        <step>1</step>
+        <min>118.0</min>
+        <max>137.0</max>
+        <wrap>true</wrap>
+        <mask>integer</mask>
       </binding>
     </action>
   </animation>
@@ -780,10 +824,12 @@
       <binding>
         <command>property-adjust</command>
         <property alias="../../../../params/nav-frq-standby"/>
-        <step>-0.025</step>
-        <min>108.0</min>
-        <max>118.0</max>
+        <step>-0.05</step>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.05</resolution>
         <wrap>true</wrap>
+        <mask>decimal</mask>
       </binding>
     </action>
     <action>
@@ -796,6 +842,7 @@
         <min>108.0</min>
         <max>118.0</max>
         <wrap>true</wrap>
+        <mask>integer</mask>
       </binding>
     </action>
   </animation>
@@ -810,10 +857,12 @@
       <binding>
         <command>property-adjust</command>
         <property alias="../../../../params/nav-frq-standby"/>
-        <step>0.025</step>
-        <min>108.0</min>
-        <max>118.0</max>
+        <step>0.05</step>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.05</resolution>
         <wrap>true</wrap>
+        <mask>decimal</mask>
       </binding>
     </action>
     <action>
@@ -826,6 +875,7 @@
         <min>108.0</min>
         <max>118.0</max>
         <wrap>true</wrap>
+        <mask>integer</mask>
       </binding>
     </action>
   </animation>
@@ -838,24 +888,62 @@
       <button>3</button>
       <repeatable>false</repeatable>
       <binding>
+        <condition>
+          <not>
+            <property>devices/status/keyboard/shift</property>
+          </not>
+        </condition>
         <command>property-adjust</command>
         <property alias="../../../../params/nav-frq-standby"/>
-        <step>-0.025</step>
+        <step>-0.05</step>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.05</resolution>
+        <wrap>true</wrap>
+        <mask>decimal</mask>
+      </binding>
+      <binding>
+        <condition>
+          <property>devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/nav-frq-standby"/>
+        <step>-1</step>
         <min>108.0</min>
         <max>118.0</max>
         <wrap>true</wrap>
+        <mask>integer</mask>
       </binding>
     </action>
     <action>
       <button>4</button>
       <repeatable>false</repeatable>
       <binding>
+        <condition>
+          <not>
+            <property>devices/status/keyboard/shift</property>
+          </not>
+        </condition>
         <command>property-adjust</command>
         <property alias="../../../../params/nav-frq-standby"/>
-        <step>0.025</step>
+        <step>0.05</step>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.05</resolution>
+        <wrap>true</wrap>
+        <mask>decimal</mask>
+      </binding>
+      <binding>
+        <condition>
+          <property>devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/nav-frq-standby"/>
+        <step>1</step>
         <min>108.0</min>
         <max>118.0</max>
         <wrap>true</wrap>
+        <mask>integer</mask>
       </binding>
     </action>
   </animation>

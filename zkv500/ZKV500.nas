@@ -155,7 +155,7 @@ var list_routes = func { #load preprogrammed tasks
     routes = [];
     var path = getprop("/sim/fg-home") ~ "/Routes";
     var s = io.stat(path);
-    if (s != nil and io.isdir(s[2])) {
+    if (s != nil and s[11] == "dir") {
 	foreach (var file; directory(path)) 
 	    if (file[0] != 46) append(routes, file);
 #	size(routes) != 0 or return;

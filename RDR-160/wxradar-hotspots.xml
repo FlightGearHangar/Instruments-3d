@@ -4,8 +4,7 @@
 <PropertyList>
 
     <name>wxradar hotspots</name>
-    <w-base>160</w-base>
-    <h-base>120</h-base>
+    <background>Aircraft/Instruments-3d/RDR-160/pnl.png</background>
     <w>160</w>
     <h>120</h>
 
@@ -22,7 +21,7 @@
                 </not-equals>
             </condition>
             <texture>
-                <path>Aircraft/Instruments-3d/RDR-160/bkgrd.rgb</path>
+                <path>Aircraft/Instruments-3d/RDR-160/bkgrd.png</path>
                 <x1>0.030</x1>
                 <y1>0.112</y1>
                 <x2>0.979</x2>
@@ -49,7 +48,7 @@
                 </equals>
             </condition>
             <texture>
-                <path>Aircraft/Instruments-3d/RDR-160/od_wxradar.rgb</path>
+                <path>Aircraft/Instruments-3d/RDR-160/od_wxradar.png</path>
                 <x1>0.0</x1>
                 <y1>0.0</y1>
                 <x2>1.0</x2>
@@ -234,176 +233,6 @@
             </transformation>
         </transformations>
     </layer>
-
 </layers>
-
-    <actions>
-<!--
-        <action>
-            <name>outline</name>
-            <button>0</button>
-            <x>-80</x>
-            <y>-60</y>
-            <w>160</w>
-            <h>120</h>
-        </action>
--->
-        <action>
-            <name>data toggle</name>
-            <button>0</button>
-            <x>-74</x>
-            <y>-2</y>
-            <w>12</w>
-            <h>8</h>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/radar/display-controls/data</property>
-            </binding>
-        </action>
-
-        <action>
-            <name>pos toggle</name>
-            <button>0</button>
-            <x>-74</x>
-            <y>-20</y>
-            <w>12</w>
-            <h>8</h>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/radar/display-controls/pos</property>
-            </binding>
-        </action>
-
-        <action>
-            <name>range increase</name>
-            <button>0</button>
-            <x>64</x>
-            <y>-2</y>
-            <w>12</w>
-            <h>8</h>
-            <binding>
-                <command>property-assign</command>
-                <property>instrumentation/radar/set-range</property>
-                <value>1</value>
-            </binding>
-        </action>
-
-        <action>
-            <name>range decrease</name>
-            <button>0</button>
-            <x>64</x>
-            <y>-20</y>
-            <w>12</w>
-            <h>8</h>
-            <binding>
-                <command>property-assign</command>
-                <property>instrumentation/radar/set-range</property>
-                <value>-1</value>
-            </binding>
-        </action>
-
-        <action>
-        <name>pwroff</name>
-            <button>0</button>
-            <x>-80</x>
-            <y>-51</y>
-            <w>12</w>
-            <h>20</h>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/radar/switch-pos</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>3</max>
-                <wrap>false</wrap>
-            </binding>
-        </action>
-
-        <action>
-        <name>pwron</name>
-            <button>0</button>
-            <x>-68</x>
-            <y>-51</y>
-            <w>12</w>
-            <h>20</h>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/radar/switch-pos</property>
-                <step>1</step>
-                <min>0</min>
-                <max>3</max>
-                <wrap>false</wrap>
-            </binding>
-        </action>
-
-        <action>
-            <name>tiltup</name>
-            <button>0</button>
-            <x>67</x>
-            <y>-55</y>
-            <w>12</w>
-            <h>20</h>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/radar/tilt</property>
-                <step>5.0</step>
-                <min>-15.0</min>
-                <max>15.0</max>
-                <wrap>false</wrap>
-            </binding>
-        </action>
-
-        <action>
-            <name>tiltdown</name>
-            <button>0</button>
-            <x>55</x>
-            <y>-55</y>
-            <w>12</w>
-            <h>20</h>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/radar/tilt</property>
-                <step>-5.0</step>
-                <min>-15.0</min>
-                <max>15.0</max>
-                <wrap>false</wrap>
-            </binding>
-        </action>
-
-        <action>
-            <name>brtup</name>
-            <button>0</button>
-            <x>-68</x>
-            <y>39</y>
-            <w>12</w>
-            <h>20</h>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/radar/dim</property>
-                <step>0.05</step>
-                <min>0.0</min>
-                <max>1.0</max>
-                <wrap>false</wrap>
-            </binding>
-        </action>
-
-        <action>
-            <name>brtdwn</name>
-            <button>0</button>
-            <x>-80</x>
-            <y>39</y>
-            <w>12</w>
-            <h>20</h>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/radar/dim</property>
-                <step>-0.05</step>
-                <min>0.0</min>
-                <max>1.0</max>
-                <wrap>false</wrap>
-            </binding>
-        </action>
-
-    </actions>
 
 </PropertyList>

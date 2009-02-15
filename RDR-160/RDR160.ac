@@ -44,7 +44,7 @@ OBJECT poly
 name "RDR160"
 data 8
 Mesh.223
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 86
@@ -484,7 +484,7 @@ OBJECT poly
 name "RDR160.bkgr"
 data 9
 Plane.004
-texture "bkgrd.rgb"
+texture "bkgrd.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -505,7 +505,7 @@ OBJECT poly
 name "RDR160.brt"
 data 12
 Cylinder.011
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 38
@@ -815,7 +815,7 @@ OBJECT poly
 name "RDR160.btn1"
 data 8
 Cube.005
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -868,7 +868,7 @@ OBJECT poly
 name "RDR160.btn2"
 data 8
 Cube.008
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -921,7 +921,7 @@ OBJECT poly
 name "RDR160.gain"
 data 12
 Cylinder.015
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 38
@@ -1231,7 +1231,7 @@ OBJECT poly
 name "RDR160.hold"
 data 8
 Cube.009
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -1284,7 +1284,7 @@ OBJECT poly
 name "RDR160.labels"
 data 9
 Plane.052
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -1437,7 +1437,7 @@ OBJECT poly
 name "RDR160.modedwn"
 data 8
 Cube.006
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -1490,7 +1490,7 @@ OBJECT poly
 name "RDR160.modeup"
 data 8
 Cube.012
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -1543,7 +1543,7 @@ OBJECT poly
 name "RDR160.nav"
 data 8
 Cube.007
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -1596,7 +1596,7 @@ OBJECT poly
 name "RDR160.power"
 data 12
 Cylinder.014
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 38
@@ -1906,7 +1906,7 @@ OBJECT poly
 name "RDR160.rngdwn"
 data 8
 Cube.014
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -1959,7 +1959,7 @@ OBJECT poly
 name "RDR160.rngup"
 data 8
 Cube.013
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -2012,7 +2012,7 @@ OBJECT poly
 name "RDR160.tilt"
 data 12
 Cylinder.012
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 38
@@ -2322,7 +2322,7 @@ OBJECT poly
 name "RDR160.trkdwn"
 data 8
 Cube.010
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -2375,7 +2375,7 @@ OBJECT poly
 name "RDR160.trkup"
 data 8
 Cube.011
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -2542,7 +2542,7 @@ OBJECT poly
 name "tilt.dwn"
 data 9
 Plane.060
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -2563,7 +2563,7 @@ OBJECT poly
 name "tilt.up"
 data 9
 Plane.070
-texture "RDR160.rgb"
+texture "RDR160.png"
 texrep 1 1
 crease 30.000000
 numvert 4

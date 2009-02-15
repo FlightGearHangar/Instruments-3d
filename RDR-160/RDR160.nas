@@ -1,58 +1,36 @@
-####    King RDR-160 Weather Radar  ####
-####    Syd Adams    ####
-####
-####    Include this file in the Set file to run the RDR-160 radar 
-####
-#### Switch Modes  0 = off ; 1 = stby ; 2 = tst ; 3 = on;
-#### Radar Modes WX ; WXA ; MAP
-#### Ranges : 10 , 20, 40, 80 , 160 
+# This file should be loaded in the aircraft set file like so:
+# <nasal>
+#    <radar>
+#       <file>Aircraft/Instruments-3d/RDR-160/RDR160.nas</file>
+#    </radar>
+#</nasal>
+#
+#
 
-RADAR = props.globals.getNode("/instrumentation/radar",1);
-FDM_ON = 0;
-P_Str =["off","stby", "tst","on"];
-RADAR.getNode("serviceable",1).setBoolValue(1);
-RADAR.getNode("range",1).setIntValue(20);
-RADAR.getNode("heading-marker",1).setBoolValue(0);
-RADAR.getNode("lightning",1).setBoolValue(0);
-RADAR.getNode("set-range",1).setIntValue(0);
-RADAR.getNode("minimized",1).setBoolValue(0);
-RADAR.getNode("switch",1).setValue("off");
-RADAR.getNode("switch-pos",1).setIntValue(0);
-RADAR.getNode("mode",1).setValue("WX");
-RADAR.getNode("mode-control",1).setIntValue(3);
-RADAR.getNode("display-mode",1).setValue("arc");
-RADAR.getNode("dim",1).setDoubleValue(0.5);
-RADAR.getNode("display-controls/WX",1).setBoolValue(1);
-RADAR.getNode("display-controls/data",1).setBoolValue(0);
-RADAR.getNode("display-controls/pos",1).setBoolValue(0);
 
-setlistener("/sim/signals/fdm-initialized", func {
-    FDM_ON = 1;
-    print("KING RDR-160 ... OK");
-    });
+    var switch_mode=["off","stby","tst","on"];
+    var s_pos =props.globals.initNode("instrumentation/radar/switch-pos",0,"INT");
+    var r_rng =props.globals.initNode("instrumentation/radar/range",10,"DOUBLE");
+    var r_sw =props.globals.initNode("instrumentation/radar/switch","off");
 
-setlistener("/instrumentation/radar/switch-pos", func(n) {
-    if(FDM_ON != 0){
-        var swtch = n.getValue();
-        RADAR.getNode("switch",1).setValue(P_Str[swtch]);
+    var set_range=func(rng){
+        var Rng = r_rng.getValue();
+        if(rng==1){
+            Rng=Rng*2;
+            if(Rng >160)Rng=160;
+        }elsif(rng==-1){
+            Rng=Rng*0.5;
+            if(Rng <10)Rng=10;
         }
-    });
+        r_rng.setValue(Rng);
+    };
 
-setlistener("/instrumentation/radar/set-range", func(n) {
-    if(FDM_ON != 0){
-        var rng = RADAR.getNode("range").getValue();
-        var num = n.getValue();
-        n.setValue(0);
-        if(num > 0){
-        rng *= 2;
-        if(rng > 160){rng = 160.0;}
-        }else{
-        if(num < 0){
-            rng *=0.5;
-            if(rng < 10){rng = 10.0;}
-                }
-            }
-        RADAR.getNode("range").setValue(rng);
-        }
-    });
+    var set_switch=func(sw){
+        var switchpos=s_pos.getValue() or 0;
+        switchpos+=sw;
+        if(switchpos>3)switchpos=3;
+        if(switchpos<0)switchpos=0;
+        s_pos.setValue(switchpos);
+        r_sw.setValue(switch_mode[switchpos]);
+    };
 

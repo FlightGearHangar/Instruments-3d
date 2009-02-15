@@ -7,6 +7,26 @@ Syd Adams
 
 <path>RDR160.ac</path>
 
+    <panel>
+        <name>Radar</name>
+        <path>Aircraft/Instruments-3d/RDR-160/radar.xml</path>
+        <bottom-left>
+            <x-m>0.003</x-m>
+            <y-m>-0.050</y-m>
+            <z-m>-0.033</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>0.003</x-m>
+            <y-m>0.050</y-m>
+            <z-m>-0.033</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>0.003</x-m>
+            <y-m>-0.050</y-m>
+            <z-m>0.049</z-m>
+        </top-left>
+    </panel>
+
     <animation>
         <type>material</type>
         <object-name>RDR160.labels</object-name>
@@ -72,7 +92,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RDR160.power</object-name>
-        <property>/instrumentation/radar/switch-pos</property>
+        <property>instrumentation/radar/switch-pos</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
             <entry><ind>1</ind><dep>40</dep></entry>
@@ -91,11 +111,11 @@ Syd Adams
         </axis>
     </animation>
 
-<!--    OSG Pick Animations  -->
-<!--
+<!--    Hotspots  -->
+
     <animation>
         <type>pick</type>
-        <object-name>brt.up</object-name>
+        <object-name>RDR160.brt</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
@@ -112,9 +132,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>brt.dwn</object-name>
+        <object-name>RDR160.brt</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
             <repeatable>true</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -129,7 +149,7 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>tilt.up</object-name>
+        <object-name>RDR160.tilt</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -146,9 +166,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>tilt.dwn</object-name>
+        <object-name>RDR160.tilt</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -163,34 +183,24 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>pwr.off</object-name>
+        <object-name>RDR160.power</object-name>
         <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
+            <button>1</button>
             <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/radar/switch-pos</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>3</max>
-                <wrap>false</wrap>
+                <command>nasal</command>
+                <script>radar.set_switch(-1);</script>
             </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>pwr.on</object-name>
+        <object-name>RDR160.power</object-name>
         <action>
             <button>0</button>
-            <repeatable>false</repeatable>
             <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/radar/switch-pos</property>
-                <step>1</step>
-                <min>0</min>
-                <max>3</max>
-                <wrap>false</wrap>
+                <command>nasal</command>
+                <script>radar.set_switch(1);</script>
             </binding>
         </action>
     </animation>
@@ -202,9 +212,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <command>property-assign</command>
-                <property>instrumentation/radar/set-range</property>
-                <value>1</value>
+                <command>nasal</command>
+                <script>radar.set_range(1);</script>
             </binding>
         </action>
     </animation>
@@ -216,9 +225,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <command>property-assign</command>
-                <property>instrumentation/radar/set-range</property>
-                <value>-1</value>
+                <command>nasal</command>
+                <script>radar.set_range(-1);</script>
             </binding>
         </action>
     </animation>
@@ -248,5 +256,5 @@ Syd Adams
             </binding>
         </action>
     </animation>
--->
+
 </PropertyList>

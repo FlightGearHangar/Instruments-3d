@@ -99,4 +99,20 @@
     </axis>
 </animation>
 
+<!-- -hotspots -->
+
+<animation>
+    <type>pick</type>
+    <object-name>CTL.btn</object-name>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+                 <command>nasal</command>
+                <script>m877.davtron.set_clock();</script>
+       </binding>
+    </action>
+</animation>
+
+
 </PropertyList>

@@ -2,9 +2,11 @@
     new : func(prop1){
         m = { parents : [m877]};
         m.MODE =0;
+        m.flip =0;
         m.digit_to_set=0;
         m.digit=[];
         m.set_mode=0;
+        m.ctl_timer=0;
         m.et_start_time=0;
         m.et_countdown=0;
         m.et_running=0;
@@ -12,6 +14,8 @@
         m.ft_start_time=0;
         m.modetext =["GMT","LT","FT","ET"];
         m.M877 = props.globals.initNode(prop1);
+        m.fmeter_sec=m.M877.initNode("flight-meter-sec",0,"DOUBLE");
+        m.fmeter=aircraft.timer.new(m.fmeter_sec,1,1);
         m.tenths=m.M877.initNode("tenths",0,"BOOL");
         m.ET_alarm=m.M877.initNode("et-alarm",0,"BOOL");
         m.FT_alarm=m.M877.initNode("ft-alert",0,"BOOL");
@@ -28,7 +32,16 @@
         m.ET_MN=m.M877.initNode("ET-min",0,"INT");
         m.FT_HR=m.M877.initNode("FT-hr",0,"INT");
         m.FT_MN=m.M877.initNode("FT-min",0,"INT");
+        m.FTlistener=setlistener("gear/gear/wow",func m.fmeter_control(),0);
         return m;
+    },
+#### flightmeter ####
+    fmeter_control : func(){
+        if(!getprop("gear/gear/wow")){
+            me.fmeter.start();
+        }else{
+            me.fmeter.stop();
+        }
     },
 #### displayed mode  ####
     select_display : func(){
@@ -50,9 +63,13 @@
         me.set_mode=1-me.set_mode;
     },
 #### CTL button action ####
-    control_action : func(){
+    control_action : func(tmr){
         if(me.set_mode==0){
-            if(me.MODE==3){
+            if(me.MODE==2){
+                me.ctl_timer+=getprop("/sim/time/delta-realtime-sec");
+                me.ctl_timer *=tmr;
+                if(me.ctl_timer>1.5)me.fmeter.reset();
+            }elsif(me.MODE==3){
                 if(me.et_running==0){
                 me.et_start_time=getprop("/sim/time/elapsed-sec");
                     me.et_running=1;
@@ -113,6 +130,17 @@
             me.ET_MN.setValue(min);
         }
     },
+#### flight time  ####
+    update_FT : func(){
+        var fthour = me.fmeter_sec.getValue()/3600;
+        var hr= int(fthour);
+        var ftmin=(fthour-hr) * 60;
+        var min = int(ftmin);
+        var ftsec= (ftmin- min) *60;
+        me.FT_HR.setValue(hr);
+        me.FT_MN.setValue(min);
+    },
+
 #### update clock  ####
     update_clock : func{
         var pwr=me.power.getValue();
@@ -122,26 +150,23 @@
             pwr=1;
         }
         me.power.setValue(pwr);
-        me.update_ET();
-        var cm = me.MODE;
-        if(cm ==0){
+        if(me.flip==0){
+            me.update_ET();
+        }else{
+            me.update_FT();
+        }
+        if(me.MODE ==0){
             me.HR.setValue(getprop("/instrumentation/clock/indicated-hour"));
             me.MN.setValue(getprop("/instrumentation/clock/indicated-min"));
-        }elsif(cm == 1) {
+        }elsif(me.MODE == 1) {
             me.HR.setValue(getprop("/instrumentation/clock/local-hour"));
             me.MN.setValue(getprop("/instrumentation/clock/indicated-min"));
-        }elsif(cm == 2) {
-            var FTH = getprop("instrumentation/clock/flight-meter-sec");
-            if(FTH != nil){
-                me.HR.setValue(getprop("instrumentation/clock/flight-meter-hour"));
-                me.MN.setValue(getprop("instrumentation/clock/flight-meter-min"));
-            }
-        }elsif(cm == 3) {
-            var ETH = me.ET_HR.getValue();
-            if(ETH != nil){
-                me.HR.setValue(me.ET_HR.getValue());
-                me.MN.setValue(me.ET_MN.getValue());
-            }
+        }elsif(me.MODE == 2) {
+            me.HR.setValue(me.FT_HR.getValue());
+            me.MN.setValue(me.FT_MN.getValue());
+        }elsif(me.MODE == 3) {
+            me.HR.setValue(me.ET_HR.getValue());
+            me.MN.setValue(me.ET_MN.getValue());
         }
         if(me.set_mode==1){
             var flsh=me.digit[me.digit_to_set].getValue();
@@ -150,12 +175,12 @@
         }else{
             me.digit[me.digit_to_set].setValue(1);
         }
+        me.flip=1-me.flip;
     },
 };
 #####################################
 
 var davtron=m877.new("instrumentation/clock/m877");
-var ETmeter = aircraft.timer.new("/instrumentation/clock/m877/ET-sec", 10);
 
 
 setlistener("/sim/signals/fdm-initialized", func {

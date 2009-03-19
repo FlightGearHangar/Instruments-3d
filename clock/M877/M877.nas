@@ -1,58 +1,129 @@
-var m877 = {
+ var m877 = {
     new : func(prop1){
         m = { parents : [m877]};
         m.MODE =0;
+        m.digit_to_set=0;
+        m.digit=[];
+        m.set_mode=0;
+        m.et_start_time=0;
+        m.et_countdown=0;
+        m.et_running=0;
+        m.et_elapsed=0;
+        m.ft_start_time=0;
         m.modetext =["GMT","LT","FT","ET"];
-        m.M877 = props.globals.getNode(prop1,1);
-        m.set_hour=m.M877.getNode("set-hour",1);
-        m.set_hour.setBoolValue(0);
-        m.set_min=m.M877.getNode("set-min",1);
-        m.set_min.setBoolValue(0);
-        m.mode=m.M877.getNode("mode",1);
-        m.mode.setIntValue(m.MODE);
-        m.tenths=m.M877.getNode("display-tenths",1);
-        m.tenths.setBoolValue(0);
-        m.modestring=m.M877.getNode("mode-string",1);
-        m.modestring.setValue(m.modetext[m.MODE]);
-        m.HR=m.M877.getNode("indicated-hour",1);
-        m.HR.setIntValue(0);
-        m.MN=m.M877.getNode("indicated-min",1);
-        m.MN.setIntValue(0);
-        m.ET_HR=m.M877.getNode("ET-hr",1);
-        m.ET_HR.setIntValue(0);
-        m.ET_MN=m.M877.getNode("ET-min",1);
-        m.ET_MN.setIntValue(0);
-        m.ET_string=m.M877.getNode("ET-string",1);
-        m.ET_string.setValue("00:00");
+        m.M877 = props.globals.initNode(prop1);
+        m.tenths=m.M877.initNode("tenths",0,"BOOL");
+        m.ET_alarm=m.M877.initNode("et-alarm",0,"BOOL");
+        m.FT_alarm=m.M877.initNode("ft-alert",0,"BOOL");
+        m.FT_alarm_time=m.M877.initNode("ft-alarm-time",0,"BOOL");
+        append(m.digit,m.M877.initNode("digit[0]",1,"BOOL"));
+        append(m.digit,m.M877.initNode("digit[1]",1,"BOOL"));
+        append(m.digit,m.M877.initNode("digit[2]",1,"BOOL"));
+        append(m.digit,m.M877.initNode("digit[3]",1,"BOOL"));
+        m.modestring=m.M877.initNode("mode-string",m.modetext[m.MODE],"STRING");
+        m.power=m.M877.initNode("power",1,"BOOL");
+        m.HR=m.M877.initNode("indicated-hour",0,"INT");
+        m.MN=m.M877.initNode("indicated-min",0,"INT");
+        m.ET_HR=m.M877.initNode("ET-hr",0,"INT");
+        m.ET_MN=m.M877.initNode("ET-min",0,"INT");
+        m.FT_HR=m.M877.initNode("FT-hr",0,"INT");
+        m.FT_MN=m.M877.initNode("FT-min",0,"INT");
         return m;
     },
-#### next mode  ####
-    set_clock : func(){
-        var cmode = me.mode.getValue();
-        cmode +=1;
-        if(cmode>3)cmode -=4;
-        me.mode.setValue(cmode);
+#### displayed mode  ####
+    select_display : func(){
+        if(me.set_mode==0){
+            me.MODE +=1;
+            if(me.MODE>3)me.MODE -=4;
+            me.modestring.setValue(me.modetext[me.MODE]);
+        }else{
+            me.digit[me.digit_to_set].setValue(1);
+            me.digit_to_set+=1;
+            if(me.digit_to_set>3){
+                me.digit_to_set=0;
+                me.set_mode=0;
+            }
+        }
     },
+#### set displayed mode  ####
+    set_time : func(){
+        me.set_mode=1-me.set_mode;
+    },
+#### CTL button action ####
+    control_action : func(){
+        if(me.set_mode==0){
+            if(me.MODE==3){
+                if(me.et_running==0){
+                me.et_start_time=getprop("/sim/time/elapsed-sec");
+                    me.et_running=1;
+                }else{
+                    me.et_start_time=getprop("/sim/time/elapsed-sec");
+                    me.et_elapsed=0;
+                    me.et_running=0;
+                }
+            }
+        }else{
+            if(me.MODE==0){
+                me.set_gmt();
+            }elsif(meMODE==1){
+                me.set_lt();
+            }elsif(meMODE==2){
+                me.set_ft();
+            }elsif(meMODE==3){
+                me.set_et();
+            }
+        }
+    },
+
+#### set GMT  ####
+    set_gmt : func(){
+    
+    },
+
+#### set LT  ####
+    set_lt : func(){
+    
+    },
+
+#### set FT  ####
+    set_ft : func(){
+    
+    },
+
+#### set ET  ####
+    set_et : func(){
+    
+    },
+
 #### elapsed time  ####
     update_ET : func(){
-        var fmeter = getprop("/instrumentation/clock/m877/ET-sec");
-        var fhour = fmeter/3600;
-        var inthour =int(fhour);
-        me.ET_HR.setValue(inthour);
-        var fmin = (fhour - inthour);
-        if(me.tenths.getBoolValue()){
-            fmin *=100;
-        }else{
-            fmin *=60;
+        if(me.et_running!=0){
+        me.et_elapsed=getprop("/sim/time/elapsed-sec") - me.et_start_time;
         }
-        me.ET_MN.setValue(fmin);
-        var str = sprintf("%02.0f:%02.0f",inthour,fmin);
-        me.ET_string.setValue(str);
+        var ethour = me.et_elapsed/3600;
+        var hr= int(ethour);
+        var etmin=(ethour-hr) * 60;
+        var min = int(etmin);
+        var etsec= (etmin- min) *60;
+        if(ethour <1){
+            me.ET_HR.setValue(min);
+            me.ET_MN.setValue(etsec);
+        }else{
+            me.ET_HR.setValue(hr);
+            me.ET_MN.setValue(min);
+        }
     },
 #### update clock  ####
     update_clock : func{
+        var pwr=me.power.getValue();
+        if(me.set_mode==0){
+            pwr=1-pwr;
+        }else{
+            pwr=1;
+        }
+        me.power.setValue(pwr);
         me.update_ET();
-        var cm = me.mode.getValue();
+        var cm = me.MODE;
         if(cm ==0){
             me.HR.setValue(getprop("/instrumentation/clock/indicated-hour"));
             me.MN.setValue(getprop("/instrumentation/clock/indicated-min"));
@@ -72,30 +143,27 @@ var m877 = {
                 me.MN.setValue(me.ET_MN.getValue());
             }
         }
+        if(me.set_mode==1){
+            var flsh=me.digit[me.digit_to_set].getValue();
+            flsh=1-flsh;
+            me.digit[me.digit_to_set].setValue(flsh);
+        }else{
+            me.digit[me.digit_to_set].setValue(1);
+        }
     },
 };
-
+#####################################
 
 var davtron=m877.new("instrumentation/clock/m877");
 var ETmeter = aircraft.timer.new("/instrumentation/clock/m877/ET-sec", 10);
 
-##################################
 
 setlistener("/sim/signals/fdm-initialized", func {
-    ETmeter.reset();
     settimer(update,2);
     print("Chronometer ... Check");
 });
 
-setlistener("/gear/gear[1]/wow", func(gr){
-    if(gr.getBoolValue()){
-        ETmeter.stop();
-    }else{
-        ETmeter.start();
-    }
-},0,0);
-
 var update = func{
 davtron.update_clock();
-settimer(update,1);
+settimer(update,0.5);
 }

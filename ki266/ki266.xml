@@ -31,7 +31,9 @@
     <dimming>instrumentation/dme[0]/dimming-norm</dimming>
 
     <min-kts>instrumentation/dme[0]/switch-min-kts</min-kts>
+<!--
     <electrical>systems/electrical/outputs/dme</electrical>
+-->
   </params>
 
   <path>ki266.ac</path>
@@ -44,7 +46,9 @@
       <and>
         <property alias="../../../../params/serviceable"/>
         <property alias="../../../../params/power-btn"/>
+<!--
         <property alias="../../../../params/electrical"/>
+-->
       </and>
     </condition>
   </animation>

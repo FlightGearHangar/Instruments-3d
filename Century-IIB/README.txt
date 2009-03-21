@@ -25,7 +25,7 @@ Piper Aircraft used this autopilot from the mid 1960's through the mid 1970's.
 It is used by the pa24-250-CIIB in FlightGear and the real pa24-250 N7764P has a 
 Century IIB autopilot.
 
-The pa24-25-CIIB implementation uses the nasal file
+The pa24-250-CIIB implementation uses the nasal file
 
    Aircraft/Generic/century2b.nas
 

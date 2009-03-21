@@ -13,6 +13,29 @@
  </animation>
 
  <animation>
+  <type>material</type>
+  <object-name>emblem</object-name>
+  <emission>
+   <red>0.2</red>
+   <green>0.04</green>
+   <blue>0.00002</blue>
+   <factor-prop>sim/model/material/instruments/factor</factor-prop>
+  </emission>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>shaft</object-name>
+  <object-name>Yoke-pa24</object-name>
+  <emission>
+   <red>0.025</red>
+   <green>0.01</green>
+   <blue>0.0000025</blue>
+   <factor-prop>sim/model/material/instruments/factor</factor-prop>
+  </emission>
+ </animation>
+
+ <animation>
   <type>translate</type>
   <group-name>Yoke-pa24</group-name>
   <property>controls/flight/elevator</property>

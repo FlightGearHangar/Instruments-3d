@@ -126,7 +126,6 @@ var radis = func(t, my_radarcorr) {
 	mp_lat = mpnode.getNode("position/latitude-deg").getValue();
 	pos_elev = geo.elevation(mp_lat, mp_lon);
 	if (pos_elev != nil) {
-		#print("pos_elev: " ~ pos_elev);
 		mp_agl = alt_ac - ( pos_elev / FT2M );
 		if (mp_agl <= 20) {
 			agl_corr = 0.03;
@@ -159,8 +158,8 @@ var radis = func(t, my_radarcorr) {
 }
 
 var radar_horizon = func(our_alt_ft, target_alt_ft) {
-    if (our_alt_ft < 0) { our_alt_ft = 0 }
-    if (target_alt_ft < 0) { target_alt_ft = 0 }
+    if (our_alt_ft < 0 or our_alt_ft == nil) { our_alt_ft = 0 }
+    if (target_alt_ft < 0 or target_alt_ft == nil) { target_alt_ft = 0 }
 	return( 2.2 * ( math.sqrt(our_alt_ft * FT2M) + math.sqrt(target_alt_ft * FT2M) ) );
 }
 

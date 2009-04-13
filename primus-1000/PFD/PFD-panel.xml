@@ -12,7 +12,7 @@
             <name>AI</name>
             <condition>
                 <greater-than>
-                    <property>systems/electrical/ac-volts</property>
+                    <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
                 </greater-than>
             </condition>
@@ -27,7 +27,7 @@
             <condition>
                 <and>
                     <greater-than>
-                        <property>systems/electrical/ac-volts</property>
+                        <property>systems/electrical/outputs/efis</property>
                         <value>15</value>
                     </greater-than>
                     <not>
@@ -46,7 +46,7 @@
             <condition>
                 <and>
                     <greater-than>
-                        <property>systems/electrical/ac-volts</property>
+                        <property>systems/electrical/outputs/efis</property>
                         <value>15</value>
                     </greater-than>
                     <property>instrumentation/primus1000/control/hsi</property>
@@ -62,7 +62,7 @@
             <name>Spd</name>
             <condition>
                 <greater-than>
-                    <property>systems/electrical/ac-volts</property>
+                    <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
                 </greater-than>
             </condition>
@@ -76,7 +76,7 @@
             <name>Alt tape</name>
             <condition>
                 <greater-than>
-                    <property>systems/electrical/ac-volts</property>
+                    <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
                 </greater-than>
             </condition>
@@ -90,7 +90,7 @@
             <name>FDbars</name>
             <condition>
                 <greater-than>
-                    <property>systems/electrical/ac-volts</property>
+                    <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
                 </greater-than>
             </condition>
@@ -104,7 +104,7 @@
             <name>Mask1</name>
             <condition>
                 <greater-than>
-                    <property>systems/electrical/ac-volts</property>
+                    <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
                 </greater-than>
             </condition>

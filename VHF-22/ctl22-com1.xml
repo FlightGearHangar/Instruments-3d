@@ -20,16 +20,6 @@ Syd Adams
         <object-name>freq.004</object-name>
         <object-name>freq.005</object-name>
         <object-name>freq.006</object-name>
-        <condition>
-            <greater-than>
-                <property>/systems/electrical/outputs/comm</property>
-                <value>1</value>
-            </greater-than>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
         <object-name>stby.001</object-name>
         <object-name>stby.002</object-name>
         <object-name>stby.003</object-name>
@@ -37,20 +27,10 @@ Syd Adams
         <object-name>stby.004</object-name>
         <object-name>stby.005</object-name>
         <object-name>stby.006</object-name>
-        <condition>
-            <greater-than>
-                <property>/systems/electrical/outputs/comm</property>
-                <value>1</value>
-            </greater-than>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
         <object-name>mem.annun</object-name>
         <condition>
             <greater-than>
-                <property>/systems/electrical/outputs/comm</property>
+                <property>systems/electrical/outputs/comm</property>
                 <value>1</value>
             </greater-than>
         </condition>
@@ -76,14 +56,32 @@ Syd Adams
         </axis>
     </animation>
 
+    <animation>
+        <type>rotate</type>
+        <object-name>CTL-22.vol</object-name>
+        <property>instrumentation/comm/volume</property>
+        <factor>300</factor>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>-0.014</y-m>
+            <z-m>-0.018</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
 <!--    Active Frequency   -->
 
     <animation>
         <type>textranslate</type>
         <object-name>freq.001</object-name>
-        <property>instrumentation/VHF-22/comm1</property>
-        <factor>0.000001</factor>
-        <step>100000</step>
+        <property>instrumentation/comm/frequencies/selected-mhz</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -94,9 +92,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.002</object-name>
-        <property>instrumentation/VHF-22/comm1</property>
-        <factor>0.00001</factor>
-        <step>10000</step>
+        <property>instrumentation/comm/frequencies/selected-mhz</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -107,9 +106,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.003</object-name>
-        <property>instrumentation/VHF-22/comm1</property>
-        <factor>0.0001</factor>
-        <step>1000</step>
+        <property>instrumentation/comm/frequencies/selected-mhz</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -120,9 +120,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.004</object-name>
-        <property>instrumentation/VHF-22/comm1</property>
-        <factor>0.001</factor>
-        <step>100</step>
+        <property>instrumentation/comm/frequencies/selected-mhz</property>
+        <factor>1.0</factor>
+        <step>0.1</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -133,9 +134,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.005</object-name>
-        <property>instrumentation/VHF-22/comm1</property>
-        <factor>0.01</factor>
-        <step>10</step>
+        <property>instrumentation/comm/frequencies/selected-mhz</property>
+        <factor>10.0</factor>
+        <step>0.01</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -146,9 +148,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>freq.006</object-name>
-        <property>instrumentation/VHF-22/comm1</property>
-        <factor>0.1</factor>
-        <step>1</step>
+        <property>instrumentation/comm/frequencies/selected-mhz</property>
+        <factor>100.0</factor>
+        <step>0.001</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -161,9 +164,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.001</object-name>
-        <property>instrumentation/VHF-22/standby1</property>
-        <factor>0.000001</factor>
-        <step>100000</step>
+        <property>instrumentation/comm/frequencies/standby-mhz</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -174,9 +178,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.002</object-name>
-        <property>instrumentation/VHF-22/standby1</property>
-        <factor>0.00001</factor>
-        <step>10000</step>
+        <property>instrumentation/comm/frequencies/standby-mhz</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -187,9 +192,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.003</object-name>
-        <property>instrumentation/VHF-22/standby1</property>
-        <factor>0.0001</factor>
-        <step>1000</step>
+        <property>instrumentation/comm/frequencies/standby-mhz</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -200,9 +206,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.004</object-name>
-        <property>instrumentation/VHF-22/standby1</property>
-        <factor>0.001</factor>
-        <step>100</step>
+        <property>instrumentation/comm/frequencies/standby-mhz</property>
+        <factor>1.0</factor>
+        <step>0.100</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -213,9 +220,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.005</object-name>
-        <property>instrumentation/VHF-22/standby1</property>
-        <factor>0.01</factor>
-        <step>10</step>
+        <property>instrumentation/comm/frequencies/standby-mhz</property>
+        <factor>10.0</factor>
+        <step>0.01</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -226,9 +234,10 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>stby.006</object-name>
-        <property>instrumentation/VHF-22/standby1</property>
-        <factor>0.1</factor>
-        <step>1</step>
+        <property>instrumentation/comm/frequencies/standby-mhz</property>
+        <factor>100.0</factor>
+        <step>0.001</step>
+        <bias>0.0005</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -236,31 +245,31 @@ Syd Adams
         </axis>
     </animation>
 
-<!--    OSG hotspots    
+<!--    OSG hotspots    -->
 
     <animation>
         <type>pick</type>
-        <object-name>CTL-22.xfr</object-name>
+        <object-name>CTL-22.toggle</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
             <command>property-swap</command>
-            <property>/instrumentation/comm/frequencies/selected-mhz</property>
-            <property>/instrumentation/comm/frequencies/standby-mhz</property>
+            <property>instrumentation/comm/frequencies/selected-mhz</property>
+            <property>instrumentation/comm/frequencies/standby-mhz</property>
         </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>pwr.off</object-name>
+        <object-name>CTL-22.pwr</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
             <repeatable>false</repeatable>
             <binding>
             <command>property-assign</command>
-            <property>/instrumentation/comm/serviceable</property>
+            <property>instrumentation/comm/serviceable</property>
             <value>false</value>
         </binding>
         </action>
@@ -268,13 +277,13 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>pwr.on</object-name>
+        <object-name>CTL-22.pwr</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/comm/serviceable</property>
+                <property>instrumentation/comm/serviceable</property>
                 <value>true</value>
             </binding>
         </action>
@@ -282,14 +291,14 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>freq.dwn</object-name>
+        <object-name>freq1.knob</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/comm/frequencies/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>-0.025</step>
                 <min>118.000</min>
                 <max>135.975</max>
@@ -300,14 +309,14 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>freq.up</object-name>
+        <object-name>freq1.knob</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/comm/frequencies/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>0.025</step>
                 <min>118.000</min>
                 <max>135.975</max>
@@ -318,14 +327,14 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>freq.dwn</object-name>
+        <object-name>freq.knob</object-name>
         <action>
             <button>1</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/comm/frequencies/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>-1.0</step>
                 <min>118.000</min>
                 <max>135.975</max>
@@ -336,14 +345,14 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>freq.up</object-name>
+        <object-name>freq.knob</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/comm/frequencies/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>1.0</step>
                 <min>118.000</min>
                 <max>135.975</max>
@@ -351,5 +360,5 @@ Syd Adams
             </binding>
         </action>
     </animation>
--->
+
 </PropertyList>

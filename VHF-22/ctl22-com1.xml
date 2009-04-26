@@ -265,26 +265,45 @@ Syd Adams
         <type>pick</type>
         <object-name>CTL-22.pwr</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-assign</command>
-            <property>instrumentation/comm/serviceable</property>
-            <value>false</value>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/comm/serviceable</property>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>CTL-22.pwr</object-name>
+        <object-name>CTL-22.vol</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/comm/volume</property>
+                <step>-0.05</step>
+                <min>0</min>
+                <max>1</max>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-22.vol</object-name>
         <action>
             <button>0</button>
-            <repeatable>false</repeatable>
+            <repeatable>true</repeatable>
+            <interval-sec>0.1</interval-sec>
             <binding>
-                <command>property-assign</command>
-                <property>instrumentation/comm/serviceable</property>
-                <value>true</value>
+                <command>property-adjust</command>
+                <property>instrumentation/comm/volume</property>
+                <step>0.05</step>
+                <min>0</min>
+                <max>1</max>
             </binding>
         </action>
     </animation>

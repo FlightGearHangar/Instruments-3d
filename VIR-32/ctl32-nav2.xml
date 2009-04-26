@@ -237,26 +237,11 @@ Syd Adams
         <type>pick</type>
         <object-name>CTL-32.pwr</object-name>
         <action>
-            <button>1</button>
-            <repeatable>false</repeatable>
-            <binding>
-            <command>property-assign</command>
-            <property>instrumentation/nav[1]/serviceable</property>
-            <value>false</value>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>CTL-32.pwr</object-name>
-        <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <command>property-assign</command>
+                <command>property-toggle</command>
                 <property>instrumentation/nav[1]/serviceable</property>
-                <value>true</value>
             </binding>
         </action>
     </animation>

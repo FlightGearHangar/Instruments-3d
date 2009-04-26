@@ -15,87 +15,84 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>freq.002</object-name>
-        <object-name>freq.003</object-name>
-        <object-name>freq.dec</object-name>
-        <object-name>freq.004</object-name>
-        <object-name>freq.005</object-name>
-        <condition>
-            <greater-than>
-                <property>/systems/electrical/outputs/adf</property>
-                <value>1</value>
-            </greater-than>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>stby.002</object-name>
-        <object-name>stby.003</object-name>
-        <object-name>stby.dec</object-name>
-        <object-name>stby.004</object-name>
-        <object-name>stby.005</object-name>
-        <condition>
-            <greater-than>
-                <property>/systems/electrical/outputs/adf</property>
-                <value>1</value>
-            </greater-than>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>freq.001</object-name>
-        <condition>
-            <and>
-                <greater-than>
-                    <property>/systems/electrical/outputs/adf</property>
-                    <value>1</value>
-                </greater-than>
-                <greater-than>
-                    <property>/instrumentation/adf/frequencies/selected-khz</property>
-                    <value>999.5</value>
-                </greater-than>
-            </and>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>stby.001</object-name>
-        <condition>
-            <and>
-                <greater-than>
-                    <property>/systems/electrical/outputs/adf</property>
-                    <value>1</value>
-                </greater-than>
-                <greater-than>
-                    <property>/instrumentation/adf/frequencies/standby-khz</property>
-                    <value>999.5</value>
-                </greater-than>
-            </and>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
+        <object-name>ADFfreq.002</object-name>
+        <object-name>ADFfreq.003</object-name>
+        <object-name>ADFfreq.dec</object-name>
+        <object-name>ADFfreq.004</object-name>
+        <object-name>ADFfreq.005</object-name>
         <object-name>mem.annun</object-name>
+        <object-name>freq.dec</object-name>
+        <object-name>stby.dec</object-name>
+        <object-name>ADFstby.002</object-name>
+        <object-name>ADFstby.003</object-name>
+        <object-name>ADFstby.dec</object-name>
+        <object-name>ADFstby.004</object-name>
+        <object-name>ADFstby.005</object-name>
         <condition>
             <greater-than>
-                <property>/systems/electrical/outputs/adf</property>
+                <property>systems/electrical/outputs/adf</property>
                 <value>1</value>
             </greater-than>
         </condition>
     </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>ADFfreq.001</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/adf</property>
+                    <value>1</value>
+                </greater-than>
+                <greater-than>
+                    <property>instrumentation/adf/frequencies/selected-khz</property>
+                    <value>999.5</value>
+                </greater-than>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>ADFstby.001</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/adf</property>
+                    <value>1</value>
+                </greater-than>
+                <greater-than>
+                    <property>instrumentation/adf/frequencies/standby-khz</property>
+                    <value>999.5</value>
+                </greater-than>
+            </and>
+        </condition>
+    </animation>
+
 
     <animation>
         <type>rotate</type>
         <object-name>CTL-62.pwr</object-name>
-        <property>instrumentation/adf/serviceable</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>1.0</ind><dep>30</dep></entry>
-        </interpolation>
+        <property>instrumentation/adf/func-knob</property>
+        <factor>30</factor>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>-0.014</y-m>
+            <z-m>-0.018</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>CTL-62.vol</object-name>
+        <property>instrumentation/adf/volume-norm</property>
+        <factor>360</factor>
         <center>
             <x-m>0.0</x-m>
             <y-m>-0.014</y-m>
@@ -112,7 +109,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>freq.001</object-name>
+        <object-name>ADFfreq.001</object-name>
         <property>instrumentation/adf/frequencies/selected-khz</property>
         <factor>0.0001</factor>
         <step>1000</step>
@@ -126,7 +123,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>freq.002</object-name>
+        <object-name>ADFfreq.002</object-name>
         <property>instrumentation/adf/frequencies/selected-khz</property>
         <factor>0.001</factor>
         <step>100</step>
@@ -140,7 +137,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>freq.003</object-name>
+        <object-name>ADFfreq.003</object-name>
         <property>instrumentation/adf/frequencies/selected-khz</property>
         <factor>0.01</factor>
         <step>10</step>
@@ -154,7 +151,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>freq.004</object-name>
+        <object-name>ADFfreq.004</object-name>
         <property>instrumentation/adf/frequencies/selected-khz</property>
         <factor>0.1</factor>
         <step>1</step>
@@ -168,7 +165,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>freq.005</object-name>
+        <object-name>ADFfreq.005</object-name>
         <property>instrumentation/adf/frequencies/selected-khz</property>
         <factor>1.0</factor>
         <step>0.1</step>
@@ -184,7 +181,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>stby.001</object-name>
+        <object-name>ADFstby.001</object-name>
         <property>instrumentation/adf/frequencies/standby-khz</property>
         <factor>0.0001</factor>
         <step>1000</step>
@@ -198,7 +195,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>stby.002</object-name>
+        <object-name>ADFstby.002</object-name>
         <property>instrumentation/adf/frequencies/standby-khz</property>
         <factor>0.001</factor>
         <step>100</step>
@@ -212,7 +209,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>stby.003</object-name>
+        <object-name>ADFstby.003</object-name>
         <property>instrumentation/adf/frequencies/standby-khz</property>
         <factor>0.01</factor>
         <step>10</step>
@@ -226,7 +223,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>stby.004</object-name>
+        <object-name>ADFstby.004</object-name>
         <property>instrumentation/adf/frequencies/standby-khz</property>
         <factor>0.1</factor>
         <step>1</step>
@@ -240,7 +237,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>stby.005</object-name>
+        <object-name>ADFstby.005</object-name>
         <property>instrumentation/adf/frequencies/standby-khz</property>
         <factor>1.0</factor>
         <step>0.1</step>
@@ -256,95 +253,133 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>CTL-62.xfr</object-name>
+        <object-name>CTL-62.toggle</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
             <command>property-swap</command>
-            <property>/instrumentation/adf/frequencies/selected-khz</property>
-            <property>/instrumentation/adf/frequencies/standby-khz</property>
+            <property>instrumentation/adf/frequencies/selected-khz</property>
+            <property>instrumentation/adf/frequencies/standby-khz</property>
         </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>pwr.off</object-name>
+        <object-name>CTL-62.pwr</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/func-knob</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>3</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.pwr</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-assign</command>
-            <property>/instrumentation/adf/serviceable</property>
-            <value>false</value>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>pwr.on</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/adf/serviceable</property>
-                <value>true</value>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/func-knob</property>
+                <step>1</step>
+                <min>0</min>
+                <max>3</max>
+                <wrap>0</wrap>
             </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>freq.dwn</object-name>
+        <object-name>CTL-62.vol</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-            <interval-sec>0.2</interval-sec>
+            <interval-sec>0.1</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/adf/frequencies/standby-khz</property>
-                <step>-0.50</step>
-                <min>190.0</min>
-                <max>1800.0</max>
-                <wrap>true</wrap>
+                <property>instrumentation/adf/volume-norm</property>
+                <step>-0.05</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
             </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>freq.up</object-name>
+        <object-name>CTL-62.vol</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-            <interval-sec>0.2</interval-sec>
+            <interval-sec>0.1</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/adf/frequencies/standby-khz</property>
-                <step>0.50</step>
-                <min>190.0</min>
-                <max>1800.0</max>
-                <wrap>true</wrap>
+                <property>instrumentation/adf/volume-norm</property>
+                <step>0.05</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
             </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>freq.dwn</object-name>
+        <object-name>CTL-62.vol</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/volume-norm</property>
+                <step>-0.05</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.vol</object-name>
+        <action>
+            <button>3</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/volume-norm</property>
+                <step>0.05</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.freq1</object-name>
         <action>
             <button>1</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/adf/frequencies/standby-khz</property>
-                <step>-10.0</step>
-                <min>190.0</min>
-                <max>1800.0</max>
+                <property>instrumentation/adf/frequencies/standby-khz</property>
+                <step>-1</step>
+                <min>190</min>
+                <max>1800</max>
                 <wrap>true</wrap>
             </binding>
         </action>
@@ -352,17 +387,121 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>freq.up</object-name>
+        <object-name>CTL-62.freq1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/frequencies/standby-khz</property>
+                <step>1</step>
+                <min>190</min>
+                <max>1800</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.freq1</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/frequencies/standby-khz</property>
+                <step>-1</step>
+                <min>190</min>
+                <max>1800</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.freq1</object-name>
+        <action>
+            <button>3</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/frequencies/standby-khz</property>
+                <step>1</step>
+                <min>190</min>
+                <max>1800</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.freq</object-name>
         <action>
             <button>1</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/adf/frequencies/standby-khz</property>
-                <step>10.0</step>
-                <min>190.0</min>
-                <max>1800.0</max>
+                <property>instrumentation/adf/frequencies/standby-khz</property>
+                <step>-10</step>
+                <min>190</min>
+                <max>1800</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.freq</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/frequencies/standby-khz</property>
+                <step>10</step>
+                <min>190</min>
+                <max>1800</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.freq</object-name>
+        <action>
+            <button>4</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/frequencies/standby-khz</property>
+                <step>-10</step>
+                <min>190</min>
+                <max>1800</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-62.freq</object-name>
+        <action>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/adf/frequencies/standby-khz</property>
+                <step>10</step>
+                <min>190</min>
+                <max>1800</max>
                 <wrap>true</wrap>
             </binding>
         </action>

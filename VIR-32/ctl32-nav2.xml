@@ -284,6 +284,38 @@ Syd Adams
 
     <animation>
         <type>pick</type>
+        <object-name>CTL-32.vol</object-name>
+        <action>
+            <button>3</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/nav[1]/volume</property>
+                <step>0.050</step>
+                <min>0</min>
+                <max>1.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CTL-32.vol</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/nav[1]/volume</property>
+                <step>-0.050</step>
+                <min>0</min>
+                <max>1.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
         <object-name>freq1.knob</object-name>
         <action>
             <button>1</button>
@@ -320,6 +352,38 @@ Syd Adams
 
     <animation>
         <type>pick</type>
+        <object-name>freq1.knob</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
+                <step>-0.050</step>
+                <min>108.00</min>
+                <max>118.000</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>freq1.knob</object-name>
+        <action>
+            <button>3</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
+                <step>0.050</step>
+                <min>108.00</min>
+                <max>118.000</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
         <object-name>freq.knob</object-name>
         <action>
             <button>1</button>
@@ -343,6 +407,38 @@ Syd Adams
             <button>0</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
+                <step>1.0</step>
+                <min>108.00</min>
+                <max>118.000</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>freq.knob</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
+                <step>-1.0</step>
+                <min>108.00</min>
+                <max>118.00</max>
+                <wrap>true</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>freq.knob</object-name>
+        <action>
+            <button>3</button>
             <binding>
                 <command>property-adjust</command>
                 <property>instrumentation/nav[1]/frequencies/standby-mhz</property>

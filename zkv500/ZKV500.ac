@@ -1,12 +1,12 @@
 AC3Db
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
-MATERIAL "LCDDisplay" rgb 0.484853 0.589284 0.514951 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 32 trans 0
-MATERIAL "DeadLED" rgb 0.3 0.3 0.3 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0.9
-MATERIAL "RedLed" rgb 0.91 0 0 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
-MATERIAL "GreenLed" rgb 0 1 0 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
-MATERIAL "BlackPlastic.001" rgb 0.153331 0.153331 0.153331 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
-MATERIAL "WhitePlastic.002" rgb 0.9 0.9 0.9 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
-MATERIAL "BlackPlastic.009" rgb 0.2 0.2 0.2 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
+MATERIAL "LCDDisplay" rgb 0.484853 0.589284 0.514951 amb 0.484853 0.589284 0.514951 emis 0 0 0 spec 1 1 1 shi 32 trans 0
+MATERIAL "DeadLED" rgb 0.3 0.3 0.3 amb 0.3 0.3 0.3 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0.9
+MATERIAL "RedLed" rgb 0.91 0 0 amb 0.91 0 0 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
+MATERIAL "GreenLed" rgb 0 1 0 amb 0 1 0 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
+MATERIAL "BlackPlastic.001" rgb 0.153331 0.153331 0.153331 amb 0.153331 0.153331 0.153331 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
+MATERIAL "WhitePlastic.002" rgb 0.9 0.9 0.9 amb 0.9 0.9 0.9 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
+MATERIAL "BlackPlastic.009" rgb 0.2 0.2 0.2 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.186866 0.186866 0.186866 shi 32 trans 0
 OBJECT world
 kids 17
 OBJECT poly

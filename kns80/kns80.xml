@@ -18,6 +18,7 @@ Syd Adams
         <object-name>DATA.btn</object-name>
         <object-name>KNS80.volume</object-name>
         <object-name>KNS80.freq</object-name>
+        <object-name>KNS80.freq1</object-name>
         <emission>
         <red>0.028</red>
             <green>0.014</green>
@@ -623,9 +624,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>Vol.decrease</object-name>
+        <object-name>KNS80.volume</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
             <repeatable>true</repeatable>
             <binding>
             <command>property-assign</command>
@@ -637,10 +638,47 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>Vol.increase</object-name>
+        <object-name>KNS80.volume</object-name>
         <action>
             <button>0</button>
-            <repeatable>true</repeatable>
+            <binding>
+                <condition>
+                    <not>
+                        <property>devices/status/keyboard/shift</property>
+                    </not>
+                </condition>
+                <command>property-assign</command>
+                <property>/instrumentation/kns-80/volume-adjust</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <condition>
+                    <property>devices/status/keyboard/shift</property>
+                </condition>
+                <command>property-toggle</command>
+                <property>instrumentation/nav/ident</property>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KNS80.volume</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/kns-80/volume-adjust</property>
+                <value>-1</value>
+        </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KNS80.volume</object-name>
+        <action>
+            <button>3</button>
             <binding>
                 <command>property-assign</command>
                 <property>/instrumentation/kns-80/volume-adjust</property>
@@ -651,24 +689,11 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>Set.decrease</object-name>
+        <object-name>KNS80.freq1</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-            <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>-1</value>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>Set.increase</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>true</repeatable>
+            <interval-sec>0.1</interval-sec>
             <binding>
                 <command>property-assign</command>
                 <property>/instrumentation/kns-80/data-adjust</property>
@@ -679,10 +704,67 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>Set.decrease</object-name>
+        <object-name>KNS80.freq1</object-name>
         <action>
             <button>1</button>
             <repeatable>true</repeatable>
+            <interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/kns-80/data-adjust</property>
+                <value>-1</value>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KNS80.freq1</object-name>
+        <action>
+            <button>3</button>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/kns-80/data-adjust</property>
+                <value>1</value>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KNS80.freq1</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/kns-80/data-adjust</property>
+                <value>-1</value>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KNS80.freq</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/kns-80/data-adjust</property>
+                <value>10</value>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KNS80.freq</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.1</interval-sec>
             <binding>
                 <command>property-assign</command>
                 <property>/instrumentation/kns-80/data-adjust</property>
@@ -693,14 +775,26 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>Set.increase</object-name>
+        <object-name>KNS80.freq</object-name>
         <action>
-            <button>1</button>
-            <repeatable>true</repeatable>
+            <button>3</button>
             <binding>
                 <command>property-assign</command>
                 <property>/instrumentation/kns-80/data-adjust</property>
                 <value>10</value>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KNS80.freq</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/kns-80/data-adjust</property>
+                <value>-10</value>
             </binding>
         </action>
     </animation>
@@ -768,19 +862,6 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>KNS80.volume</object-name>
-        <action>
-            <button>1</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/nav/ident</property>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
         <object-name>VOR.btn</object-name>
         <action>
             <button>0</button>
@@ -818,7 +899,5 @@ Syd Adams
             </binding>
         </action>
     </animation>
-
-
 
 </PropertyList>

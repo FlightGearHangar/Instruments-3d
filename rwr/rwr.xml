@@ -7,6 +7,7 @@
 	<power-supply>systems/electrical/outputs/rwr</power-supply>
 	<mininal-volts>20</mininal-volts>
 	<display-lighting-intens>instrumentation/rwr/display-lighting-intens</display-lighting-intens>
+	<symbology-lighting-intens>instrumentation/rwr/symbology-lighting-intens</symbology-lighting-intens>
 	<mount-lighting>controls/lighting/panel-norm</mount-lighting>
 
 	<animation>
@@ -66,11 +67,11 @@
 		<type2-name>MP1type2</type2-name>
 		<symb-ship-name>MP1symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP1symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[0]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[0]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[0]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[0]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[0]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[0]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[0]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[0]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[0]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[0]/carrier</carrier>
 	</MP1>
 
 	<animation>
@@ -166,11 +167,11 @@
 		<type2-name>MP2type2</type2-name>
 		<symb-ship-name>MP2symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP2symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[1]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[1]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[1]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[1]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[1]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[1]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[1]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[1]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[1]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[1]/carrier</carrier>
 	</MP2>
 
 	<animation>
@@ -267,11 +268,11 @@
 		<type2-name>MP3type2</type2-name>
 		<symb-ship-name>MP3symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP3symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[2]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[2]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[2]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[2]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[2]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[2]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[2]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[2]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[2]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[2]/carrier</carrier>
 	</MP3>
 
 	<animation>
@@ -306,6 +307,18 @@
 			<y>0</y>
 			<z>1</z>
 		</axis>
+	</animation>
+	<animation> 
+		<type>rotate</type>
+		<object-name alias="../../MP3/group-name"/>
+		<property>orientation/heading-deg</property>
+		<axis><x>-1</x></axis>
+	</animation>
+	<animation> 
+		<type>rotate</type>
+		<object-name alias="../../MP3/group-name"/>
+		<property alias="../../MP3/bearing-deg"/>
+		<axis><x>1</x></axis>
 	</animation>
 	<animation><!-- carrier symbol -->
 		<type>select</type>
@@ -355,11 +368,11 @@
 		<type2-name>MP4type2</type2-name>
 		<symb-ship-name>MP4symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP4symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[3]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[3]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[3]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[3]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[3]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[3]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[3]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[3]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[3]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[3]/carrier</carrier>
 	</MP4>
 
 	<animation>
@@ -456,11 +469,11 @@
 		<type2-name>MP5type2</type2-name>
 		<symb-ship-name>MP5symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP5symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[4]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[4]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[4]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[4]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[4]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[4]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[4]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[4]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[4]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[4]/carrier</carrier>
 	</MP5>
 
 	<animation>
@@ -557,11 +570,11 @@
 		<type2-name>MP6type2</type2-name>
 		<symb-ship-name>MP6symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP6symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[5]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[5]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[5]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[5]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[5]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[5]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[5]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[5]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[5]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[5]/carrier</carrier>
 	</MP6>
 
 	<animation>
@@ -658,11 +671,11 @@
 		<type2-name>MP7type2</type2-name>
 		<symb-ship-name>MP7symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP7symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[6]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[6]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[6]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[6]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[6]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[6]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[6]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[6]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[6]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[6]/carrier</carrier>
 	</MP7>
 
 	<animation>
@@ -759,11 +772,11 @@
 		<type2-name>MP8type2</type2-name>
 		<symb-ship-name>MP8symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP8symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[7]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[7]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[7]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[7]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[7]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[7]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[7]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[7]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[7]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[7]/carrier</carrier>
 	</MP8>
 
 	<animation>
@@ -861,11 +874,11 @@
 		<type2-name>MP9type2</type2-name>
 		<symb-ship-name>MP9symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP9symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[8]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[8]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[8]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[8]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[8]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[8]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[8]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[8]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[8]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[8]/carrier</carrier>
 	</MP9>
 
 	<animation>
@@ -963,11 +976,11 @@
 		<type2-name>MP10type2</type2-name>
 		<symb-ship-name>MP10symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP10symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[9]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[9]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[9]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[9]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[9]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[9]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[9]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[9]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[9]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[9]/carrier</carrier>
 	</MP10>
 
 	<animation>
@@ -1064,11 +1077,11 @@
 		<type2-name>MP11type2</type2-name>
 		<symb-ship-name>MP11symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP11symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[10]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[10]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[10]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[10]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[10]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[10]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[10]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[10]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[10]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[10]/carrier</carrier>
 	</MP11>
 
 	<animation>
@@ -1165,11 +1178,11 @@
 		<type2-name>MP12type2</type2-name>
 		<symb-ship-name>MP12symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP12symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[11]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[11]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[11]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[11]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[11]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[11]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[11]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[11]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[11]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[11]/carrier</carrier>
 	</MP12>
 
 	<animation>
@@ -1266,11 +1279,11 @@
 		<type2-name>MP13type2</type2-name>
 		<symb-ship-name>MP13symb-ship</symb-ship-name>
 		<symb-aircraft-name>MP13symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/multiplayer[12]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/multiplayer[12]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/multiplayer[12]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/multiplayer[12]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/multiplayer[12]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/multiplayer[12]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/multiplayer[12]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/multiplayer[12]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/multiplayer[12]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/multiplayer[12]/carrier</carrier>
 	</MP13>
 
 	<animation>
@@ -1366,11 +1379,11 @@
 		<type2-name>TK1type2</type2-name>
 		<symb-ship-name>TK1symb-ship</symb-ship-name>
 		<symb-aircraft-name>TK1symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/tanker[0]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/tanker[0]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/tanker[0]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/tanker[0]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/tanker[0]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/tanker[0]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/tanker[0]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/tanker[0]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/tanker[0]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/tanker[0]/carrier</carrier>
 	</TK1>
 
 	<animation>
@@ -1467,11 +1480,11 @@
 		<type2-name>TK2type2</type2-name>
 		<symb-ship-name>TK2symb-ship</symb-ship-name>
 		<symb-aircraft-name>TK2symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/tanker[1]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/tanker[1]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/tanker[1]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/tanker[1]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/tanker[1]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/tanker[1]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/tanker[1]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/tanker[1]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/tanker[1]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/tanker[1]/carrier</carrier>
 	</TK2>
 
 	<animation>
@@ -1567,11 +1580,11 @@
 		<type2-name>TK3type2</type2-name>
 		<symb-ship-name>TK3symb-ship</symb-ship-name>
 		<symb-aircraft-name>TK3symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/tanker[2]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/tanker[2]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/tanker[2]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/tanker[2]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/tanker[2]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/tanker[2]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/tanker[2]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/tanker[2]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/tanker[2]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/tanker[2]/carrier</carrier>
 	</TK3>
 
 	<animation>
@@ -1666,11 +1679,11 @@
 		<type2-name>TK4type2</type2-name>
 		<symb-ship-name>TK4symb-ship</symb-ship-name>
 		<symb-aircraft-name>TK4symb-aircraft</symb-aircraft-name>
-		<ecm-signal-norm>ai/models/tanker[3]/radar/ecm-signal-norm</ecm-signal-norm>
-		<bearing-deg>ai/models/tanker[3]/radar/bearing-deg</bearing-deg>
-		<true-heading-deg>ai/models/tanker[3]/orientation/true-heading-deg</true-heading-deg>
-		<ecm_type_num>ai/models/tanker[3]/radar/ecm_type_num</ecm_type_num>
-		<carrier>ai/models/tanker[3]/radar/carrier</carrier>
+		<ecm-signal-norm>instrumentation/radar2/targets/tanker[3]/ecm-signal-norm</ecm-signal-norm>
+		<bearing-deg>instrumentation/radar2/targets/tanker[3]/bearing-deg</bearing-deg>
+		<true-heading-deg>instrumentation/radar2/targets/tanker[3]/orientation/true-heading-deg</true-heading-deg>
+		<ecm_type_num>instrumentation/radar2/targets/tanker[3]/ecm_type_num</ecm_type_num>
+		<carrier>instrumentation/radar2/targets/tanker[3]/carrier</carrier>
 	</TK4>
 
 	<animation>
@@ -1780,7 +1793,7 @@
 	</animation>
 
 	<animation>
-		<type>material</type>
+		<type>select</type>
 		<object-name>symbology</object-name>
 		<condition>
 			<greater-than>
@@ -1788,12 +1801,16 @@
 				<value alias="../../../../mininal-volts"/>
 			</greater-than>
 		</condition>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>symbology</object-name>
 		<emission>
-			<factor-prop alias="../../../display-lighting-intens"/>
-			<offset>0.4</offset>
-			<red>0.0</red>
+			<factor-prop alias="../../../symbology-lighting-intens"/>
+			<red>0.6</red>
 			<green>1</green>
-			<blue>0.4</blue>
+			<blue>0</blue>
 		</emission>
 	</animation>
 

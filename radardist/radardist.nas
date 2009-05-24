@@ -13,7 +13,6 @@
 # Returns 1 if detectable, 0 if not. Should be called from your own aircraft
 # radar stuff too.
 
-
 var data_path = getprop("/sim/fg-root") ~ "/Aircraft/Instruments-3d/radardist/radardist.xml";
 var aircraftData = {};
 var radarData = [];
@@ -42,12 +41,8 @@ var radar_range = nil;
 var radar_area = nil;
 var have_radar = nil;
 
-
 var FT2M = 0.3048;
 var NM2KM = 1.852;
-
-
-
 
 var my_maxrange = func(a) {
 	max_range = 0;
@@ -62,10 +57,6 @@ var my_maxrange = func(a) {
 			if ( radar_area > 0 ) { max_range = radar_range / radar_area }
 		}
 	}
-	#var plane = radarData[acname][2];
-	#print ("aircraft = " ~ plane);
-	#print ("range = " ~ radar_range);
-	#print ("aera = " ~ radar_area);
 	return( max_range );
 }
 
@@ -83,7 +74,6 @@ var get_aircraft_name = func( t ) {
 	mpnode_string = t;
 	mpnode =  props.globals.getNode(mpnode_string);
 	if ( find("tanker", mpnode_string) > 0 ) {
-		#print("tanker");
 		cutname = "KC135";
 	} else {
 		mpname_node_string = mpnode_string ~ "/sim/model/path";
@@ -95,7 +85,7 @@ var get_aircraft_name = func( t ) {
 
 		splitname = split("/", mpname);
 		cutname = splitname[1];
-		#print( mpname_node_string ~ " " ~ cutname );
+		
 	}
 	return( cutname );
 }
@@ -108,7 +98,6 @@ var radis = func(t, my_radarcorr) {
 	acname = aircraftData[cutname];
 	if ( acname == nil ) { acname = 0 }
 	rcs_4r = radarData[acname][3];
-	#radartype = radarData[acname][1];
 
 	# Add a correction factor for altitude, as lower alt means
 	# shorter radar distance (due to air turbulence).
@@ -119,47 +108,42 @@ var radis = func(t, my_radarcorr) {
 	} elsif ((alt_ac > 1000) and (alt_ac <= 5000)) {
 		alt_corr = 0.8;
 	}
-
-	# Add a correction factor for altitude AGL.
+	# Add a correction factor for altitude AGL. Skip if AI tanker.
 	agl_corr = 1;
-	mp_lon = mpnode.getNode("position/longitude-deg").getValue();
-	mp_lat = mpnode.getNode("position/latitude-deg").getValue();
-	pos_elev = geo.elevation(mp_lat, mp_lon);
-	if (pos_elev != nil) {
-		mp_agl = alt_ac - ( pos_elev / FT2M );
-		if (mp_agl <= 20) {
-			agl_corr = 0.03;
-		} elsif ((mp_agl > 20) and (mp_agl <= 50)) {
-			agl_corr = 0.08;
-		} elsif ((mp_agl > 50) and (mp_agl <= 120)) {
-			agl_corr = 0.25;
-		} elsif ((mp_agl > 120) and (mp_agl <= 300)) {
-			agl_corr = 0.4;
-		} elsif ((mp_agl > 300) and (mp_agl <= 600)) {
-			agl_corr = 0.7;
-		} elsif ((mp_agl > 600) and (mp_agl <= 1000)) {
-			agl_corr = 0.85;
+	if ( find("tanker", t) == 0 ) {
+		mp_lon = mpnode.getNode("position/longitude-deg").getValue();
+		pos_elev = geo.elevation(mp_lat, mp_lon);
+		if (pos_elev != nil) {
+			mp_agl = alt_ac - ( pos_elev / FT2M );
+			if (mp_agl <= 40) {
+				agl_corr = 0.03;
+			} elsif ((mp_agl > 40) and (mp_agl <= 80)) {
+				agl_corr = 0.07;
+			} elsif ((mp_agl > 80) and (mp_agl <= 120)) {
+				agl_corr = 0.25;
+			} elsif ((mp_agl > 120) and (mp_agl <= 300)) {
+				agl_corr = 0.4;
+			} elsif ((mp_agl > 300) and (mp_agl <= 600)) {
+				agl_corr = 0.7;
+			} elsif ((mp_agl > 600) and (mp_agl <= 1000)) {
+				agl_corr = 0.85;
+			}
 		}
 	}
-
 	# Calculate the detection distance for this multiplayer.
 	det_range = my_radarcorr * rcs_4r * alt_corr * agl_corr / NM2KM;
-	#print (radartype);
-	#print (rcs_4r);
 
-	### Compare if aircraft is in detection range and return.
+	# Compare if aircraft is in detection range and return.
 	act_range = mpnode.getNode("radar/range-nm").getValue() or 500;
-	#print (det_range ~ " " ~ act_range);
 	if (det_range >= act_range) {
-		#print("paint it");
 		return(1);
 	}
 	return(0);
 }
 
 var radar_horizon = func(our_alt_ft, target_alt_ft) {
-    if (our_alt_ft < 0 or our_alt_ft == nil) { our_alt_ft = 0 }
-    if (target_alt_ft < 0 or target_alt_ft == nil) { target_alt_ft = 0 }
+	if (our_alt_ft < 0 or our_alt_ft == nil) { our_alt_ft = 0 }
+	if (target_alt_ft < 0 or target_alt_ft == nil) { target_alt_ft = 0 }
 	return( 2.2 * ( math.sqrt(our_alt_ft * FT2M) + math.sqrt(target_alt_ft * FT2M) ) );
 }
 
@@ -184,7 +168,6 @@ var load_data = func {
 		foreach( var n; aircraft_names) {
 			if ( n.getName() == "name") {
 				aircraftData[n.getValue()] = index;
-				#print(n.getValue() ~ " : " ~ index);
 			}
 		}
 		var t_list = [

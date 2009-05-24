@@ -575,6 +575,7 @@ max. radar range target seize(RCS)m2, 4th root of radar RCS -->
 					<name>MPCarrier</name>
 					<name>mp-nimitz</name>
 					<name>mp-eisenhower</name>
+					<name>mp-vinson</name>
 					<rcs-sq-meter>160000</rcs-sq-meter>
 					<rcs-4th-root>20</rcs-4th-root>
 					<radar-type>SPS-49</radar-type>

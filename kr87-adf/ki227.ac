@@ -1095,7 +1095,7 @@ refs 4
 kids 0
 OBJECT poly
 name "KI227.face"
-texture "KI227.rgb"
+texture "KI227.png"
 texrep 1 1
 crease 30.000000
 numvert 31
@@ -1210,7 +1210,7 @@ refs 4
 kids 0
 OBJECT poly
 name "KI227.knob"
-texture "KI227.rgb"
+texture "KI227.png"
 texrep 1 1
 crease 30.000000
 numvert 24
@@ -1361,7 +1361,7 @@ refs 4
 kids 0
 OBJECT poly
 name "KI227.needle"
-texture "KI227.rgb"
+texture "KI227.png"
 texrep 1 1
 crease 30.000000
 numvert 7
@@ -1396,7 +1396,7 @@ refs 3
 kids 0
 OBJECT poly
 name "KI227card"
-texture "KI227.rgb"
+texture "KI227.png"
 texrep 1 1
 crease 30.000000
 numvert 32

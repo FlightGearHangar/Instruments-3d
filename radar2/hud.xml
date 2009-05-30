@@ -8,7 +8,7 @@
 
 	<animation>
 		<type>select</type>
-		<object-name>hud</object-name>
+		<object-name>lock-1</object-name>
 		<condition>
 			<equals>
 				<property>sim/current-view/name</property>

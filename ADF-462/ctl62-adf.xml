@@ -279,6 +279,61 @@ Syd Adams
                 <max>3</max>
                 <wrap>0</wrap>
             </binding>
+            <binding>
+				<condition>
+					<greater-than>
+						<property>instrumentation/adf/func-knob</property>
+						<value>0</value>
+					</greater-than>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/ident-audible</property>
+                <value>1</value>
+            </binding>
+            <binding>
+				<condition>
+					<equals>
+						<property>instrumentation/adf/func-knob</property>
+						<value>0</value>
+					</equals>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/mode</property>
+                <value>off</value>
+            </binding>
+            <binding>
+				<condition>
+					<equals>
+						<property>instrumentation/adf/func-knob</property>
+						<value>1</value>
+					</equals>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/mode</property>
+                <value>ant</value>
+            </binding>
+            <binding>
+				<condition>
+					<equals>
+						<property>instrumentation/adf/func-knob</property>
+						<value>2</value>
+					</equals>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/mode</property>
+                <value>adf</value>
+            </binding>
+            <binding>
+				<condition>
+					<equals>
+						<property>instrumentation/adf/func-knob</property>
+						<value>3</value>
+					</equals>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/mode</property>
+                <value>tone</value>
+            </binding>
         </action>
     </animation>
 
@@ -295,6 +350,61 @@ Syd Adams
                 <min>0</min>
                 <max>3</max>
                 <wrap>0</wrap>
+            </binding>
+            <binding>
+				<condition>
+					<greater-than>
+						<property>instrumentation/adf/func-knob</property>
+						<value>0</value>
+					</greater-than>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/ident-audible</property>
+                <value>1</value>
+            </binding>
+            <binding>
+				<condition>
+					<equals>
+						<property>instrumentation/adf/func-knob</property>
+						<value>0</value>
+					</equals>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/mode</property>
+                <value>off</value>
+            </binding>
+            <binding>
+				<condition>
+					<equals>
+						<property>instrumentation/adf/func-knob</property>
+						<value>1</value>
+					</equals>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/mode</property>
+                <value>ant</value>
+            </binding>
+            <binding>
+				<condition>
+					<equals>
+						<property>instrumentation/adf/func-knob</property>
+						<value>2</value>
+					</equals>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/mode</property>
+                <value>adf</value>
+            </binding>
+            <binding>
+				<condition>
+					<equals>
+						<property>instrumentation/adf/func-knob</property>
+						<value>3</value>
+					</equals>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/adf/mode</property>
+                <value>tone</value>
             </binding>
         </action>
     </animation>

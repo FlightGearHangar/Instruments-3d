@@ -660,6 +660,16 @@ max. radar range target seize(RCS)m2, 4th root of radar RCS -->
 					<max-target-4th-root>3.16</max-target-4th-root><!--guess-->
 					<ecm-type-num>16</ecm-type-num>
 				</aircraft>
+				<aircraft n="63">
+					<name>Mirage_F1</name>
+					<rcs-sq-meter>7</rcs-sq-meter>
+					<rcs-4th-root>1.63</rcs-4th-root>
+					<radar-type>Cyrano-4-MR</radar-type><!-- non-doppler -->
+					<max-radar-rng-km>150</max-radar-rng-km>
+					<max-target-sq-meter>100</max-target-sq-meter>
+					<max-target-4th-root>3.16</max-target-4th-root><!--guess-->
+					<ecm-type-num>09</ecm-type-num>
+				</aircraft>
 			</data>
 		</radar-performance>
 	</instrumentation>

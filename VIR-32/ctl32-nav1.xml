@@ -46,8 +46,8 @@ Syd Adams
         </interpolation>
         <center>
             <x-m>0.0</x-m>
-            <y-m>-0.014</y-m>
-            <z-m>-0.018</z-m>
+            <y-m>-0.0138</y-m>
+            <z-m>-0.0183</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -63,8 +63,8 @@ Syd Adams
         <factor>300</factor>
         <center>
             <x-m>0.0</x-m>
-            <y-m>-0.014</y-m>
-            <z-m>-0.018</z-m>
+            <y-m>-0.0138</y-m>
+            <z-m>-0.0183</z-m>
         </center>
         <axis>
             <x>-1</x>

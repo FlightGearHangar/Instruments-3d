@@ -39,7 +39,7 @@ var NAVLOC = "/instrumentation/nav/nav-loc";
 var NAVDST = "/instrumentation/nav/nav-dist";
 var NAVRNG = "/instrumentation/nav/in-range";
 var HDEFL = "/instrumentation/nav/heading-needle-deflection";
-var GSDEFL = "/instrumentation/nav/gs-needle-deflection";
+var GSDEFL = "/instrumentation/nav/gs-needle-deflection-norm";
 var BC = "/instrumentation/nav/back-course-btn";
 
 var HDG = props.globals.getNode("/autopilot/locks/heading",1);
@@ -173,7 +173,7 @@ var update_nav = func {
             if(getprop("instrumentation/kfc200/gs-arm")){
                 if(getprop("instrumentation/nav/gs-distance") < 25000){
                     var GS1 = getprop(GSDEFL); 
-                    if( GS1< 1.0 and GS1 > -1.0){vnav = 4;
+                    if( GS1< 0.5 and GS1 > -0.5){vnav = 4;
                     setprop("/instrumentation/kfc200/vnav",vnav);
                     }
                 }

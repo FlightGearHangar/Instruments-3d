@@ -91,13 +91,12 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>GSneedle</object-name>
-        <property>instrumentation/nav/gs-needle-deflection</property>
+        <property>instrumentation/nav/gs-needle-deflection-norm</property>
         <interpolation>
-            <entry><ind>-100.0</ind><dep>-0.0085</dep></entry>
-            <entry><ind>-5.0</ind><dep>-0.0085</dep></entry>
+            <entry><ind>-1</ind><dep>-0.0085</dep></entry>
+            <entry><ind>-0.5</ind><dep>-0.0085</dep></entry>
             <entry><ind>0.0</ind><dep>0.0</dep></entry>
-            <entry><ind>10.0</ind><dep>0.0162</dep></entry>
-            <entry><ind>100.0</ind><dep>0.0162</dep></entry>
+            <entry><ind>1.0</ind><dep>0.0162</dep></entry>
         </interpolation>
         <axis>
             <x>0.0</x>

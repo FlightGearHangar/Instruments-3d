@@ -343,9 +343,7 @@ var P1000 = {
                 if(getprop("/instrumentation/nav["~nv~"]/has-gs")){
                     me.NavType.setValue(2);
                     if(nm_calc<30)me.GS_inrange.setValue(1);
-                    var df = getprop("/instrumentation/nav["~nv~"]/gs-needle-deflection");
-                    if(df>10)df=10;
-                    if(df<-10)df=-10;
+                    var df = getprop("/instrumentation/nav["~nv~"]/gs-needle-deflection-norm");
                     me.GS_deflection.setValue(df);
                 }
                 id = getprop("instrumentation/nav["~nv~"]/nav-id");

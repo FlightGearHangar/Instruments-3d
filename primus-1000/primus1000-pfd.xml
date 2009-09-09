@@ -320,28 +320,22 @@ Primus 1000 Primary Flight Display
 <animation>
     <type>translate</type>
     <object-name>GSneedle</object-name>
-    <property>instrumentation/nav/gs-needle-deflection</property>
+    <property>instrumentation/nav/gs-needle-deflection-norm</property>
     <interpolation>
         <entry>
-            <ind>-10.0</ind><dep>-0.0188</dep>
+            <ind>-1.0</ind><dep>-0.0188</dep>
         </entry>
         <entry>
-            <ind>-5.0</ind><dep>-0.0162</dep>
-        </entry>
-        <entry>
-            <ind>-2.5</ind><dep>-0.0083</dep>
+            <ind>-0.5</ind><dep>-0.0162</dep>
         </entry>
         <entry>
             <ind>0.0</ind><dep>0.0</dep>
         </entry>
         <entry>
-            <ind>2.50</ind><dep>0.0078</dep>
+            <ind>0.5</ind><dep>0.0158</dep>
         </entry>
         <entry>
-            <ind>5.0</ind><dep>0.0158</dep>
-        </entry>
-        <entry>
-            <ind>10.0</ind><dep>0.02</dep>
+            <ind>1.0</ind><dep>0.02</dep>
         </entry>
     </interpolation>
     <axis>

@@ -47,7 +47,7 @@
   <type>rotate</type>
   <object-name>LocalizerNeedle</object-name>
   <property alias="../../params/nav-heading-needle-deflection"/>
-  <factor>-3.2</factor>
+  <factor>-2.8</factor>
   <center>
    <x-m>0</x-m>
    <y-m>0</y-m>
@@ -102,9 +102,9 @@
   <type>rotate</type>
   <object-name>GlidescopeNeedle</object-name>
    <property alias="../../params/nav-gs-needle-deflection"/>
-  <factor>-32.0</factor>
-  <min-deg>-32</min-deg>
-  <max-deg>32</max-deg>
+  <factor>-25</factor>
+  <min-deg>-25</min-deg>
+  <max-deg>25</max-deg>
   <center>
    <x-m>0</x-m>
    <y-m>-0.03</y-m>

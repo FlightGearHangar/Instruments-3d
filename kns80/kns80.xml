@@ -95,11 +95,8 @@ Syd Adams
                     <property>systems/electrical/outputs/KNS80</property>
                     <value>1</value>
                 </greater-than>
-                <equals>
-                <property>instrumentation/kns-80/dsp-state/state</property>
-                <value>0</value>
-                </equals>
-            </and>
+                <property>instrumentation/kns-80/flash</property>
+			</and>
         </condition>
     </animation>
 
@@ -284,7 +281,7 @@ Syd Adams
         <condition>
             <and>
                 <property>instrumentation/kns-80/serviceable</property>
-                <property>instrumentation/nav/nav-loc</property>
+                <property>instrumentation/nav/has-gs</property>
                 <property>instrumentation/nav/in-range</property>
                 <greater-than>
                     <property>systems/electrical/outputs/KNS80</property>
@@ -297,7 +294,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>KNS80.volume</object-name>
-        <property>instrumentation/kns-80/volume</property>
+        <property>instrumentation/nav/volume</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
             <entry><ind>1.0</ind><dep>300</dep></entry>
@@ -337,8 +334,9 @@ Syd Adams
         <type>textranslate</type>
         <object-name>navfreq.101</object-name>
         <property>instrumentation/kns-80/displayed-frequency</property>
-        <factor>0.00001</factor>
-        <step>10000</step>
+        <factor>0.001</factor>
+        <step>100</step>
+		<bias>0.005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -350,8 +348,9 @@ Syd Adams
         <type>textranslate</type>
         <object-name>navfreq.102</object-name>
         <property>instrumentation/kns-80/displayed-frequency</property>
-        <factor>0.0001</factor>
-        <step>1000</step>
+        <factor>0.01</factor>
+        <step>10</step>
+		<bias>0.005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -363,8 +362,9 @@ Syd Adams
         <type>textranslate</type>
         <object-name>navfreq.103</object-name>
         <property>instrumentation/kns-80/displayed-frequency</property>
-        <factor>0.001</factor>
-        <step>100</step>
+        <factor>0.1</factor>
+        <step>1</step>
+		<bias>0.005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -376,8 +376,9 @@ Syd Adams
         <type>textranslate</type>
         <object-name>navfreq.104</object-name>
         <property>instrumentation/kns-80/displayed-frequency</property>
-        <factor>0.01</factor>
-        <step>10</step>
+        <factor>1.0</factor>
+        <step>0.1</step>
+		<bias>0.005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -389,8 +390,9 @@ Syd Adams
         <type>textranslate</type>
         <object-name>navfreq.105</object-name>
         <property>instrumentation/kns-80/displayed-frequency</property>
-        <factor>0.1</factor>
-        <step>1</step>
+        <factor>10.0</factor>
+        <step>0.01</step>
+		<bias>0.005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -626,12 +628,12 @@ Syd Adams
         <type>pick</type>
         <object-name>KNS80.volume</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
             <binding>
-            <command>property-assign</command>
-            <property>/instrumentation/kns-80/volume-adjust</property>
-            <value>-1</value>
+            <command>nasal</command>
+            <script>systems.kns80.volume(0.05)</script>
         </binding>
         </action>
     </animation>
@@ -640,36 +642,12 @@ Syd Adams
         <type>pick</type>
         <object-name>KNS80.volume</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
+            <repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
             <binding>
-                <condition>
-                    <not>
-                        <property>devices/status/keyboard/shift</property>
-                    </not>
-                </condition>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/volume-adjust</property>
-                <value>1</value>
-            </binding>
-            <binding>
-                <condition>
-                    <property>devices/status/keyboard/shift</property>
-                </condition>
-                <command>property-toggle</command>
-                <property>instrumentation/nav/ident</property>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>KNS80.volume</object-name>
-        <action>
-            <button>4</button>
-            <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/volume-adjust</property>
-                <value>-1</value>
+            <command>nasal</command>
+            <script>systems.kns80.volume(-0.05)</script>
         </binding>
         </action>
     </animation>
@@ -680,10 +658,21 @@ Syd Adams
         <action>
             <button>3</button>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/volume-adjust</property>
-                <value>1</value>
-            </binding>
+            <command>nasal</command>
+            <script>systems.kns80.volume(0.05)</script>
+        </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KNS80.volume</object-name>
+        <action>
+            <button>4</button>
+            <binding>
+            <command>nasal</command>
+            <script>systems.kns80.volume(-0.05)</script>
+        </binding>
         </action>
     </animation>
 
@@ -693,11 +682,10 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-            <interval-sec>0.1</interval-sec>
+            <interval-sec>0.2</interval-sec>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>1</value>
+				<command>nasal</command>
+				<script>systems.kns80.data_adjust(1)</script>
             </binding>
         </action>
     </animation>
@@ -708,11 +696,10 @@ Syd Adams
         <action>
             <button>1</button>
             <repeatable>true</repeatable>
-            <interval-sec>0.1</interval-sec>
+            <interval-sec>0.2</interval-sec>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>-1</value>
+				<command>nasal</command>
+				<script>systems.kns80.data_adjust(-1)</script>
             </binding>
         </action>
     </animation>
@@ -723,9 +710,8 @@ Syd Adams
         <action>
             <button>3</button>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>1</value>
+				<command>nasal</command>
+				<script>systems.kns80.data_adjust(1)</script>
             </binding>
         </action>
     </animation>
@@ -736,9 +722,8 @@ Syd Adams
         <action>
             <button>4</button>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>-1</value>
+				<command>nasal</command>
+				<script>systems.kns80.data_adjust(-1)</script>
             </binding>
         </action>
     </animation>
@@ -749,11 +734,10 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-            <interval-sec>0.1</interval-sec>
+            <interval-sec>0.2</interval-sec>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>10</value>
+				<command>nasal</command>
+				<script>systems.kns80.data_adjust(10)</script>
             </binding>
         </action>
     </animation>
@@ -764,11 +748,10 @@ Syd Adams
         <action>
             <button>1</button>
             <repeatable>true</repeatable>
-            <interval-sec>0.1</interval-sec>
+            <interval-sec>0.2</interval-sec>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>-10</value>
+				<command>nasal</command>
+				<script>systems.kns80.data_adjust(-10)</script>
             </binding>
         </action>
     </animation>
@@ -779,9 +762,8 @@ Syd Adams
         <action>
             <button>3</button>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>10</value>
+				<command>nasal</command>
+				<script>systems.kns80.data_adjust(10)</script>
             </binding>
         </action>
     </animation>
@@ -792,9 +774,8 @@ Syd Adams
         <action>
             <button>4</button>
             <binding>
-                <command>property-assign</command>
-                <property>/instrumentation/kns-80/data-adjust</property>
-                <value>-10</value>
+				<command>nasal</command>
+				<script>systems.kns80.data_adjust(-10)</script>
             </binding>
         </action>
     </animation>
@@ -806,8 +787,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/kns-80/dme-hold</property>
+				<command>nasal</command>
+				<script>systems.kns80.DME_hold();</script>
             </binding>
         </action>
     </animation>
@@ -817,12 +798,10 @@ Syd Adams
         <object-name>USE.btn</object-name>
         <action>
             <button>0</button>
-            <repeatable>false</repeatable>
             <binding>
-                <command>property-assign</command>
-                <property>instrumentation/kns-80/use</property>
-                <property>instrumentation/kns-80/display</property>
-            </binding>
+				<command>nasal</command>
+				<script>systems.kns80.use_btn();</script>
+			</binding>
         </action>
     </animation>
 
@@ -831,15 +810,10 @@ Syd Adams
         <object-name>DSP.btn</object-name>
         <action>
             <button>0</button>
-            <repeatable>false</repeatable>
             <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/kns-80/display</property>
-                <step>1</step>
-                <min>0</min>
-                <max>4</max>
-                <wrap>true</wrap>
-            </binding>
+				<command>nasal</command>
+				<script>systems.kns80.display_btn();</script>
+			</binding>
         </action>
     </animation>
 
@@ -848,14 +822,9 @@ Syd Adams
         <object-name>DATA.btn</object-name>
         <action>
             <button>0</button>
-            <repeatable>false</repeatable>
             <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/kns-80/data-mode</property>
-                <step>1</step>
-                <min>0</min>
-                <max>3</max>
-                <wrap>true</wrap>
+				<command>nasal</command>
+				<script>systems.kns80.data_btn()</script>
             </binding>
         </action>
     </animation>

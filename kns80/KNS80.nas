@@ -1,4 +1,3 @@
-#<PropertyList><module>Aerostar-700</module><script><![CDATA[
 ####    King KNS-80 Integrated Navigation System   ####
 ####    Syd Adams    ####
 ####    Ron Jensen   ####
@@ -8,157 +7,213 @@
 #### Nav Modes  0 = VOR ; 1 = VOR/PAR ; 2 = RNAV/ENR ; 3 = RNAV/APR ;
 ####
 
-var KNS80 = props.globals.getNode("/instrumentation/kns-80",1);
-var NAV1 = props.globals.getNode("/instrumentation/nav/frequencies/selected-mhz",1);
-var NAV1_RADIAL = props.globals.getNode("/instrumentation/nav/radials/selected-deg",1);
-var KNS80_wpt_freq=[];
-var KNS80_wpt_radial=[];
-var KNS80_wpt_distance=[];
+var KNS80 = {
+    new : func(prop){
+        m = { parents : [KNS80]};
+		m.wpt_freq=[];
+		m.wpt_radial=[];
+		m.wpt_distance=[];
+        m.volume_adjust =0;
+		m.nav_selected = "instrumentation/nav/frequencies/selected-mhz";
+		m.dme_selected = "instrumentation/dme/frequencies/selected-mhz";
+		m.display_num = 0;
+		m.use_num = 0;
+		m.flasher = 0;
+		
+		m.kns80 = props.globals.initNode(prop);
+		m.serviceable = m.kns80.initNode("serviceable",1,"BOOL");
+		m.data_mode = m.kns80.initNode("data-mode",0,"DOUBLE");
+        m.nav_mode = m.kns80.initNode("nav-mode",0,"DOUBLE");
+        m.dme_hold = m.kns80.initNode("dme-hold",0,"BOOL");
+		m.dsp_flash = m.kns80.initNode("flash",0,"BOOL");
+		m.display = m.kns80.initNode("display",0,"DOUBLE");
+		m.use = m.kns80.initNode("use",0,"DOUBLE");
 
-var KNS80_serviceable=KNS80.getNode("serviceable",1);
-KNS80_serviceable.setBoolValue(1);
+		append(m.wpt_freq,m.kns80.initNode("wpt[0]/frequency",115.80,"DOUBLE"));
+		append(m.wpt_freq,m.kns80.initNode("wpt[1]/frequency",111.70,"DOUBLE"));
+		append(m.wpt_freq,m.kns80.initNode("wpt[2]/frequency",116.80,"DOUBLE"));
+		append(m.wpt_freq,m.kns80.initNode("wpt[3]/frequency",113.90,"DOUBLE"));
 
-var KNS80_volume_adjust=KNS80.getNode("volume-adjust",1);
-KNS80_volume_adjust.setDoubleValue(0);
+		append(m.wpt_radial,m.kns80.initNode("wpt[0]/radial",280.0,"DOUBLE"));
+		append(m.wpt_radial,m.kns80.initNode("wpt[1]/radial",280.0,"DOUBLE"));
+		append(m.wpt_radial,m.kns80.initNode("wpt[2]/radial",029.0,"DOUBLE"));
+		append(m.wpt_radial,m.kns80.initNode("wpt[3]/radial",029.0,"DOUBLE"));
 
-var KNS80_data_adjust=KNS80.getNode("data-adjust",1);
-KNS80_data_adjust.setDoubleValue(0);
+		append(m.wpt_distance,m.kns80.initNode("wpt[0]/distance",0,"DOUBLE"));
+		append(m.wpt_distance,m.kns80.initNode("wpt[1]/distance",0,"DOUBLE"));
+		append(m.wpt_distance,m.kns80.initNode("wpt[2]/distance",0,"DOUBLE"));
+		append(m.wpt_distance,m.kns80.initNode("wpt[3]/distance",0,"DOUBLE"));
 
-var KNS80_volume=KNS80.getNode("volume",1);
-KNS80_volume.setDoubleValue(0.5);
+        m.displayed_distance = m.kns80.initNode("displayed-distance",m.wpt_distance[0].getValue(),"DOUBLE");
+        m.displayed_frequency = m.kns80.initNode("displayed-frequency",m.wpt_freq[0].getValue(),"DOUBLE");
+        m.displayed_radial = m.kns80.initNode("displayed-radial",m.wpt_radial[0].getValue(),"DOUBLE");
 
-var KNS80_display=KNS80.getNode("display",1);
-KNS80_display.setDoubleValue(0);
+		m.NAV=props.globals.initNode("instrumentation/nav");
+		m.NAV1 = m.NAV.initNode("frequencies/selected-mhz");
+		m.NAV1_RADIAL = m.NAV.initNode("radials/selected-deg");
+		m.NAV1_ACTUAL = m.NAV.initNode("radials/actual-deg");
+		m.NAV1_TO_FLAG = m.NAV.initNode("to-flag");
+		m.NAV1_FROM_FLAG = m.NAV.initNode("from-flag");
+		m.NAV1_HEADING_NEEDLE_DEFLECTION = m.NAV.initNode("heading-needle-deflection");
+		m.NAV1_IN_RANGE = m.NAV.initNode("in-range");
+		m.NAV1_distance = m.NAV.initNode("distance");
+		
+        m.NAV_volume = m.NAV.initNode("volume",0.2,"DOUBLE");
 
-var KNS80_use=KNS80.getNode("use",1);
-KNS80_use.setDoubleValue(0);
+		m.CDI_NEEDLE = props.globals.initNode("/instrumentation/gps/cdi-deflection");
+		m.TO_FLAG    = props.globals.initNode("/instrumentation/gps/to-flag");
+		m.FROM_FLAG  = props.globals.initNode("/instrumentation/gps/from-flag");
 
-var KNS80_data_mode=KNS80.getNode("data-mode",1);
-KNS80_data_mode.setDoubleValue(0);
+		m.RNAV = m.kns80.initNode("rnav");
+		m.RNAV_deflection = m.RNAV.initNode("heading-needle-deflection",0,"DOUBLE");
+		m.RNAV_distance = m.RNAV.initNode("indicated-distance-nm",0,"DOUBLE");
+		m.RNAV_reciprocal = m.RNAV.initNode("reciprocal-radial-deg",0,"DOUBLE");
+		m.RNAV_actual_deg = m.RNAV.initNode("actual-deg",0,"DOUBLE");
+		
+		m.DME_mhz = props.globals.initNode("instrumentation/dme/frequencies/selected-mhz",0,"DOUBLE");
+		m.DME_src = props.globals.initNode("instrumentation/dme/frequencies/source",m.nav_selected,"STRING");
+		m.DME_dist = props.globals.initNode("instrumentation/dme/indicated-distance-nm",0,"DOUBLE");
+		return m;
+    },
 
-var KNS80_nav_mode=KNS80.getNode("nav-mode",1);
-KNS80_nav_mode.setDoubleValue(0);
+#### volume adjust ####
 
-var KNS80_dme_hold=KNS80.getNode("dme-hold",1);
-KNS80_dme_hold.setBoolValue(0);
+volume : func(vlm){
+		var vol = me.NAV_volume.getValue();
+		vol += vlm;
+		if(vol > 1.0)vol = 1.0;
+		if(vol < 0.0){
+			vol = 0.0;
+			me.serviceable.setBoolValue(0);
+			setprop("/instrumentation/nav/serviceable",0);
+			setprop("/instrumentation/dme/serviceable",0);
+		}
+		if(vol > 0.0){
+			me.serviceable.setBoolValue(1);
+			setprop("/instrumentation/nav/serviceable",1);
+			setprop("/instrumentation/dme/serviceable",1);
+		}
+		me.NAV_volume.setValue(vol);
+    },
 
-var KNS80_displayed_distance=KNS80.getNode("displayed-distance",1);
-KNS80_displayed_distance.setDoubleValue(0);
+#### dme hold ####
 
-var KNS80_displayed_frequency=KNS80.getNode("displayed-frequency",1);
-KNS80_displayed_frequency.setDoubleValue(0.0);
+DME_hold : func{
+	var hold = me.dme_hold.getValue();
+    hold= 1- hold;
+	me.dme_hold.setValue(hold);
+	if(hold==1){
+        me.DME_mhz.seValue(me.NAV1.getValue());
+        me.DME_src.setValue(me.dme_selected);
+    }else{
+        me.DME_mhz.setValue(0);
+        me.DME_src.setValue(me.nav_selected);
+        }
+    },
 
-var KNS80_displayed_radial=KNS80.getNode("displayed-radial",1);
-KNS80_displayed_radial.setDoubleValue(0.0);
+#### display button ####
 
-append(KNS80_wpt_freq,KNS80.getNode("wpt[0]/frequency",1));
-append(KNS80_wpt_freq,KNS80.getNode("wpt[1]/frequency",1));
-append(KNS80_wpt_freq,KNS80.getNode("wpt[2]/frequency",1));
-append(KNS80_wpt_freq,KNS80.getNode("wpt[3]/frequency",1));
+display_btn : func{
+	me.display_num +=1;
+	if(me.display_num>3)me.display_num=0;
+	me.displayed_frequency.setValue(me.wpt_freq[me.display_num].getValue());
+    me.displayed_distance.setValue(me.wpt_distance[me.display_num].getValue());
+    me.displayed_radial.setValue(me.wpt_radial[me.display_num].getValue());
+    me.data_mode.setValue(0);
+    if(me.use_num == me.display_num){
+        me.flasher=0;
+		}else{
+		me.flasher=1;
+        }
+	me.display.setValue(me.display_num);
+    },
 
-append(KNS80_wpt_radial,KNS80.getNode("wpt[0]/radial",1));
-append(KNS80_wpt_radial,KNS80.getNode("wpt[1]/radial",1));
-append(KNS80_wpt_radial,KNS80.getNode("wpt[2]/radial",1));
-append(KNS80_wpt_radial,KNS80.getNode("wpt[3]/radial",1));
+#### use button ####
 
-append(KNS80_wpt_distance,KNS80.getNode("wpt[0]/distance",1));
-append(KNS80_wpt_distance,KNS80.getNode("wpt[1]/distance",1));
-append(KNS80_wpt_distance,KNS80.getNode("wpt[2]/distance",1));
-append(KNS80_wpt_distance,KNS80.getNode("wpt[3]/distance",1));
+use_btn : func{
+	me.use_num = me.display_num;
+    me.flasher=0;
+    me.data_mode.setValue(0);
+    me.use.setValue(me.use_num);
+	me.NAV1.setValue(me.wpt_freq[me.display_num].getValue());
+    },
 
-KNS80_wpt_freq[0].setDoubleValue(10950);
-KNS80_wpt_radial[0].setDoubleValue(280);
-KNS80_wpt_distance[0].setDoubleValue(0.0);
-KNS80_wpt_freq[1].setDoubleValue(11570);
-KNS80_wpt_radial[1].setDoubleValue(120);
-KNS80_wpt_distance[1].setDoubleValue(7.2);
-KNS80_wpt_freq[2].setDoubleValue(11570);
-KNS80_wpt_radial[2].setDoubleValue(270);
-KNS80_wpt_distance[2].setDoubleValue(5.8);
-KNS80_wpt_freq[3].setDoubleValue(11000);
-KNS80_wpt_radial[3].setDoubleValue(0);
-KNS80_wpt_distance[3].setDoubleValue(0.0);
+#### data button ####
 
-var DME_mhz=props.globals.getNode("instrumentation/dme/frequencies/selected-mhz",1);
-var DME_src=props.globals.getNode("instrumentation/dme/frequencies/source",1);
-var FDM_ON = 0;
-var dsp_flash = props.globals.getNode("instrumentation/kns-80/flash", 1);
-aircraft.light.new("instrumentation/kns-80/dsp-state", [0.5, 0.5],dsp_flash);
+data_btn : func{
+	var data = me.data_mode.getValue();
+    data +=1;
+	if(data > 2) data = 0;
+    me.data_mode.setValue(data);
+    },
+
+#### data adjust ####
+
+	data_adjust : func(dtadj){
+    var dmode = me.data_mode.getValue();
+    var num = dtadj;
+    dtadj=0;
+    if(dmode == 0){
+        if(num == -1 or num ==1){num = num *0.05;}else{num = num *0.10;}
+        var newfreq = me.displayed_frequency.getValue();
+        newfreq += num;
+        if(newfreq > 118.95){newfreq -= 11.00;}
+        if(newfreq < 108.00){newfreq += 11.00;}
+        me.displayed_frequency.setValue(newfreq);
+    }elsif(dmode == 1){
+        var newrad = me.displayed_radial.getValue();
+        newrad += num;
+        if(newrad > 359){newrad -= 360;}
+        if(newrad < 0){newrad += 360;}
+        me.displayed_radial.setValue(newrad);
+    }elsif(dmode == 2){
+        var newdist = me.displayed_distance.getValue();
+        if(num == -1 or num ==1 ){num = num *0.1;}
+        newdist += num;
+        if(newdist > 99){newdist -= 100;}
+        if(newdist < 0){newdist += 100;}
+        me.displayed_distance.setDoubleValue(newdist);
+    }
+	me.update_displayed();
+},
+
+#### update displayed info ####
+
+update_displayed : func{
+    var freq = me.displayed_frequency.getValue();
+    me.wpt_freq[me.display_num].setValue(freq);
+    me.NAV1.setValue(me.wpt_freq[me.display_num].getValue());
+    me.wpt_radial[me.display_num].setValue(me.displayed_radial.getValue());
+    var dis = me.displayed_distance.getValue();
+    me.wpt_distance[me.display_num].setValue(dis);
+
+},
+
+#### update RNAV ####
 
 # Properties
-
-var NAV1_ACTUAL = props.globals.getNode("/instrumentation/nav/radials/actual-deg",1);
-var NAV1_TO_FLAG = props.globals.getNode("/instrumentation/nav[0]/to-flag",1);
-var NAV1_FROM_FLAG = props.globals.getNode("/instrumentation/nav[0]/from-flag",1);
-var NAV1_HEADING_NEEDLE_DEFLECTION = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection",1);
-
-var NAV1_IN_RANGE = props.globals.getNode("/instrumentation/nav[0]/in-range",1);
-var DME1_IN_RANGE = props.globals.getNode("/instrumentation/dme[0]/in-range",1);
-
 # outputs
-var CDI_NEEDLE = props.globals.getNode("/instrumentation/gps/cdi-deflection",1);
-var TO_FLAG    = props.globals.getNode("/instrumentation/gps/to-flag",1);
-var FROM_FLAG  = props.globals.getNode("/instrumentation/gps/from-flag",1);
-
-
-var RNAV = props.globals.getNode("/instrumentation/rnav",1);
 # distance, radial from VOR Station
 # rho, theta: distance and radial for phantom station
 # range, bearing: distance and radial from phantom station
-
-
-var unnil = func(n) { n == nil ? 0 : n }
-
-
-# 0.1 second cron
-var sec01cron = func {
-   updateRNAV();
-
-   # schedule the next call
-   settimer(sec01cron,0.1);
-}
-
-
-# general initialization
-var init = func {
-   # schedule the 1st call
-   settimer(sec01cron,5);
-}
-
-var updateRNAV = func{
-# check to see if we are in-range
-    if( NAV1_IN_RANGE.getValue()==0) {
-        return;
-    }
-    var dme_valid=DME1_IN_RANGE.getValue();
-    if( dme_valid == 0) {
-        return;
-    }
-    if( dme_valid == nil) {
-        return;
-    }
-
 #### Nav Modes  0 = VOR ; 1 = VOR/PAR ; 2 = RNAV/ENR ; 3 = RNAV/APR ;
-    var mode = KNS80_nav_mode.getValue();
-    var use =KNS80_use.getValue();
-    var distance=getprop("/instrumentation/dme/indicated-distance-nm");
-    var selected_radial = NAV1_RADIAL.getValue();
-    var radial = NAV1_ACTUAL.getValue();
-    var rho = KNS80_wpt_distance[use].getValue();
-    var theta = KNS80_wpt_radial[use].getValue();
-#    var rho = KNS80.getNode("wpt[" ~ use ~ "]/distance").getValue();
-#    var theta = KNS80.getNode("wpt[" ~ use ~ "]/radial").getValue();
+
+updateRNAV : func{
+
+	if(!me.NAV1_IN_RANGE.getValue()) {
+        return;
+    }
+	var mode = me.nav_mode.getValue() or 0;
+    var distance=me.DME_dist.getValue() or 0;
+    var selected_radial = me.NAV1_RADIAL.getValue() or 0;
+    var radial = me.NAV1_ACTUAL.getValue() or 0;
+    var rho = me.wpt_distance[me.use_num].getValue() or 0;
+    var theta = me.wpt_radial[me.use_num].getValue() or 0;
     var fangle = 0;
     var needle_deflection = 0;
     var from_flag=1;
     var to_flag  =0;
-
     
-    radial = unnil(radial);
-    theta = unnil(theta);
-    rho = unnil(rho);
-    distance=unnil(distance);
-
     var x1 = distance * math.cos( radial*D2R );
     var y1 = distance * math.sin( radial*D2R );
     var x2 = rho * math.cos( theta*D2R );
@@ -171,23 +226,18 @@ var updateRNAV = func{
     var abearing = bearing > 180 ? bearing - 180 : bearing + 180;
 
     if( mode == 0){
-    #	print("KNS-80 VOR");
-        needle_deflection = (NAV1_HEADING_NEEDLE_DEFLECTION.getValue());
+        needle_deflection = (me.NAV1_HEADING_NEEDLE_DEFLECTION.getValue());
         range = distance;
-    #	return;
     }
     if ( mode == 1){
-    #	print("KNS-80 VOR/PAR");
         fangle = math.abs(selected_radial - radial);
         needle_deflection = math.sin((selected_radial - radial) * D2R) * distance * 2;
     }
     if ( mode == 2){
-    #	print("KNS-80 RNAV/ENR");
-        fangle = math.abs(selected_radial - bearing);
+       fangle = math.abs(selected_radial - bearing);
         needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 2;
     } 
     if ( mode == 3){
-    #	print("KNS-80 RNAV/APR");
         fangle = math.abs(selected_radial - bearing);
         needle_deflection = math.sin((selected_radial - bearing) * D2R) * range * 8;
     }
@@ -202,139 +252,33 @@ var updateRNAV = func{
         to_flag  =1;
     }
 
-# valid=1;
-    RNAV.getNode("heading-needle-deflection", 1).setDoubleValue(needle_deflection);
-    CDI_NEEDLE.setDoubleValue(needle_deflection);
-    TO_FLAG.setDoubleValue(to_flag);
-    FROM_FLAG.setDoubleValue(from_flag);
-    setprop("/instrumentation/rnav/indicated-distance-nm", range);
-    setprop("/instrumentation/rnav/reciprocal-radial-deg", abearing);
-    setprop("/instrumentation/rnav/actual-deg", bearing);
-##debugging
-##setprop("/instrumentation/rnav/debug-angle-deg", angle*R2D);
-##setprop("/instrumentation/rnav/debug-anglef-deg", fangle);
-##setprop("/instrumentation/rnav/debug-theta-deg",theta);
-##setprop("/instrumentation/rnav/debug-rho", rho);
+    me.RNAV_deflection.setValue(needle_deflection);
+    me.CDI_NEEDLE.setDoubleValue(needle_deflection);
+    me.TO_FLAG.setDoubleValue(to_flag);
+    me.FROM_FLAG.setDoubleValue(from_flag);
+    me.RNAV_distance.setValue(range);
+    me.RNAV_reciprocal.setValue(abearing);
+    me.RNAV_actual_deg.setValue(bearing);
+	}
+};
 
+###########################################
 
-}
+var kns80 = KNS80.new("instrumentation/kns-80");
 
 setlistener("/sim/signals/fdm-initialized", func {
-    KNS80_displayed_frequency.setDoubleValue(10955);
-    KNS80_displayed_radial.setDoubleValue(NAV1_RADIAL.getValue());
-    KNS80_wpt_radial[0].setDoubleValue(NAV1_RADIAL.getValue());
-    tmp=props.globals.getNode("/instrumentation/nav/ident");
-    tmp.setBoolValue(0);
-    init();
-    print("KNS-80 Nav System ... OK");
-    });
+		update();
+	});
 
-setlistener(KNS80_volume_adjust, func(voladj){
-    var amnt = voladj.getValue();
-    if(amnt == nil){return;}
-    amnt*=0.05;
-    voladj.setDoubleValue(0);
-    var vol = KNS80_volume.getValue();
-    vol+= amnt;
-    if(vol > 1.0)vol = 1.0;
-    if(vol < 0.0){
-        vol = 0.0;
-        KNS80_serviceable.setBoolValue(0);
-    }
-    if(vol > 0.0)KNS80_serviceable.setBoolValue(1);
-    KNS80_volume.setDoubleValue(vol);
-    KNS80_volume_adjust.setDoubleValue(0);
-    },1,0);
-
-setlistener(KNS80_data_adjust, func(dtadj){
-    var dmode = KNS80_data_mode.getValue();
-    var num = dtadj.getValue();
-    dtadj.setDoubleValue(0);
-    if(dmode == 0){
-        if(num == -1 or num ==1){num = num *5;}else{num = num *10;}
-        var newfreq = KNS80_displayed_frequency.getValue();
-        newfreq += num;
-        if(newfreq > 11895){newfreq -= 1100;}
-        if(newfreq < 10800){newfreq += 1100;}
-        KNS80_displayed_frequency.setDoubleValue(newfreq);
-    }elsif(dmode == 1){
-        var newrad = KNS80_displayed_radial.getValue();
-        newrad += num;
-        if(newrad > 359){newrad -= 360;}
-        if(newrad < 0){newrad += 360;}
-        KNS80_displayed_radial.setDoubleValue(newrad);
-    }elsif(dmode == 2){
-        var newdist = KNS80_displayed_distance.getValue();
-        if(num == -1 or num ==1 ){num = num *0.1;}
-        newdist += num;
-        if(newdist > 99){newdist -= 100;}
-        if(newdist < 0){newdist += 100;}
-        KNS80_displayed_distance.setDoubleValue(newdist);
-    }
-},1,0);
-
-setlistener(KNS80_displayed_frequency, func(dspfrq){
-    var freq = dspfrq.getValue();
-    var num = KNS80_display.getValue();
-    var use = KNS80_use.getValue();
-    KNS80_wpt_freq[num].setDoubleValue(freq);
-    NAV1.setDoubleValue(KNS80_wpt_freq[num].getValue() * 0.01);
-    },1,0);
-
-setlistener(KNS80_displayed_radial, func(rdl){
-    var rad = rdl.getValue();
-    var num = KNS80_display.getValue();
-    var radial = KNS80_use.getValue();
-    KNS80_wpt_radial[num].setDoubleValue(rad);
-    },1,0);
-
-setlistener(KNS80_displayed_distance, func(dst){
-    var dis = dst.getValue();
-    var num = KNS80_display.getValue();
-    KNS80_wpt_distance[num].setDoubleValue(dis);
-},1,0);
-
-setlistener(KNS80_serviceable, func(srv){
-    setprop("/instrumentation/nav/serviceable",srv.getValue());
-    setprop("/instrumentation/dme/serviceable",srv.getValue());
-    },1,0);
-
-setlistener(KNS80_volume, func(vol){
-    setprop("/instrumentation/nav/volume",vol.getValue());
-    setprop("/instrumentation/dme/volume",vol.getValue());
-    },1,0);
-
-setlistener(KNS80_use, func(frq){
-    var freq = frq.getValue();
-    KNS80.getNode("flash").setDoubleValue(0);
-    KNS80_data_mode.setDoubleValue(0);
-    NAV1.setDoubleValue(KNS80_wpt_freq[freq].getValue()* 0.01);
-    },1,0);
-
-setlistener(KNS80_display, func(dsp){
-    var freq = dsp.getValue();
-    if(freq == nil)return;
-    var test = KNS80_use.getValue();
-    var wpt = KNS80_wpt_freq[freq].getValue();
-    KNS80_displayed_frequency.setDoubleValue(wpt);
-    KNS80_displayed_distance.setDoubleValue(KNS80_wpt_distance[freq].getValue());
-    KNS80_displayed_radial.setDoubleValue(KNS80_wpt_radial[freq].getValue());
-    KNS80_data_mode.setDoubleValue(0);
-    if(test != freq){
-        KNS80.getNode("flash").setDoubleValue(1);
-        }else{
-        KNS80.getNode("flash").setDoubleValue(0);
-        }
-    },1,0);
-
-setlistener(KNS80_dme_hold, func(hld){
-    if(hld.getBoolValue()){
-        DME_mhz.setDoubleValue(NAV1.getValue());
-        DME_src.setValue("/instrumentation/dme/frequencies/selected-mhz");
-    }else{
-        DME_mhz.setDoubleValue(0);
-        DME_src.setValue("/instrumentation/nav[0]/frequencies/selected-mhz");
-        }
-    },1,0);
-
-#  ]]></script></PropertyList>
+var update = func {
+	kns80.updateRNAV();
+	var fl = kns80.dsp_flash.getValue();
+	
+	if(kns80.flasher){
+		kns80.dsp_flash.setValue(1-fl);
+	}else{
+		kns80.dsp_flash.setValue(1);
+	};
+	
+	settimer(update,0.5);
+};

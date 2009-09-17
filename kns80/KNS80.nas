@@ -198,8 +198,8 @@ updateRNAV : func{
     var distance=me.DME_dist.getValue() or 0;
     var selected_radial = me.NAV1_RADIAL.getValue() or 0;
     var radial = me.NAV1_ACTUAL.getValue() or 0;
-    var rho = me.wpt_distance[me.use_num].getValue() or 0;
-    var theta = me.wpt_radial[me.use_num].getValue() or 0;
+    var rho = me.wpt_distance[me.use_num].getValue();
+    var theta = me.wpt_radial[me.use_num].getValue();
     var fangle = 0;
     var needle_deflection = 0;
     var from_flag=1;

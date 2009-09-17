@@ -103,7 +103,7 @@ DME_hold : func{
     hold= 1- hold;
 	me.dme_hold.setValue(hold);
 	if(hold==1){
-        me.DME_mhz.seValue(me.NAV1.getValue());
+        me.DME_mhz.setValue(me.NAV1.getValue());
         me.DME_src.setValue(me.dme_selected);
     }else{
         me.DME_mhz.setValue(0);
@@ -160,33 +160,24 @@ data_btn : func{
         if(newfreq > 118.95){newfreq -= 11.00;}
         if(newfreq < 108.00){newfreq += 11.00;}
         me.displayed_frequency.setValue(newfreq);
+		me.wpt_freq[me.display_num].setValue(newfreq);
+		 if(me.use_num == me.display_num)me.NAV1.setValue(newfreq);
     }elsif(dmode == 1){
         var newrad = me.displayed_radial.getValue();
         newrad += num;
         if(newrad > 359){newrad -= 360;}
         if(newrad < 0){newrad += 360;}
         me.displayed_radial.setValue(newrad);
+		me.wpt_radial[me.display_num].setValue(newrad);
     }elsif(dmode == 2){
         var newdist = me.displayed_distance.getValue();
         if(num == -1 or num ==1 ){num = num *0.1;}
         newdist += num;
         if(newdist > 99){newdist -= 100;}
         if(newdist < 0){newdist += 100;}
-        me.displayed_distance.setDoubleValue(newdist);
+        me.displayed_distance.setValue(newdist);
+		me.wpt_distance[me.display_num].setValue(newdist);
     }
-	me.update_displayed();
-},
-
-#### update displayed info ####
-
-update_displayed : func{
-    var freq = me.displayed_frequency.getValue();
-    me.wpt_freq[me.display_num].setValue(freq);
-    me.NAV1.setValue(me.wpt_freq[me.display_num].getValue());
-    me.wpt_radial[me.display_num].setValue(me.displayed_radial.getValue());
-    var dis = me.displayed_distance.getValue();
-    me.wpt_distance[me.display_num].setValue(dis);
-
 },
 
 #### update RNAV ####

@@ -624,7 +624,7 @@ Syd Adams
 
 <!--    OSG hotspots    -->
 
-    <animation>
+	<animation>
         <type>pick</type>
         <object-name>KNS80.volume</object-name>
         <action>
@@ -632,9 +632,21 @@ Syd Adams
             <repeatable>true</repeatable>
 			<interval-sec>0.1</interval-sec>
             <binding>
-            <command>nasal</command>
-            <script>systems.kns80.volume(0.05)</script>
-        </binding>
+				<condition>
+					<not>
+						<property>devices/status/keyboard/shift</property>
+					</not>
+				</condition>
+				<command>nasal</command>
+				<script>systems.kns80.volume(0.05)</script>
+			</binding>
+            <binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-toggle</command>
+				<property>instrumentation/nav/ident</property>
+			</binding>
         </action>
     </animation>
 

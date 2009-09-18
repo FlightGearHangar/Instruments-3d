@@ -9,6 +9,7 @@
   <nav-gs-needle-deflection>/instrumentation/nav[0]/gs-needle-deflection-norm</nav-gs-needle-deflection>
   <nav-heading-needle-deflection>/instrumentation/nav[0]/heading-needle-deflection</nav-heading-needle-deflection>
   <nav-in-range>/instrumentation/nav[0]/in-range</nav-in-range>
+  <gs-in-range>/instrumentation/nav[0]/gs-in-range</gs-in-range>
  </params>
 
  <path>vor.ac</path>
@@ -23,6 +24,8 @@
   <object-name>TO</object-name>
   <object-name>FR</object-name>
   <object-name>NAV</object-name>
+  <object-name>GS_out_of_range</object-name>
+  <object-name>GS_in_range</object-name>
   <emission>
    <red>1.0</red>
    <green>0.2</green>
@@ -64,7 +67,25 @@
   <type>select</type>
   <object-name>GlidescopeNeedle</object-name>
   <condition>
-   <property alias="../../../params/nav-in-range"/>
+   <property alias="../../../params/gs-in-range"/>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>GS_in_range</object-name>
+  <condition>
+   <property alias="../../../params/gs-in-range"/>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>GS_out_of_range</object-name>
+  <condition>
+   <not>
+    <property alias="../../../../params/gs-in-range"/>
+   </not>
   </condition>
  </animation>
 

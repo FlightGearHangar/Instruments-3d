@@ -3,6 +3,7 @@ var displayed_screen = 0; #screenModeAndSettings
 var page = 0; #current page
 var blocked = 0; #boolean: 0 -> possible to cycle pages
 var isOn = 0; #ON/OFF: 0 -> OFF
+var refresh_timer = 0; #avoid multiple settimers
 var freq = 1; #settimer frequency (in sec)
 var screen = []; #array containing all screens
 var line = []; #array containing the displayed lines
@@ -137,9 +138,13 @@ var cycle = func (entries_nbr, actual_entrie, dir) {
     else return actual_entrie + dir;
 }
 
-var refresh_display = func() { #refresh displayed lines, settimer if necessary
+var refresh_display = func(forced = 1) { #refresh displayed lines, settimer if necessary
+    if (!forced) refresh_timer -= 1;
     screen[displayed_screen].lines();
-    if (isOn and 0 < displayed_screen < 5 ) settimer(func { refresh_display(); }, freq, 1);
+    if (isOn and 0 < displayed_screen and displayed_screen < 5 and !refresh_timer) {
+	refresh_timer += 1;
+	settimer(func { refresh_display(0); }, freq, 1);
+    }
 }
 
 var seconds_to_string = func (time) { #converts secs (double) in string "hh:mm:ss"

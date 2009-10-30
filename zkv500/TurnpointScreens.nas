@@ -29,9 +29,9 @@ var screenTurnpointSelect = {
 	gps_wp.getNode("wp[1]/altitude-ft",1).setValue(bookmark.getNode("altitude-ft").getValue());
 	gps_wp.getNode("wp[1]/ID").setValue(bookmark.getNode("ID").getValue());
 	if (bookmark.getNode("name") != nil)
-	    gps_wp.getNode("wp[1]/name").setValue(bookmark.getNode("name").getValue());
+	    gps_wp.getNode("wp[1]/name",1).setValue(bookmark.getNode("name").getValue());
 	if (bookmark.getNode("waypoint-type") != nil)
-	    gps_wp.getNode("wp[1]/waypoint-type").setValue(bookmark.getNode("waypoint-type").getValue());
+	    gps_wp.getNode("wp[1]/waypoint-type",1).setValue(bookmark.getNode("waypoint-type").getValue());
 	blocked = 0;
 	me.loaded = 1;
 	page = 1;

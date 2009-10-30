@@ -217,7 +217,7 @@ var screenNavigationMain = {
     },
     lines : func {
 	me.waypoint = gps_wp.getNode("wp[1]");
-	crs_deviation = gps_wp.getNode("leg-course-deviation-deg").getValue();
+	crs_deviation = me.waypoint.getNode("course-deviation-deg").getValue();
 	if (crs_deviation > 5)
 	    me.graph = "[- - - - - ^ > > > > >]";
 	elsif (crs_deviation < -5)
@@ -236,8 +236,8 @@ var screenNavigationMain = {
 	    me.waypoint.getNode("distance-nm",1).getValue() * dist_conv[0][dist_unit],
 	    dist_unit_short_name[dist_unit]),
 	sprintf("XCRS: %d* (%.1f %s)",
-	    gps_wp.getNode("leg-course-deviation-deg").getValue(), 
-	    gps_wp.getNode("leg-course-error-nm").getValue() * dist_conv[0][dist_unit],
+	    me.waypoint.getNode("course-deviation-deg").getValue(), 
+	    me.waypoint.getNode("course-error-nm").getValue() * dist_conv[0][dist_unit],
 	    dist_unit_short_name[dist_unit]),
 	sprintf("TTW: %s", 
 	    me.waypoint.getNode("TTW").getValue()),

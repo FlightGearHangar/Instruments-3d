@@ -17,7 +17,8 @@
  <animation>
   <type>material</type>
   <object-name>Face</object-name>
-  <object-name>GlidescopeNeedle</object-name>
+  <object-name>GlideslopeNeedle</object-name>
+  <object-name>GlideslopeNeedlePark</object-name>
   <object-name>Ring</object-name>
   <object-name>LocalizerNeedle</object-name>
   <object-name>Front</object-name>
@@ -65,7 +66,7 @@
 
  <animation>
   <type>select</type>
-  <object-name>GlidescopeNeedle</object-name>
+  <object-name>GlideslopeNeedle</object-name>
   <condition>
    <property alias="../../../params/gs-in-range"/>
   </condition>
@@ -82,6 +83,7 @@
  <animation>
   <type>select</type>
   <object-name>GS_out_of_range</object-name>
+  <object-name>GlideslopeNeedlePark</object-name>
   <condition>
    <not>
     <property alias="../../../../params/gs-in-range"/>
@@ -119,9 +121,9 @@
   
 
  <animation>
-  <name>GlidescopeNeedleTransform</name>
+  <name>GlideslopeNeedleTransform</name>
   <type>rotate</type>
-  <object-name>GlidescopeNeedle</object-name>
+  <object-name>GlideslopeNeedle</object-name>
    <property alias="../../params/nav-gs-needle-deflection"/>
   <factor>-25</factor>
   <min-deg>-25</min-deg>
@@ -162,7 +164,7 @@
     <repeatable>true</repeatable>
     <binding>
       <command>property-adjust</command>
-       <property>/instrumentation/nav/radials/selected-deg</property>
+      <property>/instrumentation/nav/radials/selected-deg</property>
       <step>-1</step>
       <min>0</min>
       <max>360</max>
@@ -175,7 +177,7 @@
     <repeatable>true</repeatable>
     <binding>
       <command>property-adjust</command>
-       <property>/instrumentation/nav/radials/selected-deg</property>
+      <property>/instrumentation/nav/radials/selected-deg</property>
       <step>-5</step>
       <min>0</min>
       <max>360</max>
@@ -194,7 +196,7 @@
     <repeatable>true</repeatable>
     <binding>
       <command>property-adjust</command>
-       <property>/instrumentation/nav/radials/selected-deg</property>
+      <property>/instrumentation/nav/radials/selected-deg</property>
       <step>1</step>
       <min>0</min>
       <max>360</max>
@@ -207,7 +209,7 @@
     <repeatable>true</repeatable>
     <binding>
       <command>property-adjust</command>
-       <property>/instrumentation/nav/radials/selected-deg</property>
+      <property>/instrumentation/nav/radials/selected-deg</property>
       <step>5</step>
       <min>0</min>
       <max>360</max>
@@ -220,7 +222,7 @@
   <name>Alpha Order Group</name>
   <object-name>Face</object-name>
   <object-name>LocalizerNeedleTransform</object-name>
-  <object-name>GlidescopeNeedleTransform</object-name>
+  <object-name>GlideslopeNeedleTransform</object-name>
   <object-name>RingTransform</object-name>
   <object-name>Front</object-name>
  </animation>

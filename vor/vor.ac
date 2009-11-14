@@ -4,33 +4,25 @@ MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  
 MATERIAL "ac3dmat6" rgb 0 1 0  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 1
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.15 0.15 0.15  spec 0.5 0.5 0.5  shi 64  trans 0
 OBJECT world
-kids 14
+kids 13
 OBJECT poly
-name "GlideslopeNeedlePark"
-loc -0.003005 0 -0.00318549
+name "GS_in_range"
+loc -0.00526316 -0.000228833 0.0199084
+texture "GS.rgb"
 crease 45.000000
-numvert 6
-0 0.000533 0.0187818
-0 0.000533 -0.0124695
-0 -0.000532 -0.0124695
-0 0.000533 0.00311013
-0 -0.000532 0.0187818
-0 -0.000532 0.00311013
-numsurf 2
-SURF 0x0
-mat 3
+numvert 4
+0 -0.00503432 -0.00480549
+0 -0.00503432 0.00389016
+0 0.00572082 0.00389016
+0 0.00572082 -0.00480549
+numsurf 1
+SURF 0x30
+mat 0
 refs 4
-5 0 0
-3 0 0
-0 0 0
-4 0 0
-SURF 0x0
-mat 3
-refs 4
-5 0 0
-2 0 0
-1 0 0
-3 0 0
+3 0.484375 0.828125
+2 0.046875 0.828125
+1 0.046875 0.109375
+0 0.484375 0.109375
 kids 0
 OBJECT poly
 name "GS_out_of_range"
@@ -485,23 +477,4 @@ refs 4
 2 0 0
 3 0.125 0
 1 0.125 1
-kids 0
-OBJECT poly
-name "GS_in_range"
-loc -0.00526316 -0.000915332 0.0210526
-texture "GS.rgb"
-crease 45.000000
-numvert 4
-0 -0.00503432 -0.00480549
-0 -0.00503432 0.00389016
-0 0.00572082 0.00389016
-0 0.00572082 -0.00480549
-numsurf 1
-SURF 0x30
-mat 0
-refs 4
-3 0.484375 0.828125
-2 0.046875 0.828125
-1 0.046875 0.109375
-0 0.484375 0.109375
 kids 0

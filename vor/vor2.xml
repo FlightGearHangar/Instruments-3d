@@ -171,6 +171,32 @@
       <wrap>1</wrap>
     </binding>
   </action>
+  <action>
+    <name>small decrease (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav[1]/radials/selected-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small increase (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav[1]/radials/selected-deg</property>
+      <step>1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
  </animation>
 
  <animation>
@@ -198,6 +224,32 @@
       <command>property-adjust</command>
       <property>/instrumentation/nav[1]/radials/selected-deg</property>
       <step>5</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small decrease (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav[1]/radials/selected-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small increase (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav[1]/radials/selected-deg</property>
+      <step>1</step>
       <min>0</min>
       <max>360</max>
       <wrap>1</wrap>

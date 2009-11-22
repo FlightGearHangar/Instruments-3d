@@ -155,6 +155,32 @@
       <wrap>false</wrap>
     </binding>
   </action>
+  <action>
+    <name>decrease calibrate fine (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/altimeter/setting-inhg</property>
+      <step>-0.01</step>
+      <min>26.0</min>
+      <max>33.0</max>
+      <wrap>false</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>increase calibrate fine (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/altimeter/setting-inhg</property>
+      <step>0.01</step>
+      <min>26.0</min>
+      <max>33.0</max>
+      <wrap>false</wrap>
+    </binding>
+  </action>
  </animation>
 
  <animation>
@@ -182,6 +208,32 @@
       <command>property-adjust</command>
       <property>/instrumentation/altimeter/setting-inhg</property>
       <step>0.1</step>
+      <min>26.0</min>
+      <max>33.0</max>
+      <wrap>false</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>decrease calibrate fine (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/altimeter/setting-inhg</property>
+      <step>-0.01</step>
+      <min>26.0</min>
+      <max>33.0</max>
+      <wrap>false</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>increase calibrate fine (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/altimeter/setting-inhg</property>
+      <step>0.01</step>
       <min>26.0</min>
       <max>33.0</max>
       <wrap>false</wrap>

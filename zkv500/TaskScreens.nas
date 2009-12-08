@@ -19,18 +19,8 @@ var screenTaskSelect = {
         }));
 	foreach (var c; gps_data.getNode("route").getChildren("Waypoint"))
 	    screenWaypointsList.n += 1;
-	gps_wp.getNode("wp/latitude-deg",1).setValue(gps_data.getNode("indicated-latitude-deg",1).getValue());
-	gps_wp.getNode("wp/longitude-deg",1).setValue(gps_data.getNode("indicated-longitude-deg",1).getValue());
-	gps_wp.getNode("wp/altitude-ft",1).setValue(gps_data.getNode("indicated-altitude-ft",1).getValue());
-	gps_wp.getNode("wp/ID").setValue("startpos");
-
-	gps_wp.getNode("wp[1]/latitude-deg",1).setValue(gps_data.getNode("route/Waypoint/latitude-deg",1).getValue());
-	gps_wp.getNode("wp[1]/longitude-deg",1).setValue(gps_data.getNode("route/Waypoint/longitude-deg",1).getValue());
-	gps_wp.getNode("wp[1]/altitude-ft",1).setValue(gps_data.getNode("route/Waypoint/altitude-ft",1).getValue());
-	gps_wp.getNode("wp[1]/waypoint-type",1).setValue(gps_data.getNode("route/Waypoint/waypoint-type",1).getValue());
-	gps_wp.getNode("wp[1]/ID",1).setValue(gps_data.getNode("route/Waypoint/ID",1).getValue());
-
-	waypointindex = 0;
+	waypointindex = -1;
+	screenNavigationMain.nextWaypoint();
 	me.loaded = 1;
     },
     enter : func {

@@ -18,20 +18,21 @@ var screenTurnpointSelect = {
     },
     start : func {
 	me.n > 0 or return;
-	gps_wp.getNode("wp/latitude-deg",1).setValue(gps_data.getNode("indicated-latitude-deg",1).getValue());
-	gps_wp.getNode("wp/longitude-deg",1).setValue(gps_data.getNode("indicated-longitude-deg",1).getValue());
-	gps_wp.getNode("wp/altitude-ft",1).setValue(gps_data.getNode("indicated-altitude-ft",1).getValue());
-	gps_wp.getNode("wp/ID").setValue("startpos");
-
 	var bookmark = gps_data.getNode("bookmarks/bookmark["~me.selected~"]/");
-	gps_wp.getNode("wp[1]/latitude-deg",1).setValue(bookmark.getNode("latitude-deg").getValue());
-	gps_wp.getNode("wp[1]/longitude-deg",1).setValue(bookmark.getNode("longitude-deg").getValue());
-	gps_wp.getNode("wp[1]/altitude-ft",1).setValue(bookmark.getNode("altitude-ft").getValue());
-	gps_wp.getNode("wp[1]/ID").setValue(bookmark.getNode("ID").getValue());
+	var scratch = gps_data.getNode("scratch");
+	scratch.getNode("latitude-deg",1).setValue(bookmark.getNode("latitude-deg").getValue());
+	scratch.getNode("longitude-deg",1).setValue(bookmark.getNode("longitude-deg").getValue());
+	scratch.getNode("altitude-ft",1).setValue(bookmark.getNode("altitude-ft").getValue());
+	scratch.getNode("ident").setValue(bookmark.getNode("ID").getValue());
 	if (bookmark.getNode("name") != nil)
-	    gps_wp.getNode("wp[1]/name",1).setValue(bookmark.getNode("name").getValue());
-	if (bookmark.getNode("waypoint-type") != nil)
-	    gps_wp.getNode("wp[1]/waypoint-type",1).setValue(bookmark.getNode("waypoint-type").getValue());
+	    scratch.getNode("name",1).setValue(bookmark.getNode("name").getValue());
+	else
+	    scratch.getNode("name",1).setValue("");
+	if (bookmark.getNode("type") != nil)
+	    scratch.getNode("type",1).setValue(bookmark.getNode("waypoint-type").getValue());
+	else
+	    scratch.getNode("type",1).setValue("");
+	gps_data.getNode("command").setValue("obs");
 	blocked = 0;
 	me.loaded = 1;
 	page = 1;

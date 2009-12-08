@@ -182,17 +182,13 @@ var screenNavigationMain = {
 	waypointindex += 1;
 	next = gps_data.getNode("route/Waypoint[" ~ waypointindex ~ "]/",1);
 	if (next != nil) {
-	    gps_wp.getNode("wp/longitude-deg",1).setValue(gps_wp.getNode("wp[1]/longitude-deg",1).getValue());
-	    gps_wp.getNode("wp/latitude-deg",1).setValue(gps_wp.getNode("wp[1]/latitude-deg",1).getValue());
-	    gps_wp.getNode("wp/altitude-ft",1).setValue(gps_wp.getNode("wp[1]/altitude-ft",1).getValue());
-	    gps_wp.getNode("wp/ID",1).setValue(gps_wp.getNode("wp[1]/ID",1).getValue());
- 
-	    gps_wp.getNode("wp[1]/longitude-deg",1).setValue(next.getNode("longitude-deg",1).getValue());
-	    gps_wp.getNode("wp[1]/latitude-deg",1).setValue(next.getNode("latitude-deg",1).getValue());
-	    gps_wp.getNode("wp[1]/altitude-ft",1).setValue(next.getNode("altitude-ft",1).getValue());
-	    gps_wp.getNode("wp[1]/waypoint-type",1).setValue(next.getNode("waypoint-type",1).getValue());
-	    gps_wp.getNode("wp[1]/ID",1).setValue(next.getNode("ID",1).getValue());
-	    
+	    var scratch = gps_data.getNode("scratch");
+	    scratch.getNode("longitude-deg",1).setValue(next.getNode("longitude-deg",1).getValue());
+	    scratch.getNode("latitude-deg",1).setValue(next.getNode("latitude-deg",1).getValue());
+	    scratch.getNode("altitude-ft",1).setValue(next.getNode("altitude-ft",1).getValue());
+	    scratch.getNode("type",1).setValue(next.getNode("waypoint-type",1).getValue());
+	    scratch.getNode("ident",1).setValue(next.getNode("ID",1).getValue());
+	    gps_data.getNode("command").setValue("obs");
 	}
 	else {
 	    page = 0; #screenTaskSelect

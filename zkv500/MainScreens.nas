@@ -178,27 +178,10 @@ var screenWindInfos = {
 };
 
 var screenNavigationMain = {
-    nextWaypoint : func {
-	waypointindex += 1;
-	next = gps_data.getNode("route/Waypoint[" ~ waypointindex ~ "]/",1);
-	if (next != nil) {
-	    var scratch = gps_data.getNode("scratch");
-	    scratch.getNode("longitude-deg",1).setValue(next.getNode("longitude-deg",1).getValue());
-	    scratch.getNode("latitude-deg",1).setValue(next.getNode("latitude-deg",1).getValue());
-	    scratch.getNode("altitude-ft",1).setValue(next.getNode("altitude-ft",1).getValue());
-	    scratch.getNode("type",1).setValue(next.getNode("waypoint-type",1).getValue());
-	    scratch.getNode("ident",1).setValue(next.getNode("ID",1).getValue());
-	    gps_data.getNode("command").setValue("obs");
-	}
-	else {
-	    page = 0; #screenTaskSelect
-	    refresh_display();
-	}
-    },
     right : func {
     },
     enter : func {
-	if (mode == 4) me.nextWaypoint();
+	if (mode == 4) apply_command("next");
 	else add_waypoint(gps_wp.getNode("wp[1]/ID",1).getValue(),
 			  gps_wp.getNode("wp[1]/name",1).getValue(),
 			  gps_wp.getNode("wp[1]/waypoint-type",1).getValue(),
@@ -213,7 +196,10 @@ var screenNavigationMain = {
     },
     lines : func {
 	me.waypoint = gps_wp.getNode("wp[1]");
-	crs_deviation = me.waypoint.getNode("course-deviation-deg").getValue();
+        var crs_deviation = me.waypoint.getNode("course-error-nm").getValue();
+	var dist = me.waypoint.getNode("course-error-nm").getValue();
+	if (dist < 5) crs_deviation *= 5;
+	else crs_deviation *= 2.5;
 	if (crs_deviation > 5)
 	    me.graph = "[- - - - - ^ > > > > >]";
 	elsif (crs_deviation < -5)
@@ -223,13 +209,18 @@ var screenNavigationMain = {
 	    cursor = int((crs_deviation * 2) + 11);
 	    me.graph = substr(me.graph,0, cursor) ~ "|" ~ substr(me.graph, cursor+1, size(me.graph));
 	}
+	var ID = me.waypoint.getNode("ID");
+	var current_wp = getprop("/autopilot/route-manager/current-wp") - 1;
+	var type = nil;
+	if (current_wp > -1)
+	    type = gps_data.getNode("route/Waypoint[" ~ current_wp ~ "]/waypoint-type");
 	display ([
 	sprintf("ID: %s [%s]",
-	    me.waypoint.getNode("ID",1).getValue() != nil ? me.waypoint.getNode("ID",1).getValue() : "-----",
-	    me.waypoint.getNode("waypoint-type",1).getValue() != nil ? me.waypoint.getNode("waypoint-type").getValue() : "---"),
+	    ID != nil ? ID.getValue() : "-----",
+	    type != nil ? type.getValue() : "---"),
 	sprintf("BRG: %d°  DST: %d %s",
 	    me.waypoint.getNode("bearing-mag-deg",1).getValue(),
-	    me.waypoint.getNode("distance-nm",1).getValue() * dist_conv[0][dist_unit],
+	    dist * dist_conv[0][dist_unit],
 	    dist_unit_short_name[dist_unit]),
 	sprintf("XCRS: %d* (%.1f %s)",
 	    me.waypoint.getNode("course-deviation-deg").getValue(), 
@@ -237,9 +228,7 @@ var screenNavigationMain = {
 	    dist_unit_short_name[dist_unit]),
 	sprintf("TTW: %s", 
 	    me.waypoint.getNode("TTW").getValue()),
-	me.graph
-	]);
-
+	me.graph]);
     }
 };
 

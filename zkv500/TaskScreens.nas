@@ -11,16 +11,24 @@ var screenTaskSelect = {
 	me.page = t[1];
     },
     load : func {
-        screenWaypointsList.n = 0;
+        setprop("/autopilot/route-manager/active", 0);
 	gps_data.getNode("route",1).removeChildren("Waypoint");
+	getprop("/autopilot/route-manager/route/num") == 0 or apply_command("route-delete");
 	fgcommand("loadxml", props.Node.new({
             "filename": getprop("/sim/fg-home") ~ "/Routes/" ~ routes[(me.page * 5) + me.pointer],
             "targetnode": "/instrumentation/gps/route"
         }));
-	foreach (var c; gps_data.getNode("route").getChildren("Waypoint"))
-	    screenWaypointsList.n += 1;
-	waypointindex = -1;
-	screenNavigationMain.nextWaypoint();
+        var n = 0;
+        scratch.getNode("index").setIntValue(-1);
+    	apply_command("route-insert-after");
+	foreach (var c; gps_data.getNode("route").getChildren("Waypoint")) n += 1;
+	for (var i = 0; i < n; i += 1) {
+	    scratch.getNode("index").setIntValue(-1);
+	    Waypoint_to_scratch(gps_data.getNode("route/Waypoint[" ~ i ~ "]"));
+	    apply_command("route-insert-after");
+	}
+	apply_command("leg");
+        setprop("/autopilot/route-manager/active", 1);
 	me.loaded = 1;
     },
     enter : func {

@@ -252,7 +252,9 @@ route. It is only available in TURNPOINT and TASK modes.
  DST:  remaining distance
  XCRS: course error in degree (in distance unit)
  TTW:  remaining estimated time
-The graph represent the position of the aircraft along the leg. Each + means 1°,
+The graph represents the position in nautic miles, of the aircraft on the leg. 
+The precision depends on the remaining distance before the waypoint. If less than
+5 nm, each + means 0.1 nm, if greater than 5nm each + means 0.5 nm.
 the | symbol represents the route, the little aircraft represents... the aircraft.
 
 *** AirportMain ***

@@ -18,21 +18,8 @@ var screenTurnpointSelect = {
     },
     start : func {
 	me.n > 0 or return;
-	var bookmark = gps_data.getNode("bookmarks/bookmark["~me.selected~"]/");
-	var scratch = gps_data.getNode("scratch");
-	scratch.getNode("latitude-deg",1).setValue(bookmark.getNode("latitude-deg").getValue());
-	scratch.getNode("longitude-deg",1).setValue(bookmark.getNode("longitude-deg").getValue());
-	scratch.getNode("altitude-ft",1).setValue(bookmark.getNode("altitude-ft").getValue());
-	scratch.getNode("ident").setValue(bookmark.getNode("ID").getValue());
-	if (bookmark.getNode("name") != nil)
-	    scratch.getNode("name",1).setValue(bookmark.getNode("name").getValue());
-	else
-	    scratch.getNode("name",1).setValue("");
-	if (bookmark.getNode("type") != nil)
-	    scratch.getNode("type",1).setValue(bookmark.getNode("waypoint-type").getValue());
-	else
-	    scratch.getNode("type",1).setValue("");
-	gps_data.getNode("command").setValue("obs");
+	Waypoint_to_scratch(gps_data.getNode("bookmarks/bookmark["~me.selected~"]/"));
+	apply_command("obs");
 	blocked = 0;
 	me.loaded = 1;
 	page = 1;

@@ -96,7 +96,7 @@
           <key n="101">
             <name>e</name>
             <desc>Enter button</desc>
-            <exit/>
+            <no-exit/>
             <binding>
               <command>nasal</command>
               <script>zkv500.enter_button()</script>
@@ -105,7 +105,7 @@
           <key n="120">
             <name>x</name>
             <desc>Escape button</desc>
-            <exit/>
+            <no-exit/>
             <binding>
               <command>nasal</command>
               <script>zkv500.escape_button()</script>
@@ -114,7 +114,7 @@
           <key n="115">
             <name>s</name>
             <desc>Start button</desc>
-            <exit/>
+            <no-exit/>
             <binding>
               <command>nasal</command>
               <script>zkv500.start_button()</script>

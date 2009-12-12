@@ -49,7 +49,9 @@ var dist_conv = [[1.00000   ,1.852, 1852],  #from nm
 	         [0.00053996,0.001, 1.00]]; #from m
 
 var gps_data = props.globals.getNode("/instrumentation/gps",1);
+var scratch = gps_data.getNode("scratch",1);
 var gps_wp = gps_data.getNode("wp",1);
+var route = props.globals.getNode("/autopilot/route-manager/route",1);
 
 #### warps for buttons and knobs ########################################"
 var right_knob = func(dir) { #manage right knob, depends of displayed screen
@@ -119,9 +121,13 @@ var display = func () { #display the array line[]
     for (var i = 0; i < LINES; i += 1) line[i].setValue(arg[0][i]);
 }
 
+var apply_command = func (command) {
+    gps_data.getNode("command").setValue(command);
+}
+
 var browse = func (entries_nbr, index_pointer, index_page,dir) {
     #browse multipaged entries, returns [pointer in page, page]
-    nl = entries_nbr - (index_page * LINES) > LINES ? LINES : math.mod(entries_nbr - (index_page * LINES), LINES);
+    nl = entries_nbr - (index_page * LINES) >= LINES ? LINES : math.mod(entries_nbr - (index_page * LINES), LINES);
     if (index_pointer + 1 == nl) {
        np = int(entries_nbr / LINES) + (math.mod(entries_nbr,LINES) ? 1 : 0);
        index_page = cycle(np, index_page, dir);
@@ -145,6 +151,7 @@ var refresh_display = func(forced = 1) { #refresh displayed lines, settimer if n
 	refresh_timer += 1;
 	settimer(func { refresh_display(0); }, freq, 1);
     }
+    waypointAlert();
 }
 
 var seconds_to_string = func (time) { #converts secs (double) in string "hh:mm:ss"
@@ -196,20 +203,30 @@ var save_route = func { #save the route
     fgcommand("savexml", args);
 }
 
-var waypointAlert = func { #alert pilot about waypoint approach
-    mode > 0 or return; 
-    var ttw = gps_wp.getNode("wp[1]/TTW",1).getValue();
-    var ttw_secs = 9999;
-    if (string.isdigit(ttw[0]))
-	ttw_secs = num(substr(ttw,0,2))*3600 + num(substr(ttw,3,2))*60 + num(substr(ttw,6,2));
-    
-    if (ttw_secs < thresold_alert[thresold_alert_index])
-        gps_data.getNode("waypoint-alert",1).setBoolValue(1);
+var Waypoint_to_scratch = func (node) {
+    scratch.getNode("latitude-deg",1).setValue(node.getNode("latitude-deg").getValue());
+    scratch.getNode("longitude-deg",1).setValue(node.getNode("longitude-deg").getValue());
+    scratch.getNode("altitude-ft",1).setValue(node.getNode("altitude-ft").getValue());
+    scratch.getNode("ident").setValue(node.getNode("ID").getValue());
+    if (node.getNode("name") != nil)
+        scratch.getNode("name",1).setValue(node.getNode("name").getValue());
     else
-        gps_data.getNode("waypoint-alert",1).setBoolValue(0);
-    
-    if (mode == 4 and ttw_secs < thresold_next_waypoint)
-        screenNavigationMain.nextWaypoint();	
+        scratch.getNode("name",1).setValue("");
+    if (node.getNode("type") != nil)
+        scratch.getNode("type",1).setValue(node.getNode("waypoint-type").getValue());
+    else
+        scratch.getNode("type",1).setValue("");
+}
+
+var waypointAlert = func { #alert pilot about waypoint approach
+    if (mode) { 
+	var ttw = getprop("/instrumentation/gps/wp/wp[1]/TTW-sec");
+	ttw > -1 or return;
+	if (ttw < thresold_alert[thresold_alert_index])
+	    gps_data.getNode("waypoint-alert",1).setBoolValue(1);
+	else
+	    gps_data.getNode("waypoint-alert",1).setBoolValue(0);
+    }
 }
 
 ### turnpoints management ######################################################
@@ -308,7 +325,6 @@ var init_gps_props = func {
     aircraft.light.new("/sim/model/gps/greenled", [0.6, 0.3], "/instrumentation/gps/message-alert");
     startpos = geo.Coord.new(geo.aircraft_position());
     screenPositionMain.begin_time = props.globals.getNode("/sim/time/elapsed-sec",1).getValue();
-    setlistener("/instrumentation/gps/wp/wp[1]/TTW", waypointAlert, 0, 0);
     setlistener("/instrumentation/gps/serviceable", func {
 	if (getprop("/instrumentation/gps/serviceable") == 0)
 	    setprop("/instrumentation/zkv500/retro-light", 0);

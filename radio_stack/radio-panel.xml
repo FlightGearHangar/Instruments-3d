@@ -18,7 +18,7 @@
    <w>200</w>
    <h>100</h> -->
   </instrument>
-  
+<!--  
   <instrument include="../../Instruments/markerbeacon.xml">
    <name>Marker Beacon Indicators</name>
    <x>64</x>
@@ -26,7 +26,7 @@
    <w>100</w>
    <h>50</h>
   </instrument>
-  
+-->  
   <instrument include="../../Instruments/adf-radio.xml">
    <name>ADF Radio</name>
    <x>256</x>

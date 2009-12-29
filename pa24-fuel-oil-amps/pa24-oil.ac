@@ -4,6 +4,7 @@ OBJECT world
 kids 3
 OBJECT poly
 name "OilTempNeedle"
+loc -0.00106418 0 0
 crease 45.000000
 numvert 6
 0.001517 0.003503 -0.041581
@@ -30,6 +31,7 @@ refs 4
 kids 0
 OBJECT poly
 name "OilPressNeedle"
+loc -0.00106418 0 0
 crease 45.000000
 numvert 6
 0.001517 0.003503 0.038098

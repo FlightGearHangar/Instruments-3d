@@ -1,12 +1,31 @@
 AC3Db
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0 0 0  shi 10  trans 0
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.15 0.15 0.15  spec 0.5 0.5 0.5  shi 64  trans 0
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 0  trans 0.937
 OBJECT world
-kids 4
+kids 6
+OBJECT poly
+name "PAincrease"
+loc 0 -0.03386 -0.0573866
+crease 45.000000
+numvert 4
+0.004974 0.00857798 0.0235894
+0.004974 0.00857798 0.0319417
+0.004974 -0.00722356 0.0319417
+0.004974 -0.00722356 0.0235894
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
 OBJECT poly
 name "Ring"
 loc -0.000692841 8.67061e-07 0.000126443
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/asi-pa24/ASI_ring.rgb"
+texture "ASI_ring.rgb"
 crease 45.000000
 numvert 4
 0 0.0400001 0.0400001
@@ -24,7 +43,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Face"
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/asi-pa24/ASI_face.rgb"
+texture "ASI_face.rgb"
 crease 45.000000
 numvert 4
 0 0.04 -0.04
@@ -91,7 +110,7 @@ kids 0
 OBJECT poly
 name "PA-Knob"
 loc 0 -0.0335478 -0.0247612
-texture "/usr/local/FlightGear-osg/data/Aircraft/Instruments-3d/hi/knob.rgb"
+texture "knob.rgb"
 crease 101.000000
 numvert 20
 0.01 1.49012e-08 0
@@ -286,4 +305,22 @@ refs 3
 0 0.484454 0.5
 19 0.879385 0.826352
 12 1 0.5
+kids 0
+OBJECT poly
+name "PAdecrease"
+loc 0 -0.03386 -0.0481314
+crease 45.000000
+numvert 4
+0.004974 -0.00722356 0.0235894
+0.004974 -0.00722356 0.0319417
+0.004974 0.00857798 0.0319417
+0.004974 0.00857798 0.0235894
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
 kids 0

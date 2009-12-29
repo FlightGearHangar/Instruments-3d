@@ -4,6 +4,7 @@ OBJECT world
 kids 7
 OBJECT poly
 name "AmpsNeedle"
+loc -0.000870694 0 0
 crease 45.000000
 numvert 6
 0.001517 0.003503 -0.041581
@@ -30,6 +31,7 @@ refs 4
 kids 0
 OBJECT poly
 name "FuelPressNeedle"
+loc -0.000870694 0 0
 crease 45.000000
 numvert 6
 0.001517 0.003822 0.001446
@@ -56,6 +58,7 @@ refs 4
 kids 0
 OBJECT poly
 name "LeftMainFuelNeedle"
+loc -0.000870694 0 0
 crease 45.000000
 numvert 6
 0.001517 0.003503 0.038098
@@ -100,6 +103,7 @@ refs 4
 kids 0
 OBJECT poly
 name "RightMainFuelNeedle"
+loc -0.000870694 0 0
 crease 45.000000
 numvert 6
 0.001517 -0.009391 0.038098
@@ -126,6 +130,7 @@ refs 4
 kids 0
 OBJECT poly
 name "LeftAuxFuelNeedle"
+loc -0.000870694 0 0
 crease 45.000000
 numvert 6
 0.001517 0.003503 0.038098
@@ -152,6 +157,7 @@ refs 4
 kids 0
 OBJECT poly
 name "RightAuxFuelNeedle"
+loc -0.000870694 0 0
 crease 45.000000
 numvert 6
 0.001517 -0.009391 0.038098

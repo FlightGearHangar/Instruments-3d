@@ -29,6 +29,45 @@
   </emission>
  </animation>
 
+<!--		ASI Pressure Altitude adjust  -->
+ <animation>
+   <type>pick</type>
+   <object-name>PAdecrease</object-name>
+   <visible>false</visible>
+   <action>
+     <name>decrease PA</name>
+     <button>0</button>
+     <repeatable type="bool">true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/airspeed-indicator/pressure-alt-offset-deg</property>
+       <step>-1</step>
+       <min>0</min>
+       <max>360</max>
+       <wrap>1</wrap>
+     </binding>
+   </action>
+ </animation>
+
+ <animation>
+   <type>pick</type>
+   <object-name>PAincrease</object-name>
+   <visible>false</visible>
+   <action>
+     <name>increase PA</name>
+     <button>0</button>
+     <repeatable type="bool">true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/airspeed-indicator/pressure-alt-offset-deg</property>
+       <step>1</step>
+       <min>0</min>
+       <max>360</max>
+       <wrap>1</wrap>
+     </binding>
+   </action>
+ </animation>
+
  <animation>
   <name>RingTransform</name>
   <type>rotate</type>

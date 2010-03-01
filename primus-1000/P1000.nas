@@ -98,7 +98,7 @@ var P1000 = {
             if(offset < -180){offset += 360;}
             elsif(offset > 180){offset -= 360;}
         }elsif(test == 2){
-            offset = getprop("/instrumentation/kr-87/outputs/needle-deg");
+            offset = getprop("/instrumentation/adf/indicated-bearing-deg");
         }elsif(test == 3){
                 offset = getprop("/autopilot/internal/true-heading-error-deg");
         }
@@ -404,7 +404,6 @@ var update_p1000 = func {
 
 setlistener("/sim/signals/fdm-initialized", func {
     APoff.setBoolValue(1);
-    #props.globals.getNode("instrumentation/primus1000/mfd/mode",1).setValue("normal");
     print("Primus 1000 systems ... check");
     settimer(update_p1000,1);
     });

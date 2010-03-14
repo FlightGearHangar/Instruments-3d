@@ -266,17 +266,16 @@ var P1000 = {
         if(me.ctl_fms.getBoolValue()){
             me.CRStype.setValue("DTK");
             me.CRSdeflection.setValue(0);
-            var maghdg=getprop("autopilot/settings/true-heading-deg");
-            maghdg -=getprop("environment/magnetic-variation-deg");
+            var maghdg=getprop("autopilot/settings/true-heading-deg") or 0;
+            maghdg -=getprop("environment/magnetic-variation-deg") or 0;
             if(maghdg>359)maghdg-=360;
             if(maghdg<0)maghdg+=360;
             me.CRSheading.setValue(maghdg);
             nm_calc = getprop("/autopilot/route-manager/wp/dist");
             if(nm_calc == nil)nm_calc = 0.0;
-            id = getprop("autopilot/route-manager/wp/id");
-            if(id ==nil)id= "   ";
+            id = getprop("autopilot/route-manager/wp/id") or "   ";
             me.NavType.setValue(4);
-            ttg=getprop("autopilot/route-manager/wp/eta");
+            ttg=getprop("autopilot/route-manager/wp/eta") or "- - : - -";
         }else{
             me.CRStype.setValue("CRS");
             nm_calc = 0;
@@ -284,8 +283,7 @@ var P1000 = {
             me.CRSdeflection.setValue(getprop("/instrumentation/nav["~nv~"]/heading-needle-deflection"));
             me.CRSheading.setValue(getprop("/instrumentation/nav["~nv~"]/radials/selected-deg"));
             if(getprop("/instrumentation/nav["~nv~"]/data-is-valid")){
-                nm_calc = getprop("/instrumentation/nav["~nv~"]/nav-distance");
-                if(nm_calc == nil)nm_calc = 0.0;
+                nm_calc = getprop("/instrumentation/nav["~nv~"]/nav-distance") or 0.0;
                 nm_calc = 0.000539 * nm_calc;
                 if(getprop("/instrumentation/nav["~nv~"]/has-gs")){
                     me.NavType.setValue(2);
@@ -293,8 +291,7 @@ var P1000 = {
                     var df = getprop("/instrumentation/nav["~nv~"]/gs-needle-deflection-norm");
                     me.GS_deflection.setValue(df);
                 }
-                id = getprop("instrumentation/nav["~nv~"]/nav-id");
-                if(id ==nil)id= "---";
+                id = getprop("instrumentation/nav["~nv~"]/nav-id") or "---";
                 ttg=getprop("instrumentation/dme/indicated-time-min");
                 if(ttg==nil or ttg == 0){
                     ttg="- - : - -";

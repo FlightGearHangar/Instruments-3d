@@ -29,6 +29,7 @@ var RngDisplayWidth   = props.globals.getNode("instrumentation/radar2/range-widt
 var PpiDisplayRadius  = props.globals.getNode("instrumentation/radar2/radius-ppi-display-m");
 var HudEyeDist        = props.globals.getNode("instrumentation/radar2/hud-eye-dist-m");
 var HudRadius         = props.globals.getNode("instrumentation/radar2/hud-radius-m");
+var HudVoffset        = props.globals.getNode("instrumentation/radar2/hud-vertical-offset-m", 1);
 var HudTgtHDisplay    = props.globals.getNode("instrumentation/radar2/hud/target-display", 1);
 var HudTgt            = props.globals.getNode("instrumentation/radar2/hud/target", 1);
 var HudTgtTDev        = props.globals.getNode("instrumentation/radar2/hud/target-total-deviation", 1);
@@ -58,7 +59,8 @@ var rng_diplay_width  = SwpDisplayWidth.getValue(); # Length of the max range ve
 var ppi_diplay_radius = PpiDisplayRadius.getValue(); # Length of the radial size
                                 # of the PPI like display.
 var hud_eye_dist      = HudEyeDist.getValue(); # Distance eye <-> HUD plane.
-var hud_radius        = HudRadius.getValue(); # Used to clamp the nearest target marker.
+var hud_radius        = HudRadius.getValue();  # Used to clamp the nearest target marker.
+var hud_voffset       = 0;                     # Used to verticaly offset the clamp border.
 
 var range_radar2      = 0;
 var my_radarcorr      = 0;
@@ -90,7 +92,9 @@ init = func() {
 	var our_ac_name = getprop("sim/aircraft");
 	radardist.init();
 	my_radarcorr = radardist.my_maxrange( our_ac_name ); # Kilometers
-	
+	var h = HudVoffset.getValue();
+	if (h != nil) { hud_voffset = h }	
+
 	settimer(rdr_loop, 0.5);
 }
 
@@ -252,11 +256,22 @@ var hud_nearest_tgt = func() {
 			var combined_dev_length = math.sqrt((h_dev*h_dev)+(v_dev*v_dev));
 
 			# Clamp so the target follow the HUD limits.
-			if ( combined_dev_length > hud_radius ) {
-				combined_dev_length = hud_radius;
-				Clamp_Blinker.blink();
+			if ( hud_voffset == 0 ) {
+				if ( combined_dev_length > hud_radius ) {
+					combined_dev_length = hud_radius;
+					Clamp_Blinker.blink();
+				} else {
+					Clamp_Blinker.cont();
+				}
 			} else {
-				Clamp_Blinker.cont();
+				var norm_combined_dev_rad = (math.abs(combined_dev_deg) - 90) * D2R;
+				var o_hud_radius = hud_radius - (math.sin(norm_combined_dev_rad) * hud_voffset);
+				if ( combined_dev_length > o_hud_radius ) {
+					combined_dev_length = o_hud_radius;
+					Clamp_Blinker.blink();
+				} else {
+					Clamp_Blinker.cont();
+				}
 			}
 			# Clamp closure rate from -200 to +1,000 Kts.
 			var cr = nearest_u.ClosureRate.getValue();

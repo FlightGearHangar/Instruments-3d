@@ -3,7 +3,7 @@
 # ie: var primus = P1000.new(prop);
 var P1000 = {
     new : func(prop){
-        m = { parents : [P1000]};
+        var m = { parents : [P1000]};
         m.FMS_VNAV =["VNV","FMS"];
         m.NAV_SRC = ["VOR1","VOR2","ILS1","ILS2","FMS"];
         m.NAV_PTR_SRC = [" ","NAV","ADF","FMS"];
@@ -91,6 +91,7 @@ var P1000 = {
 #### pointer needle update ####
     get_pointer_offset : func(test,src){
         var hdg = getprop("/orientation/heading-magnetic-deg");
+        var offset = 0;
         if(test==0 or test == nil)return 0.0;
         if(test == 1){
             offset=getprop("/instrumentation/nav["~src~"]/heading-deg") or 0;
@@ -100,7 +101,7 @@ var P1000 = {
         }elsif(test == 2){
             offset = getprop("/instrumentation/adf/indicated-bearing-deg");
         }elsif(test == 3){
-                offset = getprop("/autopilot/internal/true-heading-error-deg");
+            offset = getprop("/autopilot/internal/true-heading-error-deg");
         }
         return offset;
     },
@@ -306,7 +307,7 @@ var P1000 = {
     me.NavID.setValue(id);
     me.NavTime.setValue(ttg);
     var RA =0;
-    tmp =me.DH.getValue();
+    var tmp =me.DH.getValue();
     if(tmp > getprop("position/altitude-agl-ft") and tmp !=0)RA=1;
     me.ctl_RA.setBoolValue(RA);
     },

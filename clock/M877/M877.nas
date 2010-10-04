@@ -1,6 +1,6 @@
  var m877 = {
     new : func(prop1){
-        m = { parents : [m877]};
+        var m = { parents : [m877]};
         m.MODE =0;
         m.flip =0;
         m.digit_to_set=0;

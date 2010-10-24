@@ -9,7 +9,7 @@
 
 var KNS80 = {
     new : func(prop){
-        m = { parents : [KNS80]};
+        var m = { parents : [KNS80]};
 		m.wpt_freq=[];
 		m.wpt_radial=[];
 		m.wpt_distance=[];

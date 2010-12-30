@@ -5,6 +5,12 @@
  <path>SCR-522C.ac</path>
 
     <animation>
+        <type>range</type>
+        <min-m>0</min-m>
+        <max-m>7</max-m>
+    </animation>
+
+    <animation>
         <type>translate</type>
         <object-name>SCR-522C-OFF</object-name>
         <property>/systems/comm/SCR-522C/frequencies/channel-selected</property>

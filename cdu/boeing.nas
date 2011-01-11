@@ -1,0 +1,207 @@
+var input = func(v) {
+		setprop("/instrumentation/cdu/input",getprop("/instrumentation/cdu/input")~v);
+	}
+
+var cdu = func{
+		
+		var page = getprop("/instrumentation/cdu/display");
+		line1l = "";	line2l = "";	line3l = "";	line4l = "";	line5l = "";	line6l = "";
+		line1lt = "";	line2lt = "";	line3lt = "";	line4lt = "";	line5lt = "";	line6lt = "";
+		line1c = "";	line2c = "";	line3c = "";	line4c = "";	line5c = "";	line6c = "";
+		line1ct = "";	line2ct = "";	line3ct = "";	line4ct = "";	line5ct = "";	line6ct = "";
+		line1r = "";	line2r = "";	line3r = "";	line4r = "";	line5r = "";	line6r = "";
+		line1rt = "";	line2rt = "";	line3rt = "";	line4rt = "";	line5rt = "";	line6rt = "";
+		if (page == "MENU") {
+			title = "MENU";
+			line1l = "<FMC";
+			line1r = "SELECT>";
+			line2l = "<ACARS";
+			line2r = "SELECT>";
+			line6l = "<ACMS";
+			line6r = "CMC>";
+		}
+		if (page == "ALTN_NAV_RAD") {
+			title = "ALTN NAV RADIO";
+		}
+		if (page == "APP_REF") {
+			title = "APPROACH REF";
+			line6l = "<INDEX";
+			line6r = "THRUST LIM>";
+		}
+		if (page == "DEP_ARR_INDEX") {
+			title = "DEP/ARR INDEX";
+			line1l = "<DEP";
+			line1ct = "RTE 1";
+			line1c = getprop("/autopilot/route-manager/departure/airport");
+			line2c = getprop("/autopilot/route-manager/destination/airport");
+			line1r = "ARR>";
+			line2r = "ARR>";
+		}
+		if (page == "EICAS_MODES") {
+			title = "EICAS MODES";
+			line1l = "<ENG";
+			line1r = "FUEL>";
+			line2l = "<STAT";
+			line2r = "GEAR>";
+			line5l = "<CANC";
+			line5r = "RCL>";
+			line6r = "SYNOPTICS>";
+		}
+		if (page == "EICAS_SYN") {
+			title = "EICAS SYNOPTICS";
+			line1l = "<ELEC";
+			line1r = "HYD>";
+			line2l = "<ECS";
+			line2r = "DOORS>";
+			line5l = "<CANC";
+			line5r = "RCL>";
+			line6r = "MODES>";
+		}
+		if (page == "FIX_INFO") {
+			title = "FIX INFO";
+			line1l = sprintf("%3.2f", getprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt"));
+			line1r = sprintf("%3.2f", getprop("/instrumentation/nav[1]/frequencies/selected-mhz-fmt"));
+			line2l = sprintf("%3.2f", getprop("/instrumentation/nav[0]/radials/selected-deg"));
+			line2r = sprintf("%3.2f", getprop("/instrumentation/nav[1]/radials/selected-deg"));
+			line6l = "<ERASE FIX";
+		}
+		if (page == "IDENT") {
+			title = "IDENT";
+			line1lt = "MODEL";
+			line1l = getprop("/instrumentation/cdu/ident/model");
+			line1rt = "ENGINES";
+			line2lt = "NAV DATA";
+			line1r = getprop("/instrumentation/cdu/ident/engines");
+			line6l = "<INDEX";
+			line6r = "POS INIT>";
+		}
+		if (page == "INIT_REF") {
+			title = "INIT/REF INDEX";
+			line1l = "<IDENT";
+			line1r = "NAV DATA>";
+			line2l = "<POST";
+			line3l = "<PERF";
+			line4l = "<THRUST LIM";
+			line5l = "<TAKEOFF";
+			line6l = "<APPROACH";
+			line6r = "MAINT>";
+		}
+		if (page == "NAV_RAD") {
+			title = "NAV RADIO";
+			line1lt = "VOR L";
+			line1l = sprintf("%3.2f", getprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt"));
+			line1rt = "VOR R";
+			line1r = sprintf("%3.2f", getprop("/instrumentation/nav[1]/frequencies/selected-mhz-fmt"));
+			line2lt = "CRS";
+			line2ct = "RADIAL";
+			line2c = sprintf("%3.2f", getprop("/instrumentation/nav[0]/radials/selected-deg"))~"   "~sprintf("%3.2f", getprop("/instrumentation/nav[1]/radials/selected-deg"));
+			line2rt = "CRS";
+			line3lt = "ADF L";
+			line3l = sprintf("%3.2f", getprop("/instrumentation/adf[0]/frequencies/selected-khz"));
+			line3rt = "ADF R";
+		}
+		if (page == "PERF_INIT") {
+			title = "PERF INIT";
+			line1lt = "GR WT";
+			line1l = sprintf("%3.1f", (getprop("/fdm/jsbsim/inertia/weight-lbs")/1000));
+			line1rt = "CRZ ALT";
+			line2lt = "FUEL";
+			line2l = sprintf("%3.1f", (getprop("/fdm/jsbsim/propulsion/total-fuel-lbs")/1000));
+			line3lt = "ZFW";
+			line3l = sprintf("%3.1f", (getprop("/fdm/jsbsim/inertia/empty-weight-lbs")/1000));
+			line6l = "<INDEX";
+			line6r = "THRUST LIM>";	
+		}
+		if (page == "POS_INIT") {
+			title = "POS INIT";
+			line6l = "<INDEX";
+			line6r = "ROUTE>";
+		}
+		if (page == "POS_REF") {
+			title = "POS REF";
+			line1r = sprintf("%3.0f", getprop("/velocities/groundspeed-kt"));
+			line5l = "<PURGE";
+			line5r = "INHIBIT>";
+			line6l = "<INDEX";
+			line6r = "BRG/DIST>";
+		}
+		if (page == "RTE1_1") {
+			title = "RTE 1";
+			line1lt = "ORIGIN";
+			line1l = getprop("/autopilot/route-manager/departure/airport");
+			line1rt = "DEST";
+			line1r = getprop("/autopilot/route-manager/destination/airport");
+			line2lt = "RUNWAY";
+			line2l = getprop("/autopilot/route-manager/departure/runway");
+			line5l = "<RTE COPY";
+			line6l = "<RTE 2";
+			line6r = "ACTIVATE>";
+		}
+		if (page == "RTE1_DEP") {
+			title = getprop("/autopilot/route-manager/departure/airport")~" DEPARTURES";
+			line1r = getprop("/autopilot/route-manager/departure/runway");
+			line6l = "<ERASE";
+			line6r = "ROUTE>";
+		}
+		if (page == "RTE1_ARR") {
+			title = getprop("/autopilot/route-manager/destination/airport")~" ARRIVALS";
+			line1r = getprop("/autopilot/route-manager/destination/runway");
+			line6l = "<INDEX";
+			line6r = "ROUTE>";
+		}
+		if (page == "TO_REF") {
+			title = "TAKEOFF REF";
+			line1lt = "FLAP/ACCEL HT";
+			line1l = getprop("/instrumentation/fmc/to-flap");
+			line1rt = "REF V1";
+			line1r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/V1"));
+			line2lt = "E/O ACCEL HT";
+			line2rt = "REF VR";
+			line2r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/VR"));
+			line3lt = "THR REDUCTION";
+			line3rt = "REF V2";
+			line3r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/V2"));
+			line4lt = "WIND/SLOPE";
+			line6l = "<INDEX";
+			line6r = "POST INIT>";
+		}
+		setprop("/instrumentation/cdu/output/title",title);
+		setprop("/instrumentation/cdu/output/line1/left",line1l);
+		setprop("/instrumentation/cdu/output/line2/left",line2l);
+		setprop("/instrumentation/cdu/output/line3/left",line3l);
+		setprop("/instrumentation/cdu/output/line4/left",line4l);
+		setprop("/instrumentation/cdu/output/line5/left",line5l);
+		setprop("/instrumentation/cdu/output/line6/left",line6l);
+		setprop("/instrumentation/cdu/output/line1/left-title",line1lt);
+		setprop("/instrumentation/cdu/output/line2/left-title",line2lt);
+		setprop("/instrumentation/cdu/output/line3/left-title",line3lt);
+		setprop("/instrumentation/cdu/output/line4/left-title",line4lt);
+		setprop("/instrumentation/cdu/output/line5/left-title",line5lt);
+		setprop("/instrumentation/cdu/output/line6/left-title",line6lt);
+		setprop("/instrumentation/cdu/output/line1/center",line1c);
+		setprop("/instrumentation/cdu/output/line2/center",line2c);
+		setprop("/instrumentation/cdu/output/line3/center",line3c);
+		setprop("/instrumentation/cdu/output/line4/center",line4c);
+		setprop("/instrumentation/cdu/output/line5/center",line5c);
+		setprop("/instrumentation/cdu/output/line6/center",line6c);
+		setprop("/instrumentation/cdu/output/line1/center-title",line1ct);
+		setprop("/instrumentation/cdu/output/line2/center-title",line2ct);
+		setprop("/instrumentation/cdu/output/line3/center-title",line3ct);
+		setprop("/instrumentation/cdu/output/line4/center-title",line4ct);
+		setprop("/instrumentation/cdu/output/line5/center-title",line5ct);
+		setprop("/instrumentation/cdu/output/line6/center-title",line6ct);
+		setprop("/instrumentation/cdu/output/line1/right",line1r);
+		setprop("/instrumentation/cdu/output/line2/right",line2r);
+		setprop("/instrumentation/cdu/output/line3/right",line3r);
+		setprop("/instrumentation/cdu/output/line4/right",line4r);
+		setprop("/instrumentation/cdu/output/line5/right",line5r);
+		setprop("/instrumentation/cdu/output/line6/right",line6r);
+		setprop("/instrumentation/cdu/output/line1/right-title",line1rt);
+		setprop("/instrumentation/cdu/output/line2/right-title",line2rt);
+		setprop("/instrumentation/cdu/output/line3/right-title",line3rt);
+		setprop("/instrumentation/cdu/output/line4/right-title",line4rt);
+		setprop("/instrumentation/cdu/output/line5/right-title",line5rt);
+		setprop("/instrumentation/cdu/output/line6/right-title",line6rt);
+		settimer(cdu,0.2);
+    }
+_setlistener("/sim/signals/fdm-initialized", cdu); 

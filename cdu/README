@@ -22,7 +22,7 @@ Add the following tags below the </sim> tag of your aircraft's -set.xml file.
 			</config>
 			<display>IDENT</display>
 			<ident>
-				<type>747-400</type>
+				<model>747-400</model>
 				<engines>-80C2B1F</engines>
 			</ident>
 			<input type="string"/>

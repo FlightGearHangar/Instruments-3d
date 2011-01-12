@@ -103,14 +103,29 @@ var cdu = func{
 		if (page == "PERF_INIT") {
 			title = "PERF INIT";
 			line1lt = "GR WT";
-			line1l = sprintf("%3.1f", (getprop("/fdm/jsbsim/inertia/weight-lbs")/1000));
 			line1rt = "CRZ ALT";
 			line2lt = "FUEL";
-			line2l = sprintf("%3.1f", (getprop("/fdm/jsbsim/propulsion/total-fuel-lbs")/1000));
 			line3lt = "ZFW";
-			line3l = sprintf("%3.1f", (getprop("/fdm/jsbsim/inertia/empty-weight-lbs")/1000));
 			line6l = "<INDEX";
 			line6r = "THRUST LIM>";	
+			if (getprop("/sim/flight-model") == "jsb") {
+				line1l = sprintf("%3.1f", (getprop("/fdm/jsbsim/inertia/weight-lbs")/1000));
+				line2l = sprintf("%3.1f", (getprop("/fdm/jsbsim/propulsion/total-fuel-lbs")/1000));
+				line3l = sprintf("%3.1f", (getprop("/fdm/jsbsim/inertia/empty-weight-lbs")/1000));
+			}
+			elsif (getprop("/sim/flight-model") == "yasim") {
+				line1l = sprintf("%3.1f", (getprop("/yasim/gross-weight-lbs")/1000));
+				line2l = sprintf("%3.1f", (getprop("/consumables/fuel/total-fuel-lbs")/1000));
+
+				yasim_emptyweight = line1l;
+				yasim_weights = props.globals.getNode("/sim").getChildren("weight");
+				for (i = 0; i < size(yasim_weights); i += 1) {
+					yasim_emptyweight -= yasim_weights[i].getValue();
+				}
+				yasim_emptyweight -= line2l;
+
+				line3l = sprintf("%3.1f", yasim_emptyweight/1000);
+			}
 		}
 		if (page == "POS_INIT") {
 			title = "POS INIT";

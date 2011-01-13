@@ -1,6 +1,30 @@
 var input = func(v) {
 		setprop("/instrumentation/cdu/input",getprop("/instrumentation/cdu/input")~v);
 	}
+	
+var delete = func {
+		var length = size(getprop("/instrumentation/cdu/input")) - 1;
+		setprop("/instrumentation/cdu/input",substr(getprop("/instrumentation/cdu/input"),0,length));
+	}
+	
+var i = 0;
+
+var plusminus = func {	
+	var end = size(getprop("/instrumentation/cdu/input"));
+	var start = end - 1;
+	var lastchar = substr(getprop("/instrumentation/cdu/input"),start,end);
+	if (lastchar == "+"){
+		me.delete();
+		me.input('-');
+		}
+	if (lastchar == "-"){
+		me.delete();
+		me.input('+');
+		}
+	if ((lastchar != "-") and (lastchar != "+")){
+		me.input('+');
+		}
+	}
 
 var cdu = func{
 		
@@ -25,6 +49,10 @@ var cdu = func{
 		}
 		if (page == "APP_REF") {
 			title = "APPROACH REF";
+			line1lt = "GROSS WT";
+			line1rt = "FLAPS    VREF";
+			line1l = getprop("/instrumentation/fmc/vspeeds/Vref");
+			line4lt = getprop("/autopilot/route-manager/destination/airport");
 			line6l = "<INDEX";
 			line6r = "THRUST LIM>";
 		}
@@ -79,7 +107,7 @@ var cdu = func{
 			title = "INIT/REF INDEX";
 			line1l = "<IDENT";
 			line1r = "NAV DATA>";
-			line2l = "<POST";
+			line2l = "<POS";
 			line3l = "<PERF";
 			line4l = "<THRUST LIM";
 			line5l = "<TAKEOFF";
@@ -104,8 +132,13 @@ var cdu = func{
 			title = "PERF INIT";
 			line1lt = "GR WT";
 			line1rt = "CRZ ALT";
+			line1r = getprop("/autopilot/route-manager/cruise/altitude-ft");
 			line2lt = "FUEL";
 			line3lt = "ZFW";
+			line4lt = "RESERVES";
+			line4rt = "CRZ CG";
+			line5lt = "COST INDEX";
+			line5rt = "STEP SIZE";
 			line6l = "<INDEX";
 			line6r = "THRUST LIM>";	
 			if (getprop("/sim/flight-model") == "jsb") {
@@ -134,6 +167,9 @@ var cdu = func{
 		}
 		if (page == "POS_REF") {
 			title = "POS REF";
+			line1lt = "FMC POST";
+			line1l = getprop("/position/latitude-string")~" "~getprop("/position/longitude-string");
+			line1rt = "GS";
 			line1r = sprintf("%3.0f", getprop("/velocities/groundspeed-kt"));
 			line5l = "<PURGE";
 			line5r = "INHIBIT>";
@@ -148,7 +184,31 @@ var cdu = func{
 			line1r = getprop("/autopilot/route-manager/destination/airport");
 			line2lt = "RUNWAY";
 			line2l = getprop("/autopilot/route-manager/departure/runway");
+			line3rt = "FLT NO";
+			line3rt = "CO ROUTE";
 			line5l = "<RTE COPY";
+			line6l = "<RTE 2";
+			line6r = "ACTIVATE>";
+		}
+		if (page == "RTE1_2") {
+			title = "RTE 1";
+			line1lt = "VIA";
+			line1rt = "TO";
+			if (getprop("/autopilot/route-manager/route/wp[1]/id") != nil){
+				line1r = getprop("/autopilot/route-manager/route/wp[1]/id");
+				}
+			if (getprop("/autopilot/route-manager/route/wp[2]/id") != nil){
+				line2r = getprop("/autopilot/route-manager/route/wp[2]/id");
+				}
+			if (getprop("/autopilot/route-manager/route/wp[3]/id") != nil){
+				line3r = getprop("/autopilot/route-manager/route/wp[3]/id");
+				}
+			if (getprop("/autopilot/route-manager/route/wp[4]/id") != nil){
+				line4r = getprop("/autopilot/route-manager/route/wp[4]/id");
+				}
+			if (getprop("/autopilot/route-manager/route/wp[5]/id") != nil){
+				line5r = getprop("/autopilot/route-manager/route/wp[5]/id");
+				}
 			line6l = "<RTE 2";
 			line6r = "ACTIVATE>";
 		}
@@ -164,6 +224,22 @@ var cdu = func{
 			line6l = "<INDEX";
 			line6r = "ROUTE>";
 		}
+		if (page == "THR_LIM") {
+			title = "THRUST LIM";
+			line1lt = "SEL";
+			line1ct = "OAT";
+			line1c = sprintf("%2.0f", getprop("/environment/temperature-degc"))~" °C";
+			line1rt = "TO 1 N1";
+			line2l = "<TO";
+			line2r = "CLB>";
+			line3lt = "TO 1";
+			line3c = "<SEL> <ARM>";
+			line3r = "CLB 1>";
+			line4lt = "TO 2";
+			line4r = "CLB 2>";
+			line6l = "<INDEX";
+			line6r = "TAKEOFF>";
+		}
 		if (page == "TO_REF") {
 			title = "TAKEOFF REF";
 			line1lt = "FLAP/ACCEL HT";
@@ -177,8 +253,10 @@ var cdu = func{
 			line3rt = "REF V2";
 			line3r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/V2"));
 			line4lt = "WIND/SLOPE";
+			line4rt = "TRIM   CG";
+			line5rt = "POS SHIFT";
 			line6l = "<INDEX";
-			line6r = "POST INIT>";
+			line6r = "POS INIT>";
 		}
 		setprop("/instrumentation/cdu/output/title",title);
 		setprop("/instrumentation/cdu/output/line1/left",line1l);

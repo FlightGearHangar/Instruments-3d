@@ -1063,6 +1063,26 @@
 
 <animation>
 	<type>pick</type>
+	<object-name>Btn.side.l.4</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>  
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>INIT_REF</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value type="string">THR_LIM</value>
+		</binding>
+	</action>
+</animation>
+
+<animation>
+	<type>pick</type>
 	<object-name>Btn.side.l.5</object-name>
 	<action>
 		<button>0</button>
@@ -1125,6 +1145,10 @@
 					</equals>
 					<equals>
 						<property>/instrumentation/cdu/display</property>
+						<value>THR_LIM</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/cdu/display</property>
 						<value>TO_REF</value>
 					</equals>
 				</or>
@@ -1142,6 +1166,17 @@
 	<action>
 		<button>0</button>
 		<repeatable>false</repeatable>  
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>APP_REF</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value type="string">THR_LIM</value>
+		</binding>
 		<binding>
 			<condition>
 				<or>
@@ -1217,6 +1252,17 @@
 			<property>/autopilot/route-manager/input</property>
 			<value type="string">@activate</value>
 		</binding>
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>THR_LIM</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value type="string">TO_REF</value>
+		</binding>
 	</action>
 </animation>
 
@@ -1290,6 +1336,45 @@
 	</action>
 </animation>
 
+<animation>
+	<type>pick</type>
+	<object-name>Btn.prev-page</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>  
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>RTE1_2</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>RTE1_1</value>
+		</binding>
+	</action>
+</animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>Btn.next-page</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>  
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>RTE1_1</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>RTE1_2</value>
+		</binding>
+	</action>
+</animation>
 
 <animation>
 	<type>pick</type>
@@ -1768,6 +1853,58 @@
 		<binding>
 			<command>nasal</command>
 			<script>cdu.input('.');</script>
+		</binding>
+	</action>
+</animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>Btn.plusminus</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>  
+		<binding>
+			<command>nasal</command>
+			<script>cdu.plusminus();</script>
+		</binding>
+	</action>
+</animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>Btn.sp</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>  
+		<binding>
+			<command>nasal</command>
+			<script>cdu.input(' ');</script>
+		</binding>
+	</action>
+</animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>Btn.slash</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>  
+		<binding>
+			<command>nasal</command>
+			<script>cdu.input('/');</script>
+		</binding>
+	</action>
+</animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>Btn.del</object-name>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>  
+		<binding>
+			<command>nasal</command>
+			<script>cdu.delete();</script>
 		</binding>
 	</action>
 </animation>

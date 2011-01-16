@@ -150,12 +150,12 @@ var cdu = func{
 				line1l = sprintf("%3.1f", (getprop("/yasim/gross-weight-lbs")/1000));
 				line2l = sprintf("%3.1f", (getprop("/consumables/fuel/total-fuel-lbs")/1000));
 
-				yasim_emptyweight = line1l;
+				yasim_emptyweight = getprop("/yasim/gross-weight-lbs");
+				yasim_emptyweight -= getprop("/consumables/fuel/total-fuel-lbs");
 				yasim_weights = props.globals.getNode("/sim").getChildren("weight");
 				for (i = 0; i < size(yasim_weights); i += 1) {
-					yasim_emptyweight -= yasim_weights[i].getValue();
+					yasim_emptyweight -= yasim_weights[i].getChild("weight-lb").getValue();
 				}
-				yasim_emptyweight -= line2l;
 
 				line3l = sprintf("%3.1f", yasim_emptyweight/1000);
 			}

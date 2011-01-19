@@ -28,14 +28,17 @@ var plusminus = func {
 
 var cdu = func{
 		
-		var page = getprop("/instrumentation/cdu/display");
+		var display = getprop("/instrumentation/cdu/display");
+		var serviceable = getprop("/instrumentation/cdu/serviceable");
+		title = "";		page = "";
 		line1l = "";	line2l = "";	line3l = "";	line4l = "";	line5l = "";	line6l = "";
 		line1lt = "";	line2lt = "";	line3lt = "";	line4lt = "";	line5lt = "";	line6lt = "";
 		line1c = "";	line2c = "";	line3c = "";	line4c = "";	line5c = "";	line6c = "";
 		line1ct = "";	line2ct = "";	line3ct = "";	line4ct = "";	line5ct = "";	line6ct = "";
 		line1r = "";	line2r = "";	line3r = "";	line4r = "";	line5r = "";	line6r = "";
 		line1rt = "";	line2rt = "";	line3rt = "";	line4rt = "";	line5rt = "";	line6rt = "";
-		if (page == "MENU") {
+		
+		if (display == "MENU") {
 			title = "MENU";
 			line1l = "<FMC";
 			line1r = "SELECT>";
@@ -44,10 +47,10 @@ var cdu = func{
 			line6l = "<ACMS";
 			line6r = "CMC>";
 		}
-		if (page == "ALTN_NAV_RAD") {
+		if (display == "ALTN_NAV_RAD") {
 			title = "ALTN NAV RADIO";
 		}
-		if (page == "APP_REF") {
+		if (display == "APP_REF") {
 			title = "APPROACH REF";
 			line1lt = "GROSS WT";
 			line1rt = "FLAPS    VREF";
@@ -56,16 +59,24 @@ var cdu = func{
 			line6l = "<INDEX";
 			line6r = "THRUST LIM>";
 		}
-		if (page == "DEP_ARR_INDEX") {
+		if (display == "DEP_ARR_INDEX") {
 			title = "DEP/ARR INDEX";
 			line1l = "<DEP";
 			line1ct = "RTE 1";
 			line1c = getprop("/autopilot/route-manager/departure/airport");
-			line2c = getprop("/autopilot/route-manager/destination/airport");
 			line1r = "ARR>";
+			line2c = getprop("/autopilot/route-manager/destination/airport");
 			line2r = "ARR>";
+			line3l = "<DEP";
+			line3r = "ARR>";
+			line4r = "ARR>";
+			line6lt ="DEP";
+			line6l = "<----";
+			line6c = "OTHER";
+			line6rt ="ARR";
+			line6r = "---->";
 		}
-		if (page == "EICAS_MODES") {
+		if (display == "EICAS_MODES") {
 			title = "EICAS MODES";
 			line1l = "<ENG";
 			line1r = "FUEL>";
@@ -75,7 +86,7 @@ var cdu = func{
 			line5r = "RCL>";
 			line6r = "SYNOPTICS>";
 		}
-		if (page == "EICAS_SYN") {
+		if (display == "EICAS_SYN") {
 			title = "EICAS SYNOPTICS";
 			line1l = "<ELEC";
 			line1r = "HYD>";
@@ -85,7 +96,7 @@ var cdu = func{
 			line5r = "RCL>";
 			line6r = "MODES>";
 		}
-		if (page == "FIX_INFO") {
+		if (display == "FIX_INFO") {
 			title = "FIX INFO";
 			line1l = sprintf("%3.2f", getprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt"));
 			line1r = sprintf("%3.2f", getprop("/instrumentation/nav[1]/frequencies/selected-mhz-fmt"));
@@ -93,7 +104,7 @@ var cdu = func{
 			line2r = sprintf("%3.2f", getprop("/instrumentation/nav[1]/radials/selected-deg"));
 			line6l = "<ERASE FIX";
 		}
-		if (page == "IDENT") {
+		if (display == "IDENT") {
 			title = "IDENT";
 			line1lt = "MODEL";
 			line1l = getprop("/instrumentation/cdu/ident/model");
@@ -103,7 +114,7 @@ var cdu = func{
 			line6l = "<INDEX";
 			line6r = "POS INIT>";
 		}
-		if (page == "INIT_REF") {
+		if (display == "INIT_REF") {
 			title = "INIT/REF INDEX";
 			line1l = "<IDENT";
 			line1r = "NAV DATA>";
@@ -114,7 +125,7 @@ var cdu = func{
 			line6l = "<APPROACH";
 			line6r = "MAINT>";
 		}
-		if (page == "NAV_RAD") {
+		if (display == "NAV_RAD") {
 			title = "NAV RADIO";
 			line1lt = "VOR L";
 			line1l = sprintf("%3.2f", getprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt"));
@@ -128,7 +139,7 @@ var cdu = func{
 			line3l = sprintf("%3.2f", getprop("/instrumentation/adf[0]/frequencies/selected-khz"));
 			line3rt = "ADF R";
 		}
-		if (page == "PERF_INIT") {
+		if (display == "PERF_INIT") {
 			title = "PERF INIT";
 			line1lt = "GR WT";
 			line1rt = "CRZ ALT";
@@ -160,12 +171,12 @@ var cdu = func{
 				line3l = sprintf("%3.1f", yasim_emptyweight/1000);
 			}
 		}
-		if (page == "POS_INIT") {
+		if (display == "POS_INIT") {
 			title = "POS INIT";
 			line6l = "<INDEX";
 			line6r = "ROUTE>";
 		}
-		if (page == "POS_REF") {
+		if (display == "POS_REF") {
 			title = "POS REF";
 			line1lt = "FMC POST";
 			line1l = getprop("/position/latitude-string")~" "~getprop("/position/longitude-string");
@@ -176,22 +187,29 @@ var cdu = func{
 			line6l = "<INDEX";
 			line6r = "BRG/DIST>";
 		}
-		if (page == "RTE1_1") {
+		if (display == "RTE1_1") {
 			title = "RTE 1";
+			page = "1/2";
 			line1lt = "ORIGIN";
 			line1l = getprop("/autopilot/route-manager/departure/airport");
 			line1rt = "DEST";
 			line1r = getprop("/autopilot/route-manager/destination/airport");
 			line2lt = "RUNWAY";
 			line2l = getprop("/autopilot/route-manager/departure/runway");
-			line3rt = "FLT NO";
+			line2rt = "FLT NO";
 			line3rt = "CO ROUTE";
 			line5l = "<RTE COPY";
 			line6l = "<RTE 2";
-			line6r = "ACTIVATE>";
+			if (getprop("/autopilot/route-manager/active") == 1){
+				line6r = "ACTIVATE>";
+				}
+			else {
+				line6r = "PERF INIT>";
+				}
 		}
-		if (page == "RTE1_2") {
+		if (display == "RTE1_2") {
 			title = "RTE 1";
+			page = "2/2";
 			line1lt = "VIA";
 			line1rt = "TO";
 			if (getprop("/autopilot/route-manager/route/wp[1]/id") != nil){
@@ -212,19 +230,51 @@ var cdu = func{
 			line6l = "<RTE 2";
 			line6r = "ACTIVATE>";
 		}
-		if (page == "RTE1_DEP") {
-			title = getprop("/autopilot/route-manager/departure/airport")~" DEPARTURES";
-			line1r = getprop("/autopilot/route-manager/departure/runway");
-			line6l = "<ERASE";
-			line6r = "ROUTE>";
-		}
-		if (page == "RTE1_ARR") {
+		if (display == "RTE1_ARR") {
 			title = getprop("/autopilot/route-manager/destination/airport")~" ARRIVALS";
+			line1lt = "STARS";
+			line1rt = "APPROACHES";
 			line1r = getprop("/autopilot/route-manager/destination/runway");
+			line2lt = "TRANS";
+			line3rt = "RUNWAYS";
 			line6l = "<INDEX";
 			line6r = "ROUTE>";
 		}
-		if (page == "THR_LIM") {
+		if (display == "RTE1_DEP") {
+			title = getprop("/autopilot/route-manager/departure/airport")~" DEPARTURES";
+			line1lt = "SIDS";
+			line1rt = "RUNWAYS";
+			line1r = getprop("/autopilot/route-manager/departure/runway");
+			line2lt = "TRANS";
+			line6l = "<ERASE";
+			line6r = "ROUTE>";
+		}
+		if (display == "RTE1_LEGS") {
+			if (getprop("/autopilot/route-manager/active") == 1){
+				title = "ACT RTE 1 LEGS";
+				}
+			else {
+				title = "RTE 1 LEGS";
+				}
+			if (getprop("/autopilot/route-manager/route/wp[1]/id") != nil){
+				line1l = getprop("/autopilot/route-manager/route/wp[1]/id");
+				}
+			if (getprop("/autopilot/route-manager/route/wp[2]/id") != nil){
+				line2l = getprop("/autopilot/route-manager/route/wp[2]/id");
+				}
+			if (getprop("/autopilot/route-manager/route/wp[3]/id") != nil){
+				line3l = getprop("/autopilot/route-manager/route/wp[3]/id");
+				}
+			if (getprop("/autopilot/route-manager/route/wp[4]/id") != nil){
+				line4l = getprop("/autopilot/route-manager/route/wp[4]/id");
+				}
+			if (getprop("/autopilot/route-manager/route/wp[5]/id") != nil){
+				line5l = getprop("/autopilot/route-manager/route/wp[5]/id");
+				}
+			line6l = "<RTE 2 LEGS";
+			line6r = "RTE DATA>";
+		}
+		if (display == "THR_LIM") {
 			title = "THRUST LIM";
 			line1lt = "SEL";
 			line1ct = "OAT";
@@ -240,7 +290,7 @@ var cdu = func{
 			line6l = "<INDEX";
 			line6r = "TAKEOFF>";
 		}
-		if (page == "TO_REF") {
+		if (display == "TO_REF") {
 			title = "TAKEOFF REF";
 			line1lt = "FLAP/ACCEL HT";
 			line1l = getprop("/instrumentation/fmc/to-flap");
@@ -258,7 +308,19 @@ var cdu = func{
 			line6l = "<INDEX";
 			line6r = "POS INIT>";
 		}
+		
+		if (serviceable != 1){
+			title = "";		page = "";
+			line1l = "";	line2l = "";	line3l = "";	line4l = "";	line5l = "";	line6l = "";
+			line1lt = "";	line2lt = "";	line3lt = "";	line4lt = "";	line5lt = "";	line6lt = "";
+			line1c = "";	line2c = "";	line3c = "";	line4c = "";	line5c = "";	line6c = "";
+			line1ct = "";	line2ct = "";	line3ct = "";	line4ct = "";	line5ct = "";	line6ct = "";
+			line1r = "";	line2r = "";	line3r = "";	line4r = "";	line5r = "";	line6r = "";
+			line1rt = "";	line2rt = "";	line3rt = "";	line4rt = "";	line5rt = "";	line6rt = "";
+		}
+		
 		setprop("/instrumentation/cdu/output/title",title);
+		setprop("/instrumentation/cdu/output/page",page);
 		setprop("/instrumentation/cdu/output/line1/left",line1l);
 		setprop("/instrumentation/cdu/output/line2/left",line2l);
 		setprop("/instrumentation/cdu/output/line3/left",line3l);

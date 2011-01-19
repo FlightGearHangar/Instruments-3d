@@ -26,6 +26,7 @@ Add the following tags below the </sim> tag of your aircraft's -set.xml file.
 				<engines>-80C2B1F</engines>
 			</ident>
 			<input type="string"/>
+			<serviceable>true</serviceable>
 		</cdu>
 		
 		...

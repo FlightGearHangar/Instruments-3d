@@ -2,6 +2,233 @@ var input = func(v) {
 		setprop("/instrumentation/cdu/input",getprop("/instrumentation/cdu/input")~v);
 	}
 	
+var input = func(v) {
+		setprop("/instrumentation/cdu/input",getprop("/instrumentation/cdu/input")~v);
+	}
+	
+var key = func(v) {
+		var cduDisplay = getprop("/instrumentation/cdu/display");
+		var serviceable = getprop("/instrumentation/cdu/serviceable");
+		var eicasDisplay = getprop("/instrumentation/eicas/display");
+		var cduInput = getprop("/instrumentation/cdu/input");
+		
+		if (serviceable == 1){
+			if (v == "LSK1L"){
+				if (cduDisplay == "DEP_ARR_INDEX"){
+					cduDisplay = "RTE1_DEP";
+				}
+				if (cduDisplay == "EICAS_MODES"){
+					eicasDisplay = "ENG";
+				}
+				if (cduDisplay == "EICAS_SYN"){
+					eicasDisplay = "ELEC";
+				}
+				if (cduDisplay == "INIT_REF"){
+					cduDisplay = "IDENT";
+				}
+				if (cduDisplay == "NAV_RAD"){
+					setprop("/instrumentation/nav[0]/frequencies/selected-mhz",cduInput);
+					cduInput = "";
+				}
+				if (cduDisplay == "RTE1_1"){
+					setprop("/autopilot/route-manager/departure/airport",cduInput);
+					cduInput = "";
+				}
+				if (cduDisplay == "RTE1_LEGS"){
+					if (cduInput == "DELETE"){
+						setprop("/autopilot/route-manager/input","@DELETE1");
+						cduInput = "";
+					}
+					else{
+						setprop("/autopilot/route-manager/input","@INSERT2:"~cduInput);
+					}
+				}
+				if (cduDisplay == "TO_REF"){
+					setprop("/instrumentation/fmc/to-flap",cduInput);
+					cduInput = "";
+				}
+			}
+			if (v == "LSK1R"){
+				if (cduDisplay == "EICAS_MODES"){
+					eicasDisplay = "FUEL";
+				}
+				if (cduDisplay == "EICAS_SYN"){
+					eicasDisplay = "HYD";
+				}
+				if (cduDisplay == "NAV RAD"){
+					setprop("/instrumentation/nav[1]/frequencies/selected-mhz",cduInput);
+					cduInput = "";
+				}
+				if (cduDisplay == "RTE1_1"){
+					setprop("/autopilot/route-manager/destination/airport",cduInput);
+					cduInput = "";
+				}
+				if (cduDisplay == "RTE1_LEGS"){
+					setprop("/autopilot/route-manager/route/wp[1]/altitude-ft",cduInput);
+					if (substr(cduInput,0,2) == "FL"){
+						setprop("/autopilot/route-manager/route/wp[1]/altitude-ft",substr(cduInput,2)*100);
+					}
+					cduInput = "";
+				}
+			}
+			if (v == "LSK2L"){
+				if (cduDisplay == "EICAS_MODES"){
+					eicasDisplay = "STAT";
+				}
+				if (cduDisplay == "EICAS_SYN"){
+					eicasDisplay = "ECS";
+				}
+				if (cduDisplay == "POS_INIT"){
+					setprop("/instrumentation/fmc/ref-airport",cduInput);
+					cduInput = "";;
+				}
+				if (cduDisplay == "INIT_REF"){
+					cduDisplay = "POS_INIT";
+				}
+				if (cduDisplay == "RTE1_1"){
+					setprop("/autopilot/route-manager/departure/runway",cduInput);
+					cduInput = "";;
+				}
+				if (cduDisplay == "RTE1_LEGS"){
+					if (cduInput == "DELETE"){
+						setprop("/autopilot/route-manager/input","@DELETE2");
+						cduInput = "";
+					}
+					else{
+						setprop("/autopilot/route-manager/input","@INSERT3:"~cduInput);
+					}
+				}
+			}
+			if (v == "LSK2R"){
+				if (cduDisplay == "DEP_ARR_INDEX"){
+					cduDisplay = "RTE1_ARR";
+				}
+				if (cduDisplay == "EICAS_MODES"){
+					eicasDisplay = "GEAR";
+				}
+				if (cduDisplay == "EICAS_SYN"){
+					eicasDisplay = "DRS";
+				}
+				if (cduDisplay == "RTE1_LEGS"){
+					setprop("/autopilot/route-manager/route/wp[2]/altitude-ft",cduInput);
+					if (substr(cduInput,0,2) == "FL"){
+						setprop("/autopilot/route-manager/route/wp[2]/altitude-ft",substr(cduInput,2)*100);
+					}
+					cduInput = "";
+				}
+			}
+			if (v == "LSK3L"){
+				if (cduDisplay == "INIT_REF"){
+					cduDisplay = "PERF_INIT";
+				}
+				if (cduDisplay == "RTE1_LEGS"){
+					if (cduInput == "DELETE"){
+						setprop("/autopilot/route-manager/input","@DELETE3");
+						cduInput = "";
+					}
+					else{
+						setprop("/autopilot/route-manager/input","@INSERT4:"~cduInput);
+					}
+				}
+			}
+			if (v == "LSK3R"){
+				if (cduDisplay == "RTE1_LEGS"){
+					setprop("/autopilot/route-manager/route/wp[3]/altitude-ft",cduInput);
+					if (substr(cduInput,0,2) == "FL"){
+						setprop("/autopilot/route-manager/route/wp[3]/altitude-ft",substr(cduInput,2)*100);
+					}
+					cduInput = "";
+				}
+			}
+			if (v == "LSK4L"){
+				if (cduDisplay == "INIT_REF"){
+					cduDisplay = "THR_LIM";
+				}
+				if (cduDisplay == "RTE1_LEGS"){
+					if (cduInput == "DELETE"){
+						setprop("/autopilot/route-manager/input","@DELETE4");
+						cduInput = "";
+					}
+					else{
+						setprop("/autopilot/route-manager/input","@INSERT5:"~cduInput);
+					}
+				}
+			}
+			if (v == "LSK4R"){
+				if (cduDisplay == "RTE1_LEGS"){
+					setprop("/autopilot/route-manager/route/wp[4]/altitude-ft",cduInput);
+					if (substr(cduInput,0,2) == "FL"){
+						setprop("/autopilot/route-manager/route/wp[4]/altitude-ft",substr(cduInput,2)*100);
+					}
+					cduInput = "";
+				}
+			}
+			if (v == "LSK5L"){
+				if (cduDisplay == "INIT_REF"){
+					cduDisplay = "TO_REF";
+				}
+				if (cduDisplay == "RTE1_LEGS"){
+					if (cduInput == "DELETE"){
+						setprop("/autopilot/route-manager/input","@DELETE5");
+						cduInput = "";
+					}
+					else{
+						setprop("/autopilot/route-manager/input","@INSERT6:"~cduInput);
+					}
+				}
+			}
+			if (v == "LSK5R"){
+				if (cduDisplay == "RTE1_LEGS"){
+					setprop("/autopilot/route-manager/route/wp[5]/altitude-ft",cduInput);
+					if (substr(cduInput,0,2) == "FL"){
+						setprop("/autopilot/route-manager/route/wp[5]/altitude-ft",substr(cduInput,2)*100);
+					}
+					cduInput = "";
+				}
+			}
+			if (v == "LSK6L"){
+				if (cduDisplay == "INIT_REF"){
+					cduDisplay = "APP_REF";
+				}
+				if (cduDisplay == "APP_REF"){
+					cduDisplay = "INIT_REF";
+				}
+				if ((cduDisplay == "IDENT") or (cduDisplay = "PERF_INIT") or (cduDisplay = "POS_INIT") or (cduDisplay = "POS_REF") or (cduDisplay = "THR_LIM") or (cduDisplay = "TO_REF")){
+					cduDisplay = "INIT_REF";
+				}
+			}
+			if (v == "LSK6R"){
+				if (cduDisplay == "THR_LIM"){
+					cduDisplay = "TO_REF";
+				}
+				if (cduDisplay == "APP_REF"){
+					cduDisplay = "THR_LIM";
+				}
+				if ((cduDisplay == "RTE1_1") or (cduDisplay == "RTE1_LEGS")){
+					setprop("/autopilot/route-manager/input","@ACTIVATE");
+				}
+				if ((cduDisplay == "POS_INIT") or (cduDisplay == "DEP") or (cduDisplay == "RTE1_ARR") or (cduDisplay == "RTE1_DEP")){
+					cduDisplay = "RTE1_1";
+				}
+				if ((cduDisplay == "IDENT") or (cduDisplay == "TO_REF")){
+					cduDisplay = "POS_INIT";
+				}
+				if (cduDisplay == "EICAS_SYN"){
+					cduDisplay = "EICAS_MODES";
+				}
+				if (cduDisplay == "EICAS_MODES"){
+					cduDisplay = "EICAS_SYN";
+				}
+			}
+			
+			setprop("/instrumentation/cdu/display",cduDisplay);
+			if (eicasDisplay != nil){
+				setprop("/instrumentation/eicas/display",eicasDisplay);
+			}
+			setprop("/instrumentation/cdu/input",cduInput);
+		}
+	}
+	
 var delete = func {
 		var length = size(getprop("/instrumentation/cdu/input")) - 1;
 		setprop("/instrumentation/cdu/input",substr(getprop("/instrumentation/cdu/input"),0,length));
@@ -54,8 +281,12 @@ var cdu = func{
 			title = "APPROACH REF";
 			line1lt = "GROSS WT";
 			line1rt = "FLAPS    VREF";
-			line1l = getprop("/instrumentation/fmc/vspeeds/Vref");
-			line4lt = getprop("/autopilot/route-manager/destination/airport");
+			if (getprop("/instrumentation/fmc/vspeeds/Vref") != nil){
+				line1l = getprop("/instrumentation/fmc/vspeeds/Vref");
+			}
+			if (getprop("/autopilot/route-manager/destination/airport") != nil){
+				line4lt = getprop("/autopilot/route-manager/destination/airport");
+			}
 			line6l = "<INDEX";
 			line6r = "THRUST LIM>";
 		}
@@ -63,9 +294,13 @@ var cdu = func{
 			title = "DEP/ARR INDEX";
 			line1l = "<DEP";
 			line1ct = "RTE 1";
-			line1c = getprop("/autopilot/route-manager/departure/airport");
+			if (getprop("/autopilot/route-manager/departure/airport") != nil){
+				line1c = getprop("/autopilot/route-manager/departure/airport");
+			}
 			line1r = "ARR>";
-			line2c = getprop("/autopilot/route-manager/destination/airport");
+			if (getprop("/autopilot/route-manager/destination/airport") != nil){
+				line2c = getprop("/autopilot/route-manager/destination/airport");
+			}
 			line2r = "ARR>";
 			line3l = "<DEP";
 			line3r = "ARR>";
@@ -107,10 +342,14 @@ var cdu = func{
 		if (display == "IDENT") {
 			title = "IDENT";
 			line1lt = "MODEL";
-			line1l = getprop("/instrumentation/cdu/ident/model");
+			if (getprop("/instrumentation/cdu/ident/model") != nil){
+				line1l = getprop("/instrumentation/cdu/ident/model");
+			}
 			line1rt = "ENGINES";
 			line2lt = "NAV DATA";
-			line1r = getprop("/instrumentation/cdu/ident/engines");
+			if (getprop("/instrumentation/cdu/ident/engines") != nil){
+				line1r = getprop("/instrumentation/cdu/ident/engines");
+			}
 			line6l = "<INDEX";
 			line6r = "POS INIT>";
 		}
@@ -191,11 +430,17 @@ var cdu = func{
 			title = "RTE 1";
 			page = "1/2";
 			line1lt = "ORIGIN";
-			line1l = getprop("/autopilot/route-manager/departure/airport");
+			if (getprop("/autopilot/route-manager/departure/airport") != nil){
+				line1l = getprop("/autopilot/route-manager/departure/airport");
+			}
 			line1rt = "DEST";
-			line1r = getprop("/autopilot/route-manager/destination/airport");
+			if (getprop("/autopilot/route-manager/destination/airport") != nil){
+				line1r = getprop("/autopilot/route-manager/destination/airport");
+			}
 			line2lt = "RUNWAY";
-			line2l = getprop("/autopilot/route-manager/departure/runway");
+			if (getprop("/autopilot/route-manager/departure/runway") != nil){
+				line2l = getprop("/autopilot/route-manager/departure/runway");
+			}
 			line2rt = "FLT NO";
 			line3rt = "CO ROUTE";
 			line5l = "<RTE COPY";
@@ -231,20 +476,34 @@ var cdu = func{
 			line6r = "ACTIVATE>";
 		}
 		if (display == "RTE1_ARR") {
-			title = getprop("/autopilot/route-manager/destination/airport")~" ARRIVALS";
+			if (getprop("/autopilot/route-manager/destination/airport") != nil){
+				title = getprop("/autopilot/route-manager/destination/airport")~" ARRIVALS";
+			}
+			else{
+				title = "ARRIVALS";
+			}
 			line1lt = "STARS";
 			line1rt = "APPROACHES";
-			line1r = getprop("/autopilot/route-manager/destination/runway");
+			if (getprop("/autopilot/route-manager/destination/runway") != nil){
+				line1r = getprop("/autopilot/route-manager/destination/runway");
+			}
 			line2lt = "TRANS";
 			line3rt = "RUNWAYS";
 			line6l = "<INDEX";
 			line6r = "ROUTE>";
 		}
 		if (display == "RTE1_DEP") {
-			title = getprop("/autopilot/route-manager/departure/airport")~" DEPARTURES";
+			if (getprop("/autopilot/route-manager/departure/airport") != nil){
+				title = getprop("/autopilot/route-manager/departure/airport")~" DEPARTURES";
+			}
+			else{
+				title = "DEPARTURES";
+			}
 			line1lt = "SIDS";
 			line1rt = "RUNWAYS";
-			line1r = getprop("/autopilot/route-manager/departure/runway");
+			if (getprop("/autopilot/route-manager/departure/runway") != nil){
+				line1r = getprop("/autopilot/route-manager/departure/runway");
+			}
 			line2lt = "TRANS";
 			line6l = "<ERASE";
 			line6r = "ROUTE>";
@@ -257,22 +516,70 @@ var cdu = func{
 				title = "RTE 1 LEGS";
 				}
 			if (getprop("/autopilot/route-manager/route/wp[1]/id") != nil){
+				line1lt = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[1]/leg-bearing-true-deg"));
 				line1l = getprop("/autopilot/route-manager/route/wp[1]/id");
+				line2ct = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[1]/leg-distance-nm"))~" NM";
+				line1r = sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[1]/altitude-ft"));
+				if (getprop("/autopilot/route-manager/route/wp[1]/speed-kts") != nil){
+					line4r = getprop("/autopilot/route-manager/route/wp[1]/speed-kts")~"/"~sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[1]/altitude-ft"));
+					}
 				}
 			if (getprop("/autopilot/route-manager/route/wp[2]/id") != nil){
+				if (getprop("/autopilot/route-manager/route/wp[2]/leg-bearing-true-deg") != nil){
+					line2lt = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[2]/leg-bearing-true-deg"));
+				}
 				line2l = getprop("/autopilot/route-manager/route/wp[2]/id");
+				if (getprop("/autopilot/route-manager/route/wp[2]/leg-distance-nm") != nil){
+					line3ct = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[2]/leg-distance-nm"))~" NM";
+				}
+				line2r = sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[2]/altitude-ft"));
+				if (getprop("/autopilot/route-manager/route/wp[2]/speed-kts") != nil){
+					line4r = getprop("/autopilot/route-manager/route/wp[2]/speed-kts")~"/"~sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[2]/altitude-ft"));
+					}
 				}
 			if (getprop("/autopilot/route-manager/route/wp[3]/id") != nil){
+				if (getprop("/autopilot/route-manager/route/wp[3]/leg-bearing-true-deg") != nil){
+					line3lt = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[3]/leg-bearing-true-deg"));
+				}
 				line3l = getprop("/autopilot/route-manager/route/wp[3]/id");
+				if (getprop("/autopilot/route-manager/route/wp[3]/leg-distance-nm") != nil){
+					line4ct = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[3]/leg-distance-nm"))~" NM";
+				}
+				line3r = sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[3]/altitude-ft"));
+				if (getprop("/autopilot/route-manager/route/wp[3]/speed-kts") != nil){
+					line3r = getprop("/autopilot/route-manager/route/wp[3]/speed-kts")~"/"~sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[3]/altitude-ft"));;
+					}
 				}
 			if (getprop("/autopilot/route-manager/route/wp[4]/id") != nil){
+				if (getprop("/autopilot/route-manager/route/wp[4]/leg-bearing-true-deg") != nil){
+					line4lt = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[4]/leg-bearing-true-deg"));
+				}
 				line4l = getprop("/autopilot/route-manager/route/wp[4]/id");
+				if (getprop("/autopilot/route-manager/route/wp[4]/leg-distance-nm") != nil){
+					line5ct = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[4]/leg-distance-nm"))~" NM";
+				}
+				line4r = sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[4]/altitude-ft"));
+				if (getprop("/autopilot/route-manager/route/wp[4]/speed-kts") != nil){
+					line4r = getprop("/autopilot/route-manager/route/wp[4]/speed-kts")~"/"~sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[4]/altitude-ft"));
+					}
 				}
 			if (getprop("/autopilot/route-manager/route/wp[5]/id") != nil){
+				if (getprop("/autopilot/route-manager/route/wp[5]/leg-bearing-true-deg") != nil){
+					line5lt = sprintf("%3.0f", getprop("/autopilot/route-manager/route/wp[5]/leg-bearing-true-deg"));
+				}
 				line5l = getprop("/autopilot/route-manager/route/wp[5]/id");
+				line5r = sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[5]/altitude-ft"));
+				if (getprop("/autopilot/route-manager/route/wp[5]/speed-kts") != nil){
+					line4r = getprop("/autopilot/route-manager/route/wp[5]/speed-kts")~"/"~sprintf("%5.0f", getprop("/autopilot/route-manager/route/wp[5]/altitude-ft"));
+					}
 				}
 			line6l = "<RTE 2 LEGS";
-			line6r = "RTE DATA>";
+			if (getprop("/autopilot/route-manager/active") == 1){
+				line6r = "RTE DATA>";
+				}
+			else{
+				line6r = "ACTIVATE>";
+				}
 		}
 		if (display == "THR_LIM") {
 			title = "THRUST LIM";
@@ -295,13 +602,19 @@ var cdu = func{
 			line1lt = "FLAP/ACCEL HT";
 			line1l = getprop("/instrumentation/fmc/to-flap");
 			line1rt = "REF V1";
-			line1r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/V1"));
+			if (getprop("/instrumentation/fmc/vspeeds/V1") != nil){
+				line1r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/V1"));
+			}
 			line2lt = "E/O ACCEL HT";
 			line2rt = "REF VR";
-			line2r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/VR"));
+			if (getprop("/instrumentation/fmc/vspeeds/VR") != nil){
+				line2r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/VR"));
+			}
 			line3lt = "THR REDUCTION";
 			line3rt = "REF V2";
-			line3r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/V2"));
+			if (getprop("/instrumentation/fmc/vspeeds/V2") != nil){
+				line3r = sprintf("%3.0f", getprop("/instrumentation/fmc/vspeeds/V2"));
+			}
 			line4lt = "WIND/SLOPE";
 			line4rt = "TRIM   CG";
 			line5rt = "POS SHIFT";

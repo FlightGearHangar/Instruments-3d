@@ -103,13 +103,16 @@ var key = func(v) {
 				if (cduDisplay == "DEP_ARR_INDEX"){
 					cduDisplay = "RTE1_ARR";
 				}
-				if (cduDisplay == "EICAS_MODES"){
+				else if (cduDisplay == "EICAS_MODES"){
 					eicasDisplay = "GEAR";
 				}
-				if (cduDisplay == "EICAS_SYN"){
+				else if (cduDisplay == "EICAS_SYN"){
 					eicasDisplay = "DRS";
 				}
-				if (cduDisplay == "RTE1_LEGS"){
+				else if (cduDisplay == "MENU"){
+					eicasDisplay = "EICAS_MODES";
+				}
+				else if (cduDisplay == "RTE1_LEGS"){
 					setprop("/autopilot/route-manager/route/wp[2]/altitude-ft",cduInput);
 					if (substr(cduInput,0,2) == "FL"){
 						setprop("/autopilot/route-manager/route/wp[2]/altitude-ft",substr(cduInput,2)*100);
@@ -193,7 +196,7 @@ var key = func(v) {
 				if (cduDisplay == "APP_REF"){
 					cduDisplay = "INIT_REF";
 				}
-				if ((cduDisplay == "IDENT") or (cduDisplay = "PERF_INIT") or (cduDisplay = "POS_INIT") or (cduDisplay = "POS_REF") or (cduDisplay = "THR_LIM") or (cduDisplay = "TO_REF")){
+				if ((cduDisplay == "IDENT") or (cduDisplay = "MAINT") or (cduDisplay = "PERF_INIT") or (cduDisplay = "POS_INIT") or (cduDisplay = "POS_REF") or (cduDisplay = "THR_LIM") or (cduDisplay = "TO_REF")){
 					cduDisplay = "INIT_REF";
 				}
 			}
@@ -201,23 +204,26 @@ var key = func(v) {
 				if (cduDisplay == "THR_LIM"){
 					cduDisplay = "TO_REF";
 				}
-				if (cduDisplay == "APP_REF"){
+				else if (cduDisplay == "APP_REF"){
 					cduDisplay = "THR_LIM";
 				}
-				if ((cduDisplay == "RTE1_1") or (cduDisplay == "RTE1_LEGS")){
+				else if ((cduDisplay == "RTE1_1") or (cduDisplay == "RTE1_LEGS")){
 					setprop("/autopilot/route-manager/input","@ACTIVATE");
 				}
-				if ((cduDisplay == "POS_INIT") or (cduDisplay == "DEP") or (cduDisplay == "RTE1_ARR") or (cduDisplay == "RTE1_DEP")){
+				else if ((cduDisplay == "POS_INIT") or (cduDisplay == "DEP") or (cduDisplay == "RTE1_ARR") or (cduDisplay == "RTE1_DEP")){
 					cduDisplay = "RTE1_1";
 				}
-				if ((cduDisplay == "IDENT") or (cduDisplay == "TO_REF")){
+				else if ((cduDisplay == "IDENT") or (cduDisplay == "TO_REF")){
 					cduDisplay = "POS_INIT";
 				}
-				if (cduDisplay == "EICAS_SYN"){
+				else if (cduDisplay == "EICAS_SYN"){
 					cduDisplay = "EICAS_MODES";
 				}
-				if (cduDisplay == "EICAS_MODES"){
+				else if (cduDisplay == "EICAS_MODES"){
 					cduDisplay = "EICAS_SYN";
+				}
+				else if (cduDisplay == "INIT_REF"){
+					cduDisplay = "MAINT";
 				}
 			}
 			
@@ -268,8 +274,10 @@ var cdu = func{
 		if (display == "MENU") {
 			title = "MENU";
 			line1l = "<FMC";
+			line1rt = "EFIS CP";
 			line1r = "SELECT>";
 			line2l = "<ACARS";
+			line2rt = "EICAS CP";
 			line2r = "SELECT>";
 			line6l = "<ACMS";
 			line6r = "CMC>";
@@ -364,6 +372,14 @@ var cdu = func{
 			line6l = "<APPROACH";
 			line6r = "MAINT>";
 		}
+		if (display == "MAINT") {
+			title = "MAINTENANCE INDEX";
+			line1l = "<CROS LOAD";
+			line1r = "BITE>";
+			line2l = "<PERF FACTORS";
+			line3l = "<IRS MONITOR";
+			line6l = "<INDEX";
+		}
 		if (display == "NAV_RAD") {
 			title = "NAV RADIO";
 			line1lt = "VOR L";
@@ -446,10 +462,10 @@ var cdu = func{
 			line5l = "<RTE COPY";
 			line6l = "<RTE 2";
 			if (getprop("/autopilot/route-manager/active") == 1){
-				line6r = "ACTIVATE>";
+				line6r = "PERF INIT>";
 				}
 			else {
-				line6r = "PERF INIT>";
+				line6r = "ACTIVATE>";
 				}
 		}
 		if (display == "RTE1_2") {

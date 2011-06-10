@@ -93,9 +93,9 @@ generic SCR-522C -->
 			</entry>
 		</interpolation>
 		<center>
-			<x-m>-0.00</x-m>
-			<y-m>-0.01</y-m>
-			<z-m>0.05</z-m>
+			<x-m>-0.03644</x-m>
+			<y-m>-0.0080818</y-m>
+			<z-m> 0.0495798</z-m>
 		</center>
 		<axis>
 			<x>1</x>
@@ -393,12 +393,12 @@ generic SCR-522C -->
 				<value>0</value>
 			</binding>
 			<mod-up>
-					<binding>
-						<command>property-assign</command>
-						<property>/systems/comm/SCR-522C/tr</property>
-						<value>1</value>
-					</binding>
-				</mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/systems/comm/SCR-522C/tr</property>
+					<value>1</value>
+				</binding>
+			</mod-up>
 		</action>
 	</animation>
 
@@ -425,6 +425,11 @@ generic SCR-522C -->
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<not>
+						<property>/systems/comm/SCR-522C/tr-lock</property>
+					</not>
+				</condition>
 				<command>property-assign</command>
 				<property>/systems/comm/SCR-522C/tr</property>
 				<value>2</value>
@@ -453,16 +458,30 @@ generic SCR-522C -->
 				</not>
 			</and>
 		</condition>
-	</animation><!-- -->
+	</animation>
 
-	<!--<animation>
+	<animation>
+		<type>pick</type>
+		<visible>true</visible>
+		<object-name>SCR-522C-light-cont-1</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/systems/comm/SCR-522C/channel-dimmer</property>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
 		<type>translate</type>
 		<object-name>SCR-522C-light-cont-1</object-name>
 		<property>/systems/comm/SCR-522C/channel-dimmer</property>
 		<interpolation>
 			<entry>
 				<ind>0</ind>
-				<dep>0.005</dep>
+				<dep>0.0085</dep>
 			</entry>
 			<entry>
 				<ind>1.0</ind>
@@ -479,11 +498,11 @@ generic SCR-522C -->
 	<animation>
 		<type>translate</type>
 		<object-name>SCR-522C-light-cont-2</object-name>
-		<property>/systems/comm/SCR-522C/tr-dimmer</property>
+		<property>/systems/comm/SCR-522C/channel-dimmer</property>
 		<interpolation>
 			<entry>
 				<ind>0</ind>
-				<dep>0.005</dep>
+				<dep>0.0085</dep>
 			</entry>
 			<entry>
 				<ind>1.0</ind>
@@ -495,7 +514,43 @@ generic SCR-522C -->
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	</animation>-->
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<visible>true</visible>
+		<object-name>SCR-522-T-Lock</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>/systems/comm/SCR-522C/tr-lock</property>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>SCR-522-T-Lock</object-name>
+		<property>/systems/comm/SCR-522C/tr-lock</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0.0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0.0085</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
 
 	<animation>
 		<type>material</type>
@@ -511,9 +566,10 @@ generic SCR-522C -->
 		<object-name>SCR-522C-light-cont-2</object-name>
 		<object-name>SCR-522C-light-cont-1</object-name>
 		<object-name>SCR-522C-OFF</object-name>
-		<object-name>right-outer-bracket</object-name>
+		<object-name>SCR-522-T-Lock</object-name>
+		<!--<object-name>right-outer-bracket</object-name>
 		<object-name>left-inner-bracket</object-name>
-		<object-name>left-outer-bracket</object-name>
+		<object-name>left-outer-bracket</object-name>-->
 		<condition>
 			<greater-than>
 				<property>/controls/lighting/panel-norm</property>

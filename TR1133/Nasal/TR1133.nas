@@ -16,6 +16,8 @@ var channelD_node = props.globals.initNode("instrumentation/comm/channels/D-mhz"
 var channel_selected_node = props.globals.initNode("systems/comm/SCR-522C/frequencies/channel-selected", 0, "INT");
 var tr_node = props.globals.initNode("systems/comm/SCR-522C/tr", 1, "INT");
 props.globals.initNode("systems/comm/SCR-522C/frequencies/channel", "", "STRING");
+props.globals.initNode("systems/comm/SCR-522C/channel-dimmer", 0, "BOOL");
+props.globals.initNode("systems/comm/SCR-522C/tr-lock", 1, "BOOL");
 
 var comm_selected_node = props.globals.getNode("instrumentation/comm/frequencies/selected-mhz", 1);
 var comm_standby_node = props.globals.getNode("instrumentation/comm/frequencies/standby-mhz", 1);

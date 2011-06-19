@@ -2,7 +2,7 @@
 
 <PropertyList>
     
-    <name>radios</name>
+    <name>SCR-522C-radio</name>
     <width>550</width>
     <modal>false</modal>
     <layout>vbox</layout>
@@ -56,7 +56,7 @@
                 <label>Channel</label>
                 <live>true</live>
                 <!--<format>%.2f</format>-->
-                <property>systems/comm/SCR-522C/frequencies/channel</property>
+		<property>/instrumentation/comm/SCR-522C/frequencies/channel</property>
             </text>
             <text>
                 <!--<label>xxxxxxx</label>-->

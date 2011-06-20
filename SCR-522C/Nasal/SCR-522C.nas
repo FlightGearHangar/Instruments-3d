@@ -23,6 +23,9 @@ props.globals.initNode("instrumentation/comm/SCR-522C/frequencies/channel", "", 
 props.globals.initNode("instrumentation/comm/SCR-522C/mask", 0, "BOOL");
 props.globals.initNode("instrumentation/comm/SCR-522C/tr-lock", 0, "BOOL");
 
+# turn the radio off
+props.globals.initNode("instrumentation/comm/serviceable", 0, "BOOL");
+
 var comm_selected_node = props.globals.getNode("instrumentation/comm/frequencies/selected-mhz", 1);
 var comm_standby_node = props.globals.getNode("instrumentation/comm/frequencies/standby-mhz", 1);
 var comm1_selected_node = props.globals.getNode("instrumentation/comm[1]/frequencies/selected-mhz", 1);
@@ -31,17 +34,20 @@ var comm1_standby_node = props.globals.getNode("instrumentation/comm[1]/frequenc
 var channel = ["OFF","A","B","C","D"];
 setprop("instrumentation/comm/SCR-522C/frequencies/channel", channel[channel_selected_node.getValue()]);
 
+# override default Equipment --> radio menu item
+# Radio needs to be global in scope since it needs to presist for this to work
+
 var Radio = gui.Dialog.new("sim/gui/dialogs/SCR-522C/dialog",
                            "Aircraft/Instruments-3d/SCR-522C/Dialogs/radios.xml");
 
-# gui.menuBind("radio", "dialogs.Radio.open()");
+gui.menuBind("radio", "SCR_522C.Radio.open()");
 
-# override controls.ptt
+# override controls.ptt.  This implements a REMote ptt switch.
 
 controls.ptt = func {    
     # T/R/REM set to REM remote ptt switch controls transmitter
     # print("intercept ptt for BC-602-A");
-    if (getprop("instrumentation/comm/SCR-522C/tr") == 0 and                       # set in REMote ptt switch mode
+    if (getprop("instrumentation/comm/SCR-522C/tr") == 0 and                       # in REMote ptt switch mode
         getprop("instrumentation/comm/SCR-522C/frequencies/channel-selected") > 0) # and radio is on
        setprop("instrumentation/comm/ptt", arg[0]);                                # let remote ptt control transmitter
     else                                                                           # otherwise
@@ -51,6 +57,9 @@ controls.ptt = func {
 # =============================== listeners ===============================
 #
 
+# listener for channel selector.  Will cause the frequency of the transceiver to be changed.
+# will also turn the radio on and off
+
 var listenChannelSelected = func(n) {
     var channel_no = n.getValue();
 
@@ -58,23 +67,30 @@ var listenChannelSelected = func(n) {
 
     # print("channel", channel_no, " ", channel[channel_no]);
     setprop("instrumentation/comm/SCR-522C/frequencies/channel", channel[channel_no]);
-    if (channel_no == 1) {
-        setprop("instrumentation/comm/frequencies/selected-mhz", getprop("instrumentation/comm/channels/A-mhz"));
-        setprop("instrumentation/comm/frequencies/standby-mhz", getprop("instrumentation/comm/channels/A-mhz"));
-    }
-    else if (channel_no == 2){
-        setprop("instrumentation/comm/frequencies/selected-mhz", getprop("instrumentation/comm/channels/B-mhz"));
-        setprop("instrumentation/comm/frequencies/standby-mhz", getprop("instrumentation/comm/channels/B-mhz"));
-    }
-    if (channel_no == 3){
-        setprop("instrumentation/comm/frequencies/selected-mhz", getprop("instrumentation/comm/channels/C-mhz"));
-        setprop("instrumentation/comm/frequencies/standby-mhz", getprop("instrumentation/comm/channels/C-mhz"));
-    }
-    else if (channel_no == 4){
-        setprop("instrumentation/comm/frequencies/selected-mhz", getprop("instrumentation/comm/channels/D-mhz"));
-        setprop("instrumentation/comm/frequencies/standby-mhz", getprop("instrumentation/comm/channels/D-mhz"));
+    if (channel_no == 0)
+        setprop("instrumentation/comm/serviceable", 0);
+    else {
+        setprop("instrumentation/comm/serviceable", 1);
+	if (channel_no == 1) {
+	    setprop("instrumentation/comm/frequencies/selected-mhz", getprop("instrumentation/comm/channels/A-mhz"));
+	    setprop("instrumentation/comm/frequencies/standby-mhz", getprop("instrumentation/comm/channels/A-mhz"));
+	}
+	else if (channel_no == 2){
+	    setprop("instrumentation/comm/frequencies/selected-mhz", getprop("instrumentation/comm/channels/B-mhz"));
+	    setprop("instrumentation/comm/frequencies/standby-mhz", getprop("instrumentation/comm/channels/B-mhz"));
+	}
+	else if (channel_no == 3){
+	    setprop("instrumentation/comm/frequencies/selected-mhz", getprop("instrumentation/comm/channels/C-mhz"));
+	    setprop("instrumentation/comm/frequencies/standby-mhz", getprop("instrumentation/comm/channels/C-mhz"));
+	}
+	else if (channel_no == 4){
+	    setprop("instrumentation/comm/frequencies/selected-mhz", getprop("instrumentation/comm/channels/D-mhz"));
+	    setprop("instrumentation/comm/frequencies/standby-mhz", getprop("instrumentation/comm/channels/D-mhz"));
+	} 
     }
 }
+
+# listener for the local TR switch.
 
 var listenTr = func(t) {
     var tr = t.getValue();
@@ -86,6 +102,8 @@ var listenTr = func(t) {
     else if (tr == 1)
         setprop("instrumentation/comm/ptt", 0);
 }
+
+# listener for the local TR lock.
         
 var listenTrLock = func(i) {
     var tr_lock = i.getValue();
@@ -122,17 +140,6 @@ var SCR_522C_init = func(){
     setprop("input/keyboard/key[268]/binding/dialog-name", "SCR-522C-radio");
     setprop("input/keyboard/key[268]/binding/command", "dialog-show");
 
-    # Disable the menu item "Equipment > radio" so we use our own gui: " > Radio".
-    # print("Disabling Menu: Equipment -> Radios GUI");
-    # override default radio menu
-    gui.menuEnable("radio",0);
-    setprop("sim/bindings/menu/binding[35]/dialog-name", "SCR-522C-radio"); 
-    setprop("sim/menubar/default/menu[5]/item[3]/binding/dialog-name", "SCR-522C-radio");
-    setprop("sim/menubar/default/menu[5]/item[3]/name", "SCR-522C-radio");
-    gui.menuEnable("SCR-522C-radio",1);
-
-    # gui.menuBind("radio", "dialogs.Radio.open()");
-
 
 # =============================== start listeners ===============================
 #
@@ -146,5 +153,7 @@ var SCR_522C_init = func(){
     # print("... done");
 
 } # end func initialize
+
+# run initialization
 
 setlistener("sim/signals/fdm-initialized", SCR_522C_init);

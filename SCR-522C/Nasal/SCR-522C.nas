@@ -101,6 +101,8 @@ var listenTr = func(t) {
         setprop("instrumentation/comm/ptt", 1);
     else if (tr == 1)
         setprop("instrumentation/comm/ptt", 0);
+    if (tr == 0 and getprop("/instrumentation/comm/SCR-522C/tr-lock"))
+        setprop("/instrumentation/comm/SCR-522C/tr", 1);
 }
 
 # listener for the local TR lock.
@@ -110,10 +112,10 @@ var listenTrLock = func(i) {
     # print("tr_lock");
 
     if (tr_lock == nil) tr_lock = false;
-    if (tr_lock)
-        setprop("/instrumentation/comm/SCR-522C/tr", 2);
-    else if (getprop("/instrumentation/comm/SCR-522C/tr") == 2)
+    if (tr_lock and getprop("/instrumentation/comm/SCR-522C/tr") == 0)
         setprop("/instrumentation/comm/SCR-522C/tr", 1);
+    # else if (getprop("/instrumentation/comm/SCR-522C/tr") == 2)
+    #     setprop("/instrumentation/comm/SCR-522C/tr", 1);
 
 }
 

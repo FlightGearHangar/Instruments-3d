@@ -6,7 +6,7 @@ looks like the following.
 
 <nasal>
    <!-- your other nasal files -->
-   <!-- the following three lines must be exactly like what is here -->
+   <!-- the following three lines must be exactly like this -->
    <SCR_522C>
       <file>Aircraft/Instruments-3d/SCR-522C/Nasal/SCR-522C.nas</file>
    </SCR_522C>
@@ -23,7 +23,7 @@ are illuminated in response to
 
 <property>/controls/lighting/cabin-norm</property>
 
-If you are using a different property for you cabin/cockpit lights you will need to map your 
+If you are using a different property for your cabin/cockpit lights you will need to map your 
 lighting property to /controls/lighting/cabin-norm.
 
  

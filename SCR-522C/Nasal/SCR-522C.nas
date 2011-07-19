@@ -22,6 +22,7 @@ var tr_node = props.globals.initNode("instrumentation/comm/SCR-522C/tr", 0, "INT
 props.globals.initNode("instrumentation/comm/SCR-522C/frequencies/channel", "", "STRING");
 props.globals.initNode("instrumentation/comm/SCR-522C/mask", 0, "BOOL");
 props.globals.initNode("instrumentation/comm/SCR-522C/tr-lock", 0, "BOOL");
+props.globals.initNode("instrumentation/comm/SCR-522C/remote-pushed", 0, "BOOL");
 
 # turn the radio off
 props.globals.initNode("instrumentation/comm/serviceable", 0, "BOOL");
@@ -52,6 +53,7 @@ controls.ptt = func {
        setprop("instrumentation/comm/ptt", arg[0]);                                # let remote ptt control transmitter
     else                                                                           # otherwise
        setprop("instrumentation/comm/ptt", 0);                                     # the remote ptt does nothing
+    setprop("instrumentation/comm/SCR-522C/remote-pushed", arg[0]);                # use to animate remote ptt button
 }
 
 # =============================== listeners ===============================

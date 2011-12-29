@@ -254,10 +254,16 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-swap</command>
-            <property>instrumentation/comm/frequencies/selected-mhz</property>
-            <property>instrumentation/comm/frequencies/standby-mhz</property>
-        </binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
+                <command>property-swap</command>
+                <property>instrumentation/comm/frequencies/selected-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
+            </binding>
         </action>
     </animation>
 
@@ -346,6 +352,12 @@ Syd Adams
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>-0.025</step>
@@ -364,6 +376,12 @@ Syd Adams
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>0.025</step>
@@ -382,6 +400,12 @@ Syd Adams
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>-0.025</step>
@@ -400,6 +424,12 @@ Syd Adams
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>0.025</step>
@@ -418,6 +448,12 @@ Syd Adams
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>-1.0</step>
@@ -436,6 +472,12 @@ Syd Adams
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>1.0</step>
@@ -454,6 +496,12 @@ Syd Adams
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>-1.0</step>
@@ -472,6 +520,12 @@ Syd Adams
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
             <binding>
+                <condition>
+                  <greater-than>
+                    <property>systems/electrical/outputs/comm</property>
+                    <value>1</value>
+                  </greater-than>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm/frequencies/standby-mhz</property>
                 <step>1.0</step>

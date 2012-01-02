@@ -1,20 +1,6 @@
-# Radar2 and RWR routines.
+# RWR routines.
 
 # Alexis Bory (xiii)
-
-# Every 0.05 seconde:
-# [1] Scans /AI/models for (aircrafts), (carriers), multiplayers. Creates a list of
-#     these targets, whenever they are in radar overall range and are valid.
-# [2] RWR (Radar Warning Receiver) signals are then computed. RWR signal values
-#     are writen under /instrumentation/radar2/targets for interoperabilty purposes.
-# [3] At each loop the targets list is scanned and each target bearing is checked
-#     against the radar beam heading. If the target is within the radar beam, its
-#     display properties are updated. Two different displays are possible:
-#     B-scan like and PPI like.
-#     The target distance is then scored so the radar system can autotrack the
-#     nearest target.
-# Every 0.1 seconde:
-# [4] Computes HUD marker position for the nearest target.
 
 var OurAlt            = props.globals.getNode("position/altitude-ft");
 var OurHdg            = props.globals.getNode("orientation/heading-deg");
@@ -34,9 +20,14 @@ var u_ecm_signal_norm = 0;
 var u_radar_standby   = 0;
 var u_ecm_type_num    = 0;
 
+var launched = 0;
+
 init = func() {
-	radardist.init();
-	settimer(rwr_loop, 0.5);
+	if (! launched) {
+		radardist.init();
+		settimer(rwr_loop, 0.5);
+		launched = 1;
+	}
 }
 
 # Main loop ###############

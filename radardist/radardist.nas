@@ -185,12 +185,18 @@ var load_data = func {
 	}
 }
 
+var launched = 0;
 
 var init = func {
-	print("Initializing Radar Data");
-	io.read_properties(data_path, props.globals);
-	load_data();
+	if (! launched) {
+		print("Initializing Radar Data");
+		io.read_properties(data_path, props.globals);
+		load_data();
+		launched = 1;
+	}
 }
+
+
 
 
 

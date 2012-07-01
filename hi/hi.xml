@@ -12,7 +12,7 @@
    <red>1.0</red>
    <green>0.2</green>
    <blue>0.0</blue>
-   <factor-prop>/sim/model//material/instruments/factor</factor-prop>
+   <factor-prop>/sim/model/material/instruments/factor</factor-prop>
   </emission>
  </animation>
 
@@ -24,7 +24,7 @@
    <red>0.45</red>
    <green>0.09</green>
    <blue>0.00001</blue>
-   <factor-prop>/sim/model//material/instruments/factor</factor-prop>
+   <factor-prop>/sim/model/material/instruments/factor</factor-prop>
   </emission>
  </animation>
 
@@ -94,6 +94,32 @@
       <wrap>1</wrap>
     </binding>
   </action>
+  <action>
+    <name>small decrease (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/autopilot/settings/heading-bug-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small increase (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/autopilot/settings/heading-bug-deg</property>
+      <step>1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
  </animation>   
 
  <animation>
@@ -121,6 +147,32 @@
       <command>property-adjust</command>
       <property>/autopilot/settings/heading-bug-deg</property>
       <step>5</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small decrease (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/autopilot/settings/heading-bug-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small increase (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/autopilot/settings/heading-bug-deg</property>
+      <step>1</step>
       <min>0</min>
       <max>360</max>
       <wrap>1</wrap>
@@ -159,6 +211,32 @@
       <wrap>1</wrap>
     </binding>
   </action>
+  <action>
+    <name>small decrease (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/heading-indicator/offset-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small increase (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/heading-indicator/offset-deg</property>
+      <step>1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+   </action>
  </animation>
 
  <animation>
@@ -186,6 +264,32 @@
       <command>property-adjust</command>
       <property>/instrumentation/heading-indicator/offset-deg</property>
       <step>5</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small decrease (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/heading-indicator/offset-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small increase (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/heading-indicator/offset-deg</property>
+      <step>1</step>
       <min>0</min>
       <max>360</max>
       <wrap>1</wrap>

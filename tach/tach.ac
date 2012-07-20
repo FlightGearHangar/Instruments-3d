@@ -27,7 +27,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Face"
-texture "/home/david/src/blender/Instruments/tach/tach.rgb"
+texture "tach.rgb"
 texrep 1 1
 numvert 4
 0 0.04 -0.04

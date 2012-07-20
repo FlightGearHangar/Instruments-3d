@@ -4,7 +4,7 @@ OBJECT world
 kids 3
 OBJECT poly
 name "Background"
-texture "/home/david/src/blender/Instruments/Textures/asi-260-knot.rgb"
+texture "asi-260-knot.rgb"
 numvert 4
 -0.000524 0.050345 -0.05
 -0.000524 -0.049655 -0.05
@@ -21,7 +21,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Needle"
-texture "/home/david/src/blender/Instruments/Textures/asi-260-knot.rgb"
+texture "asi-260-knot.rgb"
 numvert 4
 0.002039 0.03301 -0.005
 0.002039 9.7e-05 -0.005
@@ -38,7 +38,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Scale"
-texture "/home/david/src/blender/Instruments/Textures/asi-260-knot.rgb"
+texture "asi-260-knot.rgb"
 numvert 4
 0.004861 0.050345 -0.05
 0.004861 -0.049655 -0.05

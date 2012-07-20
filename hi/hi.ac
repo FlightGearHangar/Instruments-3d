@@ -7,7 +7,7 @@ kids 9
 OBJECT poly
 name "Face"
 loc 0.000119331 0 0
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/hi/hi01.rgb"
+texture "hi01.rgb"
 crease 45.000000
 numvert 6
 -0.001458 0.04 -0.04
@@ -34,7 +34,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Front"
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/hi/hi02.rgb"
+texture "hi02.rgb"
 crease 45.000000
 numvert 6
 0 0.04 -0.04
@@ -62,7 +62,7 @@ kids 0
 OBJECT poly
 name "OBS-Knob"
 loc 0 -0.0297401 0.0293165
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/hi/knob.rgb"
+texture "knob.rgb"
 crease 101.000000
 numvert 20
 0.01 9.31323e-09 0
@@ -261,7 +261,7 @@ kids 0
 OBJECT poly
 name "Hdg-Knob"
 loc 0 -0.0300775 -0.0298089
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/hi/knob.rgb"
+texture "knob.rgb"
 crease 101.000000
 numvert 20
 0.01 0.00396059 0.00479285
@@ -460,7 +460,7 @@ kids 0
 OBJECT poly
 name "HdgBug"
 loc 0.00155131 0 0
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/hi/hi03.rgb"
+texture "hi03.rgb"
 crease 45.000000
 numvert 6
 -0.0011 0 -0.04

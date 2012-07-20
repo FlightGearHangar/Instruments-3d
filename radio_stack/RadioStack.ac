@@ -5,7 +5,7 @@ kids 1
 OBJECT poly
 name "RadioStack"
 loc 0.000486599 0.0692169 -8.90131e-05
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/radio_stack/panel-tex02.rgb"
+texture "panel-tex02.rgb"
 crease 45.000000
 numvert 4
 0 0.0657509 -0.0804673

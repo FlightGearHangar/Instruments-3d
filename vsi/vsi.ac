@@ -32,7 +32,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Face"
-texture "/home/david/src/blender/Instruments/vsi/vsi.rgb"
+texture "vsi.rgb"
 texrep 1 1
 numvert 4
 0 0.04 -0.04

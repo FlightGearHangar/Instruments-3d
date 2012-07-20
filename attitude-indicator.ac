@@ -4,7 +4,7 @@ OBJECT world
 kids 5
 OBJECT poly
 name "Background"
-texture "/home/david/src/blender/Instruments/Textures/attitude-indicator.rgb"
+texture "attitude-indicator.rgb"
 numvert 4
 -7.2e-05 -0.037166 -0.038157
 -7.2e-05 -0.037166 0.036843
@@ -21,7 +21,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Float"
-texture "/home/david/src/blender/Instruments/Textures/attitude-indicator.rgb"
+texture "attitude-indicator.rgb"
 numvert 4
 0.001422 -0.018106 -0.029359
 0.001422 -0.018106 0.02871
@@ -38,7 +38,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Scale"
-texture "/home/david/src/blender/Instruments/Textures/attitude-indicator.rgb"
+texture "attitude-indicator.rgb"
 numvert 4
 0.002915 -0.055916 -0.056907
 0.002915 -0.055916 0.055593
@@ -55,7 +55,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Face"
-texture "/home/david/src/blender/Instruments/Textures/attitude-indicator.rgb"
+texture "attitude-indicator.rgb"
 numvert 4
 0.005072 -0.037166 -0.038157
 0.005072 -0.037166 0.036843
@@ -72,7 +72,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Markings"
-texture "/home/david/src/blender/Instruments/Textures/attitude-indicator.rgb"
+texture "attitude-indicator.rgb"
 numvert 4
 0.006902 -0.018106 -0.029359
 0.006902 -0.018106 0.02871

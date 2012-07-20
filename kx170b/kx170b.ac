@@ -4,7 +4,7 @@ OBJECT world
 kids 1
 OBJECT poly
 name "Plane"
-texture "/home/david/src/blender/Avionics/kx170b/kx170b-01.rgb"
+texture "kx170b-01.rgb"
 texrep 1 1
 numvert 4
 0 0.036 -0.09

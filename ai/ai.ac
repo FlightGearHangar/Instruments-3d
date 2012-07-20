@@ -4,7 +4,7 @@ OBJECT world
 kids 5
 OBJECT poly
 name "Face"
-texture "/home/david/src/blender/Instruments/ai/ai01.rgb"
+texture "ai01.rgb"
 texrep 1 1
 numvert 6
 -0.003966 0.04 -0.04
@@ -31,7 +31,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Pitch"
-texture "/home/david/src/blender/Instruments/ai/ai04.rgb"
+texture "ai04.rgb"
 texrep 1 1
 numvert 6
 -0.002938 0.014505 -0.021294
@@ -58,7 +58,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Bezel"
-texture "/home/david/src/blender/Instruments/ai/ai05.rgb"
+texture "ai05.rgb"
 texrep 1 1
 numvert 6
 -0.001913 0.006477 -0.012
@@ -85,7 +85,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Ring"
-texture "/home/david/src/blender/Instruments/ai/ai02.rgb"
+texture "ai02.rgb"
 texrep 1 1
 numvert 6
 -0.000922 0.04 -0.04
@@ -112,7 +112,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Front"
-texture "/home/david/src/blender/Instruments/ai/ai03.rgb"
+texture "ai03.rgb"
 texrep 1 1
 numvert 6
 -1e-05 0.04 -0.04

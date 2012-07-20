@@ -30,7 +30,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Face"
-texture "/usr/local/FlightGear-0.9/data/Aircraft/Instruments-3d/vac/vac-face.rgb"
+texture "vac-face.rgb"
 crease 45.000000
 numvert 4
 0 0.026 -0.026

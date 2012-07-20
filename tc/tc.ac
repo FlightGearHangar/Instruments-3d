@@ -4,7 +4,7 @@ OBJECT world
 kids 3
 OBJECT poly
 name "Ball"
-texture "/home/david/src/blender/Instruments/tc/tc02.rgb"
+texture "tc02.rgb"
 texrep 1 1
 numvert 6
 -0.002953 -0.009821 -0.003159
@@ -31,7 +31,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Face"
-texture "/home/david/src/blender/Instruments/tc/tc01.rgb"
+texture "tc01.rgb"
 texrep 1 1
 numvert 6
 -0.001458 0.04 -0.04
@@ -58,7 +58,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Airplane"
-texture "/home/david/src/blender/Instruments/tc/tc03.rgb"
+texture "tc03.rgb"
 texrep 1 1
 numvert 6
 0 0.008224 -0.025483

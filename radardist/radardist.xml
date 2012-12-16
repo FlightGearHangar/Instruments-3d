@@ -563,7 +563,9 @@ max. radar range target seize(RCS)m2, 4th root of radar RCS -->
 					<ecm-type-num>29</ecm-type-num>
 				</aircraft>
 				<aircraft n="54">
+				        <name>Mirage-2000</name>
 					<name>mirage2000</name>
+					<name>m2000-5</name>
 					<rcs-sq-meter>2</rcs-sq-meter>
 					<rcs-4th-root>1.19</rcs-4th-root>
 					<radar-type>RDY</radar-type>

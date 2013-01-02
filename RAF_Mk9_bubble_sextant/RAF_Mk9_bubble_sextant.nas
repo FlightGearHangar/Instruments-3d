@@ -2,7 +2,7 @@
 ##
 ##  RAF mk9 bubble sextant.
 ##
-##  Copyright (C) 2007 - 2010  Anders Gidenstam  (anders(at)gidenstam.org)
+##  Copyright (C) 2007 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
 ##  This file is licensed under the GPL license version 2 or later.
 ##
 ###############################################################################
@@ -27,6 +27,7 @@ var STOWED = { position    : {x:-0.3, y: 0.0, z: -0.2},
 ## Interface functions.
 var pick_up = func {
     if (handling.lookthrough) return;
+    if (view.current != handling.source_view) return;
 
     handling.toggle();
     if (handling.enabled) {
@@ -43,7 +44,7 @@ var toggle_look_through = func {
 # Bindings for mouse X and Y movements. Install these to the appropriate
 # mouse mode and axes, e.g. in the -set file.
 var mouseX = func {
-    if (!handling.enabled) return;
+    if (!_initialized or !handling.enabled) return;
     if(__kbd.alt.getValue()) {
         var delta = 3*cmdarg().getNode("offset").getValue();
         if(__kbd.shift.getValue() and handling.enabled) {
@@ -64,7 +65,7 @@ var mouseX = func {
 }
 
 var mouseY = func {
-    if (!handling.enabled) return;
+    if (!_initialized or !handling.enabled) return;
     if(__kbd.alt.getValue()) {
         var delta = 3*cmdarg().getNode("offset").getValue();
         if(__kbd.shift.getValue() and handling.enabled) {
@@ -257,6 +258,17 @@ var handling = {
     enabled : 0,
     ##################################################
     init : func (n=0) {
+        # Initialize the instrument.
+        sextant.init(n);
+        sextant.set_position
+            (STOWED.position.x,
+             STOWED.position.y,
+             STOWED.position.z);
+        sextant.set_orientation
+            (STOWED.orientation.heading,
+             STOWED.orientation.pitch,
+             STOWED.orientation.roll);
+
         me.UPDATE_INTERVAL = 0.0;
         me.loopid = 0;
         me.lookthrough = 0;
@@ -280,22 +292,12 @@ var handling = {
         me.view_angle = me.base.getNode("view-angle-deg", 1);
         me.view_angle.setDoubleValue(0.0);
 
-        sextant.init();
-        sextant.set_position
-            (STOWED.position.x,
-             STOWED.position.y,
-             STOWED.position.z);
-        sextant.set_orientation
-            (STOWED.orientation.heading,
-             STOWED.orientation.pitch,
-             STOWED.orientation.roll);
-
         ## Instrument "display"
         me.display = screen.display.new(20, 10);
         me.display.add(me.altitude_deg,
                        props.globals.getNode("/sim/time/gmt"));
 
-        me.disable();
+        settimer(func { me.disable(); }, 0.0);
 
         print("RAF Mk9 bubble sextant handling ... initialized");
     },
@@ -310,7 +312,7 @@ var handling = {
     ##################################################
     enable : func {
         me.enabled = 1;
-        me.display.toggle();
+        me.display.redraw();
 
         me.loopid += 1;
         me._loop_(me.loopid);
@@ -339,7 +341,7 @@ var handling = {
     disable : func {
         me.enabled = 0;
         me.lookthrough = 0;
-        me.display.toggle();
+        me.display.close();
 
         sextant.set_position
             (STOWED.position.x,
@@ -351,10 +353,6 @@ var handling = {
              STOWED.orientation.roll);
         me.view_distance.setDoubleValue(0.0);
         me.view_angle.setValue(0.0);
-
-        if (me.lookthrough) {
-            me.toggle_look_through();
-        }
     },
     ##################################################
     update : func {
@@ -382,8 +380,14 @@ var handling = {
 };
 
 ###############################################################################
+var _initialized = 0;
 setlistener("/sim/signals/fdm-initialized", func {
-    handling.init();
+    if (!_initialized) {
+        handling.init();
+        _initialized = 1;
+    } else {
+        handling.disable();
+    }
 });
 
 ###############################################################################

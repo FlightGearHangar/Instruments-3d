@@ -141,121 +141,39 @@
  </animation>
 
 <!--	VOR 1 Radial adjust  -->
- <animation>
-  <type>pick</type>
-  <object-name>click-L</object-name>
-  <visible>false</visible>
-  <action>
-    <name>small decrease</name>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav/radials/selected-deg</property>
-      <step>-1</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>large decrease</name>
-    <button>1</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav/radials/selected-deg</property>
-      <step>-5</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>small decrease (scrollwheel)</name>
-    <button>3</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav/radials/selected-deg</property>
-      <step>-1</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>small increase (scrollwheel)</name>
-    <button>4</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav/radials/selected-deg</property>
-      <step>1</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
- </animation>
 
- <animation>
-  <type>pick</type>
-  <object-name>click-R</object-name>
-  <visible>false</visible>
-  <action>
-    <name>small increase</name>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav/radials/selected-deg</property>
-      <step>1</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
+<animation>
+    <type>knob</type>
+     <type>pick</type>
+     <object-name>click-R</object-name>
+      <object-name>click-L</object-name>
+     <visible>false</visible>
+
+     <shift-repeat type="int">5</shift-repeat>
+     
+     <action>
+         <binding>
+           <command>property-adjust</command>
+           <property>/instrumentation/nav/radials/selected-deg</property>
+           <factor>1</factor>
+           <min>0</min>
+           <max>360</max>
+           <wrap>1</wrap>
+         </binding>
+    </action>
+    
+    <hovered>
+     <binding>
+       <command>set-tooltip</command>
+       <tooltip-id>nav1-obs</tooltip-id>
+       <label>Nav 1 Radial %3d</label>
+       <mapping>heading</mapping>
+       <property>/instrumentation/nav/radials/selected-deg</property>
     </binding>
-  </action>
-  <action>
-    <name>large increase</name>
-    <button>1</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav/radials/selected-deg</property>
-      <step>5</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>small decrease (scrollwheel)</name>
-    <button>3</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav/radials/selected-deg</property>
-      <step>-1</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>small increase (scrollwheel)</name>
-    <button>4</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/nav/radials/selected-deg</property>
-      <step>1</step>
-      <min>0</min>
-      <max>360</max>
-      <wrap>1</wrap>
-    </binding>
-  </action>
+    </hovered>
  </animation>
+     
+ 
 
  <animation>
   <name>Alpha Order Group</name>

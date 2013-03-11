@@ -125,121 +125,36 @@
 
   <!--             Altimeter              -->  
 
- <animation>
-  <type>pick</type>
-  <object-name>click-L</object-name>
-  <visible>false</visible>
-  <action>
-    <name>decrease calibrate fine</name>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/altimeter/setting-inhg</property>
-      <step>-0.01</step>
-      <min>26.0</min>
-      <max>33.0</max>
-      <wrap>false</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>decrease calibrate coarse</name>
-    <button>1</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/altimeter/setting-inhg</property>
-      <step>-0.1</step>
-      <min>26.0</min>
-      <max>33.0</max>
-      <wrap>false</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>decrease calibrate fine (scrollwheel)</name>
-    <button>3</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/altimeter/setting-inhg</property>
-      <step>-0.01</step>
-      <min>26.0</min>
-      <max>33.0</max>
-      <wrap>false</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>increase calibrate fine (scrollwheel)</name>
-    <button>4</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/altimeter/setting-inhg</property>
-      <step>0.01</step>
-      <min>26.0</min>
-      <max>33.0</max>
-      <wrap>false</wrap>
-    </binding>
-  </action>
- </animation>
+  <animation>
+   <type>knob</type>
+   <object-name>click-L</object-name>
+   <object-name>click-R</object-name>
+   <visible>false</visible>
+   
+   <action>
 
- <animation>
-  <type>pick</type>
-  <object-name>click-R</object-name>
-  <visible>false</visible>
-  <action>
-    <name>increase calibrate fine</name>
-    <button>0</button>
-    <repeatable>true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/altimeter/setting-inhg</property>
+       <factor>0.01</factor>
+       <min>26.0</min>
+       <max>33.0</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+   
+   <hovered>
     <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/altimeter/setting-inhg</property>
-      <step>0.01</step>
-      <min>26.0</min>
-      <max>33.0</max>
-      <wrap>false</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>increase calibrate coarse</name>
-    <button>1</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/altimeter/setting-inhg</property>
-      <step>0.1</step>
-      <min>26.0</min>
-      <max>33.0</max>
-      <wrap>false</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>decrease calibrate fine (scrollwheel)</name>
-    <button>3</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/altimeter/setting-inhg</property>
-      <step>-0.01</step>
-      <min>26.0</min>
-      <max>33.0</max>
-      <wrap>false</wrap>
-    </binding>
-  </action>
-  <action>
-    <name>increase calibrate fine (scrollwheel)</name>
-    <button>4</button>
-    <repeatable>true</repeatable>
-    <binding>
-      <command>property-adjust</command>
-      <property>/instrumentation/altimeter/setting-inhg</property>
-      <step>0.01</step>
-      <min>26.0</min>
-      <max>33.0</max>
-      <wrap>false</wrap>
-    </binding>
-  </action>
- </animation>
+      <command>set-tooltip</command>
+      <tooltip-id>alt-setting</tooltip-id>
+      <label>Altimeter In Hg: %5.2f</label>
+      <property>instrumentation/altimeter/setting-inhg</property>
+   </binding>
+   </hovered>
+   
+  </animation>
+   
+ 
 
 </PropertyList>
 

@@ -43,42 +43,44 @@ var toggle_look_through = func {
 ###############################################################################
 # Bindings for mouse X and Y movements. Install these to the appropriate
 # mouse mode and axes, e.g. in the -set file.
-var mouseX = func {
+var mouseXmove = func {
     if (!_initialized or !handling.enabled) return;
-    if(__kbd.alt.getValue()) {
-        var delta = 3*cmdarg().getNode("offset").getValue();
-        if(__kbd.shift.getValue() and handling.enabled) {
-            # Roll adjustment
-            var orient = sextant.get_orientation();
-            var roll = orient[2] - delta;
-            if(roll < -180) roll = -180;
-            if(roll > 180)  roll = 180;
-            sextant.set_orientation(orient[0], orient[1], roll);
-        } else {
-            var view = "/sim/current-view/heading-offset-deg";
-            var val = getprop(view) - delta;
-            if(val < 0)   val = 0;
-            if(val > 360) val = 360;
-            setprop(view, val);
-        }
-    }
+
+    var delta = 3*cmdarg().getNode("offset").getValue();
+    var view = "/sim/current-view/heading-offset-deg";
+    var val = getprop(view) - delta;
+    if(val < 0)   val = 0;
+    if(val > 360) val = 360;
+    setprop(view, val);
+}
+var mouseXtilt = func {
+    if (!_initialized or !handling.enabled) return;
+
+    var delta = 3*cmdarg().getNode("offset").getValue();
+    # Roll adjustment
+    var orient = sextant.get_orientation();
+    var roll = orient[2] - delta;
+    if(roll < -180) roll = -180;
+    if(roll > 180)  roll = 180;
+    sextant.set_orientation(orient[0], orient[1], roll);
 }
 
-var mouseY = func {
+var mouseYmove = func {
     if (!_initialized or !handling.enabled) return;
-    if(__kbd.alt.getValue()) {
-        var delta = 3*cmdarg().getNode("offset").getValue();
-        if(__kbd.shift.getValue() and handling.enabled) {
-            # Altitude adjustment   
-            sextant.adjust_altitude_fine(delta);
-        } else {
-            var view = "/sim/current-view/pitch-offset-deg";
-            var val = getprop(view) - delta;
-            if(val < -90) val = -90;
-            if(val > 90)  val = 90;
-            setprop(view, val);
-        }
-    }
+
+    var delta = 3*cmdarg().getNode("offset").getValue();
+    var view = "/sim/current-view/pitch-offset-deg";
+    var val = getprop(view) - delta;
+    if(val < -90) val = -90;
+    if(val > 90)  val = 90;
+    setprop(view, val);
+}
+var mouseYaltitude = func {
+    if (!_initialized or !handling.enabled) return;
+
+    var delta = 3*cmdarg().getNode("offset").getValue();
+    # Altitude adjustment   
+    sextant.adjust_altitude_fine(delta);
 }
 
 var RAD = math.pi/180;

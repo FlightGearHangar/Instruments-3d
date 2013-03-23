@@ -296,6 +296,7 @@ var handling = {
 
         ## Instrument "display"
         me.display = screen.display.new(20, 10);
+        me.display.format = "%2.4f";
         me.display.add(me.altitude_deg,
                        props.globals.getNode("/sim/time/gmt"));
 

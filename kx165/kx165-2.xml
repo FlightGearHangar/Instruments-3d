@@ -676,8 +676,8 @@
         <command>property-adjust</command>
         <property alias="../../../../params/nav-frq-standby"/>
         <factor>1</factor>
-        <min>118.0</min>
-        <max>137.0</max>
+        <min>108.0</min>
+        <max>118.0</max>
         <wrap>true</wrap>
       </binding>
     </action>

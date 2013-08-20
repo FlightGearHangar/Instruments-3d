@@ -571,6 +571,15 @@
         </condition>
       </binding>
     </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>comm-volume</tooltip-id>
+        <label>Volume: %3d%%</label>
+        <property alias="../../../../params/comm-volume"/>
+        <mapping>percent</mapping>
+      </binding>
+    </hovered>
   </animation>
 
   <animation>
@@ -690,6 +699,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>nav-volume</tooltip-id>
+        <label>Volume: %3d%%</label>
+        <property alias="../../../../params/nav-volume"/>
+        <mapping>percent</mapping>
+      </binding>
+    </hovered>
   </animation>
 
   <animation>

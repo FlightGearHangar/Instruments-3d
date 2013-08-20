@@ -135,6 +135,30 @@
   </animation>
 
   <animation>
+    <type>material</type>
+    <object-name>CommKnobs</object-name>
+    <object-name>CommKHz</object-name>
+    <object-name>CommMHz</object-name>
+    <object-name>CommToggle</object-name>
+    <object-name>CommVolume</object-name>
+    <object-name>NavKnobs</object-name>
+    <object-name>NavKHz</object-name>
+    <object-name>NavMHz</object-name>
+    <object-name>NavToggle</object-name>
+    <object-name>NavVolume</object-name>
+    <object-name>Chassis</object-name>
+    <condition>
+      <not><property>sim/rendering/rembrandt/enabled</property></not>
+    </condition>
+    <emission>
+      <red>   0.006 </red>
+      <green> 0.006 </green>
+      <blue>  0.006 </blue>
+      <factor-prop alias="../../../params/dimming"/>
+    </emission>
+  </animation>
+
+  <animation>
     <type>select</type>
     <object-name>CommUse</object-name>
     <object-name>CommStby</object-name>

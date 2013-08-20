@@ -1,6 +1,6 @@
 AC3Db
-MATERIAL "DefaultWhite.002" rgb 1 1 1 amb 1 1 1 emis 0.2 0.2 0.2 spec 0.5 0.5 0.5 shi 64 trans 0
-MATERIAL "transparent" rgb 0.547091 0.565624 0.595981 amb 0 0 0 emis 0.1 0.1 0.1 spec 1 1 1 shi 64 trans 0.5
+MATERIAL "DefaultWhite.002" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.5 0.5 0.5 shi 64 trans 0
+MATERIAL "transparent" rgb 0.547091 0.565624 0.595981 amb 0 0 0 emis 0 0 0 spec 1 1 1 shi 64 trans 0.5
 OBJECT world
 kids 14
 OBJECT poly
@@ -5497,10 +5497,10 @@ refs 3
 128 0.1015625 0.33984375
 kids 0
 OBJECT poly
-name "Knob100s"
+name "Border"
 loc 0 0 -0
 data 8
-Knob100s
+Border
 texture "KT76A.png"
 texrep 1 1
 crease 30.000001

@@ -12,6 +12,20 @@
 
   <path>KT76A.ac</path>
 
+  <params>
+    <transponder-serviceable>instrumentation/transponder/serviceable</transponder-serviceable>
+
+    <knob-mode>instrumentation/transponder/inputs/knob-mode</knob-mode>
+    <ident-btn>instrumentation/transponder/inputs/ident-btn</ident-btn>
+
+    <digit0>instrumentation/transponder/inputs/digit[0]</digit0>
+    <digit1>instrumentation/transponder/inputs/digit[1]</digit1>
+    <digit2>instrumentation/transponder/inputs/digit[2]</digit2>
+    <digit3>instrumentation/transponder/inputs/digit[3]</digit3>
+
+    <dimming>instrumentation/transponder/dimming-norm</dimming>
+  </params>
+
   <animation>
     <object-name>KnobMode</object-name>
     <object-name>ModeUp</object-name>
@@ -35,6 +49,7 @@
     <object-name>1000Up</object-name>
     <object-name>Front</object-name>
     <object-name>Ident-light</object-name>
+    <object-name>Border</object-name>
 
     <object-name>vitre</object-name>
   </animation>
@@ -64,8 +79,46 @@
     <object-name>Front</object-name>
     <object-name>Ident-light</object-name>
 
-    <property-base>/sim/instrumentation/transponder</property-base>
+    <property-base>instrumentation/transponder</property-base>
     <texture-prop>texture-file</texture-prop>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>KnobMode</object-name>
+    <object-name>ModeUp</object-name>
+    <object-name>ModeDn</object-name>
+    <object-name>Ident</object-name>
+    <object-name>Dial1</object-name>
+    <object-name>Knob1</object-name>
+    <object-name>1Dn</object-name>
+    <object-name>1Up</object-name>
+    <object-name>Dial10</object-name>
+    <object-name>Knob10</object-name>
+    <object-name>10Dn</object-name>
+    <object-name>10Up</object-name>
+    <object-name>Dial100</object-name>
+    <object-name>Knob100</object-name>
+    <object-name>100Dn</object-name>
+    <object-name>100Up</object-name>
+    <object-name>Dial1000</object-name>
+    <object-name>Knob1000</object-name>
+    <object-name>1000Dn</object-name>
+    <object-name>1000Up</object-name>
+    <object-name>Front</object-name>
+    <object-name>Ident-light</object-name>
+    <object-name>Border</object-name>
+
+    <object-name>vitre</object-name>
+    <condition>
+      <not><property>sim/rendering/rembrandt/enabled</property></not>
+    </condition>
+    <emission>
+      <red>   0.006 </red>
+      <green> 0.006 </green>
+      <blue>  0.006 </blue>
+      <factor-prop alias="../../../params/dimming"/>
+    </emission>
   </animation>
 
   <animation>
@@ -91,7 +144,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>Dial1000</object-name>
-    <property>instrumentation/transponder/inputs/digit[3]</property>
+    <!--<property>instrumentation/transponder/inputs/digit[3]</property>-->
+    <property alias="../../params/digit3"/>
     <factor>45</factor>
     <center>
       <x-m>  0.01453 </x-m>
@@ -108,7 +162,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>Knob1000</object-name>
-    <property>instrumentation/transponder/inputs/digit[3]</property>
+    <!--<property>instrumentation/transponder/inputs/digit[3]</property>-->
+    <property alias="../../params/digit3"/>
     <factor>45</factor>
     <center>
       <x-m>  0.01453 </x-m>
@@ -130,7 +185,8 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/transponder/inputs/digit[3]</property>
+        <!--<property>instrumentation/transponder/inputs/digit[3]</property>-->
+        <property alias="../../../../params/digit3"/>
         <factor>1</factor>
         <min>0</min>
         <max>8</max>
@@ -154,7 +210,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>Dial100</object-name>
-    <property>instrumentation/transponder/inputs/digit[2]</property>
+    <!--<property>instrumentation/transponder/inputs/digit[2]</property>-->
+    <property alias="../../params/digit2"/>
     <factor>45</factor>
     <center>
       <x-m>  0.004 </x-m>
@@ -171,7 +228,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>Knob100</object-name>
-    <property>instrumentation/transponder/inputs/digit[2]</property>
+    <!--<property>instrumentation/transponder/inputs/digit[2]</property>-->
+    <property alias="../../params/digit2"/>
     <factor>45</factor>
     <center>
       <x-m>  0.01453 </x-m>
@@ -193,7 +251,8 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/transponder/inputs/digit[2]</property>
+        <!--<property>instrumentation/transponder/inputs/digit[2]</property>-->
+        <property alias="../../../../params/digit2"/>
         <factor>1</factor>
         <min>0</min>
         <max>8</max>
@@ -217,7 +276,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>Dial10</object-name>
-    <property>instrumentation/transponder/inputs/digit[1]</property>
+    <!--<property>instrumentation/transponder/inputs/digit[1]</property>-->
+    <property alias="../../params/digit1"/>
     <factor>45</factor>
     <center>
       <x-m>  0.004 </x-m>
@@ -234,7 +294,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>Knob10</object-name>
-    <property>instrumentation/transponder/inputs/digit[1]</property>
+    <!--<property>instrumentation/transponder/inputs/digit[1]</property>-->
+    <property alias="../../params/digit1"/>
     <factor>45</factor>
     <center>
       <x-m>  0.01453 </x-m>
@@ -256,7 +317,8 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/transponder/inputs/digit[1]</property>
+        <!--<property>instrumentation/transponder/inputs/digit[1]</property>-->
+        <property alias="../../../../params/digit1"/>
         <factor>1</factor>
         <min>0</min>
         <max>8</max>
@@ -280,7 +342,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>Dial1</object-name>
-    <property>instrumentation/transponder/inputs/digit[0]</property>
+    <!--<property>instrumentation/transponder/inputs/digit[0]</property>-->
+    <property alias="../../params/digit0"/>
     <factor>45</factor>
     <center>
       <x-m>  0.004 </x-m>
@@ -297,7 +360,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>Knob1</object-name>
-    <property>instrumentation/transponder/inputs/digit[0]</property>
+    <!--<property>instrumentation/transponder/inputs/digit[0]</property>-->
+    <property alias="../../params/digit0"/>
     <factor>45</factor>
     <center>
       <x-m>  0.01453 </x-m>
@@ -319,7 +383,8 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/transponder/inputs/digit[0]</property>
+        <!--<property>instrumentation/transponder/inputs/digit[0]</property>-->
+        <property alias="../../../../params/digit0"/>
         <factor>1</factor>
         <min>0</min>
         <max>8</max>
@@ -348,7 +413,8 @@
     <action>
        <binding>
          <command>property-cycle</command>
-         <property>/instrumentation/transponder/inputs/knob-mode</property>
+         <!--<property>/instrumentation/transponder/inputs/knob-mode</property>-->
+         <property alias="../../../../params/knob-mode"/>
          <wrap>0</wrap>
          <value>0</value> <!-- OFF -->
          <value>1</value> <!-- SBY -->
@@ -362,7 +428,8 @@
         <command>set-tooltip</command>
         <tooltip-id>transponder-mode-btn</tooltip-id>
         <label>Mode: %s</label>
-        <property>instrumentation/transponder/inputs/knob-mode</property>
+        <!--<property>instrumentation/transponder/inputs/knob-mode</property>-->
+        <property alias="../../../../params/knob-mode"/>
         <mapping>nasal</mapping>
         <script>
           var m = arg[0];
@@ -379,7 +446,8 @@
   <animation> 
     <type>rotate</type>
     <object-name>KnobMode</object-name>
-    <property>instrumentation/transponder/inputs/knob-mode</property>
+    <!--<property>/instrumentation/transponder/inputs/knob-mode</property>-->
+    <property alias="../../params/knob-mode"/>
     <factor>1</factor>
     <interpolation>
       <entry>
@@ -419,13 +487,15 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/transponder/inputs/ident-btn</property>
+         <!--<property>/instrumentation/transponder/inputs/ident-btn</property>-->
+         <property alias="../../../../params/ident-btn"/>
         <value type="bool">true</value>
       </binding>          
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>/instrumentation/transponder/inputs/ident-btn</property>
+         <!--<property>/instrumentation/transponder/inputs/ident-btn</property>-->
+         <property alias="../../../../../params/ident-btn"/>
           <value type="bool">false</value>
         </binding>
       </mod-up>
@@ -442,7 +512,8 @@
   <animation>
     <type>translate</type>
     <object-name>Ident</object-name>
-    <property>instrumentation/transponder/inputs/ident-btn</property>
+    <!--<property>/instrumentation/transponder/inputs/ident-btn</property>-->
+    <property alias="../../params/ident-btn"/>
     <factor> 0.0018 </factor>
     <axis>
       <x> -1 </x>

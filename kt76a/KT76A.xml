@@ -13,7 +13,7 @@
   <path>KT76A.ac</path>
 
   <params>
-    <transponder-serviceable>instrumentation/transponder/serviceable</transponder-serviceable>
+    <serviceable>instrumentation/transponder/serviceable</serviceable>
 
     <knob-mode>instrumentation/transponder/inputs/knob-mode</knob-mode>
     <ident-btn>instrumentation/transponder/inputs/ident-btn</ident-btn>

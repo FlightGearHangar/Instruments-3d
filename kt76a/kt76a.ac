@@ -8,7 +8,7 @@ name "Dial1"
 loc 0 0 -0
 data 5
 Dial1
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 24
@@ -147,7 +147,7 @@ name "Dial10"
 loc 0 0 -0
 data 6
 Dial10
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 24
@@ -286,7 +286,7 @@ name "Dial100"
 loc 0 0 -0
 data 7
 Dial100
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 24
@@ -425,7 +425,7 @@ name "Dial1000"
 loc 0 0 -0
 data 8
 Dial1000
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 24
@@ -564,7 +564,7 @@ name "Front"
 loc 0 0 -0
 data 5
 Front
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 62
@@ -756,7 +756,7 @@ name "Ident"
 loc 0 0 -0
 data 5
 Ident
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 49
@@ -1024,7 +1024,7 @@ name "Ident-light"
 loc 0 0 -0
 data 11
 Ident-light
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 24
@@ -1101,7 +1101,7 @@ name "Knob1"
 loc 0 0 -0
 data 5
 Knob1
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 257
@@ -2201,7 +2201,7 @@ name "Knob10"
 loc 0 0 -0
 data 6
 Knob10
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 257
@@ -3301,7 +3301,7 @@ name "Knob100"
 loc 0 0 -0
 data 7
 Knob100
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 257
@@ -4401,7 +4401,7 @@ name "Knob1000"
 loc 0 0 -0
 data 8
 Knob1000
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 257
@@ -5501,7 +5501,7 @@ name "Border"
 loc 0 0 -0
 data 8
 Border
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 120
@@ -6052,7 +6052,7 @@ name "KnobMode"
 loc 0 0 -0
 data 8
 KnobMode
-texture "KT76A.png"
+texture "kt76a.png"
 texrep 1 1
 crease 30.000001
 numvert 257

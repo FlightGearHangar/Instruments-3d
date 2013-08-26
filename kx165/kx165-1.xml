@@ -42,6 +42,9 @@
     <nav-audio>instrumentation/nav[0]/audio-btn</nav-audio>
 
     <dimming>instrumentation/comm[0]/dimming-norm</dimming>
+    <red>1</red>
+    <green>1</green>
+    <blue>1</blue>
   </params>
 
   <path>kx165.ac</path>
@@ -151,9 +154,9 @@
       <not><property>sim/rendering/rembrandt/enabled</property></not>
     </condition>
     <emission>
-      <red>   0.006 </red>
-      <green> 0.006 </green>
-      <blue>  0.006 </blue>
+      <red alias="../../../params/red"/>
+      <green alias="../../../params/green"/>
+      <blue alias="../../../params/blue"/>
       <factor-prop alias="../../../params/dimming"/>
     </emission>
   </animation>

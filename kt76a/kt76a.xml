@@ -159,8 +159,8 @@
     <hovered>
       <binding>
         <command>set-tooltip</command>
-        <tooltip-id>transponder-sqwak</tooltip-id>
-        <label>Sqwak: %s</label>
+        <tooltip-id>transponder-squawk</tooltip-id>
+        <label>Squawk: %s</label>
         <property>instrumentation/transponder/id-code</property>
         <mapping>nasal</mapping>
         <script>
@@ -225,8 +225,8 @@
     <hovered>
       <binding>
         <command>set-tooltip</command>
-        <tooltip-id>transponder-sqwak</tooltip-id>
-        <label>Sqwak: %s</label>
+        <tooltip-id>transponder-squawk</tooltip-id>
+        <label>Squawk: %s</label>
         <property>instrumentation/transponder/id-code</property>
         <mapping>nasal</mapping>
         <script>
@@ -291,8 +291,8 @@
     <hovered>
       <binding>
         <command>set-tooltip</command>
-        <tooltip-id>transponder-sqwak</tooltip-id>
-        <label>Sqwak: %s</label>
+        <tooltip-id>transponder-squawk</tooltip-id>
+        <label>Squawk: %s</label>
         <property>instrumentation/transponder/id-code</property>
         <mapping>nasal</mapping>
         <script>
@@ -357,8 +357,8 @@
     <hovered>
       <binding>
         <command>set-tooltip</command>
-        <tooltip-id>transponder-sqwak</tooltip-id>
-        <label>Sqwak: %s</label>
+        <tooltip-id>transponder-squawk</tooltip-id>
+        <label>Squawk: %s</label>
         <property>instrumentation/transponder/id-code</property>
         <mapping>nasal</mapping>
         <script>

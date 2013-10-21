@@ -55,6 +55,18 @@
   </axis>
  </animation>
 
+ <animation>
+  <type>translate</type>
+  <object-name>Flag</object-name>
+  <property>/instrumentation/turn-indicator/spin</property>
+  <factor>0.0040</factor>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+
 </PropertyList>
 
 

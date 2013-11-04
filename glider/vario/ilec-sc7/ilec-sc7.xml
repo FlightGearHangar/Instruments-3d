@@ -11,7 +11,7 @@
   <object-name>decimals-digit</object-name>
   <object-name>units-digit</object-name>
   <object-name>sign-digit</object-name>
-  <object-name>dot-digit</object-name>  
+  <object-name>dot-digit</object-name>
   <emission>
 	  <red>0.028</red>
 	  <green>0.014</green>
@@ -19,14 +19,14 @@
 	  <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
         </emission>
  </animation>
- 
+
  <!--needle-->
 
  <animation>
   <type>rotate</type>
   <object-name>Needle</object-name>
   <property>/instrumentation/ilec-sc7/te-reading-mps</property>
-  <interpolation> 
+  <interpolation>
    <entry><ind>    -5</ind><dep>-119.713</dep></entry>
    <entry><ind>    0.0</ind><dep>   0.0</dep></entry>
    <entry><ind>    5</ind><dep>119.7135</dep></entry>
@@ -42,9 +42,9 @@
    <z>0</z>
   </axis>
  </animation>
- 
+
  <!-- mc cready -->
- 
+
   <animation>
   <type>rotate</type>
   <object-name>mc-cready</object-name>
@@ -61,7 +61,7 @@
    <z>0</z>
   </axis>
  </animation>
- 
+
    <animation>
   <type>pick</type>
   <object-name>mc-cready</object-name>
@@ -80,7 +80,7 @@
     </binding>
   </action>
   </animation>
-  
+
   <animation>
   <type>pick</type>
   <object-name>mc-cready</object-name>
@@ -99,9 +99,9 @@
     </binding>
   </action>
   </animation>
-  
+
   <!-- volume -->
- 
+
    <animation>
   <type>rotate</type>
   <object-name>vol-knob</object-name>
@@ -118,7 +118,7 @@
    <z>0</z>
   </axis>
  </animation>
- 
+
    <animation>
   <type>pick</type>
   <object-name>vol-knob</object-name>
@@ -137,7 +137,7 @@
     </binding>
   </action>
   </animation>
-  
+
   <animation>
   <type>pick</type>
   <object-name>vol-knob</object-name>
@@ -156,9 +156,9 @@
     </binding>
   </action>
   </animation>
-  
+
   <!-- audio switch -->
- 
+
      <animation>
         <type>rotate</type>
         <object-name>audio-switch</object-name>
@@ -179,191 +179,191 @@
             <z>0</z>
         </axis>
     </animation>
-  
+
       <animation>
         <type>pick</type>
         <object-name>incr-audio</object-name>
         <action>
  	    <button>0</button>
-            <binding>	    
+            <binding>
 	    	  <command>property-adjust</command>
 			<property>instrumentation/ilec-sc7/audio</property>
 			<step>1</step>
 			<min>0</min>
 			<max>2</max>
-			<wrap>false</wrap>		
-            </binding>           
+			<wrap>false</wrap>
+            </binding>
         </action>
-    </animation> 
-    
+    </animation>
+
         <animation>
         <type>pick</type>
         <object-name>decr-audio</object-name>
         <action>
  	    <button>0</button>
-            <binding>	    
+            <binding>
 	    	  <command>property-adjust</command>
 			<property>instrumentation/ilec-sc7/audio</property>
 			<step>-1</step>
 			<min>0</min>
 			<max>2</max>
-			<wrap>false</wrap>		
-            </binding>           
+			<wrap>false</wrap>
+            </binding>
         </action>
-    </animation> 
-    
-    <!-- mode switch -->
-    
-         <animation>
-        <type>rotate</type>
-        <object-name>mode-switch</object-name>
-        <property>instrumentation/ilec-sc7/mode</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>-30</dep></entry>
-            <entry><ind>1.0</ind><dep>0</dep></entry>
-	    <entry><ind>2.0</ind><dep>30</dep></entry>
-        </interpolation>
-        <center>
-            <x-m>0.001</x-m>
-            <y-m>0.025</y-m>
-            <z-m>-0.013</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>-1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-  
-      <animation>
-        <type>pick</type>
-        <object-name>incr-mode</object-name>
-        <action>
- 	    <button>0</button>
-            <binding>	    
-	    	  <command>property-adjust</command>
-			<property>instrumentation/ilec-sc7/mode</property>
-			<step>1</step>
-			<min>0</min>
-			<max>2</max>
-			<wrap>false</wrap>		
-            </binding>           
-        </action>
-    </animation> 
-    
-        <animation>
-        <type>pick</type>
-        <object-name>decr-mode</object-name>
-        <action>
- 	    <button>0</button>
-            <binding>	    
-	    	  <command>property-adjust</command>
-			<property>instrumentation/ilec-sc7/mode</property>
-			<step>-1</step>
-			<min>0</min>
-			<max>2</max>
-			<wrap>false</wrap>		
-            </binding>           
-        </action>
-    </animation> 
-    
-     <!-- sensitivity switch -->
-    
-         <animation>
-        <type>rotate</type>
-        <object-name>sens-switch</object-name>
-        <property>instrumentation/ilec-sc7/sensitivity</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>-30</dep></entry>
-            <entry><ind>1.0</ind><dep>30</dep></entry>
-        </interpolation>
-        <center>
-            <x-m>0.001</x-m>
-            <y-m>0.003</y-m>
-            <z-m>-0.031</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>-1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-  
-      <animation>
-        <type>pick</type>
-        <object-name>incr-sens</object-name>
-        <action>
- 	    <button>0</button>
-            <binding>	    
-	    	  <command>property-adjust</command>
-			<property>instrumentation/ilec-sc7/sensitivity</property>
-			<step>1</step>
-			<min>0</min>
-			<max>1</max>
-			<wrap>false</wrap>		
-            </binding>           
-        </action>
-    </animation> 
-    
-        <animation>
-        <type>pick</type>
-        <object-name>decr-sens</object-name>
-        <action>
- 	    <button>0</button>
-            <binding>	    
-	    	  <command>property-adjust</command>
-			<property>instrumentation/ilec-sc7/sensitivity</property>
-			<step>-1</step>
-			<min>0</min>
-			<max>1</max>
-			<wrap>false</wrap>		
-            </binding>           
-        </action>
-    </animation>    
-    
-    <!-- digits -->
-    
-    <animation>
-        <type>textranslate</type>
-        <object-name>decimals-digit</object-name>
-        <property>instrumentation/ilec-sc7/average</property>
-        <factor>1</factor>
-        <step>0.1</step>
-        <bias>0.005</bias>
-        <axis>
-            <x>1</x>
-            <y>0</y>
-            <z>0</z>
-        </axis>
     </animation>
 
-    <animation>
-        <type>textranslate</type>
-        <object-name>units-digit</object-name>
-        <property>instrumentation/ilec-sc7/average</property>
-        <factor>0.1</factor>
-        <step>1</step>
-        <bias>0.005</bias>
-        <axis>
-            <x>1</x>
-            <y>0</y>
-            <z>0</z>
-        </axis>
-    </animation>
-    
-        <animation>
-        <type>textranslate</type>
-        <object-name>sign-digit</object-name>
-        <property>instrumentation/ilec-sc7/average-sign</property>
-        <factor>0.1</factor>
-        <step>1</step>
-        <bias>0.005</bias>
-        <axis>
-            <x>1</x>
-            <y>0</y>
-            <z>0</z>
-        </axis>
-    </animation>
+    <!-- mode switch -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>mode-switch</object-name>
+		<property>instrumentation/ilec-sc7/mode</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-30</dep></entry>
+			<entry><ind>1.0</ind><dep>0</dep></entry>
+			<entry><ind>2.0</ind><dep>30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.001</x-m>
+			<y-m>0.025</y-m>
+			<z-m>-0.013</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>incr-mode</object-name>
+		<action>
+		<button>0</button>
+		<binding>
+			<command>property-adjust</command>
+			<property>instrumentation/ilec-sc7/mode</property>
+			<step>1</step>
+			<min>0</min>
+			<max>2</max>
+			<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>decr-mode</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/ilec-sc7/mode</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>2</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+
+     <!-- sensitivity switch -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>sens-switch</object-name>
+		<property>instrumentation/ilec-sc7/sensitivity</property>
+		<interpolation>
+			<entry><ind>1</ind><dep>30</dep></entry>
+			<entry><ind>3</ind><dep>-30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.001</x-m>
+			<y-m>0.003</y-m>
+			<z-m>-0.031</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>decr-sens</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/ilec-sc7/sensitivity</property>
+				<step>3</step>
+				<min>1</min>
+				<max>3</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>incr-sens</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/ilec-sc7/sensitivity</property>
+				<step>-3</step>
+				<min>1</min>
+				<max>3</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+
+    <!-- digits -->
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>decimals-digit</object-name>
+		<property>instrumentation/ilec-sc7/lcd-digits-abs</property>
+		<factor>1</factor>
+		<step>0.1</step>
+		<bias>0.005</bias>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>units-digit</object-name>
+		<property>instrumentation/ilec-sc7/lcd-digits-abs</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<bias>0.005</bias>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>sign-digit</object-name>
+		<property>instrumentation/ilec-sc7/lcd-digits-sgn</property>
+		<factor>0.1</factor>
+		<step>1</step>
+		<bias>0.005</bias>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
 </PropertyList>
 

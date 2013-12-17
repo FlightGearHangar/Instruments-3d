@@ -123,8 +123,6 @@ var listenTrLock = func(i) {
 
 var SCR_522C_init = func(){
 
-    print ("initializing SCR-522C ...");
-
     var channelA_init = comm_selected_node.getValue();
     var channelB_init = comm_standby_node.getValue();
     var channelC_init = comm1_selected_node.getValue();

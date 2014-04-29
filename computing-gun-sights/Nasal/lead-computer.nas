@@ -53,10 +53,11 @@ var harmonizationRange = 0;
 var range = 0;
 
 # constants
-var timeStep = 0.1;
+var timeStep = getprop(propertyTreeRoot, "timeStep");
 
 # sight damping factor
-var SIG = 0.4;
+var SIG = getprop(propertyTreeRoot, "dampingFactor") * 0.4;
+
 var KSIG = 1.0 / (1.0 + SIG);
 
 var seaLevelAirDensity = 0.00238;

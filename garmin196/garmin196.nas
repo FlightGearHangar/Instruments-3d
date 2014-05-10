@@ -21,9 +21,6 @@ var init_variables = func{
 	##aircrafts
 	props.globals.getNode("/instrumentation/garmin196/menu_aircraft/x_char",1).setIntValue(0);
 	props.globals.getNode("/instrumentation/garmin196/menu_aircraft/y_char",1).setIntValue(0);
-		
-	##load atis freq
-	fgcommand("loadxml", props.Node.new({ filename: getprop("/sim/fg-root")~"/Aircraft/Instruments-3d/garmin196/airports_atis.xml", targetnode: "/instrumentation/garmin196" }));
 	
 	##init waypoint system
 	props.globals.getNode("/instrumentation/garmin196/panel-wpt-bearing",1).setDoubleValue(0);
@@ -2937,9 +2934,9 @@ var display_nrst = func(type){
 					ligne = ligne ~ " " ~ sprintf("%4.0fm",max_length*0.3048);
 				}
 				
-				var radio = getprop("/instrumentation/garmin196/airports_atis/id_"~id);
-				if(radio!=nil){
-					ligne = ligne ~ sprintf(" %3.2f",radio);
+				var radio = airportinfo(id).comms('ATIS');
+				if(size(radio) > 0){
+					ligne = ligne ~ sprintf(" %3.2f",radio[0]);
 				}
 			}elsif(type=="vor"){
 				ligne = ligne ~ " " ~ sprintf("%2.2f",getprop('/instrumentation/gps/scratch/frequency-mhz'));

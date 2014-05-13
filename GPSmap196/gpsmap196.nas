@@ -1,7 +1,8 @@
-print("Load Garmin GPSmap196 canvas");
+
 
 var GPSmap196 = {
-  new: func {
+  new: func(canvas_group) {
+    print("Load Garmin GPSmap196 canvas");
     m             = { parents : [GPSmap196] };
     m.node        = props.globals.initNode("/instrumentation/gps196");
     m.rockerUp    = m.node.initNode("inputs/rocker-up", 0, "BOOL");
@@ -17,32 +18,32 @@ var GPSmap196 = {
     m.buttonPower = m.node.initNode("inputs/button-power", 0, "BOOL");
     m.rockerRight = m.node.initNode("inputs/rocker-right", 0, "BOOL");
     m.buttonEnter = m.node.initNode("inputs/button-enter", 0, "BOOL");
+
+    m.text = canvas_group.createChild("text", "optional-id-for element")
+                  .setFontSize(14)
+                  .setColor(1,0,0)
+                  .setTranslation(10, 20)
+                  .setAlignment("left-center")
+                  .setText("This is a text element")
+                  .setFont("LiberationFonts/LiberationSans-Regular.ttf");
+
     return m;
   },
-  update: func {
+  update: func() {
 
+    settimer(func me.update(), 0);
   }
 };
 
-var myGPSmap196 = GPSmap196.new();
-
-var myCanvas = canvas.new({
-  "name": "GPSmap196-screen",   # The name is optional but allow for easier identification
-  "size": [512, 512],   # Size of the underlying texture (should be a power of 2, required) [Resolution]
-  "view": [320, 240],   # Virtual resolution (Defines the coordinate system of the canvas [Dimensions]
-                        # which will be stretched the size of the texture, required)
-  "mipmapping": 1       # Enable mipmapping (optional)
+setlistener("sim/signals/fdm-initialized", func() {
+  var gpsmap196Screen = canvas.new({
+    "name": "GPSmap196-screen",
+    "size": [512, 512],
+    "view": [320, 240],
+    "mipmapping": 1
+  });
+  gpsmap196Screen.addPlacement({"node": "gps196.screen"});
+  gpsmap196Canvas = GPSmap196.new(gpsmap196Screen.createGroup());
+  gpsmap196Canvas.update();
 });
 
-myCanvas.addPlacement({"node": "gps196.screen"});
-myCanvas.setColorBackground(0.6,0.64,0.545);
-
-var group = myCanvas.createGroup();
-var text = group.createChild("text", "optional-id-for element")
-                .setTranslation(10, 20)      # The origin is in the top left corner
-                .setAlignment("left-center") # All values from osgText are supported (see $FG_ROOT/Docs/README.osgtext)
-                .setFont("LiberationFonts/LiberationSans-Regular.ttf") # Fonts are loaded either from $AIRCRAFT_DIR/Fonts or $FG_DATA/Fonts
-                .setFontSize(14)             # Set fontsize and optionally character aspect ratio
-                .setColor(0,0,0)             # Text color
-                .setText("This is a text element");
-text.show();

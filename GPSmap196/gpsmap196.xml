@@ -295,64 +295,39 @@
             var dlg = canvas.Window.new([512, 256], "dialog").set("resize", 1).set("title", "Garmin GPSmap196");
             var gps196Widget = dlg.createCanvas().setColorBackground(0,0,1,1);
             var root = gps196Widget.createGroup();
+
             canvas.parsesvg(root, "Aircraft/Instruments-3d/GPSmap196/widget/gpsmap196-widget.svg");
 
             var display = root.getElementById("gps196.widget.screen");
 
-            var buttonIn = root.getElementById("gps196.widget.button.in");
-            buttonIn.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-in", 1); });
-            buttonIn.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-in", 0); });
+            var buttons = [
+                                ["gps196.widget.button.in", "button-in"],
+                                ["gps196.widget.button.out", "button-out"],
+                                ["gps196.widget.button.dto", "button-dto"],
+                                ["gps196.widget.button.page", "button-page"],
+                                ["gps196.widget.button.quit", "button-quit"],
+                                ["gps196.widget.button.nrst", "button-nrst"],
+                                ["gps196.widget.button.enter", "button-enter"],
+                                ["gps196.widget.button.menu", "button-menu"],
+                                ["gps196.widget.button.power", "button-power"],
+                                ["gps196.widget.rocker.up", "rocker-up"],
+                                ["gps196.widget.rocker.down", "rocker-down"],
+                                ["gps196.widget.rocker.left", "rocker-left"],
+                                ["gps196.widget.rocker.right", "rocker-right"]
+                              ];
 
-            var buttonOut = root.getElementById("gps196.widget.button.out");
-            buttonOut.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-out", 1); });
-            buttonOut.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-out", 0); });
+            foreach(var button; buttons){
+              print(button[0]~" & "~button[1]);
+              var element = root.getElementById(button[0]);
+              element.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/"~button[1], 1); });
+              element.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/"~button[1], 0); });
+              element.set("z-index", 11);
+            }
 
-            var buttonDto = root.getElementById("gps196.widget.button.dto");
-            buttonDto.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-dto", 1); });
-            buttonDto.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-dto", 0); });
-
-            var buttonPage = root.getElementById("gps196.widget.button.page");
-            buttonPage.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-page", 1); });
-            buttonPage.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-page", 0); });
-
-            var buttonQuit = root.getElementById("gps196.widget.button.quit");
-            buttonQuit.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-quit", 1); });
-            buttonQuit.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-quit", 0); });
-
-            var buttonMenu = root.getElementById("gps196.widget.button.menu");
-            buttonMenu.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-menu", 1); });
-            buttonMenu.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-menu", 0); });
-
-            var buttonNrst = root.getElementById("gps196.widget.button.nrst");
-            buttonNrst.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-nrst", 1); });
-            buttonNrst.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-nrst", 0); });
-
-            var buttonEnter = root.getElementById("gps196.widget.button.enter");
-            buttonEnter.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-enter", 1); });
-            buttonEnter.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-enter", 0); });
-
-            var buttonPower = root.getElementById("gps196.widget.button.power");
-            buttonPower.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/button-power", 1); });
-            buttonPower.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/button-power", 0); });
-
-            var rockerUp = root.getElementById("gps196.widget.rocker.up");
-            rockerUp.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/rocker-up", 1); });
-            rockerUp.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/rocker-up", 0); });
-
-            var rockerDown = root.getElementById("gps196.widget.rocker.down");
-            rockerDown.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/rocker-down", 1); });
-            rockerDown.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/rocker-down", 0); });
-
-            var rockerLeft = root.getElementById("gps196.widget.rocker.left");
-            rockerLeft.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/rocker-left", 1); });
-            rockerLeft.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/rocker-left", 0); });
-
-            var rockerRight = root.getElementById("gps196.widget.rocker.right");
-            rockerRight.addEventListener("mousedown", func(e) { setprop("instrumentation/gps196/inputs/rocker-right", 1); });
-            rockerRight.addEventListener("mouseup", func(e) { setprop("instrumentation/gps196/inputs/rocker-right", 0); });
+            var background = root.createChild("image").setFile("Aircraft/Instruments-3d/GPSmap196/widget/gpsmap196-widget.png").setSize(512,256).set("z-index",10);
 
             var gps196CanvasInstance = canvas.get({name: "GPSmap196-screen"});
-            display.createChild("image").setFile(gps196CanvasInstance);
+            #display.createChild("image").setFile(gps196CanvasInstance);
 
             #dlg.setCanvas(canvas.get({name: "GPSmap196-screen"}));
           ]]>

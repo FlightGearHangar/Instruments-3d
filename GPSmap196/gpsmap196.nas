@@ -1,7 +1,7 @@
 
 
 var GPSmap196 = {
-  new: func(canvas_group) {
+  new: func() {
     print("Load Garmin GPSmap196 canvas");
     m             = { parents : [GPSmap196] };
     m.node        = props.globals.initNode("/instrumentation/gps196");
@@ -18,32 +18,36 @@ var GPSmap196 = {
     m.buttonPower = m.node.initNode("inputs/button-power", 0, "BOOL");
     m.rockerRight = m.node.initNode("inputs/rocker-right", 0, "BOOL");
     m.buttonEnter = m.node.initNode("inputs/button-enter", 0, "BOOL");
+    m.gmt         = props.globals.getNode("sim/time/gmt");
+    m.gpsmap196Screen = canvas.new({
+      "name": "GPSmap196-screen",
+      "size": [512, 512],
+      "view": [320, 240],
+      "mipmapping": 1
+    });
+    m.gpsmap196Screen.addPlacement({"node": "gps196.screen"});
+    var g = m.gpsmap196Screen.createGroup();
 
-    m.text = canvas_group.createChild("text", "optional-id-for element")
-                  .setFontSize(14)
-                  .setColor(1,0,0)
-                  .setTranslation(10, 20)
-                  .setAlignment("left-center")
-                  .setText("This is a text element")
-                  .setFont("LiberationFonts/LiberationSans-Regular.ttf");
+    m.text_title =
+      g.createChild("text", "line-title")
+       .setDrawMode(canvas.Text.TEXT + canvas.Text.FILLEDBOUNDINGBOX)
+       .setColor(0,0,0)
+       .setColorFill(0,1,0)
+       .setAlignment("center-top")
+       .setFont("LiberationFonts/LiberationMono-Bold.ttf")
+       .setFontSize(35, 1.5)
+       .setTranslation(150, 50);
 
     return m;
   },
   update: func() {
-
+    me.text_title.setText(me.gmt.getValue());
     settimer(func me.update(), 0);
   }
 };
 
 setlistener("sim/signals/fdm-initialized", func() {
-  var gpsmap196Screen = canvas.new({
-    "name": "GPSmap196-screen",
-    "size": [512, 512],
-    "view": [320, 240],
-    "mipmapping": 1
-  });
-  gpsmap196Screen.addPlacement({"node": "gps196.screen"});
-  gpsmap196Canvas = GPSmap196.new(gpsmap196Screen.createGroup());
+  gpsmap196Canvas = GPSmap196.new();
   gpsmap196Canvas.update();
 });
 

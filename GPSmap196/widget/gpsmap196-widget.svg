@@ -8,8 +8,8 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    version="1.1"
-   width="512"
-   height="256"
+   width="1024"
+   height="512"
    id="svg2">
   <metadata
      id="metadata8">
@@ -25,76 +25,70 @@
   </metadata>
   <defs
      id="defs6" />
-  <rect
-     width="281.48007"
-     height="179.12369"
-     x="43.213867"
-     y="25.086664"
-     id="gps196.widget.screen"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.50041838,0,0,0.50041838,-1.8229431,-3.8963709)"
+     d="m 933.51996,81.269959 a 26.100878,26.100878 0 1 1 -52.20174,0 26.100878,26.100878 0 1 1 52.20174,0 z"
      id="gps196.widget.button.out"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.50041838,0,0,0.50041838,-1.5670421,29.113569)"
+     d="m 934.03176,147.28984 a 26.100878,26.100878 0 1 1 -52.20174,0 26.100878,26.100878 0 1 1 52.20174,0 z"
      id="gps196.widget.button.in"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.50041838,0,0,0.50041838,-30.22683,180.08923)"
+     d="m 876.7122,449.24116 a 26.10088,26.10088 0 0 1 -52.20176,0 26.10088,26.10088 0 1 1 52.20176,0 z"
      id="gps196.widget.button.dto"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.56910326,0,0,0.56910326,-137.11902,174.06404)"
+     d="m 791.75638,448.72938 a 29.683352,29.683352 0 1 1 -59.3667,0 29.683352,29.683352 0 1 1 59.3667,0 z"
      id="gps196.widget.button.power"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.63778813,0,0,0.63778813,-174.92064,11.945369)"
+     d="m 844.98168,136.03064 a 33.265824,33.265824 0 1 1 -66.53164,0 33.265824,33.265824 0 1 1 66.53164,0 z"
      id="gps196.widget.button.page"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.63778813,0,0,0.63778813,-200.50974,50.840799)"
+     d="m 793.80348,213.8215 a 33.265824,33.265824 0 1 1 -66.53164,0 33.265824,33.265824 0 1 1 66.53164,0 z"
      id="gps196.widget.button.quit"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.63778813,0,0,0.63778813,-201.02151,94.854049)"
+     d="m 792.77994,301.848 a 33.265824,33.265824 0 1 1 -66.53164,0 33.265824,33.265824 0 1 1 66.53164,0 z"
      id="gps196.widget.button.enter"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.63778813,0,0,0.63778813,-174.92063,133.74946)"
+     d="m 844.9817,379.63882 a 33.265824,33.265824 0 1 1 -66.53164,0 33.265824,33.265824 0 1 1 66.53164,0 z"
      id="gps196.widget.button.menu"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
   <path
-     d="m 937.82332,83.996651 a 26.079056,26.079056 0 1 1 -52.15811,0 26.079056,26.079056 0 1 1 52.15811,0 z"
-     transform="matrix(0.63778813,0,0,0.63778813,-122.71887,141.42619)"
+     d="m 949.38522,394.99228 a 33.265824,33.265824 0 1 1 -66.53164,0 33.265824,33.265824 0 1 1 66.53164,0 z"
      id="gps196.widget.button.nrst"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
-  <path
-     d="m 853.96124,266.94855 -20.54345,-35.5823 -20.54346,-35.58231 41.08691,0 41.08691,0 -20.54345,35.58231 z"
-     transform="matrix(0.92683535,0,0,0.43241036,-350.81919,11.360869)"
-     id="gps196.widget.rocker.up"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
-  <path
-     d="m 853.96124,266.94855 -20.54345,-35.5823 -20.54346,-35.58231 41.08691,0 41.08691,0 -20.54345,35.58231 z"
-     transform="matrix(0,-0.74682129,0.53191407,0,298.59919,764.69939)"
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
+  <rect
+     width="46.64407"
+     height="56.045197"
+     x="804.16229"
+     y="230.62289"
      id="gps196.widget.rocker.left"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
-  <path
-     d="m 853.96124,266.94855 -20.54345,-35.5823 -20.54346,-35.58231 41.08691,0 41.08691,0 -20.54345,35.58231 z"
-     transform="matrix(-0.92683535,0,0,-0.43241036,1232.1505,242.43972)"
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
+  <rect
+     width="41.943504"
+     height="56.045197"
+     x="196.27261"
+     y="-907.39392"
+     transform="matrix(0,1,-1,0,0,0)"
+     id="gps196.widget.rocker.up"
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
+  <rect
+     width="41.943504"
+     height="56.045197"
+     x="279.07486"
+     y="-907.39398"
+     transform="matrix(0,1,-1,0,0,0)"
      id="gps196.widget.rocker.down"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
-  <path
-     d="m 853.96124,266.94855 -20.54345,-35.5823 -20.54346,-35.58231 41.08691,0 41.08691,0 -20.54345,35.58231 z"
-     transform="matrix(0,0.74682129,-0.53191407,0,582.73224,-510.89875)"
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
+  <rect
+     width="48.81356"
+     height="56.045197"
+     x="907.57477"
+     y="230.80368"
      id="gps196.widget.rocker.right"
-     style="fill:#4aff1c;fill-opacity:0.40201015;stroke:none" />
+     style="fill:none;fill-opacity:0.40201015;stroke:none" />
 </svg>

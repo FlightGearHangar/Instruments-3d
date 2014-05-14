@@ -293,7 +293,7 @@
         <script>
           <![CDATA[
             var dlg = canvas.Window.new([512, 256], "dialog").set("resize", 1).set("title", "Garmin GPSmap196");
-            var gps196Widget = dlg.createCanvas().setColorBackground(0,0,1,1);
+            var gps196Widget = dlg.createCanvas().setColorBackground(1,1,1,1);
             var root = gps196Widget.createGroup();
 
             canvas.parsesvg(root, "Aircraft/Instruments-3d/GPSmap196/widget/gpsmap196-widget.svg");
